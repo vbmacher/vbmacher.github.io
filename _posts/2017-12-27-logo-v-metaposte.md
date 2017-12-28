@@ -16,15 +16,15 @@ A to sa stalo ústrednou myšlienkou loga.
 
 Počítač sa v dnešnej dobe kreslí väčšinou ako monitor, pod ktorým je klávesnica, ako napríklad v Gnomme:
 
-![Gnome Computer](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Gnome-computer.svg/2000px-Gnome-computer.svg.png)
+![Gnome Computer](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Gnome-computer.svg/200px-Gnome-computer.svg.png)
 
 Predtým sa počítač zas kreslil ako monitor, vedľa ktorého stál minitower:
 
-![Desktop computer](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/2000px-Desktop_computer_clipart_-_Yellow_theme.svg.png)
+![Desktop computer](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/200px-Desktop_computer_clipart_-_Yellow_theme.svg.png)
 
 A ešte predtým počítač zas vyzeral tak, že monitor stál na podlhovastej "bedni":
 
-![Windows computer icon](https://ih1.redbubble.net/image.229705255.5949/flat,800x800,075,f.u1.jpg)
+![Windows computer icon](https://ih1.redbubble.net/image.229705255.5949/flat,200x200,075,f.u1.jpg)
 
 Taký vtípek s Windowsom. Ale reálny príklad by sme mohli vidieť v prípade IBM Personal System/2 Model 55X, ako je napríklad tu:
 
