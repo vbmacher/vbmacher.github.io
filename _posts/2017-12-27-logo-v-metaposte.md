@@ -14,28 +14,34 @@ iného počítača. Táto vlastnosť potom väčšinou umožňuje spustiť progr
 bežať, a to hlavne z dôvodu nekompatibility. Keď som si to predstavil "graficky", vytvoril sa mi obraz *počítača v počítači*.
 A to sa stalo ústrednou myšlienkou loga.
 
-Počítač sa v dnešnej dobe kreslí väčšinou ako monitor, pod ktorým je klávesnica, ako napríklad v Gnomme:
+Počítač sa v dnešnej dobe kreslí väčšinou ako monitor, pod ktorým je klávesnica, ako napríklad v Gnome:
 
-![Gnome Computer](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Gnome-computer.svg/200px-Gnome-computer.svg.png)
+![Gnome Computer]({{ "/images/logo-v-metaposte/gnome-computer.png" | absolute_url }})
 
 Predtým sa počítač zas kreslil ako monitor, vedľa ktorého stál minitower:
 
-![Desktop computer](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/200px-Desktop_computer_clipart_-_Yellow_theme.svg.png)
+![Desktop Computer]({{ "/images/logo-v-metaposte/desktop-computer.png" | absolute_url }})
 
 A ešte predtým počítač zas vyzeral tak, že monitor stál na podlhovastej "bedni":
 
-![Windows computer icon](https://ih1.redbubble.net/image.229705255.5949/flat,200x200,075,f.u1.jpg)
+![Windows Computer]({{ "/images/logo-v-metaposte/windows-computer.jpg" | absolute_url }})
 
-Taký vtípek s Windowsom. Ale reálny príklad by sme mohli vidieť v prípade IBM Personal System/2 Model 55X, ako je napríklad tu:
+Taký malý vtip s Windowsom. Ale reálny príklad by sme mohli vidieť v prípade IBM Personal System/2 Model 55X, ako je napríklad tu:
 
-![IBM PS/2 55SX](http://www.pc-collection.com/images/i/ibm/IBM_8555.jpg)
+![IBM PS/2 55SX]({{ "/images/logo-v-metaposte/ibm-ps2-55sx.jpg" | absolute_url }})
 
 A práve tento posledný typ sa mi páči. Takže potrebujeme bedňu, a monitor. Na logo "počítač v počítači" teda stačia štyri obdĺžniky.
 
+Moje prvé kroky viedli na internet. Hľadal som niečo jednoduché, proste pekný "computer clipart". A podarilo sa mi nájsť veľmi
+pekný a hlavne free clipart, ktorý sa mi zapáčil ako základ pre moje nové logo (zo stránky [4vector.com][14]):
+
+![Computer Clipart]({{ "/images/logo-v-metaposte/clipart-computer.svg" | absolute_url }})
+
+
 # Kde si dnes človek môže nakresliť logo?
 
-Bohužiaľ nie som ani grafik, ani frontend developer, takže s grafikou mám pramálo skúseností. Napriek tomu, ak by som mal niečo
-reálne nakresliť, ako prvé ma napadlo použiť program na vektorovú grafiku. Napríklad open-source program [Inkscape][4] alebo [GIMP][3].
+Bohužiaľ nie som ani grafik, ani umelec, ani frontend developer, takže s grafikou mám pramálo skúseností. Napriek tomu, ak by som
+mal niečo reálne nakresliť, ako prvé ma napadlo použiť program na vektorovú grafiku. Napríklad open-source program [Inkscape][4] alebo [GIMP][3].
 
 Avšak po prezretí si niekoľkých "grafických" projektov na GitHub-e (väčšinou ikony alebo logá - [numix-icon-theme][8],
 [logos][9], [gnome-icon-theme][10], [paper-icon-theme][11], [oranchelo-icon-theme][12]) som zistil, že vo všetkých
@@ -161,3 +167,4 @@ zapisovať svoje grafiky algebraicky? :) Možno tam je pes zakopaný.
 [11]: https://github.com/snwh/paper-icon-theme
 [12]: https://github.com/OrancheloTeam/oranchelo-icon-theme
 [13]: https://www.npmjs.com/package/webfonts-generator
+[14]: https://4vector.com/free-vector/b-w-cartoon-computer-base-monitor-clip-art-116384
