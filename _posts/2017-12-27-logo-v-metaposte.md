@@ -2,6 +2,8 @@
 layout: post
 title: Logo v MetaPost-e
 comments: true
+category: MetaPost
+tags: [logo, metapost, emustudio]
 ---
 
 Môj prvý blogpost sa bude týkať tvorbe loga, ktoré programátor chce použiť či už pre svoju webovú stránku alebo program.
@@ -61,7 +63,8 @@ Existuje alternatíva?
 
 # Alternatíva
 
-Existuje. Druhou možnosťou je logo skutočne "naprogramovať", napríklad pomocou programov ako je [MetaPost][1] či [Dot (GraphViz)][2].
+Existuje. Druhou možnosťou je logo skutočne "naprogramovať", napríklad pomocou programov ako je [MetaPost][1], [Dot (GraphViz)][2]
+alebo [TikZ][15] pre [LaTeX][16].
 Výhodou tohto prístupu je, že obrázok vo forme zdrojového kódu je ľahko modifikovateľný, hocikto môže pridávať a odoberať prvky
 a nemusí byť žiadny umelec, a nakoniec vieme si ho pekne držať v git-e.
 
@@ -168,3 +171,5 @@ zapisovať svoje grafiky algebraicky? :) Možno tam je pes zakopaný.
 [12]: https://github.com/OrancheloTeam/oranchelo-icon-theme
 [13]: https://www.npmjs.com/package/webfonts-generator
 [14]: https://4vector.com/free-vector/b-w-cartoon-computer-base-monitor-clip-art-116384
+[15]: http://www.texample.net/tikz
+[16]: https://www.latex-project.org/
