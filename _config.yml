@@ -10,7 +10,7 @@ baseurl: ""
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: http://mojkod.sk/
+url: http://www.mojkod.sk/
 
 permalink: /:title/
 
