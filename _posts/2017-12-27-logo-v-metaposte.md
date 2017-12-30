@@ -1,14 +1,20 @@
 ---
 layout: post
 title: Logo v MetaPost-e
-comments: true
-category: MetaPost
-tags: [logo, metapost, emustudio]
+categories: Grafika
+tags: logo metapost emustudio
+date: 2017-12-28 14:30:00
 ---
 
 Môj prvý blogpost sa bude týkať tvorbe loga, ktoré programátor chce použiť či už pre svoju webovú stránku alebo program.
 Cieľom bude vytvoriť logo pre môj dlhodobý projekt [emuStudio](https://vbmacher.github.io/emuStudio/) (emulačná platforma a
 framework).
+
+
+
+
+* content
+{:toc}
 
 Kde si dnes človek môže nakresliť relatívne rýchlo logo, aké chce? Áno, predstavte si, že nápad už máte. V mojom prípade nápad
 na logo by sa mal týkať počítača, už len preto, čo znamená pojem emulátor. Ide o program, ktorý napodobňuje prácu nejakého
@@ -16,21 +22,17 @@ iného počítača. Táto vlastnosť potom väčšinou umožňuje spustiť progr
 bežať, a to hlavne z dôvodu nekompatibility. Keď som si to predstavil "graficky", vytvoril sa mi obraz *počítača v počítači*.
 A to sa stalo ústrednou myšlienkou loga.
 
-Počítač sa v dnešnej dobe kreslí väčšinou ako monitor, pod ktorým je klávesnica, ako napríklad v Gnome:
+Počítač sa v dnešnej dobe kreslí väčšinou ako monitor, pod ktorým je klávesnica:
 
-![Gnome Computer]({{ "/images/logo-v-metaposte/gnome-computer.png" | absolute_url }})
+![Computer Display]({{ "/images/logo-v-metaposte/computer-display.png" | absolute_url }})
 
 Predtým sa počítač zas kreslil ako monitor, vedľa ktorého stál minitower:
 
-![Desktop Computer]({{ "/images/logo-v-metaposte/desktop-computer.png" | absolute_url }})
+![Desktop Computer]({{ "/images/logo-v-metaposte/computer-desktop.png" | absolute_url }})
 
 A ešte predtým počítač zas vyzeral tak, že monitor stál na podlhovastej "bedni":
 
-![Windows Computer]({{ "/images/logo-v-metaposte/windows-computer.jpg" | absolute_url }})
-
-Taký malý vtip s Windowsom. Ale reálny príklad by sme mohli vidieť v prípade IBM Personal System/2 Model 55X, ako je napríklad tu:
-
-![IBM PS/2 55SX]({{ "/images/logo-v-metaposte/ibm-ps2-55sx.jpg" | absolute_url }})
+![Computer with desk under display]({{ "/images/logo-v-metaposte/computer-under.png" | absolute_url }})
 
 A práve tento posledný typ sa mi páči. Takže potrebujeme bedňu, a monitor. Na logo "počítač v počítači" teda stačia štyri obdĺžniky.
 
@@ -45,32 +47,32 @@ pekný a hlavne free clipart, ktorý sa mi zapáčil ako základ pre moje nové 
 Bohužiaľ nie som ani grafik, ani umelec, ani frontend developer, takže s grafikou mám pramálo skúseností. Napriek tomu, ak by som
 mal niečo reálne nakresliť, ako prvé ma napadlo použiť program na vektorovú grafiku. Napríklad open-source program [Inkscape][4] alebo [GIMP][3].
 
-Avšak po prezretí si niekoľkých "grafických" projektov na GitHub-e (väčšinou ikony alebo logá - [numix-icon-theme][8],
+Po prezretí si niekoľkých "grafických" projektov na GitHub-e (väčšinou ikony alebo logá - [numix-icon-theme][8],
 [logos][9], [gnome-icon-theme][10], [paper-icon-theme][11], [oranchelo-icon-theme][12]) som zistil, že vo všetkých
 z nich sa ako zdrojový formát používa [SVG][6]. SVG, keďže ide o vektorový formát, je potom použitý ako zdroj buď pre
 generovanie výsledných formátov, alebo rôznych veľkostí obrázkov pre rôzne použitie.
 
-Grafici teda neukladajú svoj "projekt" grafického programu do git-u. Všetky vrstvy, pomocné čiary a podobne ostanú v
+Grafici na GitHub teda neukladajú svoj "projekt" grafického programu. Všetky vrstvy, pomocné čiary a podobne ostanú v
 "projekte" grafického programu u nich na počítači, a tento nie je verejný. Zamýšľam sa - prečo? Možno že si autor chce
 ponechať výhradné právo na akékoľvek pomocné prvky, ktorými dospeli k výslednému obrázku? Alebo je to tým, že projektový
 súbor predpisuje použitie grafického programu a sám o sebe licenčne nedovoľuje jeho uvolnenie ako open-source? Neviem.
 
-Každopádne - SVG sa mi preto nezdá ako dobrý zdroj. Je síce textový, ale rozhodne nie je human readable a v prípade, že
-si ho chce človek upraviť, nie je to tak jednoduché. Často sú to všetko len krivky a body, ktoré sú väčšinou optimalizované
-na veľkosť. Viac abstraktné vektorové prvky ako napr. obdĺžniky a kruhy, atď. chýbajú.
-
-Existuje alternatíva?
+Keby som si mal nakresliť logo, samozrejme ja projektový súbor mať budem. A zdieľať ho asi tiež môžem, snáď. 
+Avšak, keďže som viac programátor ako grafik, existuje "programátorská" alternatíva?
 
 # Alternatíva
 
-Existuje. Druhou možnosťou je logo skutočne "naprogramovať", napríklad pomocou programov ako je [MetaPost][1], [Dot (GraphViz)][2]
+Existuje. Skutočne "naprogramovať" logo môžme napríklad pomocou programov ako je [MetaPost][1], [Dot (GraphViz)][2]
 alebo [TikZ][15] pre [LaTeX][16].
 Výhodou tohto prístupu je, že obrázok vo forme zdrojového kódu je ľahko modifikovateľný, hocikto môže pridávať a odoberať prvky
 a nemusí byť žiadny umelec, a nakoniec vieme si ho pekne držať v git-e.
 
-Všetko však záleží od požiadaviek a od vlastných schopností. Ja som sa rozhodol pre MetaPost, jednak zrejme preto že sa viac
-spolieham na presnosť napísaných inštrukcií ako obrázok vygenerovať, než reálnym ťahaním myši. A chcem aby moje logo bolo úhľadné,
-geometricky presné.
+Nevýhodou - snáď - je to, že zložitejšie tvary, krivky alebo objekty s dynamickými efektami kreslíme využitím jednak
+jazyka samotného a pomocou afinných transformácii = matematiky.
+
+Všetko však záleží od požiadaviek a od vlastných schopností. Ja som sa rozhodol pre MetaPost, jednak zrejme preto že
+logo ktoré chcem nakresliť je jednoduché, chcel som si to skúsiť a viac sa spolieham na napísaný text inštrukcií ako
+obrázok nakresliť, než na WYSIWYG ťahaním myši. Rád by som, aby moje logo bolo geometricky presné.
 
 # MetaPost
 
@@ -82,8 +84,9 @@ objektami a aplikovať transformácie.
 Takže v mojom prípade logo napíšem ako postupnosť takýchto definícií - obdĺžnikov, čiar a bodov, niektoré plochy vyfarbím a budem mať
 počítač nakreslený. Potom vezmem tento počítač, nakreslím ho znova ale zmenšený do monitora toho väčšieho počítača. A hotovo.
 
-Jazyk MetaPost-u som sa nijak zvlášť nepotreboval učiť, aj keď je podľa mňa trochu divný. Vychádzal som hlavne z
-[manuálu](https://www.tug.org/docs/metapost/mpman.pdf) a z nejakých
+Jazyk MetaPost-u som sa nijak zvlášť nepotreboval učiť - na moje požiadavky, až na pár základných vecí. Jazyk je podľa mňa
+dosť divný. Myslím si, že väčšina populárnych programovacích jazykov vychádza zo syntaxe C, ale jazyk MetaPost-u sa tomu veľmi
+nedá prirovnať. Vychádzal som hlavne z [manuálu](https://www.tug.org/docs/metapost/mpman.pdf) a z nejakých
 [príkladov](http://tex.loria.fr/prod-graph/zoonekynd/metapost/metapost.html). 
 
 Kód loga umiestnime do súboru s príponou `.mp`, teda napr. `logo.mp`. Základná štruktúra programu je nasledovná:
@@ -97,6 +100,8 @@ outputformat:="svg";
 beginfig(1);
   // ...
 endfig;
+
+end.
 ```
 
 Takže vidíme, že príkazy musia byť zakončené bodkočiarkou. Prvé tri riadky som skopíroval z manuálu. Lepšie vysvetlenie
