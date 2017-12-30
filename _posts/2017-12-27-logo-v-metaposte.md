@@ -156,11 +156,14 @@ makier, môžme si vygenerovať rôzne verzie loga pre webovú stránku. Naprík
 malé logo na hornú lištu, atď. Ak je viac rôznych verzií loga, alebo ak sme vytvorili celú sadu ikon či obrázkov takýmto spôsobom,
 výsledné SVG súbory môžme zabaliť do web-fontu, napríklad pomocou [WebFont Generátora][13].
 
-Nemyslím si, že MetaPost je tou správnou voľbou pre všetky typy log, alebo ikon. Výhodu, ktorú prináša je geometrická presnosť
-a jednoduchosť zápisu vo forme zdrojového kódu. Nevýhodou je však ťažkopádnejšie vyjadrovanie "umeleckého ducha". Logá sú však
-väčšinou jednoduché tvary, ktoré majú určitú geometrickú formu, takže tam MetaPost podľa mňa je veľmi vhodný. Dokážu však umelci
-zapisovať svoje grafiky algebraicky? :) Možno tam je pes zakopaný. 
+Taktiež, výsledné SVG treba pred použitím optimalizovať, čím sa redukuje veľkosť súboru. Môžme na to použiť napríklad program
+[svgo][17].
 
+Na záver - nemyslím si, že MetaPost je tou správnou voľbou pre všetky typy log, alebo ikon. Výhodu, ktorú prináša je
+hlavne matematická presnosť, a možnosť využiť reálne dáta pri tvorbe obrázka. K dispozícii máme napríklad generátory
+pseudonáhodných čísel (uniformné alebo normálne rozdelenie), riadenie presných uhlov natočenia kriviek, čím sa dajú vytvárať
+veľmi zaujímavé tvary, cykly, podmienené vykonávanie, a makrá. MetaPost toho dokáže oveľa viac, avšak na to treba vedieť lepšie
+jazyk MetaPost-u, ale často už aj algebraické vyjadrenie grafiky.
 
 [1]: https://en.wikipedia.org/wiki/MetaPost
 [2]: https://graphviz.gitlab.io/
@@ -178,3 +181,4 @@ zapisovať svoje grafiky algebraicky? :) Možno tam je pes zakopaný.
 [14]: https://4vector.com/free-vector/b-w-cartoon-computer-base-monitor-clip-art-116384
 [15]: http://www.texample.net/tikz
 [16]: https://www.latex-project.org/
+[17]: https://github.com/svg/svgo
