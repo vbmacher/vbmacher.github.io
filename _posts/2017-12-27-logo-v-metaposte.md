@@ -39,7 +39,7 @@ A práve tento posledný typ sa mi páči. Takže potrebujeme bedňu, a monitor.
 Moje prvé kroky viedli na internet. Hľadal som niečo jednoduché, proste pekný "computer clipart". A podarilo sa mi nájsť veľmi
 pekný a hlavne free clipart, ktorý sa mi zapáčil ako základ pre moje nové logo (zo stránky [4vector.com][14]):
 
-![Computer Clipart]({{ "/images/logo-v-metaposte/clipart-computer.svg" | absolute_url }})
+![Computer Clipart]({{ "/images/logo-v-metaposte/computer-clipart.png" | absolute_url }})
 
 
 # Kde si dnes človek môže nakresliť logo?
