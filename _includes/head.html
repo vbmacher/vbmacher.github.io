@@ -6,6 +6,16 @@
     <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}"/>
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:domain" content="{{ site.twitter_url }}"/>
+    <meta name="twitter:site" content="@mojkod" />
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}" />
+    <meta name="twitter:description" property="og:description" itemprop="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
+
+
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="{{ "/css/font-awesome.min.css " | prepend: site.baseurl }}">
@@ -17,13 +27,13 @@
 
 {% if site.google_analytics_id %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-3492956-6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_id }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-3492956-6');
+  gtag('config', '{{ site.google_analytics_id }}');
 </script>
 {% endif %}
 
