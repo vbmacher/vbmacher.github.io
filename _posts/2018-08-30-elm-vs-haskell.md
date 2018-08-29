@@ -288,7 +288,7 @@ napríklad pre asociatívne pole (mapu) `Dict`.
 
 # Záver
 
-Informácie v tomto článku prezentujú hlavne to, čo mi udrelo do očí v rámci implementácie mojej hry Game of Life; tiež len z hľadiska samotného porovnania programovania v Haskell-i a Elm-e. Neriešil som ani performance, ani všetky možné iné vlastnosti. Je možno škoda, že som neuviedol ako pekne je Elm pripravený na prácu s obrázkami, animáciami, a dokonca aj komunikáciou medzi serverom a klientom cez rôzne bežne používané protokoly.
+Informácie v tomto článku prezentujú hlavne to, čo mi udrelo do očí v rámci implementácie mojej hry [Game of Life](https://github.com/vbmacher/learning-kit/tree/master/toy-projects/game-of-life); tiež len z hľadiska samotného porovnania programovania v Haskell-i a Elm-e. Neriešil som ani performance, ani všetky možné iné vlastnosti. Je možno škoda, že som neuviedol ako pekne je Elm pripravený na prácu s obrázkami, animáciami, a dokonca aj komunikáciou medzi serverom a klientom cez rôzne bežne používané protokoly.
 
 Veľmi tiež vyzdvihujem tzv. ["Elm architecture"](https://guide.elm-lang.org/architecture/), ktorá od verzie 0.18 "núti" programátora písať programy v patterne podobnom MVC, ktorý však má časti Model, Update a View (a Subscriptions), takže je to skôr MUV(S) :)
 
