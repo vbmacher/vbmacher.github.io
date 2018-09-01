@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Elm vs. Haskell
-categories: Funkcionálne programovanie, Front-end
+categories: [Funkcionálne programovanie, Front-end]
 tags: [elm, haskell, front-end, functional programming]
 date: 2018-08-29 00:48:00
 ---
