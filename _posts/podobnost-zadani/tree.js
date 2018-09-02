@@ -1,0 +1,157 @@
+// node install -g asciitree
+
+var draw_tree = require('asciitree');
+
+
+/*var tree = ['ahoj|hoj',
+ ['aho|hoj',
+   ['ah|hoj',
+     ['a|hoj',
+       ['a|ho',
+         ['a|h']
+       ]
+     ],
+     ['ah|ho',
+       ['a|ho',
+         ['a|h']
+       ],
+       ['ah|h',
+         ['a|h']
+       ],
+       ['a|h']
+     ],
+     ['a|ho',
+       ['a|h']
+     ]
+   ],
+   ['aho|ho',
+     ['ah|ho',
+       ['a|ho',
+         ['a|h']
+       ],
+       ['ah|h',
+         ['a|h']
+       ],
+       ['a|h']
+     ],
+     ['aho|h',
+       ['ah|h',
+         ['a|h']
+       ]
+     ],
+     ['ah|h',
+       ['a|h']
+     ]
+   ],
+   ['ah|ho',
+     ['a|ho',
+       ['a|h']
+     ],
+     ['ah|h',
+       ['a|h']
+     ],
+     ['a|h']
+   ]
+ ],
+ ['ahoj|ho',
+   ['aho|ho',
+     ['ah|ho',
+       ['a|ho',
+         ['a|h']
+       ],
+       ['ah|h',
+         ['a|h']
+       ],
+       ['a|h']
+     ],
+     ['aho|h',
+       ['ah|h',
+         ['a|h']
+       ]
+     ],
+     ['ah|h',
+       ['a|h']
+     ]
+   ],
+   ['ahoj|h',
+     ['aho|h',
+       ['ah|h',
+         ['a|h']
+       ]
+     ]
+   ],
+   ['aho|h']
+ ],
+ ['aho|ho',
+   ['ah|ho',
+     ['a|ho',
+       ['a|h']
+     ],
+     ['ah|h',
+       ['a|h']
+     ],
+     ['a|h']
+   ],
+   ['aho|h',
+     ['ah|h',
+       ['a|h']
+     ]
+   ],
+   ['ah|h',
+     ['a|h']
+   ]
+ ]
+];
+*/
+
+
+var tree = ['ahoj|hoj',
+ ['aho|hoj',
+   ['ah|hoj',
+     ['a|hoj',
+       ['a|ho',
+         ['a|h']
+       ]
+     ],
+     ['ah|ho',
+       ['a|ho',
+         ['a|h']
+       ],
+       ['ah|h',
+         ['a|h']
+       ],
+       ['a|h']
+     ],
+     ['a|ho',
+       ['a|h']
+     ]
+   ],
+   ['aho|ho', '...'],
+   ['ah|ho', '...']
+ ],
+ ['ahoj|ho',
+   ['aho|ho',
+     ['ah|ho',
+       ['a|ho',
+         ['a|h']
+       ],
+       ['ah|h',
+         ['a|h']
+       ],
+       ['a|h']
+     ],
+     ['aho|h',
+       ['ah|h',
+         ['a|h']
+       ]
+     ],
+     ['ah|h',
+       ['a|h']
+     ]
+   ],
+   '...'
+ ],
+ ['aho|ho', '...']
+];
+
+console.log(draw_tree(tree));
