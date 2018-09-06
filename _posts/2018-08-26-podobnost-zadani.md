@@ -2,7 +2,7 @@
 layout: post
 title: Podobnosť zdrojových kódov programov
 categories: [Škola, Plagiátorstvo]
-tags: [podobnosť, levenshtein, cosine, Scala, zadanie, izomorfizmus]
+tags: [podobnosť, levenshtein, cosine, scala, izomorfizmus]
 date: 2018-08-26 23:59:00
 mathjax: true
 ---
@@ -24,7 +24,7 @@ Plagiát v istom slova zmysle "nadobudne život" vtedy, keď človek kópiu, kto
 podľa mňa podstata tej "zlej tváre" plagiátorstva. Pretože ide o určitú formu klamstva, nepoctivosti a snahy o získanie niečoho
 nezaslúžene.
 
-Avšak "kopírovať" - časti alebo celky a prípadne ich modifikovať, priamo podporujú nielen [copyleft](33) licencie, ale je to jedna z
+Avšak "kopírovať" - časti alebo celky a prípadne ich modifikovať, priamo podporujú nielen [copyleft][33] licencie, ale je to jedna z
 najefektívnejších foriem učenia sa. Keď som začínal s programovaním, najviac mi dali cudzie zdrojové kódy, ktoré som nielen
 študoval, ale snažil sa ich upraviť, zmeniť tak, aby program robil niečo trochu iné. V programoch som nechával kusy kódu,
 ktorým som nerozumel alebo ktoré boli príliš previazané a veľké. Alebo som z cudzích kódov "vykrádal" použiteľné užitočné funkcie
@@ -35,7 +35,7 @@ ale trebalo to v programe mať. Myslím si, že práve tento prístup mi veľmi 
 Niektorých mojich známych totiž odradilo to, že sa na niečom zasekli. Na začiatku je podľa mňa správne snažiť "skosiť"
 učiacu krivku čo najviac, aj umelým spôsobom, aby boli veci prístupnejšie.
 
-Dokonca aj dnes kopírujeme - či už kód alebo myšlienky - hlavne zo [Stack Overflow](34), ktoré však, [zdá sa, oficiálne nikoho netrápi](https://meta.stackexchange.com/questions/270014/is-copy-pasting-code-from-stack-overflow-an-infringement-to-cc-by-sa-3-0-or-is-i).
+Dokonca aj dnes kopírujeme - či už kód alebo myšlienky - hlavne zo [Stack Overflow][34], ktoré však, [zdá sa, oficiálne nikoho netrápi](https://meta.stackexchange.com/questions/270014/is-copy-pasting-code-from-stack-overflow-an-infringement-to-cc-by-sa-3-0-or-is-i).
 
 ## O čom bude blogpost
 
