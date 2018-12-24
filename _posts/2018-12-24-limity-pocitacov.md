@@ -362,7 +362,7 @@ Rozdiel teda spočíva v tomto:
 # Záver
 
 V tejto prvej časti môjho príspevku som sa snažil priblížiť pozadie filozofického a matematického sveta
-na začiatku 20. storočia, ktoré viedlo k veľkému matematicko-filozofického objavu. Tento objav, teorém nekompletnosti,
+na začiatku 20. storočia, ktoré viedlo k veľkému matematicko-filozofickému objavu. Tento objav, teorém nekompletnosti,
 dáva do súvislosti dedukciu, logiku a filozofiu. Popiera matematický relativizmus, prúd, ktorý je aj dnes ešte dosť
 populárny pod pojmom - "všetko je relatívne".
 
