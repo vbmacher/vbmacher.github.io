@@ -369,7 +369,7 @@ populárny pod pojmom - "všetko je relatívne".
 Matematici 20. storočia ako napr. Hilbert a potom hlavne pozitivisti, verili v myšlienku "relativizmu" - matematika je
 len dielom, výtvorom, človeka, a ako myšlienkový nástroj má málo spoločné s reálnym svetom. Gödel naopak veril, že
 matematika s reálnym svetom súvisí a nie je ju možné od neho oddeliť. Práve teorém nekompletnosti vyjadruje tento vzťah.
-Existencia diskrétnych a počitateľných objektov v tomto svete, ak existujú izolovane len v tomto svete, sú podľa Godela
+Existencia diskrétnych a počitateľných objektov v tomto svete, ak existujú izolovane len v tomto svete, sú podľa Gödela
 paralelou ku axiomatickému systému aritmetiky. Tým pádom, nadnesene povedané, je možné, že reálny svet skrýva pravdy,
 ktoré nikdy nebudeme vedieť pochopiť.
 
