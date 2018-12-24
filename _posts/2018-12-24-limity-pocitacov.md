@@ -193,10 +193,6 @@ var data = {
         {
           "name": "Rudolf Carnap",
           "children": []
-        },
-        {
-          "name": "Haskell Curry",
-          "children": []
         }
       ]
     },
