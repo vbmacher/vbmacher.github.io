@@ -169,6 +169,9 @@
  */
 .page-content {
     padding: $spacing-unit 0;
+    text-rendering: optimizeLegibility;
+    word-spacing: 0.3px;
+    line-height: 1.7777777777777777rem;
 }
 
 .page-heading {
@@ -215,6 +218,11 @@
 
 .post-content {
     margin-bottom: $spacing-unit;
+    text-rendering: optimizeLegibility;
+    word-spacing: 0.3px;
+    line-height: 1.7777777777777777rem;
+    font-size: 33px;
+
 
     h2 {
         font-size: 32px;

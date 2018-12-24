@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Podobnosť zdrojových kódov programov
-categories: [Škola, Plagiátorstvo]
-tags: [podobnosť, levenshtein, cosine, scala, izomorfizmus]
+categories: [Škola, Algoritmy]
+tags: [plagiátorstvo, levenshtein, cosine, scala, izomorfizmus]
 date: 2018-08-26 23:59:00
 mathjax: true
 ---
