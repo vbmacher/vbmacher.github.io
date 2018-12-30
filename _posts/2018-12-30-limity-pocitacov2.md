@@ -245,7 +245,8 @@ a myslení človeka, nehovoríme o formálnom systéme. Z tohto dôvodu tézu ni
 Predstavme si, že problém rozhodnutia, alebo jemu ekvivalentný - [problém zastavenia (Halting problem)][66] ("dá sa zostrojiť T.S. ktorý zistí, či
 nejaký T.S. zastaví?") - je riešiteľný. Teda predstavme si, že existuje algoritmus (T.S.), ktorý dokáže riešiť Halting problem. Ak by sme mali takýto
 algoritmus, mohli by sme napríklad vymyslieť kompilátory, ktoré by automaticky vedeli detekovať, že naše programy sa rútia do nekonečných cyklov,
-prípadne iné užitočné veci. Tiež by sme mohli vyriešiť ťažké matematické problémy, ako napríklad [silnú Goldbachovu domnienku][65]:
+prípadne iné užitočné veci. Tiež by sme mohli vyriešiť ťažké matematické problémy, ako napríklad [silnú Goldbachovu domnienku][65] (toto mám z
+tejto [lekcie][72]):
 
 Predstavme si tento algoritmus:
 
@@ -382,3 +383,4 @@ Napriek tomu ostávajú počítače tie najsofistikovanejšie stroje, aké kedy 
 [69]: https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence
 [70]: https://en.wikipedia.org/wiki/Emil_Leon_Post
 [71]: https://en.wikipedia.org/wiki/Noam_Chomsky
+[72]: https://courses.engr.illinois.edu/cs373/sp2009/lectures/lect_21.pdf
