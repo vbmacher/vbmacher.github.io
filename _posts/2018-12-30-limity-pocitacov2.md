@@ -279,9 +279,9 @@ Postupne sa v priebehu ďalšieho rozvoja "teórie vypočítateľnosti" definova
 
 Tak vzniklo mnoho ďalších abstraktných strojov a automatov, ktoré ešte lepšie približujú reálne počítače a tým umožňujú ich pohodlnejšie teoreticky skúmať, napr.:
 
-- RAM stroj - predstaviteľ Harvardskej architektúry,
-- RASP stroj - predstaviteľ von-Neumannovskej architektúry,
-- PRAM - na analýzu paralelných algoritmov
+- [RAM stroj][73] - predstaviteľ [Harvardskej architektúry][76],
+- [RASP stroj][74] - predstaviteľ [von-Neumannovskej architektúry][77],
+- [PRAM][75] - na analýzu paralelných algoritmov
 - atď.
 
 Skúmanie zložitosti algoritmov vyústilo do definície tried zložitosti (P, NP, NP-complete, ...).
@@ -380,3 +380,8 @@ Napriek tomu ostávajú počítače tie najsofistikovanejšie stroje, aké kedy 
 [70]: https://en.wikipedia.org/wiki/Emil_Leon_Post
 [71]: https://en.wikipedia.org/wiki/Noam_Chomsky
 [72]: https://courses.engr.illinois.edu/cs373/sp2009/lectures/lect_21.pdf
+[73]: https://en.wikipedia.org/wiki/Random-access_machine
+[74]: https://en.wikipedia.org/wiki/Random-access_stored-program_machine
+[75]: https://en.wikipedia.org/wiki/Parallel_random-access_machine
+[76]: https://en.wikipedia.org/wiki/Harvard_architecture
+[77]: https://en.wikipedia.org/wiki/Von_Neumann_architecture
