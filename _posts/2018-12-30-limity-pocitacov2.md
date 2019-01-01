@@ -277,17 +277,24 @@ ale napríklad ani [Hilbertov desiaty problém][68] ho nemá).
 
 Postupne sa v priebehu ďalšieho rozvoja "teórie vypočítateľnosti" definovali triedy vypočítateľnosti - ako miera "vyjadrovacej sily", ktorou systém (napríklad programovací jazyk alebo iný abstraktný stroj či formalizmus) disponuje (viď napr. [Turing completeness][67]).
 
-Tak vzniklo mnoho ďalších abstraktných strojov a automatov, ktoré ešte lepšie približujú reálne počítače a tým umožňujú ich pohodlnejšie teoreticky skúmať, napr.:
+[Noam Chomsky][71] definoval [hierarchiu formálnych jazykov][78] podľa vyjadrovacej sily, ktorú majú a korešpondoval ich s abstraktnými strojmi a
+ich vyjadrovacou silou. 
+
+Tak vzniklo mnoho ďalších abstraktných strojov a automatov, ktoré ešte lepšie približujú reálne počítače a tým umožňujú ich pohodlnejšie teoreticky skúmať, napr. s vyjadrovacou
+silou T.S.:
 
 - [RAM stroj][73] - predstaviteľ [Harvardskej architektúry][76],
 - [RASP stroj][74] - predstaviteľ [von-Neumannovskej architektúry][77],
 - [PRAM][75] - na analýzu paralelných algoritmov
 - atď.
 
-Skúmanie zložitosti algoritmov vyústilo do definície tried zložitosti (P, NP, NP-complete, ...).
+Alebo s menšou vyjadrovacou silou:
 
-[Noam Chomsky][71] formálne definoval [hierarchiu jazykov][78] podľa vyjadrovacej sily, ktorú majú a korešpondoval ich s abstraktnými strojmi a ich vyjadrovacou
-silou. 
+- [zásobníkové automaty][81] - odpovedá sile bezkontextových jazykov
+- [konečné automaty][80] - odpovedá sile regulárnych jazykovs
+- atď.
+
+Skúmanie zložitosti samotných algoritmov vyústilo do definície [tried zložitosti][79] (P, NP, NP-complete, ...).
 
 Tiež sa našla súvislosť medzi dokazovaním matematických viet a počítačovými programami ([Curry-Howardov izomorfizmus][69]), ktorý hovorí že matematický
 dôkaz a program na počítači sú si ekvivalentné (je možné previesť jeden do druhého).
@@ -386,3 +393,6 @@ Napriek tomu ostávajú počítače tie najsofistikovanejšie stroje, aké kedy 
 [76]: https://en.wikipedia.org/wiki/Harvard_architecture
 [77]: https://en.wikipedia.org/wiki/Von_Neumann_architecture
 [78]: https://en.wikipedia.org/wiki/Chomsky_hierarchy
+[79]: https://en.wikipedia.org/wiki/Complexity_class
+[80]: https://en.wikipedia.org/wiki/Finite-state_machine
+[81]: https://en.wikipedia.org/wiki/Pushdown_automaton
