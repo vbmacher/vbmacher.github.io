@@ -286,7 +286,7 @@ Tak vzniklo mnoho ďalších abstraktných strojov a automatov, ktoré ešte lep
 
 Skúmanie zložitosti algoritmov vyústilo do definície tried zložitosti (P, NP, NP-complete, ...).
 
-[Noam Chomsky][71] formálne definoval hierarchiu jazykov podľa vyjadrovacej sily, ktorú majú a korešpondoval ich s abstraktnými strojmi a ich vyjadrovacou
+[Noam Chomsky][71] formálne definoval [hierarchiu jazykov][78] podľa vyjadrovacej sily, ktorú majú a korešpondoval ich s abstraktnými strojmi a ich vyjadrovacou
 silou. 
 
 Tiež sa našla súvislosť medzi dokazovaním matematických viet a počítačovými programami ([Curry-Howardov izomorfizmus][69]), ktorý hovorí že matematický
@@ -385,3 +385,4 @@ Napriek tomu ostávajú počítače tie najsofistikovanejšie stroje, aké kedy 
 [75]: https://en.wikipedia.org/wiki/Parallel_random-access_machine
 [76]: https://en.wikipedia.org/wiki/Harvard_architecture
 [77]: https://en.wikipedia.org/wiki/Von_Neumann_architecture
+[78]: https://en.wikipedia.org/wiki/Chomsky_hierarchy
