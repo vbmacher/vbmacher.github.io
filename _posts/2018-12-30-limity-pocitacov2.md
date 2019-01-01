@@ -221,7 +221,7 @@ Sám Gödel veľmi uznával prácu Alana Turinga. Osobne sa nikdy nestretli,
 aj keď obidvaja istú dobu pôsobili na IAS-e. Turing tam bol na stáži u Alonza Churcha, ktorý nezávisle na Turingovi (a efektívne skôr)
 zistil, že Enscheidungsproblem nemá riešenie.
 
-Čo je zaujímavé je, že výsledky všetkých troch velikánov - Godela, Turinga aj Churcha - sa zhodujú, a ich formálne systémy (teória rekurzie, T.S. a
+Čo je zaujímavé je, že výsledky všetkých troch velikánov - Gödela, Turinga aj Churcha - sa zhodujú, a ich formálne systémy (teória rekurzie, T.S. a
 lambda kalkul) sú ekvivalentné. To znamená, že schopnosti a sila každého z týchto formalizmov sú rovnaké. Napr. to, čo je vypočitateľné na T.S. je efektívne
 vypočitateľné lambda kalkulom, a naopak.
 
@@ -234,11 +234,7 @@ Turingove stroje sú veľmi dôležité z niekoľko hľadísk:
 - prispievajú určitým spôsobom k agnosticizmu
 
 Teorém nekompletnosti, ako aj nemožnosť riešiť Entscheidungsproblem, prezrádzajú niečo viac aj o povahe nášho sveta,
-nielen o povahe matematického sveta. Dokazujú, že počítač sám o sebe nikdy nemôže pochopiť, čo sám robí. Potrebujeme na to nadhľad, ľudskú
-intuíciu. Napríklad konzistencia Peanovych axiómov aritmetiky bola nakoniec dokázaná - nie pomocou samotného formálneho systému, ale "mimo neho".
-Dokázal ju [Gentzen][63] v roku 1936. 
-
-Ešte k poznámke agnosticizmu samotného - podľa [Church-Turingovej tézy][64] je to, čo človek je vôbec schopný vypočítať iba to, čo vypočíta
+nielen o povahe matematického sveta. Podľa [Church-Turingovej tézy][64] je to, čo človek je vôbec schopný vypočítať iba to, čo vypočíta
 Turingov stroj. Táto téza teda obmedzuje samotného človeka - tvrdí, že človek má úplne rovnaké limity ako Turingov stroj. Keďže hovoríme o práci
 a myslení človeka, nehovoríme o formálnom systéme. Z tohto dôvodu tézu nie je možné dokázať formálne, avšak intuitívne je úplne akceptovaná.
 

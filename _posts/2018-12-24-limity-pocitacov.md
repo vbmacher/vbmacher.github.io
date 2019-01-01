@@ -330,9 +330,14 @@ V druhom kroku dokázal, že systematickým spôsobom nie je možné odvodiť z 
 Z toho vyplýva, že ide o pravdivý výrok - ale vieme to len podľa našej intuície, pretože hovorí pravdu - nedokázali sme odvodiť ani výrok,
 ani jeho negáciu, teda *nie je ho možné dokázať v rámci tohto formálneho systému*.
 
-Dôsledky tohto teorému sú tak závažné, pretože z neho vyplýva, že v čisto formálnej matematike môžu existovať výroky, ktoré budú pravdivé,
-ale nebudú sa dať dokázať (ako si napr. myslel aj [strýko Petros o Goldbachovej domnienke][42] :). Gödel tento výsledok prezentoval na matematickej konferencii v [Kráľovci][46],
-na ktorej bol aj [John von Neumann][45]! A bol to jediný z prítomných, ktorý si tento výsledok dal do súvislostí a prehlásil: ["it's all over"][29].
+Konzistenciu formálneho systému, ktorý má silu na odvodenie aritmetiky sa nakoniec podarilo dokázať, ale pomocou iného formálneho systému.
+Dokázal ju [Gentzen][63] v roku 1936. 
+
+Dôsledky tohto teorému sú veľmi závažné, pretože z neho vyplýva, že v čisto formálnej matematike môžu existovať výroky, ktoré budú pravdivé,
+ale nebudú sa dať dokázať (ako si napr. myslel aj [strýko Petros o Goldbachovej domnienke][42] :). Gödel tento výsledok prezentoval na matematickej
+konferencii v [Kráľovci][46], na ktorej bol aj [John von Neumann][45]! A bol to jediný z prítomných, ktorý si tento výsledok dal do súvislostí a
+prehlásil: ["it's all over"][29].
+
 Von Neumann bol jedným z hlavných propagátorov Gödela a jeho výsledkov a vďaka nemu sa Gödel mohol dostať na [IAS][47], kde pôsobil aj
 Albert Einstein a iní významní matematici a fyzici.
 
