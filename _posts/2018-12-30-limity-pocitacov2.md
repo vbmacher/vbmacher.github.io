@@ -70,7 +70,7 @@ samotné premýšľanie ako *black-box*. Definované je len to, že táto "hlava
 
 - zapísať/vymazať jeden symbol na/z pásky, 
 - posunúť "hlavu" na nasledujúci/predchádzajúci symbol pásky
-- na základa aktuálneho stavu a symbolu na páske (na ktorý hlava ukazuje) zmeniť stav
+- na základe aktuálneho stavu a symbolu na páske (na ktorý hlava ukazuje) zmeniť stav
 
 Takto zadefinovaný abstraktný stroj, ako Turing ukázal v jeho článku, umožňoval zapísať každý algoritmus. Napríklad, výstup nekonečnej
 sekvencie `0 1 0 1 0 1 ...` sa dá zapísať do tabuľky:
@@ -95,15 +95,15 @@ reagovať na rôzne "sekvencie" symbolov na páske, ktoré videl. Ak sa chce T.S
 
 # Vypočítateľné čísla
 
-Turing v článku definuje vypočitateľné čísla ako také, ktoré sú vyčísliteľné. Teda také, ktorých číslice vieme zapísať bez akéhokoľvek "záseku" až donekonečna,
-a to pomocou stroja (či algoritmu). Ako príklad vypočitateľných čísel uvádza čísla ako $$\pi$$, $$e$$, reálne korene algebraických rovníc, atď.
+Turing v článku definuje vypočítateľné čísla ako také, ktoré sú vyčísliteľné. Teda také, ktorých číslice vieme zapísať bez akéhokoľvek "záseku" až donekonečna,
+a to pomocou stroja (či algoritmu). Ako príklad vypočítateľných čísel uvádza čísla ako $$\pi$$, $$e$$, reálne korene algebraických rovníc, atď.
 Aj prirodzené číslo sa dá zapisovať "donekonečna" - buď pred ním budeme donekonečna vypisovať číslicu 0, alebo za ním môžme zapísať desatinnú čiarku a za ňou
 nekonečný počet číslic 0. V oboch z prípadov sa význam nezmení.
 
-T.S., ktoré odpovedajú vypočitateľným číslam Turing označil ako *circle-free* ("bezcyklové"). To môže byť trochu mätúce, pretože "circle-free" stroje sú
+T.S., ktoré zodpovedajú vypočítateľným číslam Turing označil ako *circle-free* ("bezcyklové"). To môže byť trochu mätúce, pretože "circle-free" stroje sú
 chápané ako také, ktoré nikdy neprestanú vypisovať symboly výsledku na pásku. Nemajú teda "premýšľacie zacyklenie". Turing chcel týmto vyjadriť, že *circle-free* stroje sa vždy "posúvajú vpred", že "počítajú".
 
-Aj keď vypočitateľné čísla tvoria nekonečnú množinu, Turing tvrdí, že existujú aj čísla, ktoré vieme iba "definovať" (teda zapísať algoritmus), ale nevieme
+Aj keď vypočítateľné čísla tvoria nekonečnú množinu, Turing tvrdí, že existujú aj čísla, ktoré vieme iba "definovať" (teda zapísať algoritmus), ale nevieme
 ich vyčísliť, teda vypočítať (algoritmus v tomto prípade nikdy neskončí). T.S., ktoré odpovedajú takýmto číslam, Turing nazval *circular* ("zacyklené").
 Opäť vysvetlenie - "circular" v zmysle "premýšľacieho zacyklenia", teda že stroj prestane vypisovať výsledok na pásku (prestane sa "posúvať vpred", "počítať").
 
@@ -111,11 +111,11 @@ Opäť vysvetlenie - "circular" v zmysle "premýšľacieho zacyklenia", teda že
 
 Turing v ďalšom kroku ukázal postup toho, ako celú tabuľku, ktorá T.S. definuje, je možné previesť do jediného prirodzeného čísla. Postup prevodu
 je priamočiary - symboly sa nahradia číslicami, ako aj oddeľovač riadkov tabuľky sa tiež nahradí číslicou. Vznikne tak jediné číslo, ktoré "enkóduje"
-T.S. Toto číslo Turing označil ako D.N. (Description Number). Každá vypočitateľná sekvencia, alebo vypočitateľné číslo (pomocou *circle-free* T.S.)
+T.S. Toto číslo Turing označil ako D.N. (Description Number). Každá vypočítateľná sekvencia, alebo vypočítateľné číslo (pomocou *circle-free* T.S.)
 má minimálne jednu reprezentáciu D.N.
 
 "Spočítateľnosť" a "vypočítateľnosť" vyjadrujú v podstate tú istú vlastnosť, len sú tieto pojmy používané v iných kontextoch. Tou spoločnou
-vlastnosťou je *možnosť určiť nasledovníka*. Spočitateľnosť sa používa v kontexte množín, a vypočitateľnosť v kontexte čísel, funkcií, atď.
+vlastnosťou je *možnosť určiť nasledovníka*. Spočitateľnosť sa používa v kontexte množín, a vypočítateľnosť v kontexte čísel, funkcií, atď.
 Napríklad - množina prirodzených čísel je spočítateľná, pretože vieme vždy určiť nasledujúce číslo. Ale množina reálnych čísel nie je spočítateľná,
 pretože nevieme určiť priameho nasledovníka žiadneho reálneho čísla. 
 
@@ -127,7 +127,7 @@ nájsť všeobecný algoritmus, ktorý by zistil, či dané číslo je alebo nie
 
 # Univerzálny T.S.
 
-V ďalšom Turing definoval stroj, ktorý je schopný vypočítaľ ľubovoľné "vypočitateľné číslo". Na vstup dostane D.N. daného výpočtu, a výsledkom
+V ďalšom Turing definoval stroj, ktorý je schopný vypočítať ľubovoľné "vypočitateľné číslo". Na vstup dostane D.N. daného výpočtu, a výsledkom
 bude to isté, čo by vypočítal T.S. reprezentovaný vstupným D.N. Princíp tohto stroja je založený na vytvorení ďalších symbolov a spôsobom enkódovania
 vstupného T.S. Univerzálny T.S. je teda akýmsi "simulátorom" T.S.
 
@@ -135,7 +135,7 @@ Ako príklad uvádzam [Game of Life][59] verziu univerzálneho T.S.:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/My8AsV7bA94" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-# Spočítateľnosť vypočitateľných čísel
+# Spočítateľnosť vypočítateľných čísel
 
 Nasledujúci krok bolo zistenie, či *circle-free* D.N. tvoria spočitateľnú množinu. Teda či vieme systematickým spôsobom vypísať všetky
 vypočitateľné čísla.
@@ -144,17 +144,17 @@ Systém vypisovania "nasledovníkov" bol už raz použitý, keď Georg Cantor v 
 nekonečných množín (množiny reálnych čísel). Použil ho tiež Gödel pri dokazovaní svojho teorému nekompletnosti, a bol použitý aj v [Principii Mathematice][11]
 v popise [Richardovho paradoxu][61]. Tento systém je známy pod názvom "diagonálny proces" alebo ["diagonálny argument"][54]:
 
-> Ak sú vypočitateľné sekvencie spočítateľné, nech $$\alpha_n$$ je $$n$$-tá vypočítateľná sekvencia a nech $\phi_n(m)$ je $$m$$-tá číslica
+> Ak sú vypočítateľné sekvencie spočítateľné, nech $$\alpha_n$$ je $$n$$-tá vypočítateľná sekvencia a nech $\phi_n(m)$ je $$m$$-tá číslica
 > sekvencie $$\alpha_n$$. Nech $$\beta$$ je sekvencia, v ktorej $$n$$-tá číslica je definovaná ako $$1 - \phi_n(n)$$. Keďže sekvencia $$\beta$$
 > je vypočítateľná, existuje číslo $$K$$, že $$1 - \phi_n(n) = \phi_K(n)$$ pre všetky $$n$$. Ak priradíme $$n = K$$, dostávame $$1 = 2\phi_K(K)$$,
-> teda že číslo $$1$$ je párne. To je nemožné. Vypočitateľné sekvencie teda nie sú spočitateľné.
+> teda že číslo $$1$$ je párne. To je nemožné. Vypočítateľné sekvencie teda nie sú spočitateľné.
 
-"Háčik" v spočíva v predpoklade, že $$\beta$$ je vypočitateľná sekvencia. Ak by bola, v konečnom počte krokov by sme ju vedeli
-vyčísliť. Avšak problém vyčíslenia vypočitateľných sekvencií je ekvivalentný problému zistenia, či nejaké číslo reprezentuje D.N. *circle-free* T.S.
+"Háčik" v spočíva v predpoklade, že $$\beta$$ je vypočítateľná sekvencia. Ak by bola, v konečnom počte krokov by sme ju vedeli
+vyčísliť. Avšak problém vyčíslenia vypočítateľných sekvencií je ekvivalentný problému zistenia, či nejaké číslo reprezentuje D.N. *circle-free* T.S.
 A takýto proces nemáme - s konečným počtom krokov. Dôkaz tohto tvrdenia bude skúsiť zostrojiť stroj, ktorý počíta sekvenciu $$\beta' = 1 - \beta = \phi_n(n)$$. 
 
-Nikde nie je povedané presne, čo tento stroj - počítajúci sekvenciu $$\alpha_n$$ - má robiť. Vieme len, že sekvencia $$\alpha_n$$ má byť vypočitateľná.
-Keďže podľa Turinga problém vyčíslenia vypočitateľných sekvencií je ekvivalentný problému zistenia, či nejaký stroj je *circle-free*, predpokladajme,
+Nikde nie je povedané presne, čo tento stroj - počítajúci sekvenciu $$\alpha_n$$ - má robiť. Vieme len, že sekvencia $$\alpha_n$$ má byť vypočítateľná.
+Keďže podľa Turinga problém vyčíslenia vypočítateľných sekvencií je ekvivalentný problému zistenia, či nejaký stroj je *circle-free*, predpokladajme,
 že máme taký stroj. Teda predpokladajme, že vieme vytvoriť T.S., ktorý dostane na vstupe nejaký ľubovoľný T.S. a výstupom bude odpoveď, či je stroj
 *circle-free*.
 
@@ -198,7 +198,7 @@ Teraz otestujme samotný stroj $$G$$ pomocou $$E$$. Ak sa zistí, že $$G$$ nikd
 Ak T.S. $$G$$ niekedy $$0$$ vypíše, potom $$M$$ donekonečna $$0$$ nevypisuje.
 
 Takže vo všeobecnosti - schopnosťou zistiť, či daný stroj vypisuje nejaký symbol donekonečna sme práve našli spôsob, ako zistiť, či vstupný T.S. je
-*circle-free*. A to je podľa predchádzajúcich výsledkov nemožné. Takže stroj $$E$$ nemôže byť vypočitateľný.
+*circle-free*. A to je podľa predchádzajúcich výsledkov nemožné. Takže stroj $$E$$ nemôže byť vypočítateľný.
 
 # Entscheidungsproblem
 
@@ -207,7 +207,7 @@ logiky (s rozšírením o axiómy aritmetiky prirodzených čísel) je vo všeob
 výrokov tak, aby mohli byť vstupom do T.S., ktorý overuje ich platnosť.
 
 Postup bol - ako inak - nájsť taký *pravdivý* výrok, ktorý nepôjde dokázať žiadnym "mechanickým procesom". V tejto chvíli bol T.S. už dostatočne
-silne obhájený ako zástupca všetkých "mechanických procesov" - všetko čo je vypočitateľné, je vypočitateľné na T.S. Takže Turingovi
+silne obhájený ako zástupca všetkých "mechanických procesov" - všetko čo je vypočítateľné, je vypočítateľné na T.S. Takže Turingovi
 stačilo nájsť výrok, ktorý by reprezentoval nevypočitateľný T.S.:
 
 1. Zostrojme pravdivý výrok $$\mathbin{Un}(M)$$, ktorý reprezentuje nejaký T.S. $$M$$. Napríklad výrok "$$M$$ nikdy nevypíše $$0$$".
@@ -222,7 +222,7 @@ aj keď obidvaja istú dobu pôsobili na IAS-e. Turing tam bol na stáži u Alon
 zistil, že Enscheidungsproblem nemá riešenie.
 
 Čo je zaujímavé je, že výsledky všetkých troch velikánov - Gödela, Turinga aj Churcha - sa zhodujú, a ich formálne systémy (teória rekurzie, T.S. a
-lambda kalkul) sú ekvivalentné. To znamená, že schopnosti a sila každého z týchto formalizmov sú rovnaké. Napr. to, čo je vypočitateľné na T.S. je efektívne
+lambda kalkul) sú ekvivalentné. To znamená, že schopnosti a sila každého z týchto formalizmov sú rovnaké. Napr. to, čo je vypočítateľné na T.S. je efektívne
 vypočitateľné lambda kalkulom, a naopak.
 
 # Limity ľudskej mysle
@@ -290,8 +290,8 @@ silou T.S.:
 
 Alebo s menšou vyjadrovacou silou:
 
-- [zásobníkové automaty][81] - odpovedá sile bezkontextových jazykov
-- [konečné automaty][80] - odpovedá sile regulárnych jazykovs
+- [zásobníkové automaty][81] - odpovedajú sile bezkontextových jazykov
+- [konečné automaty][80] - odpovedajú sile regulárnych jazykov
 - atď.
 
 Skúmanie zložitosti samotných algoritmov vyústilo do definície [tried zložitosti][79] (P, NP, NP-complete, ...).
