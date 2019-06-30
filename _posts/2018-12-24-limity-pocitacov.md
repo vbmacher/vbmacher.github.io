@@ -3,7 +3,7 @@ layout: post
 title:  Limity počítačov a myslenia (1/2)
 date:   2018-12-24 11:27:00
 categories: [Teoretická informatika, Matematická filozofia]
-tags: [godel, incompletness theorem]
+tags: [kurt godel, incompletness theorem]
 mathjax: true
 d3: true
 ---
@@ -34,7 +34,7 @@ vidí (zjednodušene) len jednu inštrukciu v čase. Postupne prechádza od prve
 (bez ďalšieho "rozmyslu") vykonáva.
 
 Počítač je teda systém, ktorý je "uzavretý" - nevie mať "nadhľad". Nerozhoduje sa podľa metafyzického významu, intuitívneho chápania,
-ktoré by prichádzalo z reálneho sveta. Je obmedzený len na to, čo je definované v počítači samotnom.
+ktoré by prichádzalo [apriórne][59]. Je obmedzený len na to, čo je definované v počítači samotnom.
 
 # Synax a sémantika
 
@@ -44,29 +44,34 @@ povedať v tomto jazyku. Ak porušíme syntaktické pravidlá, výroky prestáva
 je teda vyjadrenie, či výrok dáva alebo nedáva zmysel. Napríklad výrok "bude" sám o sebe zmysel nedáva, pretože syntakticky
 chýbajú podmet a prísudok. 
 
-*Sémantická pravda* hovorí o význame už syntakticky validného výroku. Sémantika je spojená s metafyzikou - intuitívnym chápaním,
-čo daný výrok hovorí, teda napríklad, či je pravdivý alebo nepravdivý. Napríklad, výrok "dnes je pekne" už umožňuje zamýšľať sa o
-jeho pravdivosti, pretože syntakticky dáva zmysel.
+*Sémantická pravda* hodnotí pravdivosť výroku už využitím jeho významu. Avšak na to, aby sa dal pochopiť význam výroku, musí byť tento výrok už syntakticky validný (syntakticky pravdivý). Napríklad, výrok "dnes je pekne" už umožňuje zamýšľať sa o
+jeho pravdivosti, pretože syntakticky dáva zmysel. Teda každý sémanticky pravdivý výrok musí byť pravdivý aj syntakticky, ale naopak
+to platiť nemusí.
 
-Je ale možné definovať aj mechanické odvodzovanie sémantickej pravdy. Ide len o to, aby sme si uvedomili, čo to
-vlastne "pravda" je. Jedným možným spôsobom chápania "pravdy" je, že pravda je **relatívna** ku svojmu "formálnemu systému",
-v ktorom vieme vytvárať výroky. Druhou možnosťou chápania "pravdy" je, že pravda je **absolútna** - alebo objektívna - teda platí
-bez ohľadu na nejakú relatívnu skutočnosť.
+Ak by sme chceli napísať všetko sémanticky pravdivé, čo vo svete platí, môžme sa o to pokúsiť systematickým spôsobom. Ako by však mal vyzerať takýto systematický spôsob? Na to, aby sme nejaký našli, alebo prehlásili, že to nejde, sa potrebujeme zamyslieť nad sémantickou "pravdou" samotnou - čo to je "pravda"?
 
-# Formálny systém
+Intuitívne chápeme pravdu ako výrok, ktorý "platí". Ale výrok môže platiť len **relatívne** - tj. len vo svete, ktorý poznáme. Existujú ale výroky, ktoré platia aj **absolútne** (objektívne)? Na túto otázku existujú rôzne odpovede a názory, ktoré vyústili do filozofických smerov, ako napríklad pozitivizmus, formalizmus a realizmus.
 
-Je možno dobré si aspoň v skratke povedať, čo je to formálny systém. [Formálny systém][38] definuje spôsob odvodzovania výrokov
-pomocou presne definovaných pravidiel. Vo všeobecnosti má definované:
+# Naša realita - formálny systém
+
+Keď sme rozoberali možnosť existencie relatívnej pravdy, logicky by mohli existovať niekoľko rôznych "svetov", a v každom z nich budeme vedieť odvodiť jemu vlastné výroky a zamýšľať sa nad ich pravdivosťou v danom svete. Takýto "svet" sa medzi formalistami začal nazývať [formálny systém][38].
+
+Formálny systém definuje "svet", v ktorom môžme tvoriť výroky a odvodzovať jednoduchšie výroky do zložitejších. Na tvorbu a odvodzovanie výrokov systém definuje presné pravidlá. Vo všeobecnosti má definované:
 
 - symboly,
 - povolené spôsoby dedukcie (pravidlá odvodzovania),
 - axiómy (zapísané len pomocou symbolov a pravidiel odvodzovania).
 
-Inými slovami, každý formálny systém definuje "svoju pravdu". Ako? Axiómy tvoria základné pravdy, ktoré už nie je možné rozložiť na
-ešte "základnejšie" pravdy. Mechanické odvodenie sémantickej pravdy (tj. pravdivosti výroku) môžme potom definovať ako:
+Axiómy tvoria základné pravdy, ktoré už nie je možné rozložiť na ešte "základnejšie" pravdy. Je to "základ sveta", jeho "definícia".
+Tým, že sa jednotlivé formálne systémy líšia - majú rôzne axiómy, symboly a pravidlá odvodzovania, tak každý systém svojim spôsobom definuje svoju relatívnu sémantickú pravdu.
 
-1. Aplikáciu povolených pravidiel odvodenia na axiómy, čím vzniknú zložené výroky
-2. Pokračujeme aplikáciou týchto pravidiel na zložené výroky dovtedy, kým nedôjdeme k hľadanému výroku.
+Sémantickú pravdu vo formálnom systéme vieme mechanicky odvodiť - teda dokázať, či daný výrok je pravdivý, alebo nepravdivý. Majme teda výrok X, ktorý je v danom formálnom systéme syntakticky validný. Jeho pravdivosť vieme dokázať tak, že sa pokúsime "znovuobjaviť" tento výrok:
+
+1. aplikáciou povolenéných pravidiel odvodenia na axiómy, čím vzniknú prvé zložené výroky
+2. Porovnáme nový výrok s výrokom X. Ak sú výroky zhodné, prehlásime X za pravdivý.
+3. Pokračujeme aplikáciou pravidiel odvodenia na zložené výroky, čím vytvárame ďalšie výroky
+4. Opakujeme body 2 až 3 dovtedy, kým sme neodvodili všetky možné výroky, alebo nenašli zhodu s výrokom X.
+   Ak po vygenerovaní všetkých výrokov sme stále nedospeli k výroku X, tak je výrok X nepravdivý.
 
 Pri troche šťastia sa nám podarí odvodiť výrok, ktorého pravdivosť chceme zistiť. Ak sa to podarí, tak výrok môžme prehlásiť
 za "sémanticky pravdivý" v danom formálnom systéme. Samozrejme, je dôležité odvodzovať výroky systematicky, aby v tom nebol
@@ -93,7 +98,7 @@ odvodzovaním nedajú odvodiť, ale predsa sú syntakticky validné a sémantick
 
 Jednými z prvých prelomovýmých aktérov v dokazovaní týchto tvrdení boli [Kurt Gödel][6] a [Alan Turing][7]:
 
-1. Gödel ako logik a metamatematik ukázal, že v určitých formálnych systémoch existujú výroky, ktoré sú pravdivé ale nedajú
+1. Gödel ako logik a [metamatematik][60] ukázal, že v určitých formálnych systémoch existujú výroky, ktoré sú pravdivé, ale nedajú
    sa dokázať (vytvoril taký výrok a poskytol dôkaz jeho "nedokázateľnosti") ([Teorém nekompletnosti][39])
 2. Turing zas dokázal, že sa nedá nájsť ani žiadny mechanický proces (algoritmus), ktorý by vo všeobecnosti vedel buď dokázať
    daný výrok, alebo skončiť s tým, že je výrok "nedokázateľný" ([Entscheidungsproblem][3])
@@ -112,18 +117,16 @@ sedem "svetových hádaniek". Tri z nich (prvú, druhú a piatu) označil za ved
 3. pôvod jednoduchých ľudských zmyslov
 
 Argumentom však bol iba obyčajný agnosticizmus. Emil tvrdil, že ide o "[transcendentné otázky][32]" (mimo možností chápania človeka).
-Na konci každej "otázkovej" kapitoly oznámkoval kurzívou napísané latinské slovo *Ignorabimus* (nebudeme vedieť). Toto slovo nakoniec Emil použil
-aj vo svojej slávnej reči pred Pruskou akadémiou vied vo výroku [ignoramus et ignorabimus][19]:
+Na konci každej "otázkovej" kapitoly oznámkoval kurzívou napísané latinské slovo *Ignorabimus* (nebudeme vedieť). Toto slovo nakoniec Emil použil aj vo svojej slávnej reči pred Pruskou akadémiou vied vo výroku [ignoramus et ignorabimus][19]:
 
 > Nevieme a nebudeme vedieť.
 
-S takýmto prístupom veľmi nesúhlasil (svojej doby asi najslávnejší) nemecký matematik [David Hilbert][20]. Hilbert bol veľmi citlivý na tento *Ignorabimus* aj preto, lebo
-matematika začiatkom 20. storočia prežívala vážnu [krízu][37] - základné definície matematiky totiž dovoľovali vznik rôznych paradoxov. Matematici boli
-z toho celkom právom nervózni, pretože paradox je brána k platnosti tvrdenia a jeho negácie zároveň. Napríklad, ak tvrdenie `P` platí aj neplatí,
-pravidlo [modus ponens][41] (z `P` vyplýva `Q`) nám umožní odvodiť prakticky čokoľvek, aj nepravdivé výroky.
+Tomuto prístupu sa postavil na odpor (svojej doby asi najslávnejší) nemecký matematik [David Hilbert][20], ktorý bol zhodou okolností jedným z prvých propagátorov používania formálnych systémov. Hilbert bol veľmi citlivý na tento *Ignorabimus* aj preto, lebo matematika začiatkom 20. storočia prežívala vážnu [krízu][37], z ktorej bol Hilbert frustrovaný. Hilbert však veril, že je možné nájsť riešenie a preto nechcel slepo prijať ignoranciu.
 
-Táto kríza v matematike doviedla Hilberta ku spísaniu 23 dovtedy známych [matematických problémov][21]. Tie odprezentoval na Parížskom kongrese
-v roku 1900, kde naopak vyzval matematikov, ako svoju armádu, k ich riešeniu. V roku 1932, keď odchádzal do dôchodku, zhrnul svoju záverečnú reč aj [v rádiu][33], kde okrem iného povedal:
+Kríza spočívala hlavne v tom, že samotné základy vtedajšej matematiky - naivná teória množín, umožňovala tvorbu paradoxov - teda výrokov, ktoré platia a neplatia zároveň. Nebezpečie spočíva v tom, že ak tvrdenie `P` platí aj neplatí, pravidlo [modus ponens][41] (z `P` vyplýva `Q`) nám umožní odvodiť prakticky čokoľvek, aj nepravdivé výrokya celá matematika sa tak zrúti ako domček z karát.
+
+Táto kríza doviedla Hilberta ku spísaniu 23 dovtedy známych [matematických problémov][21], ktoré odprezentoval na Parížskom kongrese
+v roku 1900. Tam vyzval matematikov, ako svoju armádu, k ich riešeniu. V roku 1932, keď odchádzal do dôchodku, zhrnul svoju záverečnú reč aj [v rádiu][33], kde okrem iného povedal:
 
 > Nesmieme veriť tým, ktorí dnes s oporou filozofie a nadradeným tónom predpovedajú úpadok kultúry a akceptujú Ignorabimus.
 > Pre nás nie je žiadny Ignorabimus, a podľa mňa ani v žiadnej prírodnej vede. Namiesto hlúpeho Ignorabima nech náš slogan znie:
@@ -136,7 +139,7 @@ v roku 1900, kde naopak vyzval matematikov, ako svoju armádu, k ich riešeniu. 
   <p>Your browser does not support the audio element.</p>
 </audio>
 
-Niektoré príklady Hilbertovom programu:
+Niektoré príklady [Hilbertovom programu][61]:
 
 - Dokázať hypotézu kontinua: že neexistuje množina, ktorej kardinalita by bola presne medzi množinou prirodzených a reálnych čísel
 - Dokázať konzistenciu axiómov aritmetiky len v rámci formálneho systému aritmetiky
@@ -447,3 +450,6 @@ prácu Alana Turinga, ktorý "konečne dobre definoval algoritmus".
 [56]: https://en.wikipedia.org/wiki/Computability_theory
 [57]: https://www.geeksforgeeks.org/turing-machine-for-multiplication/
 [58]: https://en.wikipedia.org/wiki/Turing_machine
+[59]: https://cs.wikipedia.org/wiki/Immanuel_Kant#Metafyzika
+[60]: https://sk.wikipedia.org/wiki/Metamatematika
+[61]: https://en.wikipedia.org/wiki/Hilbert%27s_program

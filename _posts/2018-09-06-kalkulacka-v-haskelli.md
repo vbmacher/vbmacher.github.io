@@ -3,7 +3,7 @@ layout: post
 title:  Kalkulačka v Haskell-i
 date:   2018-09-06 09:43:00
 categories: [Funkcionálne programovanie]
-tags: [haskell, parser, parser combinator, kalkulačka]
+tags: [haskell, parser]
 ---
 
 Pamätáte sa na svoje prvé programy? Myslím tie úplne, úplne prvé.. Moje prvé kroky na magickej ceste programátora rozhodne sprevádzali textové
@@ -16,16 +16,11 @@ parser a interpret jednoduchých aritmetických výrazov - jednoduchú kalkulač
 * content
 {:toc}
 
-V tom čase (možno okolo roku 1997-1998) to však bolo nad moje sily. Nevedel som sa spoľahlivo vysporiadať ani s medzerami medzi symbolmi, ani s
-prioritami operátorov, zátvorkami, reprezentáciou výrazu (dátovou štruktúrou) a potencionálnymi chybami vstupu. Nemal som vtedy k dispozícii internet
-ani literatúru, a môj "um" ma neobdaril ani nápadom o gramatikách a parseroch; nenapadlo ma ani použiť strom na reprezentáciu výrazu.
-Tak som si musel počkať ďalších X rokov (asi do roku 2006), keď sme na škole preberali [Formálne jazyky a prekladače][3] a zadanie bolo vytvoriť
-interpret a kompilátor vymysleného jazyka do vymyslenej počítačovej architektúry.
+V tom čase (možno okolo roku 1997-1998) to však bolo nad moje sily. Nevedel som sa spoľahlivo vysporiadať ani s medzerami medzi symbolmi, ani s prioritami operátorov, zátvorkami, reprezentáciou výrazu (dátovou štruktúrou) a potencionálnymi chybami vstupu. Nemal som vtedy k dispozícii internet ani literatúru, a môj "um" ma neobdaril ani nápadom o gramatikách a parseroch; nenapadlo ma ani použiť strom na reprezentáciu výrazu.
 
-Nie je to však koniec môjho príbehu, totiž - keď som sa začal učiť [Haskell][1], napadlo ma vrátiť sa do vtedajšej doby, a len zo zaujímavosti si skúsiť
-napísať kalkulačku ["from the first principles"][4] - bez použitia knižníc. Usmial som sa, keď som si uvedomil, že neviem ani začať. Je možné, že to
-bolo tým samotným funkcionálnym programovaním, a tak sa nostalgia prejavila v celej svojej kráse - mal som pocit, že znovu začínam programovať.
-Odvtedy som urazil nejakú tú cestu a túto cestu som sa rozhodol zdokumentovať v tomto príspevku.
+Tak som si musel počkať ďalších X rokov (asi do roku 2006), keď sme na škole preberali [Formálne jazyky a prekladače][3] a zadanie bolo vytvoriť interpret a kompilátor vymysleného jazyka do vymyslenej počítačovej architektúry.
+
+Nie je to však koniec môjho príbehu, totiž - keď som sa začal učiť [Haskell][1], napadlo ma vrátiť sa do vtedajšej doby, a len zo zaujímavosti si skúsiť napísať kalkulačku ["from the first principles"][4] - bez použitia knižníc. Usmial som sa, keď som si uvedomil, že neviem ani začať. Je možné, že to bolo tým samotným funkcionálnym programovaním, a tak sa nostalgia prejavila v celej svojej kráse - mal som pocit, že znovu začínam programovať. Odvtedy som urazil nejakú tú cestu a túto cestu som sa rozhodol zdokumentovať v tomto príspevku.
 
 Samozrejme nie som prvý kto píše parser/interpret aritmetických výrazov v Haskell-i. Vybral som dva, o ktorých si môžete prečítať
 [tu][26] alebo [tu][25].
@@ -92,17 +87,13 @@ digit                          { ("*" | "/") term   } { ("+" | "-") factor }
 2 * 3
 ```
 
-Rozpoznávanie, alebo parsing, je opačný proces, v ktorom sa snažíme systematickým spôsobom identifikovať časti vstupného reťazca tak, aby odpovedali
-jednotlivým pravým stranám pravidiel gramatiky. Ak sa to podarí, rozpoznaná pravá strana sa môže nahradiť ľavou stranou. Týmto spôsobom sa
-postupuje dovtedy, kým sa nedostaneme naspäť k štartovaciemu neterminálu.
+Rozpoznávanie, alebo parsing, je opačný proces, v ktorom sa snažíme systematickým spôsobom identifikovať časti vstupného reťazca tak, aby odpovedali jednotlivým pravým stranám pravidiel gramatiky. Ak sa to podarí, rozpoznaná pravá strana sa môže nahradiť ľavou stranou. Týmto spôsobom sa postupuje dovtedy, kým sa nedostaneme naspäť k štartovaciemu neterminálu.
 
 # Ako fungujú parsery
 
-Parser je akýsi "rozpoznávač". Jeho úlohou je rozhodnúť, či sa daný výraz (text) dá z gramatiky odvodiť, alebo nie a prípadne poskytnúť aj dané
-odvodenie. V našom prípade zistí, či výraz patrí alebo nepatrí do jazyka "aritmetických výrazov" a vedľajším produktom vznikne strom odvodenia, ktorý viac menej odpovedá jednotlivým gramatickým pravidlám. Takýto strom sa nazýva [Abstract Syntax Tree (AST)][8].
+Parser je akýsi "rozpoznávač". Jeho úlohou je rozhodnúť, či sa daný výraz (text) dá z gramatiky odvodiť, alebo nie a prípadne poskytnúť aj dané odvodenie. V našom prípade zistí, či výraz patrí alebo nepatrí do jazyka "aritmetických výrazov" a vedľajším produktom vznikne strom odvodenia, ktorý viac menej odpovedá jednotlivým gramatickým pravidlám. Takýto strom sa nazýva [Abstract Syntax Tree (AST)][8].
 
-Existujú parsery, ktoré pracujú zhora-nadol, alebo zdola-nahor. [Parsery zhora-nadol][9] hľadajú tzv. "najľavejšie" odvodenia - tj. postupne zľava
-doprava hľadajú k danej časti vstupného textu pravidlo gramatiky, ktoré začína touto časťou textu. Napríklad:
+Existujú parsery, ktoré pracujú zhora-nadol, alebo zdola-nahor. [Parsery zhora-nadol][9] hľadajú tzv. "najľavejšie" odvodenia - tj. postupne zľava doprava hľadajú k danej časti vstupného textu pravidlo gramatiky, ktoré začína touto časťou textu. Napríklad:
 
 ```
 2 * 3
@@ -116,8 +107,7 @@ factor
 expr
 ```
 
-[Parsery zdola-nahor][10] hľadajú najprv elementárne známe prvky naprieč celým vstupným textom, ktoré sa dajú previesť na pravidlá. Rekurzívne pokračujú
-spájaním týchto prvkov do abstraktnejších pravidiel gramatiky, až sa dostanú k štartovaciemu symbolu:
+[Parsery zdola-nahor][10] hľadajú najprv elementárne známe prvky naprieč celým vstupným textom, ktoré sa dajú previesť na pravidlá. Rekurzívne pokračujú spájaním týchto prvkov do abstraktnejších pravidiel gramatiky, až sa dostanú k štartovaciemu symbolu:
 
 ```
 2 * 3
@@ -130,15 +120,12 @@ expr
 
 ## Imperatívne jazyky
 
-V "normálnych" imperatívnych jazykoch ako je napríklad C, Java, atď. je v dnešnej dobe postup celkom priamočiary. Zdrojový kód parsera sa dá vygenerovať pomocou špeciálneho nástroja: [generátora parsera][11]. Výstupom generátora, zdrojový kód parsera, je integrovateľný do vášho projektu,
-so známym interfejsom. Parser sa tak dá normálne zavolať ako funkcia, ktorého vstupom je väčšinou plain-text, a výstupom [AST][8].
+V "normálnych" imperatívnych jazykoch ako je napríklad C, Java, atď. je v dnešnej dobe postup celkom priamočiary. Zdrojový kód parsera sa dá vygenerovať pomocou špeciálneho nástroja: [generátora parsera][11]. Výstupom generátora, zdrojový kód parsera, je integrovateľný do vášho projektu, so známym interfejsom. Parser sa tak dá normálne zavolať ako funkcia, ktorého vstupom je väčšinou plain-text, a výstupom [AST][8].
 
 ## Funkcionálne jazyky
 
 Vo funkcionálnych jazykoch sú v obľube tzv. ["parser combinators"][13], kde je parser jazyka zostavený jednoduchou kompozíciou jednoduchších
-parserov. Z formálneho hľadiska pracujú parser kombinátory zhora-nadol, v štýle tzv. [recursive-descent parserov][15]. Tieto typy parserov sú veľmi
-jednoduché - prevádzajú pravidlá gramatiky priamo na kód (funkcie) v danom programovacom jazyku. V imperatívnych jazykoch je naivný prevod gramatiky
-do kódu zhruba takýto:
+parserov. Z formálneho hľadiska pracujú parser kombinátory zhora-nadol, v štýle tzv. [recursive-descent parserov][15]. Tieto typy parserov sú veľmi jednoduché - prevádzajú pravidlá gramatiky priamo na kód (funkcie) v danom programovacom jazyku. V imperatívnych jazykoch je naivný prevod gramatiky do kódu zhruba takýto:
 
 1. Neterminál na ľavej strane pravidla sa implementuje ako definícia novej funkcie
 2. Alternatíva `|` sa implementuje ako `if-then`
@@ -147,14 +134,11 @@ do kódu zhruba takýto:
 5. Terminál na pravej strane pravidla sa implementuje ako čítanie očakávaného tokenu zo vstupu
 
 Funkcionálne jazyky v naivnom spôsobe využívajú rovnakú myšlienku, avšak sa často využívajú high-order funkcie a funkcionálne abstrakcie, ako
-napríklad [Applicative a Monády][22]. [`Applicative`][25] umožňuje kombinovať parsery "čistým spôsobom" - tj. bez možnosti určovania nasledujúceho
-kombinátora na základe výstupu predošlého. [Monadické parsery][14] sú silnejšie v tom, že je práve možné meniť kombinátory na základe predošlého
-výstupu. V komunite sú preto viac preferované `Applicative` parsery.
+napríklad [Applicative a Monády][22]. [`Applicative`][25] umožňuje kombinovať parsery "čistým spôsobom" - tj. bez možnosti určovania nasledujúceho kombinátora na základe výstupu predošlého. [Monadické parsery][14] sú silnejšie v tom, že je práve možné meniť kombinátory na základe predošlého výstupu. V komunite sú preto viac preferované `Applicative` parsery.
 
 ## Problémy naivných recursive-descent parserov
 
-Recursive-descent parsery majú v naivnej forme uvedenej v predošlej podkapitolke exponencionálnu zložitosť, pretože sú implementované klasickým
-[backtrackingom][19]. Vo funkcionálnych jazykoch je však hlavne pomocou techniky známej ako [memoization][20] možné
+Recursive-descent parsery majú v naivnej forme uvedenej v predošlej podkapitolke exponencionálnu zložitosť, pretože sú implementované klasickým [backtrackingom][19]. Vo funkcionálnych jazykoch je však hlavne pomocou techniky známej ako [memoization][20] možné
 [znížiť zložitosť na polynomiálnu][18].
 
 V týchto naivných implementáciách si musíme dať explicitne pozor na nejednoznačnosti v gramatike. V prípade ľavej rekurzie v gramatike
@@ -179,8 +163,7 @@ newtype Parser a = Parser { parse :: String -> [(a, String)]  }
 ```
 
 `Parser` budeme reprezentovať ako nový typ s jedným typovým parametrom. Ide o niečo ako alias pre parsovaciu funkciu. V Haskell-i by sa dal
-použiť aj konštrukt `data` miesto `newtype`, avšak [rozdiel je v tom][24], že `newtype` nevyhodnocuje svoj typový parameter lenivo, ale striktne
-a tiež umožňuje použiť len jeden typový konštruktor. Toto obmedzenie nám nevadí a naviac Haskell pracuje efektívnejšie s `newtype` než s `data`.
+použiť aj konštrukt `data` miesto `newtype`, avšak [rozdiel je v tom][24], že `newtype` nevyhodnocuje svoj typový parameter lenivo, ale striktne a tiež umožňuje použiť len jeden typový konštruktor. Toto obmedzenie nám nevadí a naviac Haskell pracuje efektívnejšie s `newtype` než s `data`.
 
 Parsing budeme môcť volať napr. nasledujúcim spôsobom (trochu predbieham):
 
@@ -262,8 +245,7 @@ Typová trieda `Applicative` je "aplikatívny funktor", takže musíme implement
 
 ### Funktor
 
-V našom prípade by mal byť funktorom aj `Parser`. Keď sa pozrieme na definíciu typu, tak typ `Parser` je vlastne funkcia `String -> [(a, String)]`. Čo v tomto prípade bude znamenať "mapovanie" nad touto funkciou? Veľmi užitočná vec - totiž transformácia výstupného AST na iný AST. Nemusí ísť samozrejme
-o nejakú skutočne fancy transformáciu, ale o zmenu typu `a -> b` (podobne ako to robí klasická `map` funkcia), takto:
+V našom prípade by mal byť funktorom aj `Parser`. Keď sa pozrieme na definíciu typu, tak typ `Parser` je vlastne funkcia `String -> [(a, String)]`. Čo v tomto prípade bude znamenať "mapovanie" nad touto funkciou? Veľmi užitočná vec - totiž transformácia výstupného AST na iný AST. Nemusí ísť samozrejme o nejakú skutočne fancy transformáciu, ale o zmenu typu `a -> b` (podobne ako to robí klasická `map` funkcia), takto:
 
 ```haskell
 fmap :: (a -> b) -> Parser a -> Parser b
@@ -276,8 +258,7 @@ instance Functor Parser where
   fmap f p = Parser $ \s -> [(f x,xs) | (x,xs) <- parse p s]
 ```
 
-Výstupom je nový parser - ktorý definujeme ako funkciu, ktorej vstup sa odovzdá vstupnému parseru `p`. Ten vráti sparsovaný výsledok a zvyšok textu.
-Tento výsledok sa pomocou funkcie `f` pretransformuje na požadovaný výstupný typ. 
+Výstupom je nový parser - ktorý definujeme ako funkciu, ktorej vstup sa odovzdá vstupnému parseru `p`. Ten vráti sparsovaný výsledok a zvyšok textu. Tento výsledok sa pomocou funkcie `f` pretransformuje na požadovaný výstupný typ. 
 
 ### Applicative
 

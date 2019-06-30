@@ -68,7 +68,7 @@ layout: default
             <div class="side">
                 <div>
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Nedávne články
+                    Posledné články
                 </div>
                 <ul class="content-ul" recent>
                     {% for post in site.posts offset: 0 limit: 10  %}
@@ -99,7 +99,7 @@ layout: default
             <div class="side">
                 <div>
                     <i class="fa fa-tags"></i>
-                    Tagy
+                    Tag cloud
                 </div>
                 <div class="tags-cloud">
                     {% assign first = site.tags.first %}
