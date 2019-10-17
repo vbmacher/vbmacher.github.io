@@ -139,7 +139,7 @@ v roku 1900. Tam vyzval matematikov, ako svoju armádu, k ich riešeniu. V roku 
   <p>Your browser does not support the audio element.</p>
 </audio>
 
-Niektoré príklady [Hilbertovom programu][61]:
+Niektoré príklady [Hilbertovho programu][61]:
 
 - Dokázať hypotézu kontinua: že neexistuje množina, ktorej kardinalita by bola presne medzi množinou prirodzených a reálnych čísel
 - Dokázať konzistenciu axiómov aritmetiky len v rámci formálneho systému aritmetiky

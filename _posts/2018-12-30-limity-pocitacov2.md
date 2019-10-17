@@ -229,9 +229,9 @@ vypočitateľné lambda kalkulom, a naopak.
 
 Turingove stroje sú veľmi dôležité z niekoľko hľadísk:
 
-- Zahŕňajú základné myšlienky ako by mohol fungovať počítač a jeho programovanie - dobre definujú "algoritmus"
-- Umožňujú algoritmy teoreticky skúmať (nielen ich samotnú "vypočitateľnosť", ale aj zložitosť a iné)
-- Prispievajú určitým spôsobom k filozofickému agnosticizmu
+- Zahŕňajú základné myšlienky ako by mohol fungovať počítač a jeho "programovanie" - "dobre definujú 
+- Umožňujú teoreticky skúmať algoritmy (nielen "vypočitateľnosť", ale aj zložitosť a ďalšie veci)
+- prispievajú určitým spôsobom k agnosticizmu
 
 Teorém nekompletnosti, ako aj nemožnosť riešiť Entscheidungsproblem, prezrádzajú niečo viac aj o povahe nášho sveta,
 nielen o povahe matematického sveta. Podľa [Church-Turingovej tézy][64] je to, čo človek je vôbec schopný vypočítať iba to, čo vypočíta
@@ -241,9 +241,10 @@ a myslení človeka, nehovoríme o formálnom systéme. Z tohto dôvodu tézu ni
 Predstavme si, že problém rozhodnutia, alebo jemu ekvivalentný - [problém zastavenia (Halting problem)][66] ("dá sa zostrojiť T.S. ktorý zistí, či
 nejaký T.S. zastaví?") - je riešiteľný. Teda predstavme si, že existuje algoritmus (T.S.), ktorý dokáže riešiť Halting problem. Ak by sme mali takýto
 algoritmus, mohli by sme napríklad vymyslieť kompilátory, ktoré by automaticky vedeli detekovať, že naše programy sa rútia do nekonečných cyklov,
-prípadne iné užitočné veci. Tiež by sme mohli vyriešiť ťažké matematické problémy, ako napríklad [silnú Goldbachovu domnienku][65]:
+prípadne iné užitočné veci. Tiež by sme mohli vyriešiť ťažké matematické problémy, ako napríklad [silnú Goldbachovu domnienku][65] (toto mám z
+tejto [lekcie][72]):
 
-Predstavme si tento [algoritmus][72] (napísaný v jazyku Scala):
+Predstavme si tento algoritmus:
 
 ```scala
 def goldbachConjecture(): Boolean = {
@@ -264,10 +265,9 @@ def goldbachConjecture(): Boolean = {
 }
 ```
 
-Zastaví niekedy tento program? Ak áno, potom Goldbachova domnienka neplatí a vyriešime tým veľký matematický problém.
-Bohužiaľ, to však nevieme. Ani keby sme počítaču dali všetky prostriedky na svete (CPU, pamäť).
-Ani ak by premenné mohli nadobúdať nekonečne veľké hodnoty. Bez samotného spustenia programu a dlhého čakania na to neprídeme,
-a je možné, že sa ani nedočkáme, ale nevieme to dopredu. To je jeden z priamych dôsledkov neriešiteľnosti Entscheidungsproblemu.
+Zastaví niekedy tento program (napísaný v jazyku Scala)? Ak zastaví, potom Goldbachova domnienka neplatí a vyriešime tým veľký matematický problém.
+Avšak ani keby sme počítaču dali všetky prostriedky na svete (CPU, pamäť) a ani ak by premenné mohli nadobúdať nekonečne veľké hodnoty, ani tak 
+"nevieme a nebudeme vedieť" (*ignoramus et ignorabimus*), či program niekedy zastaví. To je jeden z priamych dôsledkov neriešiteľnosti Entscheidungsproblemu.
 
 # Náznaky ďalšieho vývoja
 
