@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Entropia v BigData
-date:   2019-04-06 11:43:00
+date:   2019-10-18 18:45:00
 categories: [Big Data, Algoritmy]
 tags: [scala, bigdata]
 mathjax: true
@@ -232,6 +232,8 @@ vyplýva, že korpus asi obsahuje pomerne veľký počet riadkov, takže sa opak
 
 Tak - teraz som ukázal, ako sa dá entropia "v praxi" využiť. Robí sa to hlavne pri analýze neznámych, nových dát, a toto je jednou
 z možností, ako si dáta "oťukať". Dúfam, že sa vám článok páčil :)
+
+**PS:** Celý kód je možné stiahnuť tu: https://github.com/vbmacher/learning-kit/tree/master/toy-projects/spark-entropy
 
 
 
