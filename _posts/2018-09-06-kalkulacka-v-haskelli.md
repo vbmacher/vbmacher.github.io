@@ -2,8 +2,8 @@
 layout: post
 title:  Kalkulačka v Haskell-i
 date:   2018-09-06 09:43:00
-categories: [Funkcionálne programovanie]
-tags: [haskell, parser]
+categories: [Funkcionálne programovanie, Algoritmy]
+tags: [haskell, parsery]
 ---
 
 Pamätáte sa na svoje prvé programy? Myslím tie úplne, úplne prvé.. Moje prvé kroky na magickej ceste programátora rozhodne sprevádzali textové

@@ -2,7 +2,7 @@
 layout: post
 title: Elm vs. Haskell
 categories: [Funkcionálne programovanie]
-tags: [elm, haskell, web]
+tags: [elm, haskell]
 date: 2018-08-29 00:48:00
 ---
 
