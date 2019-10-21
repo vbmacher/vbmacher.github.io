@@ -80,7 +80,7 @@ Entropia je známa z termodynamiky, ako "miera neusporiadanosti" termodynamické
 $$\Delta S = \frac{\Delta Q}{T}$$.
 
 Ak má systém viac "podsystémov", tak musíme jednotlivé prírastky entropie počítať zvlášť na každý "podsystém" a potom ich spriemerovať.
-Ak však "podsystémov" (napr. častíc) príliš veľa, nebude to možné realizovať. A tak prišiel [Boltzman][6] so svojou štatistickou entropiou,
+Ak je "podsystémov" (napr. častíc) príliš veľa, nebude to možné realizovať. A tak prišiel [Boltzman][6] so svojou štatistickou entropiou,
 kde sytstém videl ako ucelenú sústavu mikrostavov, do ktorých sa systém ako celok vie dostať. My pracujeme len s makroskopickými veličinami
 (ako napr. tlakom, teplotou, objemom a počtom častíc). Entropia je potom vyjadrená ako množstvo "voľnosti", ktoré systému ostane po zadaní
 týchto makroskopických parametrov. Matematicky ju vyjadril ako:
