@@ -17,42 +17,108 @@ týka viac-menej odboru Data Science, tak som sa ako programátor s entropiou st
 * content
 {:toc}
 
-# Informácia a entropia
+## Informácia
 
-Informačnou entropiou vieme merať kvantitatívne "množstvo informácie" v dátach. Toto je jej primárny účel.
-Napríklad, v nasledujúcich dvoch vetách:
+Informácia ako taká nie je "fyzická" vec. Dá sa povedať, že informácia znižuje "nevedomosť", "neznalosť",
+či "neurčitosť". Informácie reprezenzujeme symbolmi, ktoré sú v ako keby práve tým "fyzickým nosičom" informácie.
 
-> Bude pršať. Vidím to na dážď.
+Avšak - nie je pravda, že každý symbol samostatne nosí odpovedajúce množstvo informácie. Na množstvo informácie
+sa dá nazerať zo _syntaktického_ a _sémantického_ pohľadu. Napríklad, nasledujúce vety:
 
-vidím len jednu (sémantickú) informáciu (že bude pršať), takže by bohato stačila len jedna veta, jedno slovo, či jeden syntaktický symbol,
-ktorým túto skutočnosť dáme najavo. Zhruba toto meriame pomocou informačnej entropie.
+> Bude pršať. Bude pekne.
 
-Informácia je v podstate niečo, čo znižuje našu "nevedomosť", "neznalosť", či "neurčitosť". Informácia je "určujúca" zložka. Entropia je naopak
-miera "neurčitosti", teda hovorí, koľko toho "nevieme" alebo, koľko "prekvapenia" zažijeme, keď sa na dáta pozrieme. Entropia je kvantitatívne
-vyjadrenie minimálneho množstva informácie, ktoré potrebujeme na odstránenie neurčitosti.
+prinášajú síce významovo dve informácie (že bude pršať a bude pekne), ale syntakticky obsahuje štyri slová, z toho jedno
+sa opakuje. V telekomunikačných systémoch a teórii informácie sa informácia chápe skôr zo _syntaktického_ hľadiska,
+a podľa toho vieme merať jej "množstvo".
 
-Jednotkou informácie je jeden *bit*, s hodnotou 0 alebo 1. Kvantitatívne entropiou je minimálny priemerný počet bitov, potrebných na
-zakódovanie všetkých symbolov, ktoré sme v dátach videli. V prípade našich daždivých viet by stačil naozaj len jeden bit.
+Ak by sme teda chceli zistiť množstvo informácie v predchádzajúcich vetách, musíme mať kvantitatívnu jednotku informácie,
+ktorá bude tým chýbajúcim fyzickým "mostíkom" medzi abstrakciou a realitou (kvantitou). Mohli by sme si vymyslieť ľubovoľnú
+jednotku, avšak už to za nás urobil [Claude Shannon][1] v roku 1948.
 
-Pojem *informačná entropia*  definoval [Claude Shannon][1] v roku 1948. Shannonova entropia je odvodená od štatistickej fyzikálnej entropie
-([Boltzman][6]), a je definovaná [takto][4]:
+Jednotkou informácie je jeden *bit*, s hodnotou 0 alebo 1. Ak sa budeme pýtať na množstvo, budeme tým myslieť *počet bitov*.
+
+Tu sa však už musíme zamyslieť nad tým, koľkými spôsobmi môžme danú správu napísať. Ak by sme nemali meniť samotné slová, ale
+len reprezentáciu, aj tak každý symbol môžme zapísať rôznym spôsobom - tj. môžme si vymýšľať rôzne abecedy. Jeden symbol v
+rôznych abecedách tak môže mať rôzny počet bitov. To znamená, že správa zapísaná v dvoch rôznych abecedách môže mať
+rôznu dĺžku. Takže - ktorú abecedu si zvoliť?
+
+## Entropia
+
+Zrejme najväčší zmysel dáva zvoliť si takú abecedu, ktorá produkuje *minimálny počet bitov*. Entropiou je potom vyjadrenie
+*minimálneho priemerného množstva informácie*, ktoré potrebujeme "vydolovať" z dát, aby sme sa dozvedeli všetko. Inak povedané -
+je to minimálny priemerný počet bitov, do ktorých vieme celú správu zapísať bezstratovo.
+
+Kvantitatívne môžme začať takto:
+
+1. Pre každý symbol spočítame jeho frekvenciu výskytu: $$f_i = \frac{n_i}{N}$$, kde $$n_i$$ je počet výskytov
+   $$i$$-tého symbolu v dátach, a $$N$$ veľkosť dát v bitoch.
+2. Pre jednotlivé symboly v dátach nájdeme minimálne kódovanie s využitím nájdených frekvencií symbolov, napr.
+   [Huffmanovo kódovanie][9]. Každý symbol bude mať optimálny kód veľkosti $c_i$ bitov.
+3. Minimálnu veľkosť správy vypočítame vlastne ako sumu "váh" symbolov, kde váha symbolu je jeho optimálna veľkosť
+   krát frekvencia výskytu: $$\sum c_i * f_i$$
+
+Napríklad, majme [100 symbolov][10]:
+
+|*Symbol:*                | `a`  | `b`  | `c`  | `d`  | `e`  | Suma    |
+|*Frekvencia ($$f_i$$):*  | 0.10 | 0.15 | 0.30 | 0.16 | 0.29 |	= 1    |
+|*Optimálny kód:*         | `010`| `011`| `11` | `00` | `10` |         |
+|*Veľkosť kódu ($$c_i$$):*| 3    | 3    | 2    | 2    | 2    |         |
+|*Váha symbolu $$f_i * c_i$$:*| 0.30 | 0.45 | 0.60 | 0.32 | 0.58 |  = 2.25 |
+
+Minimálna veľkosť správy má úž dosť blízko k informačnej "entropii", a počíta sa veľmi podobne:
+
+$$H_{\text{približne}} = \sum_i \frac{n_i}{N} * c_i$$
+
+Prečo je len "blízko", si vysvetlíme neskôr. Nateraz - Shannon entropiu definoval viac matematicky, bez zaťaženia na spôsob
+"enkódovania".
+
+### Matematicky
+
+Entropia je známa z termodynamiky, ako "miera neusporiadanosti" termodynamického systému. Fyzikálne sa entropia meria len svojou
+"zmenou" - keď sústave dodáme teplo určitej teploty:
+
+$$\Delta S = \frac{\Delta Q}{T}$$.
+
+Ak má systém viac "podsystémov", tak musíme jednotlivé prírastky entropie počítať zvlášť na každý "podsystém" a potom ich spriemerovať.
+Ak však "podsystémov" (napr. častíc) príliš veľa, nebude to možné realizovať. A tak prišiel [Boltzman][6] so svojou štatistickou entropiou,
+kde sytstém videl ako ucelenú sústavu mikrostavov, do ktorých sa systém ako celok vie dostať. My pracujeme len s makroskopickými veličinami
+(ako napr. tlakom, teplotou, objemom a počtom častíc). Entropia je potom vyjadrená ako množstvo "voľnosti", ktoré systému ostane po zadaní
+týchto makroskopických parametrov. Matematicky ju vyjadril ako:
+
+$$S = k \; ln \; \Omega$$
+
+kde $$k$$ je konštanta, a $$\Omega$$ je počet rôznych stavov, v ktorom systém môže byť. Ak každému stavu priradíme vlastnú pravdepodobnosť
+$$p_i$$, dostaneme vzťah:
+
+$$S = -k \sum_i p_i \; ln \, p_i$$
+
+Ako to súvisí s informačnou entropiou? *Informačnú entropiu* definoval tiež [Claude Shannon][1]. A tá je veľmi podobná tej od štatistickej
+entropie ([zdroj][4]):
 
 $$H = -\sum_{i=1}^{N} p(x_i) \; ln \; p(x_i)$$
 
-Kde $$p_i$$ je pravdepodobnosť výskytu hodnoty $$x_i$$ v dátovom korpuse. Na logaritmickom základe nezáleží, zmení sa len rozsah možných hodnôt.
-Ak chceme mať výsledok v počte bitov, je dobré použiť dvojkový logaritmus.
+Kde $$p(x_i)$$ je pravdepodobnosť výskytu hodnoty $$x_i$$ v dátovom korpuse. Na logaritmickom základe nezáleží, zmení sa len rozsah
+možných hodnôt. Ak chceme mať výsledok v počte bitov, je dobré použiť dvojkový logaritmus.
 
 Výraz $$- ln \; a = ln \; \frac{1}{a}$$ a teda vzorec je možné prepísat aj do tvaru:
 
 $$H = \sum_{i=1}^{N} p(x_i) \; log_2 \; \frac{1}{p(x_i)}$$
 
-v ktorom člen $$log_2 \; \frac{1}{p(x_i)}$$ je tým dátovým "prekvapením", alebo neurčitosťou.
+v ktorom člen $$log_2 \; \frac{1}{p(x_i)}$$ je tým dátovým "prekvapením", alebo _novou informáciou_, ktorú $$i$$-tý symbol prináša.
 Ak existuje $$N$$ hodnôt a každá z nich je v korpuse rovnako pravdepodobná, potom $$p_i = \frac{1}{N}$$. Vzorec sa potom dá napísať ako:
 
 $$H = \sum_{i=1}^{N} \frac{1}{N} \; log_2 \; \frac{1}{\frac{1}{N}} = \underbrace{\frac{1}{N} \; log_2 \; N + ... + \frac{1}{N} \; log_2 \; N}_\text{N} = log_2 \; N$$
 
+čo zas pripomína pôvodný Boltzmannov vzorec.
 
-## Využitie v dátach
+### Prečo nie je veľkosť "skoprimovanej" správy entropiou
+
+Vyplýva to zo Shannonovho teorému "zdrojového kódovania", ktorý udáva praktické limity bezstratovej dátovej kompresie. Hovorí, že
+minimálna veľkosť dát nikdy nebude menšia než je entropia, ale je možné dosiahnuť veľkosť ľubovoľne blízku entropii so zanedbateľnou stratou
+informácie. Pre viac detailné info [kliknite tu][11].
+
+ 
+## Využitie entropie v dátach
 
 Informačná entropia sa v dátach väčšinou používa na akési ohodnotenie "kvality dát", v zmysle merania "rozmanitosti" dát. Veľká entropia hovorí, že dáta sú rozmanité, a malá, že sa hodnoty mnoho krát opakujú. Napríklad, naše dáta nech hovoria o cenách rôznych produktov:
 
@@ -245,3 +311,6 @@ z možností, ako si dáta "oťukať". Dúfam, že sa vám článok páčil :)
 [6]: https://en.wikipedia.org/wiki/Entropy_(statistical_thermodynamics)
 [7]: http://millionsongdataset.com/lastfm/
 [8]: https://spark.apache.org/docs/latest/sql-programming-guide.html
+[9]: https://en.wikipedia.org/wiki/Huffman_coding
+[10]: https://en.wikipedia.org/wiki/Huffman_coding#Example
+[11]: https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem#Proof:_Source_coding_theorem_for_symbol_codes
