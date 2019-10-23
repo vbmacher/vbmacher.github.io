@@ -67,7 +67,7 @@ Napríklad, majme [100 symbolov][10]:
 
 Minimálna veľkosť správy má úž dosť blízko k informačnej "entropii", a počíta sa veľmi podobne:
 
-$$H_{\text{približne}} = \sum_i \frac{n_i}{N} * c_i$$
+$$H_{\text{približne}} = \sum_i^{N} \frac{n_i}{N} * c_i$$
 
 Prečo je len "blízko", si vysvetlíme neskôr. Nateraz - Shannon entropiu definoval viac matematicky, bez zaťaženia na spôsob
 "enkódovania".
@@ -98,13 +98,25 @@ entropie ([zdroj][4]):
 $$H = -\sum_{i=1}^{N} p(x_i) \; ln \; p(x_i)$$
 
 Kde $$p(x_i)$$ je pravdepodobnosť výskytu hodnoty $$x_i$$ v dátovom korpuse. Na logaritmickom základe nezáleží, zmení sa len rozsah
-možných hodnôt. Ak chceme mať výsledok v počte bitov, je dobré použiť dvojkový logaritmus.
+možných hodnôt. Ak chceme mať výsledok v počte bitov, je dobré použiť dvojkový logaritmus. Prirodzený logaritmus dáva výsledok v tzv. "nat"-och.
 
 Výraz $$- ln \; a = ln \; \frac{1}{a}$$ a teda vzorec je možné prepísat aj do tvaru:
 
 $$H = \sum_{i=1}^{N} p(x_i) \; log_2 \; \frac{1}{p(x_i)}$$
 
 v ktorom člen $$log_2 \; \frac{1}{p(x_i)}$$ je tým dátovým "prekvapením", alebo _novou informáciou_, ktorú $$i$$-tý symbol prináša.
+Ak by sme to mali v tomto bode prirovnať k minimálnej veľkosti správy, tak tento člen je matematickým vyjadrením optimálneho kódu $$c_i$$.
+Ako to? Ak pravdepodobnosť $$p_i$$ nahradíme za frekvenciu výskytu:
+
+$$p_i = \frac{n_i}{N}$$ 
+
+potom dostaneme:
+
+$$H = \sum_{i=1}^{N} \frac{n_i}{N} \; log_2 \; \frac{N}{n_i}$$
+
+a teda $$c_i = log_2 \; \frac{N}{n_i}$$. Keď si uvedomíme fakt, že $$log_2 \; m$$ nám hovorí koľko bitov potrebujeme na zakódovanie $$m$$
+hodnôt, tak v tomto prípade je optimálnym kódom vlastne počet bitov, ktoré potrebujeme na zakódovanie $$\frac{N}{n_i}$$ hodnôt.
+
 Ak existuje $$N$$ hodnôt a každá z nich je v korpuse rovnako pravdepodobná, potom $$p_i = \frac{1}{N}$$. Vzorec sa potom dá napísať ako:
 
 $$H = \sum_{i=1}^{N} \frac{1}{N} \; log_2 \; \frac{1}{\frac{1}{N}} = \underbrace{\frac{1}{N} \; log_2 \; N + ... + \frac{1}{N} \; log_2 \; N}_\text{N} = log_2 \; N$$
