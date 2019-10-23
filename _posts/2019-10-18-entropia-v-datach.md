@@ -108,14 +108,26 @@ v ktorom člen $$log_2 \; \frac{1}{p(x_i)}$$ je tým dátovým "prekvapením", a
 Ak by sme to mali v tomto bode prirovnať k minimálnej veľkosti správy, tak tento člen je matematickým vyjadrením optimálneho kódu $$c_i$$.
 Ako to? Ak pravdepodobnosť $$p_i$$ nahradíme za frekvenciu výskytu:
 
-$$p_i = \frac{n_i}{N}$$ 
+$$p_i = f_i = \frac{n_i}{N}$$ 
 
 potom dostaneme:
 
 $$H = \sum_{i=1}^{N} \frac{n_i}{N} \; log_2 \; \frac{N}{n_i}$$
 
-a teda $$c_i = log_2 \; \frac{N}{n_i}$$. Keď si uvedomíme fakt, že $$log_2 \; m$$ nám hovorí koľko bitov potrebujeme na zakódovanie $$m$$
-hodnôt, tak v tomto prípade je optimálnym kódom vlastne počet bitov, ktoré potrebujeme na zakódovanie $$\frac{N}{n_i}$$ hodnôt.
+a teda $$c_i = log_2 \; \frac{N}{n_i}$$. Keď si uvedomíme fakt, že $$log_2 \; m$$ nám hovorí, koľko bitov potrebujeme na zakódovanie $$m$$
+hodnôt, tak v tomto prípade je optimálnym kódom vlastne počet bitov, ktoré potrebujeme na zakódovanie $$\frac{N}{n_i}$$ hodnôt. Výraz
+$$\frac{N}{n_i}$$ odpovedá - koľko krát sa do správy zmestia všetky výskyty $$i$$-tého symbolu.
+
+Hodnotu si môžme overiť z príkladu v predchádzajúcej časti. Poznáme frekvencie výskytov každého symbolu, takže:
+
+|*Symbol:*                                                      | `a`   | `b`    | `c`   | `d`    | `e`    | Suma      |
+|*Frekvencia ($$f_i$$):*                                        | 0.10  | 0.15   | 0.30  | 0.16   | 0.29   |	= 1      |
+|*Veľkosť optimálneho kódu ($$c_i$$):*                          | 3     | 3      | 2     | 2      | 2      |           |
+|*Informačný prírastok ($$log_2 \; \frac{N}{n_i}$$):*           | 3.32  | 2.73   | 1.73  | 2.64   | 1.78   |           |
+|*Váha symbolu $$f_i * c_i$$:*                                  | 0.30  | 0.45   | 0.60  | 0.32   | 0.58   |  = 2.25   |
+|*Váha informačného prírastku $$f_i * log_2 \; \frac{N}{n_i}$$:*| 0.332 | 0.4095 | 0.519 | 0.4224 | 0.5162 |  = 2.2    |
+
+Suma posledného riadku je vlastne informačná entropia, a vidíme, že je trochu menšia než minimálna veľkosť správy.
 
 Ak existuje $$N$$ hodnôt a každá z nich je v korpuse rovnako pravdepodobná, potom $$p_i = \frac{1}{N}$$. Vzorec sa potom dá napísať ako:
 
@@ -127,7 +139,8 @@ $$H = \sum_{i=1}^{N} \frac{1}{N} \; log_2 \; \frac{1}{\frac{1}{N}} = \underbrace
 
 Vyplýva to zo Shannonovho teorému "zdrojového kódovania", ktorý udáva praktické limity bezstratovej dátovej kompresie. Hovorí, že
 minimálna veľkosť dát nikdy nebude menšia než je entropia, ale je možné dosiahnuť veľkosť ľubovoľne blízku entropii so zanedbateľnou stratou
-informácie. Pre viac detailné info [kliknite tu][11].
+informácie - tj. úplne bezstratová minimálna veľkosť správy bude musieť byť trochu väčšia než entropia. Pre viac detailné info
+[kliknite tu][11].
 
  
 ## Využitie entropie v dátach
