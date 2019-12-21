@@ -3,7 +3,7 @@ layout: post
 title:  Limity počítačov a myslenia (2/2)
 date:   2018-12-30 13:26:00
 categories: [Teoretická informatika]
-tags: teória
+tags: teória, filozofia
 mathjax: true
 d3: true
 ---
