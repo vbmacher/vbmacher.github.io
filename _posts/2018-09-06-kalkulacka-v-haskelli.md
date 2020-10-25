@@ -533,7 +533,7 @@ rozhodol, že si to ešte skúsim sám. Vyšlo to, čo ma veľmi teší.
 [13]: https://en.wikipedia.org/wiki/Parser_combinator
 [14]: http://www.cs.nott.ac.uk/~pszgmh/monparsing.pdf
 [15]: https://en.wikipedia.org/wiki/Recursive_descent_parser
-[16]: https://github.com/vbmacher/learning-kit/tree/master/toy-projects/lecalc
+[16]: https://github.com/vbmacher/learning-kit/tree/master/toy-projects/calculators/c
 [18]: http://richard.myweb.cs.uwindsor.ca/PUBLICATIONS/AI_03.pdf
 [19]: https://en.wikipedia.org/wiki/Backtracking
 [20]: https://en.wikipedia.org/wiki/Memoization
