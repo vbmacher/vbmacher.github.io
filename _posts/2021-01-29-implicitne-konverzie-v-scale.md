@@ -120,7 +120,7 @@ class UrlKeyStoreImpl extends UrlKeyStore {
 object BadApplication {
 
   val config: Configuration = ...
-  val store = new UrlKeyStore() 
+  val store = new UrlKeyStoreImpl() 
 
   implicit def toURL(s: String): URL = ...
   store.find(config.serviceUrl) // no, ktorá 'find' sa zavolá?
