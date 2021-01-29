@@ -39,7 +39,7 @@ je očakávaná 42.
 ## Prípad 1
 
 Hlavný dôvod, prečo je implicitná konverzia považovaná za anti-pattern je ten, že *nevieme ako sa program bude chovať
-v _runtime_ ak konverzia zlyhá*. Zlyhať môže vtedy:
+v runtime ak konverzia zlyhá*. Zlyhať môže vtedy:
 
 - ak funkcia konverzie nie je matematicky "úplná" (po anglicky _total_).
   Čiže vtedy, ak existuje hodnota vstupného argumentu, ktorú funkcia nevie spracovať. Príklad:
