@@ -232,23 +232,25 @@ Pre každý typ zvlášť vytvoríme implicitnú inštanciu typovej triedy a pou
 ```scala
 case class Person(name: String, age: Int)
 
-implicit val personJsonPrintable = new JsonPrintable[Person] {
-  def toJson(value: Person): String = s"""{"name":"${value.name}","age":${value.age}}"""
+object instances {
+  object json {
+    implicit val personJsonPrintable = new JsonPrintable[Person] {
+      def toJson(value: Person): String = s"""{"name":"${value.name}","age":${value.age}}"""
+    }
+  }
 }
 
+import instances.json._
 sendJson(Person("Peter", 36))
 ```
 
-Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič neskrýva. Problém v konverzii
-objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson`. 
+Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič neskrýva:
+
+- Problém v konverzii objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson`.
+- konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
+- pri pridávaní typov, ktoré môž byť použité pre funkciu `sendJson` nám stačí len pridať ďaľší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
 
 Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebujeme skutočný typ `B`, nie len operácie nad `B`.
-
-
-
-
-
-
 
 
 [liskov]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
@@ -257,3 +259,4 @@ Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebuj
 [magnet-pattern]: http://blog.madhukaraphatak.com/scala-magnet-pattern/
 [scalaz]: https://github.com/scalaz/scalaz
 [cats]: https://github.com/typelevel/cats
+[open-closed]: https://stackify.com/solid-design-open-closed-principle/
