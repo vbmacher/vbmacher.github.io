@@ -198,7 +198,7 @@ service1.find(config.serviceUrl1.toURL)
 
 Rozdielom oproti implicitnej konverzii je okrem explicitného volania `.toURL` fakt, že:
 
-- výnimku môžme jasne očakávať, pretože robíme explicitné volanie
+- výnimku môžme jasne očakávať, pretože robíme explicitné volanie - pri použití
 - môžme vytvoriť niekoľko variantov konverzie, z ktorých si pri použití vyberieme.
 - konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
 
@@ -246,7 +246,7 @@ sendJson(Person("Peter", 36))
 
 Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič neskrýva:
 
-- Problém v konverzii objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson` (vo funkcii `sendJson`).
+- Problém v konverzii objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson` (vo funkcii `sendJson` a nie pri každom jej volaní, čo je o dosť lepšie než v prípade extension metódy).
 - konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
 - pri pridávaní typov, ktoré môžu byť použité pre funkciu `sendJson` nám stačí len pridať ďaľší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
 
