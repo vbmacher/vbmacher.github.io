@@ -246,9 +246,9 @@ sendJson(Person("Peter", 36))
 
 Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič neskrýva:
 
-- Problém v konverzii objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson`.
+- Problém v konverzii objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson` (vo funkcii `sendJson`).
 - konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
-- pri pridávaní typov, ktoré môž byť použité pre funkciu `sendJson` nám stačí len pridať ďaľší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
+- pri pridávaní typov, ktoré môžu byť použité pre funkciu `sendJson` nám stačí len pridať ďaľší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
 
 Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebujeme skutočný typ `B`, nie len operácie nad `B`.
 
