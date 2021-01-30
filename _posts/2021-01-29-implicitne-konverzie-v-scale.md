@@ -62,6 +62,27 @@ implicit def ipFromHost(host: String): InetAddress = {
 }
 ```
 
+Samozrejme, človeka môže napadnúť, že by sa konverzie dali napísať aj tak, aby vrátili typ `B` obalený napr. do `Try`:
+
+```scala
+implicit def ipFromHost(host: String): Try[InetAddress] = ...
+```
+
+Avšak týmto krokom už meníme očakávaný typ `B` na nejaký `Try[B]` a ak by sme chceli použiť výsledok, museli by sme
+meniť aj vstupný argument metódy:
+
+```scala
+def connect(address: InetAddress): Boolean = ...
+```
+na:
+
+```scala
+def connect(address: Try[InetAddress]): Boolean = ...
+```
+
+čo zas kladie nepochopiteľné nároky na implementáciu metódy `connect` a z jej pohľadu je `Try` úplne nepotrebný.
+
+
 ## Prípad 2
 
 Okrem týchto relatívne viditeľných problémov existujú ďalšie (nie tak úplne) runtime problémy, ktoré majú spoločné nežiadúce skrývanie chovania. Predstavme si napríklad, že v konfigurácii máme uloženú nejakú URL ako String:
@@ -79,7 +100,12 @@ val url: URL = config.serviceUrl
 ```
 
 Tento kód aktívne skrýva možné zlyhanie. Všetko vyzerá tak krásne, až kým `serviceUrl` nevráti napr. "abcdefgh" a program
-spadne. Ako odchytíme chybu? Kde? Vo funkcii konverzie? V jej použití? Keďže sa implicitná konverzia volá automaticky,
+spadne. Ako odchytíme chybu? Kde?
+
+- Vo funkcii konverzie? Nemôžme, kvôli dôsledkom objasneným v predošlom Prípade
+- V jej použití? Jedine... ak nás to napadne.
+
+Keďže sa implicitná konverzia volá automaticky,
 pri jej používaní na viacerých miestach si už prestaneme všímať a uvedomovať si možné zlyhanie.
 
 ## Prípad 3
@@ -160,8 +186,6 @@ object syntax {
   object string {
     implicit class StringExt(str: String) {
       def toURL: URL = new URL(str)
-      def toTryURL: Try[URL] = Try(toURL)
-      def toMaybeURL: Option[URL] = toTryURL.toOption
     }
   }
 }
@@ -170,14 +194,11 @@ object syntax {
 import syntax.string._
 
 service1.find(config.serviceUrl1.toURL) 
-service2.find(config.serviceUrl2.toURL)
-service3.find(config.serviceUrl3.toURL)
-
 ```
 
 Rozdielom oproti implicitnej konverzii je okrem explicitného volania `.toURL` fakt, že:
 
-- výsledný typ môže byť zaobalený do niečoho, čo môže zachytávať chybový stav. My sami sa tu rozhodujeme, ako ten chybový stav zachytíme.
+- výnimku môžme jasne očakávať, pretože robíme explicitné volanie
 - môžme vytvoriť niekoľko variantov konverzie, z ktorých si pri použití vyberieme.
 - konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
 
@@ -188,7 +209,7 @@ Túto operáciu (vlastne _konverziu_) vieme popísať aj typovou triedou, pre ľ
 
 ```scala
 trait JsonPrintable[A] {
-  def toJson(value: A): Try[String]
+  def toJson(value: A): String
 }
 ```
 
@@ -201,21 +222,25 @@ def sendJson[A](value: A)(implicit printable: JsonPrintable[A]): Unit = {
 }
 ```
 
-Už teraz vidno, že sa jedná o úplne iný prístup ku konverzii. Nielenže nepoužívame skutočnú implicitnú konverziu, ktorá skrýva veci "pod pokličku", ale zároveň nám ostala krásna syntax použitia. Pre každý typ zvlášť vytvoríme implicitnú
-inštanciu typovej triedy a použitie je priam skvostné:
+Už teraz vidno, že sa jedná o úplne iný prístup ku konverzii. Implementačne sa to podobá na extension metódu,
+avšak tým, že `JsonPrintable` je trait, tak tým ustanovuje štandardnú sadu metód, ktoré musí mať každý typ,
+pre ktorý bude existovať `JsonPrintable` a to nám umožní zovšeobecniť metódu `sendJson` na ľubovoľný typ.
+
+Je to ako keby sme povedali: metóda `sendJson` vie poslať hocičo, čo sa dá previesť do JSON-u pomocou `JsonPrintable`. 
+Pre každý typ zvlášť vytvoríme implicitnú inštanciu typovej triedy a použitie je priam skvostné:
 
 ```scala
 case class Person(name: String, age: Int)
 
 implicit val personJsonPrintable = new JsonPrintable[Person] {
-  def toJson(value: Person): Try[String] = Try(s"""{"name":"${value.name}","age":${value.age}}""")
+  def toJson(value: Person): String = s"""{"name":"${value.name}","age":${value.age}}"""
 }
 
 sendJson(Person("Peter", 36))
 ```
 
-Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič neskrýva. Pokiaľ by nastal problém v konverzii
-objektu na JSON, budeme ju mať zachytenú v monáde `Try`. 
+Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič neskrýva. Problém v konverzii
+objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson`. 
 
 Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebujeme skutočný typ `B`, nie len operácie nad `B`.
 
