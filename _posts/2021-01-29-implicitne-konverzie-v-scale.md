@@ -4,21 +4,27 @@ title:  Preč s implicitnými konverziami
 date:   2021-01-29 08:45:00
 categories: [Design kódu]
 tags: scala
+mathjax: true
 ---
 
-Konverzia je jednou z foriem aplikácie [Liskovej princípu][liskov]; inou aplikáciou je [dedenie v OOP][liskov-oop] alebo [variancia][liskov-variance].
-Konverzia je metóda, ktorá dostane na vstup jeden parameter typu `A` a vráti výsledok typu `B`. Implicitná znamená, že sa aplikuje
-automaticky, implicitne, všade tam, kde sa očakáva `B` a v kontexte je k dispozícii len objekt typu `A`. Aj keď sa
-bez implicitnej konverzie niekedy nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa implicitné konverzie
-považujú za anti-pattern (rovnako aj Magnet pattern). Bohužiaľ sa týmto anti-patternom často oháňajú
+Konverzia typu `A => B` je jednou z foriem využitia [Liskovej princípu][liskov]; inou formou využitia je [dedenie v OOP][liskov-oop] (`B <: A`) alebo [variancia][liskov-variance] (kovariancia: `F[A] <: F[B] ak A <: B`, kontravariancia: `F[A] >: F[B] ak A <: B`). Jazyk Scala dokáže realizovať konverzie "implicitne", tj. automaticky všade tam, kde sa očakáva `B` a v kontexte je k dispozícii len objekt typu `A`. Aj keď sa
+bez implicitnej konverzie niekedy nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Bohužiaľ sa týmto anti-patternom často oháňajú
 odporcovia Scaly ako dôvod, prečo je Scala zlá. Ako keby sa v iných jazykoch nedalo napísať nič smradľavé.
 
 
 
 
-V posledných rokoch, hlavne vďaka knižniciam typu [scalaz][scalaz], [cats][cats], apod. sa Scala stala viac funkcionálnym jazykom. To znamená,
-že sa zmenilo aj mnoho best practices, ako napríklad aj užívanie implicitných konverzií. Príklad takej implicitnej konverzie
-môžme vidieť tu:
+Najprv si povieme niečo o Liskovej substitučnom princípe, keďže som ho spomenul. Tento princíp má svoje písmeno **L** v akronyme [SOLID][solid] (princípy OOP), a popísala ho pani Barbara Liskov v roku 1994. Výstižne tento princíp hovorí:
+
+> Subtype Requirement: Let $\phi(x)$ be a property provable about objects $x$ of type $T$. Then $\phi(y)$ should be true for objects $y$ of type $S$ where $S$ is a subtype of $T$.
+
+Princíp hovorí o tom, že ak $S$ je podtypom $T$, tak od $S$ môžme očakávať rovnaké vlastnosti ako má typ $T$ (vlastnosti $\phi$). Jednoduchšími slovami - podľa vysvetlenia v designe [SOLID][solid]:
+
+> Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.
+
+Ak $S$ je podtypom $T$ (`S <: T`), potom všade tam, kde očakávame $T$ vieme použiť $S$. Teda na "subtyping" sa dá nazerať aj ako na *konverziu*, pretože ak `S <: T`, tak vždy vieme *skonvertovať* `S` na typ `T`. Subtyping a konverzia su vďaka Liskovej princípu ekvivalentné. 
+
+Príklad implicitnej konverzie v Scale môžme vidieť tu:
 
 ```scala
 import scala.language.implicitConversions
@@ -30,11 +36,11 @@ def sumUp(values: Int*): Int = values.sum
 sumUp("1", "2", "4.0", "35")
 ```
 
-Keď kompilátor zbadá, že metódu `sumUp` voláme s argumentami typu `String`, zistí, že typy nesedia a tak hľadá implicitnú
-hodnotu alebo konverziu, ktorou by mohol žiadaný typ `String` vyrobiť. Nájde ju (`convertToInt`) a použije. Výsledkom
-je očakávaná 42.
+Keď kompilátor zbadá, že metódu `sumUp` voláme s argumentami typu `String`, zistí, že typy nesedia a tak hľadá implicitnú hodnotu alebo konverziu, ktorou by mohol žiadaný typ `String` vyrobiť. Nájde ju (`convertToInt`) a použije. Výsledkom je očakávaná 42.
 
-[Liskovej substitučný princíp][liskov] hovorí o tom, že typ `A` vieme nahradiť typom `B` vtedy, ak platí, že `B` je podtypom `A`. V prípade našej implicitnej konverzie to znamená, že vieme nahradiť `Int` typom `String` (ak by `String` bol podtyp `Int`). Ale tu podvádzame, pretože `String` nie je skutočný podtyp `Int`. Miesto neho však máme predpis, podľa ktorého "podtyp" len simulujeme. Lebo ak `B` je podtypom `A`, vieme vždy skonvertovať `B` na `A`. 
+Vďaka implicitnej konverzii (a Liskovej princípu) sme umelo zostrojili vzťah `String <: Int`, teda všade tam, kde očakávame `Int` teraz už vieme použiť priamo `String`. 
+
+V posledných rokoch, hlavne vďaka knižniciam typu [scalaz][scalaz], [cats][cats], apod. sa Scala stala viac funkcionálnym jazykom. To znamená, že sa zmenilo aj mnoho best practices. Platí to aj pre užívanie implicitných konverzií, ktoré sa dnes už považujú za anti-pattern.
 
 ## Prípad 1
 
@@ -260,3 +266,4 @@ Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebuj
 [scalaz]: https://github.com/scalaz/scalaz
 [cats]: https://github.com/typelevel/cats
 [open-closed]: https://stackify.com/solid-design-open-closed-principle/
+[solid]: https://en.wikipedia.org/wiki/SOLID
