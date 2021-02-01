@@ -7,7 +7,7 @@ tags: scala
 mathjax: true
 ---
 
-Konverzia typu `A => B` je ekvivalentom "subtyping"-u (`A <: B`), kde platí [Liskovej substitučný princíp][liskov]. Jazyk Scala dokáže realizovať konverzie "implicitne", tj. automaticky všade tam, kde sa očakáva `B` a v kontexte je k dispozícii len objekt typu `A`. Aj keď sa bez implicitnej konverzie niekedy nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Bohužiaľ sa týmto anti-patternom často oháňajú odporcovia Scaly ako dôvod, prečo je Scala zlá. Ako keby sa v iných jazykoch nedalo napísať nič smradľavé.
+Konverzia typu `A => B` je ekvivalentom "subtyping"-u (`A <: B`), keď platí [Liskovej substitučný princíp][liskov]. Jazyk Scala dokáže realizovať konverzie "implicitne", tj. automaticky všade tam, kde sa očakáva `B` a v kontexte je k dispozícii len objekt typu `A`. Aj keď sa bez implicitnej konverzie niekedy nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Bohužiaľ sa týmto anti-patternom často oháňajú odporcovia Scaly ako dôvod, prečo je Scala zlá. Ako keby sa v iných jazykoch nedalo napísať nič smradľavé.
 
 
 
