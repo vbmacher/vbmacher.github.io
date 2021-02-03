@@ -93,11 +93,7 @@ Avšak týmto krokom už meníme očakávaný typ `B` na nejaký `Try[B]` a ak b
 meniť aj vstupný argument metódy:
 
 ```scala
-def connect(address: InetAddress): Boolean = ...
-```
-na:
-
-```scala
+//def connect(address: InetAddress): Boolean = ...
 def connect(address: Try[InetAddress]): Boolean = ...
 ```
 
