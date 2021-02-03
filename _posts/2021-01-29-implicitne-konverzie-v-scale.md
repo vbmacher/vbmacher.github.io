@@ -7,20 +7,14 @@ tags: scala
 mathjax: true
 ---
 
-Konverzia typu `A => B` je ekvivalentom "subtyping"-u (`A <: B`), keď platí [Liskovej substitučný princíp][liskov]. Jazyk Scala dokáže realizovať konverzie "implicitne", tj. automaticky všade tam, kde sa očakáva `B` a v kontexte je k dispozícii len objekt typu `A`. Aj keď sa bez implicitnej konverzie niekedy nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Bohužiaľ sa týmto anti-patternom často oháňajú odporcovia Scaly ako dôvod, prečo je Scala zlá. Ako keby sa v iných jazykoch nedalo napísať nič smradľavé.
+Scala dokáže určité metódy zavolať automaticky (implicitne) ako konverzie z typu `A` do `B`. V niektorých prípadoch sa bez implicitnej konverzie ani nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa však implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Bohužiaľ sa týmto anti-patternom často oháňajú odporcovia Scaly ako dôvod, prečo je Scala zlá. Ako keby sa v iných jazykoch nedalo napísať nič smradľavé.
 
 
 
 
-Najprv si povieme niečo o Liskovej substitučnom princípe, keďže som ho spomenul. Tento princíp má svoje písmeno **L** v akronyme [SOLID][solid] (princípy OOP), a popísala ho pani Barbara Liskov v roku 1994. Výstižne tento princíp hovorí:
+V posledných rokoch, hlavne vďaka knižniciam typu [scalaz][scalaz], [cats][cats], apod. sa Scala stala viac funkcionálnym jazykom. To znamená, že sa zmenilo aj mnoho best practices. Platí to aj pre užívanie implicitných konverzií, ktoré sa dnes už považujú za anti-pattern. Teraz si čo-to vysvetlíme a potom pôjdeme na príklady.
 
-> Subtype Requirement: Let $\phi(x)$ be a property provable about objects $x$ of type $T$. Then $\phi(y)$ should be true for objects $y$ of type $S$ where $S$ is a subtype of $T$.
-
-Princíp hovorí o tom, že ak $S$ je podtypom $T$, tak od $S$ môžme očakávať rovnaké vlastnosti ako má typ $T$ (vlastnosti $\phi$). Jednoduchšími slovami - podľa vysvetlenia v designe [SOLID][solid]:
-
-> Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.
-
-Ak $S$ je podtypom $T$ (`S <: T`), potom všade tam, kde očakávame $T$ vieme použiť $S$. Teda na "subtyping" sa dá nazerať aj ako na *konverziu*, pretože ak `S <: T`, tak vždy vieme *skonvertovať* `S` na typ `T`. Subtyping a konverzia su vďaka Liskovej princípu ekvivalentné. 
+## Subtyping ako konverzia
 
 Príklad implicitnej konverzie v Scale môžme vidieť tu:
 
@@ -29,20 +23,43 @@ import scala.language.implicitConversions
 
 implicit def convertToInt(s: String): Int = s.toInt
 
+
 def sumUp(values: Int*): Int = values.sum
 
+// Scala automaticky zavolá convertToInt pre každú hodnotu  
 sumUp("1", "2", "4.0", "35")
+sumUp(1, 2, 3) // alebo nechá pôvodné argumenty
 ```
 
-Keď kompilátor zbadá, že metódu `sumUp` voláme s argumentami typu `String`, zistí, že typy nesedia a tak hľadá implicitnú hodnotu alebo konverziu, ktorou by mohol žiadaný typ `String` vyrobiť. Nájde ju (`convertToInt`) a použije. Výsledkom je očakávaná 42.
+Všade tam, kde sa očakáva `Int`, Scala v tomto prípade automaticky prevedie každý `String` na `Int`, ako keby bol `String` podtypom typu `Int` (označujeme ako `String <: Int`). Príklad:
 
-Vďaka implicitnej konverzii (a Liskovej princípu) sme umelo zostrojili vzťah `String <: Int`, teda všade tam, kde očakávame `Int` teraz už vieme použiť priamo `String`. 
+```scala
+case class SInt(int: Int)
+case class SString(str: String) extends SInt(str.toInt)
 
-V posledných rokoch, hlavne vďaka knižniciam typu [scalaz][scalaz], [cats][cats], apod. sa Scala stala viac funkcionálnym jazykom. To znamená, že sa zmenilo aj mnoho best practices. Platí to aj pre užívanie implicitných konverzií, ktoré sa dnes už považujú za anti-pattern.
+def sumUp(values: SInt*): Int = values.map(_.int).sum
+
+sumUp(SString("1"), SString("2"), SString("4.0"), SString("35"))
+sumUp(SInt(1), SInt(2), SInt(3))
+```
+
+Čo je to teda subtyping? Človek si môže myslieť, že ide o "technický" vzťah medzi dvoma typmi. Ak typ `S` je skutočným podtypom `T` (v Scale označujeme ako `S <: T`) tak technicky všade tam kde sa očakáva "rodič" `T` vieme použiť "dieťa" `S`, pretože `T` je aj `S`. Táto vlastnosť je formálne popísaná [Liskovej substitučným princípom][liskov]. Tento princíp má svoje písmeno **L** aj v akronyme [SOLID][solid] (princípy OOP), a popísala ho pani Barbara Liskov v roku 1994. V skratke tento princíp hovorí nasledovné:
+
+> Subtype Requirement: Let $\phi(x)$ be a property provable about objects $x$ of type $T$. Then $\phi(y)$ should be true for objects $y$ of type $S$ where $S$ is a subtype of $T$.
+
+Znamená to, že ak `S <: T`, tak od `S` môžme očakávať *rovnaké vlastnosti* ako má typ `T` (vlastnosti $\phi$). Teda všetko to, čo vie "rodič", vie aj "dieťa". No a v tomto prípade sa *na "subtyping" dá nazerať aj ako na konverziu*, pretože ak `S <: T`, tak vždy vieme *skonvertovať* `S` na typ `T`. 
 
 ## Prípad 1
 
-Hlavný dôvod, prečo je implicitná konverzia považovaná za anti-pattern je ten, že *nevieme ako sa program bude chovať
+V OOP subtyping zaručuje technicky, že `S` je aj `T`, pri konverzii na to však musíme myslieť my. Avšak sémanticky na to musíme myslieť aj v OOP - a práve princípy [SOLID][solid] designu nás nabádajú, aby sme vytvárali podtypy tak, aby boli skutočne len špecifickým prípadom rodiča (Mesiac nie je hviezda, ale Slnko áno). 
+
+Tak by mali byť písané aj konverzie. Nemáme vedieť skonvertovať hocičo na hocičo. Keď konvertujeme čísla v reťazci String, mali by sme sémanticky vedieť, že `String` bude obsahovať len čísla (v tomto prípade to nevieme zaručiť, takže takáto konverzia by nemala existovať!). 
+
+Toto je prvý príklad toho, čo sa môže pokaziť. 
+
+## Prípad 2a
+
+Ďaľší dôvod, prečo je implicitná konverzia považovaná za anti-pattern je ten, že *nevieme ako sa program bude chovať
 v runtime ak konverzia zlyhá*. Zlyhať môže vtedy:
 
 - ak funkcia konverzie nie je matematicky "úplná" (po anglicky _total_).
@@ -87,7 +104,7 @@ def connect(address: Try[InetAddress]): Boolean = ...
 čo zas kladie nepochopiteľné nároky na implementáciu metódy `connect` a z jej pohľadu je `Try` úplne nepotrebný.
 
 
-## Prípad 2
+## Prípad 2b
 
 Okrem týchto relatívne viditeľných problémov existujú ďalšie (nie tak úplne) runtime problémy, ktoré majú spoločné nežiadúce skrývanie chovania. Predstavme si napríklad, že v konfigurácii máme uloženú nejakú URL ako String:
 
