@@ -25,10 +25,9 @@ Jazyk Scala, na rozdiel od väčšiny populárnych jazykov, umožňuje programá
 ```scala
 import scala.language.implicitConversions
 
-implicit def doubleToInt(d: Double): Int = d.toInt
-
-
 def sumUp(values: Int*): Int = values.sum
+
+implicit def doubleToInt(d: Double): Int = d.toInt
 
 // Scala automaticky zavolá doubleToInt pre každú hodnotu  
 sumUp(1.6, 2.4, 4.0, 35)
