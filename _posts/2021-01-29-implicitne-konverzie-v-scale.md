@@ -174,7 +174,7 @@ val service = findService(config.serviceURL) // ktorá metóda sa zavolá?
 ```
 
 Táto chyba je relatívne dobre viditeľná, ale kompilátor sa sťažovať vôbec nebude. V tomto prípade sa žiadna konverzia
-realizovať nebude, pretože netreba - zavolá sa metóda `findService(serviceName: String)` s chybným argumentom `config.serviceURL`.Keď sme všímaví, všimneme si to. Ak nie, tak sa to dozvieme až v runtime... 
+nekoná, pretože netreba - zavolá sa metóda `findService(serviceName: String)` s chybným argumentom `config.serviceURL`.Keď sme všímaví, všimneme si to. Ak nie, tak sa to dozvieme až v runtime... 
 
 Ešte horšie to však dopadne, keď naše metódy skomplikujeme:
 
