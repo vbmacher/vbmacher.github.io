@@ -114,9 +114,7 @@ implicit def stringToBoolean(s: String): Boolean = {
 ```
 
 K neúplnosti funkcie prispievajú aj výnimky, ktoré konverzia môže potenciálne vyhodiť (v predchádzajúcom prípade hrozí
-výnimka `scala.MatchError`).
-
-Človeka môže napadnúť, že by sa konverzie dali napísať aj tak, aby nevyhadzovali výnimky a návratový typ `B` by obaľovali napr. do `Try`:
+výnimka `scala.MatchError`). Človeka môže napadnúť, že by sa konverzie dali napísať aj tak, aby nevyhadzovali výnimky a návratový typ `B` by obaľovali napr. do `Try`:
 
 ```scala
 import scala.util.Try
