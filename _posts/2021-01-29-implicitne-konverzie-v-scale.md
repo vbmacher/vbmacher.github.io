@@ -12,6 +12,9 @@ Scala dokáže určité funkcie zavolať automaticky (implicitne) ako konverzie 
 
 
 
+* content
+{:toc}
+  
 ## Čo je to vlastne konverzia
 
 Konverzia je obyčajná funkcia `A => B` s jedným argumentom typu `A`, a vracia výsledok typu `B`. Existujú implicitné a explicitné konverzie. Implicitné robí prekladač automaticky, keď treba a má na to podmienky. Explicitné robí programátor sám.
