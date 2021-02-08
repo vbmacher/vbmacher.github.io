@@ -7,154 +7,198 @@ tags: scala
 mathjax: true
 ---
 
-Scala dokáže určité metódy zavolať automaticky (implicitne) ako konverzie z typu `A` do `B`. V niektorých prípadoch sa bez implicitnej konverzie ani nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa však implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Bohužiaľ sa týmto anti-patternom často oháňajú odporcovia Scaly ako dôvod, prečo je Scala zlá. Ako keby sa v iných jazykoch nedalo napísať nič smradľavé.
+Scala dokáže určité funkcie zavolať automaticky (implicitne) ako konverzie z typu `A` do `B`. V niektorých prípadoch sa bez implicitnej konverzie ani nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa však implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Implicity sami o sebe sú naopak veľmi užitočné, no treba sa ich naučiť používať dobre. Bohužiaľ, implicitné konverzie už ako anti-pattern padajú vhod odporcom Scaly, ktorí toto "zlo" zovšeobecňujú na implicity globálne a nakoniec aj na Scalu ako takú. Pozrieme sa na to, prečo sa na implicitné konverzie nazerá cez prsty a čo s tým robiť. 
 
 
 
 
-V posledných rokoch, hlavne vďaka knižniciam typu [scalaz][scalaz], [cats][cats], apod. sa Scala stala viac funkcionálnym jazykom. To znamená, že sa zmenilo aj mnoho best practices. Platí to aj pre užívanie implicitných konverzií, ktoré sa dnes už považujú za anti-pattern. Teraz si čo-to vysvetlíme a potom pôjdeme na príklady.
+## Čo je to vlastne konverzia
 
-## Subtyping ako konverzia
+Konverzia je obyčajná funkcia `A => B` s jedným argumentom typu `A`, a vracia výsledok typu `B`. Existujú implicitné a explicitné konverzie. Implicitné robí prekladač automaticky, keď treba a má na to podmienky. Explicitné robí programátor sám.
 
-Príklad implicitnej konverzie v Scale môžme vidieť tu:
+Napríklad väčšina populárnych jazykov dokáže implicitne skonvertovať "menšie" numerické typy na "väčšie", napr. `Integer` na `Long`; alebo `Float` na `Double`. Takáto konverzia nikde nie je definovaná, prekladač ju má v sebe väčšinou "zabudovanú". Konverzia sa realizuje často bez informovania programátora, pretože že ide o "bezpečnú" operáciu. Totiž - nestráca sa tým žiadna informácia.
+
+Explicitná konverzia sa však väčšinou vyžaduje v opačnom prípade - teda ak nie je "bezpečné" alebo jasné ako typ `A` previesť na typ `B`. Niektoré jazyky majú na to špeciálnu syntax, ako napr. v jazyku C sa explicitná konverzia robí ako `(int)3.14`; v Scale by to bolo `3.14.toInt`. 
+
+Implicitné konverzie, ako som spomenul, má väčšina programovacích jazykov zabudované v sebe "natvrdo". Jazyk Scala však
+umožňuje programátorovi napísať aj vlastné implicitné konverzie. Príklad implicitnej konverzie v Scale môžme vidieť tu:
 
 ```scala
 import scala.language.implicitConversions
 
-implicit def convertToInt(s: String): Int = s.toInt
+implicit def doubleToInt(d: Double): Int = d.toInt
 
 
 def sumUp(values: Int*): Int = values.sum
 
-// Scala automaticky zavolá convertToInt pre každú hodnotu  
-sumUp("1", "2", "4.0", "35")
-sumUp(1, 2, 3) // alebo nechá pôvodné argumenty
+// Scala automaticky zavolá doubleToInt pre každú hodnotu  
+sumUp(1.6, 2.4, 4.0, 35)
+sumUp(1, 2, 3) // alebo ju nezavolá ak netreba
 ```
 
-Všade tam, kde sa očakáva `Int`, Scala v tomto prípade automaticky prevedie každý `String` na `Int`, ako keby bol `String` podtypom typu `Int` (označujeme ako `String <: Int`). Príklad:
+Touto konverziou sme "naučili" Scalu prevádzať `Double => Int` implicitne. Všade tam, kde sa očakáva `Int`, Scala v tomto prípade automaticky prevedie každý `Double` na `Int`, aj keď ide o "nebezpečnú" operáciu. 
+
+## Subtyping ako konverzia
+
+V predchádzajúcom príklade sme videli príklad "naučenej" implicitnej konverzie, aj keď nám je jasné, že ide o "nebezpečnú" operáciu, pretože konverziou potenciálne strácame informáciu (odsekne sa desatinná časť). Je namieste opýtať sa - aké sú to "bezpečné" konverzie vo všeobecnosti?
+
+Aby sme vedeli odpovedať, poďme sa pozrieť ešte ďalej, napríklad do sveta OOP (objektovo-orientovaného programovania). Aj tam sa totiž dejú "implicitné konverzie", v rámci mechanizmu známom ako **subtyping**. 
+
+Jednou z vlastností OOP je dedičnosť, ktorá umožňuje vytvárať podtypy - teda odvodené typy od svojich rodičov. Podtypy sa však dajú vytvoriť (nie len v OOP) aj inak, než len dedením. Napríklad triedy môžu implementovať interface, alebo tzv. [Mixin][mixin], ktorý do triedy "vkladá" funkcionalitu bez dedenia. 
+
+Subtyping je vlastnosť nielen v OOP, ktorú dobre popísala Barbara Liskov v roku 1994. Jedná sa o [Liskovej substitučný princíp][liskov]. Tento princíp má svoje písmeno **L** aj v akronyme [SOLID][solid] (princípy dobrého designu v OOP). Hovorí:
+
+> Subtype Requirement: Let $\phi(x)$ be a property provable about objects $x$ of type $B$. Then $\phi(y)$ should be true for objects $y$ of type $A$ where $A$ is a subtype of $B$.
+
+Znamená to, že ak `A <: B` (`A` je podtypom `B`), tak od `A` môžme očakávať *rovnaké vlastnosti* ako má typ `B` (vlastnosti $\phi$). Teda všetko to, čo vie "rodič", by malo vedieť aj "dieťa". A preto vďaka Liskovej substitučnom princípe dokážeme v programovacích jazykoch implementovať **substitúciu**, čiže nahradenie `A` za `B`, bez explicitnej drámy. Napríklad:
+
+```scala
+class B 
+class A extends B
+
+val a: A = new A()
+val b: B = a  // substitúcia
+```
+
+Čo nám to pripomína? Implicitnú konverziu! Áno, je to tak - *na "subtyping" dá nazerať aj ako na konverziu*, pretože ak `A <: B`, tak vždy vieme *skonvertovať* `A` na typ `B`.
+
+Keď si ešte spomínate na príklad implicitnej konverzie `doubleToInt` vyššie, skúsme ho implementovať pomocou subtypingu: 
 
 ```scala
 case class SInt(int: Int)
-case class SString(str: String) extends SInt(str.toInt)
+case class SDouble(dbl: Double) extends SInt(dbl.toInt)
 
 def sumUp(values: SInt*): Int = values.map(_.int).sum
 
-sumUp(SString("1"), SString("2"), SString("4.0"), SString("35"))
+sumUp(SDouble(1.6), SDouble(2.4), SDouble(4.0), SDouble(35))
 sumUp(SInt(1), SInt(2), SInt(3))
 ```
 
-Čo je to teda subtyping? Človek si môže myslieť, že ide o "technický" vzťah medzi dvoma typmi. Ak typ `S` je skutočným podtypom `T` (v Scale označujeme ako `S <: T`) tak technicky všade tam kde sa očakáva "rodič" `T` vieme použiť "dieťa" `S`, pretože `T` je aj `S`. Táto vlastnosť je formálne popísaná [Liskovej substitučným princípom][liskov]. Tento princíp má svoje písmeno **L** aj v akronyme [SOLID][solid] (princípy OOP), a popísala ho pani Barbara Liskov v roku 1994. V skratke tento princíp hovorí nasledovné:
+## Dobrá konverzia
 
-> Subtype Requirement: Let $\phi(x)$ be a property provable about objects $x$ of type $T$. Then $\phi(y)$ should be true for objects $y$ of type $S$ where $S$ is a subtype of $T$.
+Teraz sme už pripravení zamyslieť sa nad tým, čo znamená "dobrá" konverzia.  
 
-Znamená to, že ak `S <: T`, tak od `S` môžme očakávať *rovnaké vlastnosti* ako má typ `T` (vlastnosti $\phi$). Teda všetko to, čo vie "rodič", vie aj "dieťa". No a v tomto prípade sa *na "subtyping" dá nazerať aj ako na konverziu*, pretože ak `S <: T`, tak vždy vieme *skonvertovať* `S` na typ `T`. 
+Tak ako je to v prípade `Double` a `Int`? Je skutočne `Double` podtypom `Int`? Nie, je to skôr naopak. Každý `Int` môže byť aj `Double` (pretože `Double` má väčší rozsah a naviac vie poňať aj desatinné čísla), môžme bezpečne predpokladať vzťah `Int <: Double`. Liskovej substitučný princíp však nevyžaduje skutočný technický subtyping, princíp hovorí len o *vlastnostiach* - teda platí vtedy, ak vlastnosti typu `Double` má aj typ `Int`.
 
-## Prípad 1
+Z tohto príkladu intuitívne vieme vycítiť, aká je to "dobrá" - bezpečná implicitná konverzia:
 
-V OOP subtyping zaručuje technicky, že `S` je aj `T`, pri konverzii na to však musíme myslieť my. Avšak sémanticky na to musíme myslieť aj v OOP - a práve princípy [SOLID][solid] designu nás nabádajú, aby sme vytvárali podtypy tak, aby boli skutočne len špecifickým prípadom rodiča (Mesiac nie je hviezda, ale Slnko áno). 
+- nesmie byť porušený Liskovej substitučný princíp (nevyžadujeme "technický" subtyping).
+- funkcia musí byť úplná (*total*) - pre všetky hodnoty argumentu musí existovať výsledok
+- funkcia by mala byť referenčne transparentná (nemá "side effect")
 
-Tak by mali byť písané aj konverzie. Nemáme vedieť skonvertovať hocičo na hocičo. Keď konvertujeme čísla v reťazci String, mali by sme sémanticky vedieť, že `String` bude obsahovať len čísla (v tomto prípade to nevieme zaručiť, takže takáto konverzia by nemala existovať!). 
+Ak máme dobrú konverziu, tak jej implicitnosť veci naozaj uľahčuje a nie sťažuje. Avšak, nie je jednoduché toto zabezpečiť v jazyku samotnom. Programátor na to všetko musí myslieť sám. Aj preto jazyková podpora implicitnej konverzie sa zdá byť výsledkom prehnanej optimistickej dôvery v programátora ;)
 
-Toto je prvý príklad toho, čo sa môže pokaziť. 
+## Problémy implicitnej konverzie
 
-## Prípad 2a
+A je to tu. Konečne si ukážeme príklady, na ktorých snáď bude jasne vidno, prečo sa od implicitnej konverzie
+upúšťa.
 
-Ďaľší dôvod, prečo je implicitná konverzia považovaná za anti-pattern je ten, že *nevieme ako sa program bude chovať
-v runtime ak konverzia zlyhá*. Zlyhať môže vtedy:
+## Za čo môže programátor 
 
-- ak funkcia konverzie nie je matematicky "úplná" (po anglicky _total_).
-  Čiže vtedy, ak existuje hodnota vstupného argumentu, ktorú funkcia nevie spracovať. Príklad:
-  
+Programátor môže za to, keď je konverzia "zlá" - teda nesprávne napísaná. Väčšinou sa jedná o "technické" problémy:
+
+### Porušenie Liskovej substitučného princípu
+
+Patrí tu spomínaný príklad konverzie `Double => Int`, alebo `String => Int`, či `String => URL`
+(pretože platí skôr `URL <: String` než naopak) apod.
+
+### Neúplná funkcia ("non-total" alebo "partial" function)
+
+Keď nevieme previesť úplne každú hodnotu typu `A` na typ `B`, jedná sa o "partial" (neúplnú) funkciu. Aj keď technicky vieme vždy zabezpečiť, aby sa "neplatné hodnoty" prevádzali na nejakú predvolenú hodnotu, nie je to vždy správne riešenie. A nie vždy sa to aj dá.
+
 ```scala
 implicit def stringToBoolean(s: String): Boolean = {
-  s.toUpper match {
+  s.toUpperCase match {
     case "TRUE" => true
     case "FALSE" => false
   }
 }
 ```
 
-- ak funkcia konverzie nie je referenčne transparentná, inak povedané, ktorá nemá "side effect". Príklad:
+K neúplnosti funkcie prispievajú aj výnimky, ktoré konverzia môže potenciálne vyhodiť (v predchádzajúcom prípade hrozí
+výnimka `scala.MatchError`).
+
+Človeka môže napadnúť, že by sa konverzie dali napísať aj tak, aby nevyhadzovali výnimky a návratový typ `B` by obaľovali napr. do `Try`:
 
 ```scala
-implicit def ipFromHost(host: String): InetAddress = {
-  // side effect je napríklad čítanie súboru /etc/hosts z disku! Alebo aj UnknownHostException
+import scala.util.Try
+
+implicit def stringToBoolean(s: String): Try[Boolean] = Try {
+  s.toUpperCase match {
+    case "TRUE" => true
+    case "FALSE" => false
+  }
+}
+```
+
+Avšak týmto krokom už meníme očakávaný typ `B` na nejaký `Try[B]` a ak by sme chceli použiť výsledok, museli by sme
+meniť aj vstupný argument metódy, kde očakávame použitie implicitnej konverzie:
+
+```scala
+//def print(s: String, indent: Boolean): Unit = ...
+def print(s: String, indent: Try[Boolean]): Unit = ...
+```
+
+To kladie nezmyselné nároky na definíciu metódy `print`, pretože z jej pohľadu je `Try` úplne nepotrebný.
+
+### Referenčne netransparentná funkcia (funkcia so "side-effect"-ami)
+
+"Side effect" je každá akcia, ktorá spôsobí zmenu stavu, ktorý nie je vytvorený aj "zničený" v danej funkcii - teda stav, ktorý nie je "lokálny". Výpis na obrazovku, čítanie zo súboru či z klávesnice, poslanie správy aktorovi, atď. nie sú zmeny lokálneho stavu, ide teda o side-effect-y.
+
+Príklad:
+
+```scala
+implicit def hostToInetAddress(host: String): InetAddress = {
+  // side effect je napríklad čítanie súboru /etc/hosts z disku!
   InetAddress.getByName(host) 
 }
 ```
 
-Samozrejme, človeka môže napadnúť, že by sa konverzie dali napísať aj tak, aby vrátili typ `B` obalený napr. do `Try`:
+## Za čo nemôže programátor
+
+Okrem týchto relatívne technických problémov existujú ďalšie problémy, za ktoré programátor ani tak nemôže. Sú to problémy spojené so "skrývaním" chovania, ktoré prispievajú k neprehľadnosti či nejasnosti toho, ako sa program naozaj skompiluje. 
+
+Predstavme si napríklad, že v konfigurácii máme uloženú názov a URL nejakej služby:
 
 ```scala
-implicit def ipFromHost(host: String): Try[InetAddress] = ...
-```
-
-Avšak týmto krokom už meníme očakávaný typ `B` na nejaký `Try[B]` a ak by sme chceli použiť výsledok, museli by sme
-meniť aj vstupný argument metódy:
-
-```scala
-//def connect(address: InetAddress): Boolean = ...
-def connect(address: Try[InetAddress]): Boolean = ...
-```
-
-čo zas kladie nepochopiteľné nároky na implementáciu metódy `connect` a z jej pohľadu je `Try` úplne nepotrebný.
-
-
-## Prípad 2b
-
-Okrem týchto relatívne viditeľných problémov existujú ďalšie (nie tak úplne) runtime problémy, ktoré majú spoločné nežiadúce skrývanie chovania. Predstavme si napríklad, že v konfigurácii máme uloženú nejakú URL ako String:
-
-```scala
-implicit def toURL(s: String): URL = ...
+trait Service
 
 trait Configuration {
-  def serviceUrl: String
+  def serviceName: String
+  def serviceURL: String
 }
 val config: Configuration = ...
 
+def findService(serviceName: String): Option[Service] = ...
+def findService(serviceURL: URL): Option[Service] = ...
 
-val url: URL = config.serviceUrl
+
+implicit def stringToURL(s: String): URL = ...
+val service = findService(config.serviceURL) // ktorá metóda sa zavolá?
 ```
 
-Tento kód aktívne skrýva možné zlyhanie. Všetko vyzerá tak krásne, až kým `serviceUrl` nevráti napr. "abcdefgh" a program
-spadne. Ako odchytíme chybu? Kde?
+Táto chyba je relatívne dobre viditeľná, ale kompilátor sa sťažovať vôbec nebude. V tomto prípade sa žiadna konverzia
+realizovať nebude, pretože netreba - zavolá sa metóda `findService(serviceName: String)` s chybným argumentom `config.serviceURL`.Keď sme všímaví, všimneme si to. Ak nie, tak sa to dozvieme až v runtime... 
 
-- Vo funkcii konverzie? Nemôžme, kvôli dôsledkom objasneným v predošlom Prípade
-- V jej použití? Jedine... ak nás to napadne.
-
-Keďže sa implicitná konverzia volá automaticky,
-pri jej používaní na viacerých miestach si už prestaneme všímať a uvedomovať si možné zlyhanie.
-
-## Prípad 3
-
-Predstavme si tento príklad:
+Ešte horšie to však dopadne, keď naše metódy skomplikujeme:
 
 ```scala
-implicit def toURL(s: String): URL = ...
+trait Service
 
-def find(name: String): Option[String] = ...
-def find(url: URL): Option[String] = ...  // viem, že tieto metódy sú hlúpy príklad...
-
-find("file://...")
-```
-
-Ak viete trochu Scalu, tak sa posledného volania funkcie `find` nebojíte. Viete, že v tomto prípade sa žiadna konverzia
-realizovať nebude, pretože netreba. Horšie to však bude, keď zapojíme `Trait`:
-
-```scala
 trait Configuration {
+  def serviceName: String
   def serviceUrl: String
 }
 
-trait NameKeyStore {
-  def find(name: String): Option[String] 
+trait ServiceRegistry {
+  def find(serviceName: String): Option[Service] 
 }
 
-trait UrlKeyStore extends NameKeyStore {
-  def find(url: URL): Option[String]
+trait UrlServiceRegistry extends ServiceRegistry {
+  def find(serviceURL: URL): Option[Service]
 }
 
-class UrlKeyStoreImpl extends UrlKeyStore {
+class UrlServiceRegistryImpl extends UrlServiceRegistry {
   ...
 }
 
@@ -163,24 +207,21 @@ class UrlKeyStoreImpl extends UrlKeyStore {
 object BadApplication {
 
   val config: Configuration = ...
-  val store = new UrlKeyStoreImpl() 
+  val registry = new UrlServiceRegistryImpl() 
 
-  implicit def toURL(s: String): URL = ...
-  store.find(config.serviceUrl) // no, ktorá 'find' sa zavolá?
+  implicit def stringToURL(s: String): URL = ...
+  registry.find(config.serviceUrl) // no, ktorá 'find' sa zavolá?
 }
 ```
 
-Ktorá z dvoch implementácií metódy `find` za zavolá? Predpokladajme, že funkcia `find(String)` vráti niečo iné ako
-`find(URL)` (nie je to vôbec pekné, ale aj také kódy bývajú).
+Ktorá z dvoch implementácií metódy `find` za zavolá?
 
-Ak sú všetky tieto traity v iných súboroch a my
-vidíme len súbor s objektom `BadApplication`, jednoducho to nemôžeme vedieť (bez podpory nášho inteligentného IDE).
-Nepriamo implicitná konverzia skrýva to, čo by nemalo byť skryté. 
+Ak sú všetky tieto traity ešte aj v iných súboroch a my vidíme len súbor s objektom `BadApplication`, jednoducho to nemôžeme vedieť (bez podpory nášho inteligentného IDE). Nepriamo implicitná konverzia skrýva to, čo by nemalo byť skryté. 
 
 ## Čo použiť miesto implicitnej konverzie
 
 Implicitné konverzie sa často píšu vtedy, keď vieme jednoducho vytvoriť potrebný typ `B` z typu `A`; a keď to robíme príliš
-často, ako napr.:
+často, čím "riešime" best practice [DRY][dry]. Príklad:
 
 ```scala
 implicit def stringToUrl(s: String): URL = ...
@@ -197,6 +238,8 @@ Toto použitie má však symptómy vyššie uvedených prípadov. Miesto toho, a
 riešenie, ktoré by nás nebolelo.
 
 ### Riešenie 1: Extension metóda
+
+Extension metódu by som použil vtedy, ak by implicitná konverzia porušovala Liskovej substitučný princíp. Pretože nejde o to "zakázať" napr. prevádzanie `Double` na `Int`, ide o to, aby bol tento prevod **explicitne viditeľný**. 
 
 ```scala
 object syntax {
@@ -215,33 +258,44 @@ service1.find(config.serviceUrl1.toURL)
 
 Rozdielom oproti implicitnej konverzii je okrem explicitného volania `.toURL` fakt, že:
 
-- výnimku môžme jasne očakávať, pretože robíme explicitné volanie - pri použití
+- výnimku môžme jasne očakávať, pretože robíme explicitné volanie
 - môžme vytvoriť niekoľko variantov konverzie, z ktorých si pri použití vyberieme.
 - konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
+- porušenie Liskovej princípu nevadí
 
 ### Riešenie 2: Typová trieda (type class)
 
-Predstavme si, že potrebujeme napríklad previesť ľubovoľný objekt do JSON-u.
-Túto operáciu (vlastne _konverziu_) vieme popísať aj typovou triedou, pre ľubovoľný typ `A`:
+Teraz si ukážeme správne riešenie ak Liskovej substitučný princíp porušovať netreba. Preto sa už nemôžeme držať príkladu s prevodom `String => URL`. Musíme vymyslieť lepší. Napríklad, každý tzv. "[product type][producttype]" vieme previesť na `String` vo formáte [JSON][json]. Samotný prevod však musíme naprogramovať my.
+
+Operáciu prevodu (vlastne _konverziu_) vieme popísať aj tzv. [typovou triedou][typeclass], pre ľubovoľný typ `A`:
 
 ```scala
 trait JsonPrintable[A] {
   def toJson(value: A): String
 }
-```
-
-Jednou z možností ako napísať metódu, ktorá využíva túto operáciu je takáto:
-
-```scala
-def sendJson[A](value: A)(implicit printable: JsonPrintable[A]): Unit = {
-  val json = printable.toJson(value)
-  ...
+object JsonPrintable {
+  def apply[A](implicit printable: JsonPrintable[A]): JsonPrintable[A] = printable
 }
 ```
 
+Jednou z možností ako napísať metódu, ktorá využíva túto operáciu je nasledovná:
+
+```scala
+def sendJson[A: JsonPrintable](value: A): Unit = {
+  val json = JsonPrintable[A].toJson(value)
+  ...
+}
+
+// Je to to isté ako:
+//def sendJson[A](value: A)(implicit printable: JsonPrintable[A]): Unit = {
+//  val json = printable.toJson(value)
+//  ...
+//}
+```
+
 Už teraz vidno, že sa jedná o úplne iný prístup ku konverzii. Implementačne sa to podobá na extension metódu,
-avšak tým, že `JsonPrintable` je trait, tak tým ustanovuje štandardnú sadu metód, ktoré musí mať každý typ,
-pre ktorý bude existovať `JsonPrintable` a to nám umožní zovšeobecniť metódu `sendJson` na ľubovoľný typ.
+avšak tým, že `JsonPrintable` je trait, sa ustanovuje štandardná sada metód, ktoré musí mať každý typ,
+pre ktorý bude existovať `JsonPrintable`. To nám umožní zovšeobecniť metódu `sendJson` na ľubovoľný typ.
 
 Je to ako keby sme povedali: metóda `sendJson` vie poslať hocičo, čo sa dá previesť do JSON-u pomocou `JsonPrintable`. 
 Pre každý typ zvlášť vytvoríme implicitnú inštanciu typovej triedy a použitie je priam skvostné:
@@ -263,7 +317,7 @@ sendJson(Person("Peter", 36))
 
 Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič neskrýva:
 
-- Problém v konverzii objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson` (vo funkcii `sendJson` a nie pri každom jej volaní, čo je o dosť lepšie než v prípade extension metódy).
+- Problém v konverzii objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson` (vo funkcii `sendJson` a nie pri každom jej volaní, a to je o dosť lepšie než v prípade extension metódy).
 - konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
 - pri pridávaní typov, ktoré môžu byť použité pre funkciu `sendJson` nám stačí len pridať ďaľší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
 
@@ -278,3 +332,8 @@ Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebuj
 [cats]: https://github.com/typelevel/cats
 [open-closed]: https://stackify.com/solid-design-open-closed-principle/
 [solid]: https://en.wikipedia.org/wiki/SOLID
+[mixin]: https://en.wikipedia.org/wiki/Mixin
+[dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
+[typeclass]: https://en.wikipedia.org/wiki/Type_class
+[producttype]: https://en.wikipedia.org/wiki/Product_type
+[json]: https://en.wikipedia.org/wiki/JSON
