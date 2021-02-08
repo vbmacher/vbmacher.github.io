@@ -16,12 +16,11 @@ Scala dokáže určité funkcie zavolať automaticky (implicitne) ako konverzie 
 
 Konverzia je obyčajná funkcia `A => B` s jedným argumentom typu `A`, a vracia výsledok typu `B`. Existujú implicitné a explicitné konverzie. Implicitné robí prekladač automaticky, keď treba a má na to podmienky. Explicitné robí programátor sám.
 
-Napríklad väčšina populárnych jazykov dokáže implicitne skonvertovať "menšie" numerické typy na "väčšie", napr. `Integer` na `Long`; alebo `Float` na `Double`. Takáto konverzia nikde nie je definovaná, prekladač ju má v sebe väčšinou "zabudovanú". Konverzia sa realizuje často bez informovania programátora, pretože že ide o "bezpečnú" operáciu. Totiž - nestráca sa tým žiadna informácia.
+Napríklad väčšina populárnych jazykov dokáže implicitne skonvertovať "menšie" numerické typy na "väčšie", napr. `Integer` na `Long`; alebo `Float` na `Double`. Takáto konverzia nikde nie je definovaná, prekladač ju má v sebe väčšinou "zabudovanú". Konverzia sa realizuje často bez informovania programátora, pretože ide o "bezpečnú" operáciu. Totiž - nestráca sa tým žiadna informácia.
 
 Explicitná konverzia sa však väčšinou vyžaduje v opačnom prípade - teda ak nie je "bezpečné" alebo jasné ako typ `A` previesť na typ `B`. Niektoré jazyky majú na to špeciálnu syntax, ako napr. v jazyku C sa explicitná konverzia robí ako `(int)3.14`; v Scale by to bolo `3.14.toInt`. 
 
-Implicitné konverzie, ako som spomenul, má väčšina programovacích jazykov zabudované v sebe "natvrdo". Jazyk Scala však
-umožňuje programátorovi napísať aj vlastné implicitné konverzie. Príklad implicitnej konverzie v Scale môžme vidieť tu:
+Jazyk Scala, na rozdiel od väčšiny populárnych jazykov, umožňuje programátorovi napísať vlastné implicitné konverzie. Príklad:
 
 ```scala
 import scala.language.implicitConversions
@@ -36,21 +35,21 @@ sumUp(1.6, 2.4, 4.0, 35)
 sumUp(1, 2, 3) // alebo ju nezavolá ak netreba
 ```
 
-Touto konverziou sme "naučili" Scalu prevádzať `Double => Int` implicitne. Všade tam, kde sa očakáva `Int`, Scala v tomto prípade automaticky prevedie každý `Double` na `Int`, aj keď ide o "nebezpečnú" operáciu. 
+Konverziou `doubleToInt` sme "naučili" Scalu prevádzať `Double => Int` implicitne. Všade tam, kde sa očakáva `Int` a my máme k dispozícii len `Double`, prekladač ho automaticky prevedie na `Int`, aj keď ide o "nebezpečnú" operáciu. 
 
 ## Subtyping ako konverzia
 
-V predchádzajúcom príklade sme videli príklad "naučenej" implicitnej konverzie, aj keď nám je jasné, že ide o "nebezpečnú" operáciu, pretože konverziou potenciálne strácame informáciu (odsekne sa desatinná časť). Je namieste opýtať sa - aké sú to "bezpečné" konverzie vo všeobecnosti?
+V predchádzajúcom príklade sme videli príklad "nebezpečnej" implicitnej konverzie, je preto namieste opýtať sa - aké sú "dobré" implicitné konverzie? Pri numerických typoch je to jasné - nemali by sme strácať presnosť pri prevode. Ale vo všeobecnosti si to žiada hlbšie vysvetlenie.
 
-Aby sme vedeli odpovedať, poďme sa pozrieť ešte ďalej, napríklad do sveta OOP (objektovo-orientovaného programovania). Aj tam sa totiž dejú "implicitné konverzie", v rámci mechanizmu známom ako **subtyping**. 
+Poďme sa pozrieť ďalej, na mechanizmus s názvom **subtyping**. Subtyping totiž - na naše prekvapenie - dosť pripomína implicitné konverzie. 
 
-Jednou z vlastností OOP je dedičnosť, ktorá umožňuje vytvárať podtypy - teda odvodené typy od svojich rodičov. Podtypy sa však dajú vytvoriť (nie len v OOP) aj inak, než len dedením. Napríklad triedy môžu implementovať interface, alebo tzv. [Mixin][mixin], ktorý do triedy "vkladá" funkcionalitu bez dedenia. 
+Napríklad v OOP: dedičnosť umožňuje vytvárať podtypy - teda odvodené typy od svojich rodičov. Podtypy sa však dajú vytvoriť aj inak: implementáciou interface, alebo použitím tzv. [Mixin][mixin]-u, ktorý do triedy "vkladá" funkcionalitu bez dedenia. Subtyping je teda mechanizmom nielen v OOP.
 
-Subtyping je vlastnosť nielen v OOP, ktorú dobre popísala Barbara Liskov v roku 1994. Jedná sa o [Liskovej substitučný princíp][liskov]. Tento princíp má svoje písmeno **L** aj v akronyme [SOLID][solid] (princípy dobrého designu v OOP). Hovorí:
+Medzi hlavným typom (rodičom) a odvodeným typom (dieťaťom) je akási súvislosť. Túto súvislosť môžme využiť pri substitúcii jedného za druhého. Dostávame sa tak ku substitučnému princípu, ktorý dobre popísala Barbara Liskov v roku 1994. Jedná sa preto o [Liskovej substitučný princíp][liskov], a má aj svoje významné písmeno **L** aj v akronyme [SOLID][solid] (princípy dobrého designu v OOP). Hovorí:
 
 > Subtype Requirement: Let $\phi(x)$ be a property provable about objects $x$ of type $B$. Then $\phi(y)$ should be true for objects $y$ of type $A$ where $A$ is a subtype of $B$.
 
-Znamená to, že ak `A <: B` (`A` je podtypom `B`), tak od `A` môžme očakávať *rovnaké vlastnosti* ako má typ `B` (vlastnosti $\phi$). Teda všetko to, čo vie "rodič", by malo vedieť aj "dieťa". A preto vďaka Liskovej substitučnom princípe dokážeme v programovacích jazykoch implementovať **substitúciu**, čiže nahradenie `A` za `B`, bez explicitnej drámy. Napríklad:
+Znamená to, že ak `A <: B` (`A` je podtypom `B`), tak od `A` môžme očakávať *rovnaké vlastnosti* ako má typ `B` (vlastnosti $\phi$). Teda všetko to, čo vie "rodič", by malo vedieť aj "dieťa". A preto v programovacích jazykoch vieme implementovať **substitúciu**, čiže nahradenie `A` za `B`, bez _explicitnej_ drámy. Napríklad:
 
 ```scala
 class B 
@@ -62,7 +61,7 @@ val b: B = a  // substitúcia
 
 Čo nám to pripomína? Implicitnú konverziu! Áno, je to tak - *na "subtyping" dá nazerať aj ako na konverziu*, pretože ak `A <: B`, tak vždy vieme *skonvertovať* `A` na typ `B`.
 
-Keď si ešte spomínate na príklad implicitnej konverzie `doubleToInt` vyššie, skúsme ho implementovať pomocou subtypingu: 
+Keď si ešte spomínate na príklad implicitnej konverzie `doubleToInt` vyššie, dá sa implementovať aj pomocou subtypingu: 
 
 ```scala
 case class SInt(int: Int)
@@ -80,7 +79,7 @@ Teraz sme už pripravení zamyslieť sa nad tým, čo znamená "dobrá" konverzi
 
 Tak ako je to v prípade `Double` a `Int`? Je skutočne `Double` podtypom `Int`? Nie, je to skôr naopak. Každý `Int` môže byť aj `Double` (pretože `Double` má väčší rozsah a naviac vie poňať aj desatinné čísla), môžme bezpečne predpokladať vzťah `Int <: Double`. Liskovej substitučný princíp však nevyžaduje skutočný technický subtyping, princíp hovorí len o *vlastnostiach* - teda platí vtedy, ak vlastnosti typu `Double` má aj typ `Int`.
 
-Z tohto príkladu intuitívne vieme vycítiť, aká je to "dobrá" - bezpečná implicitná konverzia:
+Z tohto príkladu intuitívne vieme vycítiť, aká je to "dobrá" - bezpečná - implicitná konverzia:
 
 - nesmie byť porušený Liskovej substitučný princíp (nevyžadujeme "technický" subtyping).
 - funkcia musí byť úplná (*total*) - pre všetky hodnoty argumentu musí existovať výsledok
