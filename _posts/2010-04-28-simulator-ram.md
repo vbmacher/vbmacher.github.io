@@ -2,8 +2,8 @@
 layout: post
 title: Simulátor RAM stroja na Turingovom stroji
 date: 2010-04-28 11:04 
-categories: [Emulácia]
-tags: RAM, turing, teória
+categories: [Emulácia, Teoretická informatika]
+tags: [RAM, turing]
 mathjax: true
 ---
 

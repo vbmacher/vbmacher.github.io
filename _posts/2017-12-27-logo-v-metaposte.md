@@ -2,7 +2,7 @@
 layout: post
 title: Logo v MetaPost-e
 categories: Grafika
-tags: emustudio
+tags: [emustudio, metapost]
 date: 2017-12-28 14:30:00
 ---
 

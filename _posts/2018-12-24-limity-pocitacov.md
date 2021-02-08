@@ -2,8 +2,8 @@
 layout: post
 title:  Limity počítačov a myslenia (1/2)
 date:   2018-12-24 11:27:00
-categories: [Teoretická informatika]
-tags: teória, filozofia
+categories: [Teoretická informatika, Filozofia]
+tags: [gödel, hilbert, teorém nekompletnosti, paradox]
 mathjax: true
 d3: true
 ---
@@ -123,7 +123,7 @@ Na konci každej "otázkovej" kapitoly oznámkoval kurzívou napísané latinsk�
 
 Tomuto prístupu sa postavil na odpor (svojej doby asi najslávnejší) nemecký matematik [David Hilbert][20], ktorý bol zhodou okolností jedným z prvých propagátorov používania formálnych systémov. Hilbert bol veľmi citlivý na tento *Ignorabimus* aj preto, lebo matematika začiatkom 20. storočia prežívala vážnu [krízu][37], z ktorej bol Hilbert frustrovaný. Hilbert však veril, že je možné nájsť riešenie a preto nechcel slepo prijať ignoranciu.
 
-Kríza spočívala hlavne v tom, že samotné základy vtedajšej matematiky - naivná teória množín, umožňovala tvorbu paradoxov - teda výrokov, ktoré platia a neplatia zároveň. Nebezpečie spočíva v tom, že ak tvrdenie `P` platí aj neplatí, pravidlo [modus ponens][41] (z `P` vyplýva `Q`) nám umožní odvodiť prakticky čokoľvek, aj nepravdivé výrokya celá matematika sa tak zrúti ako domček z karát.
+Kríza spočívala hlavne v tom, že samotné základy vtedajšej matematiky - naivná teória množín, umožňovala tvorbu paradoxov - teda výrokov, ktoré platia a neplatia zároveň. Nebezpečie spočíva v tom, že ak tvrdenie `P` platí aj neplatí, pravidlo [modus ponens][41] (z `P` vyplýva `Q`) nám umožní odvodiť prakticky čokoľvek, aj nepravdivé výroky a celá matematika sa tak zrúti ako domček z karát.
 
 Táto kríza doviedla Hilberta ku spísaniu 23 dovtedy známych [matematických problémov][21], ktoré odprezentoval na Parížskom kongrese
 v roku 1900. Tam vyzval matematikov, ako svoju armádu, k ich riešeniu. V roku 1932, keď odchádzal do dôchodku, zhrnul svoju záverečnú reč aj [v rádiu][33], kde okrem iného povedal:

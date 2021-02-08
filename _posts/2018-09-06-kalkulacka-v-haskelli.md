@@ -2,7 +2,7 @@
 layout: post
 title:  Kalkulačka v Haskell-i
 date:   2018-09-06 09:43:00
-categories: [Funkcionálne programovanie, Algoritmy]
+categories: [Funkcionálne programovanie, Kompilátory]
 tags: [haskell, parsery]
 ---
 

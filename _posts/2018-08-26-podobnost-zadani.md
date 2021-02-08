@@ -2,7 +2,7 @@
 layout: post
 title: Podobnosť zdrojových kódov programov
 categories: [Algoritmy]
-tags: scala
+tags: [scala,levenshtein,cosine similarity, text vectorization]
 date: 2018-08-26 23:59:00
 mathjax: true
 ---

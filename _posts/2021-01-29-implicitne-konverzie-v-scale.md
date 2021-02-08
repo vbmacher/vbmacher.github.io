@@ -3,7 +3,7 @@ layout: post
 title:  Preč s implicitnými konverziami
 date:   2021-01-29 08:45:00
 categories: [Design kódu]
-tags: scala
+tags: [scala, implicity, typové triedy]
 mathjax: true
 ---
 

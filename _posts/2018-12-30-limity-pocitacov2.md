@@ -2,8 +2,8 @@
 layout: post
 title:  Limity počítačov a myslenia (2/2)
 date:   2018-12-30 13:26:00
-categories: [Teoretická informatika]
-tags: teória, filozofia
+categories: [Teoretická informatika, Filozofia]
+tags: [entscheidungsproblem, turing, limity mysle]
 mathjax: true
 d3: true
 ---

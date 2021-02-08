@@ -2,7 +2,7 @@
 layout: post
 title: Konflikty každodenné - Darcs
 date: 2008-09-19 18:00:00
-categories: [Version control system]
+categories: [Utility]
 tags: [darcs, vcs]
 ---
 
