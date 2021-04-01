@@ -229,9 +229,9 @@ vypočitateľné lambda kalkulom, a naopak.
 
 Turingove stroje sú veľmi dôležité z niekoľko hľadísk:
 
-- Zahŕňajú základné myšlienky ako by mohol fungovať počítač a jeho "programovanie" - "dobre definujú 
+- Zahŕňajú základné myšlienky ako by mohol fungovať počítač a jeho "programovanie" - dobre definujú algoritmus
 - Umožňujú teoreticky skúmať algoritmy (nielen "vypočitateľnosť", ale aj zložitosť a ďalšie veci)
-- prispievajú určitým spôsobom k agnosticizmu
+- Prispievajú určitým spôsobom k [agnosticizmu][82]
 
 Teorém nekompletnosti, ako aj nemožnosť riešiť Entscheidungsproblem, prezrádzajú niečo viac aj o povahe nášho sveta,
 nielen o povahe matematického sveta. Podľa [Church-Turingovej tézy][64] je to, čo človek je vôbec schopný vypočítať iba to, čo vypočíta
@@ -396,3 +396,4 @@ Napriek tomu ostávajú počítače tie najsofistikovanejšie stroje, aké kedy 
 [79]: https://en.wikipedia.org/wiki/Complexity_class
 [80]: https://en.wikipedia.org/wiki/Finite-state_machine
 [81]: https://en.wikipedia.org/wiki/Pushdown_automaton
+[82]: https://sk.wikipedia.org/wiki/Agnosticizmus
