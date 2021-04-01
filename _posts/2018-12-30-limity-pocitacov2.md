@@ -244,7 +244,7 @@ algoritmus, mohli by sme napríklad vymyslieť kompilátory, ktoré by automatic
 prípadne iné užitočné veci. Tiež by sme mohli vyriešiť ťažké matematické problémy, ako napríklad [silnú Goldbachovu domnienku][65] (toto mám z
 tejto [lekcie][72]):
 
-Predstavme si tento algoritmus:
+Predstavme si nasledujúci algoritmus:
 
 ```scala
 def goldbachConjecture(): Boolean = {
