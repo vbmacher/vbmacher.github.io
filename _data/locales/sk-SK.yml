@@ -1,0 +1,89 @@
+# The layout text of site
+
+# ----- Commons label -----
+
+layout:
+  post: Príspevok
+  category: Kategória
+  tag: Štítok
+
+# The tabs of sidebar
+tabs:
+  # format: <filename_without_extension>: <value>
+  home: Domov
+  categories: Kategórie
+  tags: Štítky
+  archives: Archívy
+  about: O mne
+
+# the text displayed in the search bar & search results
+search:
+  hint: hľadať
+  cancel: Zrušiť
+  no_results: Nebol nájdený žiadny výsledok.
+
+panel:
+  lastmod: Nedávno aktualizované
+  trending_tags: Trendy štítky
+  toc: Obsah
+
+copyright:
+  # Shown at the bottom of the post
+  license:
+    template: Tento príspevok je licencovaný pod :LICENSE_NAME autorom.
+    name: CC BY 4.0
+    link: https://creativecommons.org/licenses/by/4.0/
+
+  # Displayed in the footer
+  brief: Niektoré práva vyhradené.
+  verbose: >-
+    Ak nie je uvedené inak, sú príspevky na tomto webe licencované
+    pod licenciou Creative Commons Attribution 4.0 International (CC BY 4.0) Licencia autora.
+
+meta: Stránka používa :PLATFORM s témou :THEME
+
+not_found:
+  statment: Ospravedlňujeme sa, adresu URL sme zle umiestnili alebo odkazuje na niečo, čo neexistuje.
+
+notification:
+  update_found: Je k dispozícii nová verzia obsahu.
+  update: Aktualizácia
+
+# ----- Posts related labels -----
+
+post:
+  written_by: Od
+  posted: Zverejnené
+  updated: Aktualizované
+  words: slová
+  pageview_measure: zhliadnutie
+  read_time:
+    unit: minút
+    prompt: čítania
+  relate_posts: Ďalšie čítanie
+  share: Zdieľať
+  button:
+    next: Novšie
+    previous: Staršie
+    copy_code:
+      succeed: Skopírované!
+    share_link:
+      title: Kopírovať odkaz
+      succeed: Skopírované!
+
+# Date time format.
+# See: <http://strftime.net/>, <https://day.js.org/docs/en/display/format>
+df:
+  post:
+    strftime: "%b %e, %Y"
+    dayjs: "ll"
+  archives:
+    strftime: "%b"
+    dayjs: "MMM"
+
+# categories page
+categories:
+  category_measure: kategória
+  post_measure:
+    singular: príspevok
+    plural: príspevky
