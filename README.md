@@ -1,5 +1,7 @@
 # Môj kód - programovanie a filozofia myslenia
 
+![build](https://github.com/vbmacher/vbmacher.github.io/actions/workflows/jekyll.yml/badge.svg)
+
 **Môj kód** je blog písaný po slovensky pre programátorov, písaný v štýle [worse-is-better](https://en.wikipedia.org/wiki/Worse_is_better).
 Dajú sa v ňom nájsť:
 
