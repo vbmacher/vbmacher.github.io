@@ -4,7 +4,9 @@ title:  Entropia v BigData
 date:   2019-10-18 18:45:00
 categories: [Big Data, Algoritmy]
 tags: [scala, entropia, bigdata]
-mathjax: true
+math: true
+author: peterj
+description: Skúmanie neznámych dát využitím informačnej entropie.
 ---
 
 Informačná entropia má využitie pri spracovaní dát, ale aj strojovom učení (pri vytváraní [rozhodovacích

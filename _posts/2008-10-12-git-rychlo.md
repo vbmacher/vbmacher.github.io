@@ -4,6 +4,8 @@ title: Git rýchlo
 date: 2008-10-12 15:00:00
 categories: [Utility]
 tags: [git, vcs]
+author: peterj
+description: Krátky zoznam užitočných príkazov git-u pre tých, ktorí už vedia ako git funguje. 
 ---
 
 Tento článok som napísal pre používateľov, ktorí sa chcú naučiť používať **git** - systém na správu

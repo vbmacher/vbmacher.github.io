@@ -2,9 +2,11 @@
 layout: post
 title: Podobnosť zdrojových kódov programov
 categories: [Algoritmy]
-tags: [scala,levenshtein,cosine similarity, text vectorization]
+tags: [scala,levenshtein,cosine similarity, vektorizácia textu]
 date: 2018-08-26 23:59:00
-mathjax: true
+math: true
+author: peterj
+description: Pohľad laika programátora na to, ako by sa dala merať podobnosť zdrojových kódov.
 ---
 
 Kopírovanie je jedna z najpoužívanejších operácií v počítači. Plagiátorstvo tak dostalo dokonalé prostredie na svoju evolúciu.
@@ -193,7 +195,7 @@ váhu slov, pričom váha slova je definovaná ako jeho početnosť v texte.
 
 Pozrime sa na obrázok z [Wikipédie][30]:
 
-![TwoVectors]({{ "/images/podobnost-zadani/Dot_Product.svg" | absolute_url }})
+![TwoVectors](/assets/img/podobnost-zadani/Dot_Product.svg)
 
 Vidíme na ňom dva vektory, $$\vec{a}$$ a $$\vec{b}$$, ktoré sú umiestnené tak, aby mali rovnaký začiatok. Z matematiky
 vieme, že vektor je definovaný len svojou veľkosťou a smerom, preto si vektory môžme umiestniť ako chceme, keď zachováme

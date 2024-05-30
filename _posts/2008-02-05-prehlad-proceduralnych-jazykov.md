@@ -4,6 +4,8 @@ title: Prehľad historických procedurálnych jazykov
 date: 2008-02-05 14:00:00
 categories: [Kompilátory]
 tags: [algol,c,pascal,cobol,basic]
+author: peterj
+description: Veľmi krátky popis niektorých populárnych historických programovacích jazykov.
 ---
 
 V tomto článku trochu bližšie popíšem niektoré staršie, ale aj novšie (alebo teda v súčasnosti dosť
@@ -26,7 +28,7 @@ Keďže vstup/výstup ALGOL-u nebol štandardizovaný, neexistuje portabilná ve
 "hello world!". Nasledujúci príklad ukazuje tento program v jazyku ALGOL 60 pre počítač Unisys-A
 series:
 
-```
+```algol
 BEGIN
   FILE F(KIND=REMOTE);
   EBCDIC ARRAY E[0:11];
@@ -50,7 +52,7 @@ rôznych [dialektov BASICU](http://en.wikipedia.org/wiki/List_of_BASIC_dialects)
 
 Klasický program "Hello, world!" v BASICu vyzerá asi takto:
 
-```
+```basic
 10 PRINT "Hello, world !"
 ```
 
@@ -73,13 +75,13 @@ trestný čin"*. Obranou bolo vyjadrenie, že kto kritizuje COBOL, určite v ňo
 Napríklad kód v COBOL-e pre výpočet koreňa kvadratickej rovnice `a*x^2 + b*x + c`
 môže vyzerať takto:
 
-```
+```cobol
 COMPUTE X = (-B + (B ** 2 - (4 * A * C)) ** .5) / (2 * A)
 ```
 
 alebo aj takto:
 
-```
+```cobol
 MULTIPLY B BY B GIVING B-SQUARED.  
 MULTIPLY 4 BY A GIVING FOUR-A.  
 MULTIPLY FOUR-A BY C GIVING FOUR-A-C.  
@@ -93,7 +95,7 @@ DIVIDE NUMERATOR BY DENOMINATOR GIVING X.
 Na prvý pohľad to vyzerá dosť zložito. Ktorú formu použiť, závisí od štýlu programovania.
 V niektorých prípadoch menej exaktný zápis môže byť ľahšie pochopiteľný:
 
-```
+```cobol
 ADD YEARS TO AGE.
 MULTIPLY PRICE BY QUANTITY GIVING COST.
 SUBTRACT DISCOUNT FROM COST GIVING FINAL-COST.
@@ -101,7 +103,7 @@ SUBTRACT DISCOUNT FROM COST GIVING FINAL-COST.
 
 a posledná vec: "Hello, world!"
 
-```
+```cobol
 IDENTIFICATION DIVISION.
 PROGRAM-ID. HELLO-WORLD.
 PROCEDURE DIVISION.

@@ -1,9 +1,11 @@
 ---
 layout: post
 title: Logo v MetaPost-e
-categories: Grafika
+categories: [Grafika]
 tags: [emustudio, metapost]
 date: 2017-12-28 14:30:00
+author: peterj
+description: Krátky príbeh o tom, ako vzniklo logo pre emuStudio.
 ---
 
 Môj prvý blogpost sa bude týkať tvorbe loga, ktoré programátor chce použiť či už pre svoju webovú stránku alebo program.
@@ -18,22 +20,22 @@ A to sa stalo ústrednou myšlienkou loga.
 
 Počítač sa v dnešnej dobe kreslí väčšinou ako monitor, pod ktorým je klávesnica:
 
-![Computer Display]({{ "/images/logo-v-metaposte/computer-display.png" | absolute_url }})
+![Computer Display](/assets/img/logo-v-metaposte/computer-display.png)
 
 Predtým sa počítač zas kreslil ako monitor, vedľa ktorého stál minitower:
 
-![Desktop Computer]({{ "/images/logo-v-metaposte/computer-desktop.png" | absolute_url }})
+![Desktop Computer](/assets/img/logo-v-metaposte/computer-desktop.png)
 
 A ešte predtým počítač zas vyzeral tak, že monitor stál na podlhovastej "bedni":
 
-![Computer with desk under display]({{ "/images/logo-v-metaposte/computer-under.png" | absolute_url }})
+![Computer with desk under display](/assets/img/logo-v-metaposte/computer-under.png)
 
 A práve tento posledný typ sa mi páči. Takže potrebujeme bedňu, a monitor. Na logo "počítač v počítači" teda stačia štyri obdĺžniky.
 
 Moje prvé kroky viedli na internet. Hľadal som niečo jednoduché, proste pekný "computer clipart". A podarilo sa mi nájsť veľmi
 pekný a hlavne free clipart, ktorý sa mi zapáčil ako základ pre moje nové logo (zo stránky [4vector.com][14]):
 
-![Computer Clipart]({{ "/images/logo-v-metaposte/computer-clipart.png" | absolute_url }})
+![Computer Clipart](/assets/img/logo-v-metaposte/computer-clipart.png)
 
 
 # Kde si dnes človek môže nakresliť logo?
@@ -86,7 +88,7 @@ nedá prirovnať. Vychádzal som hlavne z [manuálu](https://www.tug.org/docs/me
 Kód loga umiestnime do súboru s príponou `.mp`, teda napr. `logo.mp`. Základná štruktúra programu je nasledovná:
 
 
-```
+```metapost
 prologues:=3;
 outputtemplate:="%j-%c.svg";
 outputformat:="svg";
@@ -120,7 +122,7 @@ bude reprezentovať floppy disk, apod. Makro na nakreslenie bedne môže vyzera�
 
 A výsledok:
 
-![Bedňa]({{ "/images/logo-v-metaposte/case.svg" | absolute_url }})
+![Bedňa](/assets/img/logo-v-metaposte/case.svg)
 
 Ako vidno, v kóde sa vieme pekne vyhrať. Nie je to nič zložité, len musíme trochu porozumieť ako to celé funguje. Napríklad,
 do premennej `p` som si uložil cestu (typ `path`), čo je vlastne akoby cesta v grafe, ktorým je fiktívna mriežka dvojrozmerného
@@ -141,7 +143,7 @@ loga je tu:
 
 A vyzerá nasledovne:
 
-![Hotové logo]({{ "/images/logo-v-metaposte/logo.svg" | absolute_url }})
+![Hotové logo](/assets/img/logo-v-metaposte/logo.svg)
 
 # Čo ďalej
 

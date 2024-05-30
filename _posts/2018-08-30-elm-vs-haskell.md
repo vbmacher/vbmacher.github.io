@@ -4,6 +4,8 @@ title: Elm vs. Haskell
 categories: [Funkcionálne programovanie]
 tags: [elm, haskell]
 date: 2018-08-29 00:48:00
+author: peterj
+description: Nespravodlivé hanenie jazyka Elm.
 ---
 
 
@@ -34,7 +36,7 @@ Nemôžem povedať, že som sa Elm kompletne naučil, ani že viem bez problémo
 V Elm-e som robil len jeden maličký projektík, a tým je trochu modifikovaná hra Game of Life. Jej zdrojový kód nájdete [tu](https://github.com/vbmacher/learning-kit/tree/master/toy-projects/game-of-life). Modifikácia spočívala v tom, že mriežku mám hexagonovú, a pravidlá hry sú B2/S3,4,5. To znamená, že bunka sa narodí ak má presne dvoch susedov, a prežije ak má od troch do piatich susedov. V iných prípadoch bunka zomrie, alebo ostane mŕtva. Hru si môžte vyskúšať aj priamo tu:
 
 
-<iframe src="{{ 'js/elm-vs-haskell/gol.html' | absolute_url }}" width="700" height="450" style="border:none;overflow:hidden;"></iframe>
+<iframe src="{{ '/assets/js/elm-vs-haskell/gol.html' | absolute_url }}" width="700" height="450" style="border:none;overflow:hidden;"></iframe>
 
 
 Na mojej niekoľkodňovej ceste, okrem zaujímavej zábavy a vlastne aj úspechu, sa chcem podeliť hlavne s určitými vlastnosťami a rozdielmi, aby som upozornil Haskellákov a trochu uviedol na pravú mieru ich očakávania. Tak sa do toho pusťme.

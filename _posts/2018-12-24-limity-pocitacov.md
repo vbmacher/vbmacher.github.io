@@ -4,9 +4,14 @@ title:  Limity počítačov a myslenia (1/2)
 date:   2018-12-24 11:27:00
 categories: [Teoretická informatika, Filozofia]
 tags: [gödel, hilbert, teorém nekompletnosti, paradox]
-mathjax: true
+math: true
 d3: true
+author: peterj
+description: Súvis matematiky a reality, alebo systematickým skúmaním všetkých možností aj tak nedôjdeme do všetkých kútov.
 ---
+
+<script src="/assets/lib/d3/d3.v7.min.js"></script>
+
 
 Počítač je mechanický stroj, podobne ako auto či lietadlo, avšak jeho funkcia nie je tak jednoznačne daná. Oproti iným
 strojom sa počítače líšia tým, že sa dajú programovať a ich funkcia sa mení podľa toho, aký program počítač
@@ -127,11 +132,8 @@ v roku 1900. Tam vyzval matematikov, ako svoju armádu, k ich riešeniu. V roku 
 >     Musíme vedieť.
 >     Budeme vedieť.
 
-<audio controls="controls">
-  <source src="https://www.maa.org/sites/default/files/images/upload_library/46/Hilbert-radio/HilbertRadio.mp3" type="audio/mpeg">
-  <embed src="https://www.maa.org/sites/default/files/images/upload_library/46/Hilbert-radio/HilbertRadio.mp3" width="340" height="60">
-  <p>Your browser does not support the audio element.</p>
-</audio>
+
+{% include embed/audio.html src='https://www.maa.org/sites/default/files/images/upload_library/46/Hilbert-radio/HilbertRadio.mp3' %}
 
 Niektoré príklady [Hilbertovho programu][61]:
 
@@ -175,7 +177,7 @@ Na základe týchto a podobných otázok vznikali rôzne názorové smery, hlavn
 
 <div id="crisis"></div>
 
-<script src="{{ 'js/limity-pocitacov/chart.js' | absolute_url }}"></script>
+<script src="{{ site.baseurl }}{% link assets/js/limity-pocitacov/chart.js %}"></script>
 <script>
 var data = {
   "name": "Kríza",
@@ -295,7 +297,7 @@ však [príliš dlho][14], Russelovi sa stále nedarilo odvodiť všetky dôkazy
 Whitehead prinútil knihu vydať tak ako je. Zaujímavosťou tejto knihy je napríklad dôkaz (so všetkým potrebným na zhruba 300
 strán), že $$1 + 1 = 2$$:
 
-![Proof]({{ "/images/limity-pocitacov/proof.png" | absolute_url }})
+![Proof](/assets/img/limity-pocitacov/proof.png){: w="550" }
 
 O chýbajúcom dôkaze konzistencie axiómov aritmetiky sa už vedelo, dôkaz požaduje Hilbert v jeho [druhom probléme][35], ale
 každý to považoval len za "formalitu", ktorú treba spraviť. 

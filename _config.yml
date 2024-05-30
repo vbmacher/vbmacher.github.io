@@ -16,10 +16,10 @@ timezone: Europe/Prague
 
 title: Môj Kód # the main title
 
-tagline: Programovanie a iné dobré nápady # it will display as the sub-title
+tagline: Programovanie a filozofia myslenia # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  Blog o programovaní a iných dobrých nápadoch.
+  Blog o programovaní a filozofii myslenia.
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.

@@ -4,9 +4,12 @@ title:  Limity počítačov a myslenia (2/2)
 date:   2018-12-30 13:26:00
 categories: [Teoretická informatika, Filozofia]
 tags: [entscheidungsproblem, turing, limity mysle]
-mathjax: true
-d3: true
+math: true
+author: peterj
+description: Problém zastavenia, limity počítačov a Church-Turingova ekvivalencia počítačov a mysle človeka. 
 ---
+
+<script src="/assets/lib/d3/d3.v7.min.js"></script>
 
 Kladné riešenie problému rozhodnutia, Entscheidungsproblem, ostávalo už ako posledná nádej Hilbertovho programu na formalizáciu
 matematiky. Po Gödelovom teoréme nekompletnosti bolo jasné, že nie všetky pravdivé výroky sa dajú dokázať. Teraz bolo potrebné nájsť
@@ -52,11 +55,11 @@ k zapísaniu ďalšieho medzivýsledku, alebo výsledku do zošita. Podľa medzi
 Turing pritom dobre chápal, že stačí existencia konečného počtu symbolov s priradeným významom (zvlášť pre každý algoritmus), a pre jednoduchosť
 predpokladal, že matematik používa štvorčekovaný zošit, pričom do jedného štvorčeka zapíše vždy maximálne jeden symbol:
 
-![Matika]({{ "/images/limity-pocitacov/math-squared.jpg" | absolute_url }})
+![Matika](/assets/img/limity-pocitacov/math-squared.jpg)
 
 Tento proces počítania sa mu podarilo formalizovať do abstraktného počítacieho "stroja", dnes známeho pod názvom [Turingov stroj][58] (T.S.):
 
-![Turingov stroj]({{ "/images/limity-pocitacov/turing-machine.png" | absolute_url }})
+![Turingov stroj](/assets/img/limity-pocitacov/turing-machine.png)
 
 T.S. používa nekonečnú "pásku", ako náhradu štvorčekovaného zošita. Samotný T.S. je reprezentovaný tzv. čítaco-zapisovacou "hlavou", ktorá predstavuje
 samotné premýšľanie ako *black-box*. Definované je len to, že táto "hlava" dokáže v jednom čase:
@@ -78,7 +81,7 @@ sekvencie `0 1 0 1 0 1 ...` sa dá zapísať do tabuľky:
 
 <div id="turingm" style="height:200px; width:500px; background-color: #555"></div>
 
-<script src="{{ 'js/limity-pocitacov/turing-machine.js' | absolute_url }}"></script>
+<script src="{{ site.baseurl }}{% link assets/js/limity-pocitacov/turing-machine.js %}"></script>
 <button onclick="step()" style="padding: 10px">Krok</button>
 <button onclick="reset()" style="padding: 10px">Reset</button>
 
@@ -126,7 +129,7 @@ vstupného T.S. Univerzálny T.S. je teda akýmsi "simulátorom" T.S.
 
 Ako príklad uvádzam [Game of Life][59] verziu univerzálneho T.S.:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/My8AsV7bA94" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% include embed/youtube.html id='My8AsV7bA94' %}
 
 # Spočítateľnosť vypočítateľných čísel
 

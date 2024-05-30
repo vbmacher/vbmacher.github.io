@@ -4,6 +4,8 @@ title:  Kalkulačka v Haskell-i
 date:   2018-09-06 09:43:00
 categories: [Funkcionálne programovanie, Kompilátory]
 tags: [haskell, parsery]
+author: peterj
+description: Rekurzívny parser a interpret reťazcového zápisu infixových výrazov v Haskelli.
 ---
 
 Pamätáte sa na svoje prvé programy? Myslím tie úplne, úplne prvé.. Moje prvé kroky na magickej ceste programátora rozhodne sprevádzali textové

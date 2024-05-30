@@ -4,7 +4,9 @@ title:  Preč s implicitnými konverziami
 date:   2021-01-29 08:45:00
 categories: [Design kódu]
 tags: [scala, implicity, typové triedy]
-mathjax: true
+math: true
+author: peterj
+description: Od implicitných konverzií k typovým triedam v Scale.
 ---
 
 Scala dokáže určité funkcie zavolať automaticky (implicitne) ako konverzie z typu `A` do `B`. V niektorých prípadoch sa bez implicitnej konverzie ani nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa však implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Implicity sami o sebe sú naopak veľmi užitočné, no treba sa ich naučiť používať dobre. Bohužiaľ, implicitné konverzie už ako anti-pattern padajú vhod odporcom Scaly, ktorí toto "zlo" zovšeobecňujú na implicity globálne a nakoniec aj na Scalu ako takú. Pozrieme sa na to, prečo sa na implicitné konverzie nazerá cez prsty a čo s tým robiť. 

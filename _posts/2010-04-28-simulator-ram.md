@@ -3,8 +3,10 @@ layout: post
 title: Simulátor RAM stroja na Turingovom stroji
 date: 2010-04-28 11:04 
 categories: [Emulácia, Teoretická informatika]
-tags: [RAM, turing]
-mathjax: true
+tags: [ram, turing]
+math: true
+author: peterj
+description: Turingov stroj simulujúci RAM stroj, aj s plagátmi na stenu.
 ---
 
 V tomto článku popíšem konštrukciu emulátora pre abstraktný stroj [Random Access Machine (RAM)][ram] na abstraktnom
@@ -43,11 +45,11 @@ je rozšírením klasického 1-páskového a sú [výpočtovo ekvivalentné][tur
 
 Na nasledujúcom obrázku je znázornená schéma k-páskového [Turingovho stroja][tm]:
 
-![turingscheme]({{ "/images/simulator-ram/turing.png" | absolute_url }})
+![turingscheme](/assets/img/simulator-ram/turing.png)
 
 A na tomto obrázku je schéma [RAM stroja][ram]:
  
-![ramscheme]({{ "/images/simulator-ram/ram.png" | absolute_url }})
+![ramscheme](/assets/img/simulator-ram/ram.png)
 
 
 Simulátor musí obsahovať digitálnu napodobeninu architektúry simulovaného systému, na ktorej sa dá simulovať
@@ -135,7 +137,7 @@ inštrukcií. Postup tvorby simulátora je:
 
 Funkcia hlavnej procedúry (vrátane dekodéra) je na nasledujúcom obrázku:
 
-![ramstates]({{ "/images/simulator-ram/ram_states.png" | absolute_url }})
+![ramstates](/assets/img/simulator-ram/ram_states.png)
 
 Funkciu dekodéra preberá stav $$q_2$$. Označenia $$s_1$$ až $$s_{13}$$ predstavujú stav všetkých pások pred prechodom a
 po prechode z jedného do druhého stavu.
@@ -272,8 +274,8 @@ Na záver uvádzam kompletný farebný a čiernobiely diagram, na ktorom sa nach
 použitého Turingovho stroja. V podstate ide o vizualizáciu kódu nášho simulátora, uvedeného v predchádzajúcej časti.
 Diagram je dosť veľký, môžte si ho vytlačiť a napríklad nalepiť na stenu ako plagát.
 
-- [Farebný diagram]({{ site.url }}/images/simulator-ram/RAM_simulator-color.pdf)
-- [Čiernobiely diagram]({{ site.url }}/images/simulator-ram/RAM_simulator.pdf)
+- [Farebný diagram](/assets/img/simulator-ram/RAM_simulator-color.pdf){:target="_blank"}
+- [Čiernobiely diagram](/assets/img/simulator-ram/RAM_simulator.pdf){:target="_blank"}
 
 
 [ram]: https://en.wikipedia.org/wiki/Random-access_machine

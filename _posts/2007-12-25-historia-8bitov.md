@@ -4,6 +4,8 @@ title: Krátka história 8-bitových procesorov
 date: 2007-12-25 19:00:00
 categories: [Emulácia]
 tags: [8bit, cpu]
+author: peterj
+description: Naozaj krátka história prvých populárnych čipov, ktoré boli použité v mikropočítačovej revolúcii.
 ---
 
 

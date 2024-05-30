@@ -17,6 +17,9 @@ search:
 mermaid:
   js: /assets/lib/mermaid/mermaid.min.js
 
+d3:
+  js: /assets/lib/d3/d3.v7.min.js
+
 dayjs:
   js:
     common: /assets/lib/dayjs/dayjs.min.js
