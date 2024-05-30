@@ -526,9 +526,9 @@ riešením.
 [17]: https://en.wikipedia.org/wiki/Jaccard_index
 [18]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
 [19]: http://tree-edit-distance.dbresearch.uni-salzburg.at/
-[20]: http://www.cs.uoi.gr/~pvassil/downloads/GraphDistance/LauraZager.pdf
+[20]: https://www.sciencedirect.com/science/article/pii/S0893965907001012
 [21]: https://en.wikipedia.org/wiki/Parse_tree
-[22]: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.453.3730&rep=rep1&type=pdf
+[22]: https://hal.science/hal-04232137/document
 [23]: https://ieeexplore.ieee.org/document/682179
 [24]: https://www.sciencedirect.com/science/article/pii/S0167865501000228
 [25]: https://dl.acm.org/citation.cfm?id=376815&picked=prox

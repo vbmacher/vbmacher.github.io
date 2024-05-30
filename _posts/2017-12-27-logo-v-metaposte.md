@@ -100,7 +100,7 @@ end.
 ```
 
 Takže vidíme, že príkazy musia byť zakončené bodkočiarkou. Prvé tri riadky som skopíroval z manuálu. Lepšie vysvetlenie
-premennej `prologues` však nájdeme v tejto [diplomovej práci][5]. Kladná hodnota okrem iného spôsobí orezanie obrázku
+premennej `prologues` však nájdeme v [manuáli MetaPost-u][5]. Kladná hodnota okrem iného spôsobí orezanie obrázku
 na minimálny obdĺžnik, ktorý obrázok obkolesuje, čo chceme - žiadne A4 formáty a podobne.
 
 `outputtemplate` definuje šablónu názvu výstupného súboru, pričom `%j` zastupuje tzv. "job name", ktorý odpovedá menu vstupného
@@ -164,7 +164,7 @@ jazyk MetaPost-u, ale často už aj algebraické vyjadrenie grafiky.
 [2]: https://graphviz.gitlab.io/
 [3]: https://www.gimp.org/
 [4]: https://inkscape.org/en/
-[5]: http://tex.loria.fr/prod-graph/kratka-diplomka2001.pdf
+[5]: https://www.tug.org/docs/metapost/mpman.pdf
 [6]: https://sk.wikipedia.org/wiki/Scalable_Vector_Graphics
 [7]: https://en.wikipedia.org/wiki/Metafont
 [8]: https://github.com/numixproject/numix-icon-theme
