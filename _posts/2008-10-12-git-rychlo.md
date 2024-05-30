@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Git rýchlo
 date: 2008-10-12 15:00:00
 categories: [Utility]

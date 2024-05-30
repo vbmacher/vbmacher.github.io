@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Podobnosť zdrojových kódov programov
 categories: [Algoritmy]
 tags: [scala,levenshtein,cosine similarity, vektorizácia textu]

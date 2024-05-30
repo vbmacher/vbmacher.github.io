@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Prehľad historických procedurálnych jazykov
 date: 2008-02-05 14:00:00
 categories: [Kompilátory]

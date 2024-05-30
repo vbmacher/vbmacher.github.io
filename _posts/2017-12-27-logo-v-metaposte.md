@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Logo v MetaPost-e
 categories: [Grafika]
 tags: [emustudio, metapost]

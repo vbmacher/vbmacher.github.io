@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Elm vs. Haskell
 categories: [Funkcionálne programovanie]
 tags: [elm, haskell]

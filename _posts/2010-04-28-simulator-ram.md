@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Simulátor RAM stroja na Turingovom stroji
 date: 2010-04-28 11:04 
 categories: [Emulácia, Teoretická informatika]

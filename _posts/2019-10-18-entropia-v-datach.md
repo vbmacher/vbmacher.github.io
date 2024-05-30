@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  Entropia v BigData
 date:   2019-10-18 18:45:00
 categories: [Big Data, Algoritmy]

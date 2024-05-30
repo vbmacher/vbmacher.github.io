@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Krátka história 8-bitových procesorov
 date: 2007-12-25 19:00:00
 categories: [Emulácia]
