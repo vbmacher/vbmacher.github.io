@@ -19,7 +19,7 @@ Blog vnímam ako príležitosť usporiadať si vlastné myšlienky a lepšie poc
 
 Moje meno je Peter Jakubčo. Som programátor a mám mnoho nápadov, osobných projektov a filozofických úvah, s ktorými sa chcem
 podeliť. S počítačom som prišiel do styku v roku 1996, keď som mal dvanásť rokov.
-Môj prvý počítač bol [IBM PS/2 Model 55SX with Intel 80386 SX](http://john.ccac.rwth-aachen.de:8000/alf/ps2_55sx/),
+Môj prvý počítač bol [IBM PS/2 Model 55SX with Intel 80386 SX](https://cs.wikipedia.org/wiki/IBM_Personal_System/2),
 ktorý som dostal od tety. Pri tomto počítači vznikol môj sen stať sa programátorom.
 
 Ak chcete vidieť moje projekty, nájdete ich na mojom [GitHub-e](https://github.com/vbmacher). Viac o mojej profesnej kariére sa dozviete na mojom [LinkedIn-e](https://www.linkedin.com/in/peterjakubco/).

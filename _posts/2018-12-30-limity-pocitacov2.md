@@ -8,7 +8,7 @@ author: peterj
 description: Problém zastavenia, limity počítačov a Church-Turingova ekvivalencia počítačov a mysle človeka. 
 ---
 
-<script src="/assets/lib/d3/d3.v7.min.js"></script>
+<script src="{{ site.baseurl }}/assets/lib/d3/d3.v7.min.js"></script>
 
 Kladné riešenie problému rozhodnutia, Entscheidungsproblem, ostávalo už ako posledná nádej Hilbertovho programu na formalizáciu
 matematiky. Po Gödelovom teoréme nekompletnosti bolo jasné, že nie všetky pravdivé výroky sa dajú dokázať. Teraz bolo potrebné nájsť

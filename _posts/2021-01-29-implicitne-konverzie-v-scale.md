@@ -321,7 +321,7 @@ Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebuj
 [liskov]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
 [liskov-oop]: https://reflectoring.io/lsp-explained/
 [liskov-variance]: https://apiumhub.com/tech-blog-barcelona/scala-generics-covariance-contravariance/
-[magnet-pattern]: http://blog.madhukaraphatak.com/scala-magnet-pattern/
+[magnet-pattern]: https://blog.madhukaraphatak.com/scala-magnet-pattern/
 [scalaz]: https://github.com/scalaz/scalaz
 [cats]: https://github.com/typelevel/cats
 [open-closed]: https://stackify.com/solid-design-open-closed-principle/

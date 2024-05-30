@@ -12,7 +12,7 @@ Minulého roku cez Vianoce som sa trochu pohrával s programovacím jazykom Elm.
 
 Napríklad, tu sú dve hry v elm-e: [flatris](https://github.com/w0rm/elm-flatris), alebo [mario](https://github.com/avh4/elm-mario).
 
-Prečo by to človeka malo vôbec zaujímať? Tí, ktorí poznajú funkcionálne programovanie a Haskell, budú určite nadchnutí, a prekvapení. Haskell je totiž statický a silne typový jazyk, ktorého hlavné vlastnosti sú nemodifikovateľnosť dát (immutability), [referenčná transparentnosť](https://en.wikipedia.org/wiki/Referential_transparency), ďalej že funkcie sú sami hodnotami, ktoré si môžme uložiť do premennej, kde je rekurzia veľmi obľúbená technika a že vďaka lenivému vyhodnocovaniu (lazy evaluation) môžme pohodlne pracovať aj s nekonečnými štruktúrami. Väčšinu týchto vlastností má aj Elm, čím sa možno snaží nájsť to ultimátne riešenie na [krízu v Javascripte a jeho problémov](http://www.breck-mckye.com/blog/2014/12/the-state-of-javascript-in-2015/).
+Prečo by to človeka malo vôbec zaujímať? Tí, ktorí poznajú funkcionálne programovanie a Haskell, budú určite nadchnutí, a prekvapení. Haskell je totiž statický a silne typový jazyk, ktorého hlavné vlastnosti sú nemodifikovateľnosť dát (immutability), [referenčná transparentnosť](https://en.wikipedia.org/wiki/Referential_transparency), ďalej že funkcie sú sami hodnotami, ktoré si môžme uložiť do premennej, kde je rekurzia veľmi obľúbená technika a že vďaka lenivému vyhodnocovaniu (lazy evaluation) môžme pohodlne pracovať aj s nekonečnými štruktúrami. Väčšinu týchto vlastností má aj Elm, čím sa možno snaží nájsť to ultimátne riešenie na [krízu v Javascripte a jeho problémov](https://www.breck-mckye.com/blog/2014/12/the-state-of-javascript-in-2015/).
 
 Mám dojem, akoby tie zložitejšie veci v Haskelli sa Elm vypúšťa, alebo skôr sa pokúša nájsť iný, jednoduchší spôsob ako ich riešiť. Napríklad nemáme funktory, alebo monády ako explicitné abstrakcie, a ani typové triedy. To na jednej strane vyvoláva pocit sklamania, že Elm nie je až tak ďaleko čo sa týka typových možností aké má Haskell. Na druhej strane, Haskell vie nielen začínajúcim programátorom pekne zamotať hlavu. 
 
@@ -80,7 +80,7 @@ Narazil som na to, keď som rozmýšľal o reprezentácii herného plánu. Keď 
   ...
 ```
 
-Takto môžme herný plán rozširovať dokedy chceme, a to ľubovoľným smerom. Využitím techniky [zipperov](http://learnyouahaskell.com/zippers) sa vieme po pláne pohybovať efektívne. Ale toto sa dá len v Haskell-i. Bohužiaľ, v Elm-e to zatiaľ nenapíšeme.
+Takto môžme herný plán rozširovať dokedy chceme, a to ľubovoľným smerom. Využitím techniky [zipperov](https://learnyouahaskell.com/zippers) sa vieme po pláne pohybovať efektívne. Ale toto sa dá len v Haskell-i. Bohužiaľ, v Elm-e to zatiaľ nenapíšeme.
 
 # Škaredé nekonzistencie
 
@@ -114,8 +114,8 @@ Napríklad:
 hodnoty typu `Day` dokážeme porovnávať, pretože je automaticky odvodený od typovej triedy `Ord`. V tomto prípade platí
 `Mon < Tue < Wed < ... < Sun`. Podobne, existujú typové triedy `Show`, `Eq`, `Bounded`, a iné. Avšak z tejto featury sa môžme tešiť zatiaľ
 len v Haskell-i; Elm bohužiaľ [vôbec nemá typové triedy](https://github.com/elm/compiler/issues/1039). Tie sa však dajú simulovať pomocou
-[record syntaxe](http://elm-lang.org/docs/records), ako sa to popisuje napríklad v
-[tomto článku](http://www.haskellforall.com/2012/05/scrap-your-type-classes.html).
+[record syntaxe](https://elm-lang.org/docs/records), ako sa to popisuje napríklad v
+[tomto článku](https://www.haskellforall.com/2012/05/scrap-your-type-classes.html).
 
 # Higher-kinded typy
 

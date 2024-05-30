@@ -174,6 +174,6 @@ jazyk MetaPost-u, ale často už aj algebraické vyjadrenie grafiky.
 [12]: https://github.com/OrancheloTeam/oranchelo-icon-theme
 [13]: https://www.npmjs.com/package/webfonts-generator
 [14]: https://4vector.com/free-vector/b-w-cartoon-computer-base-monitor-clip-art-116384
-[15]: http://www.texample.net/tikz
+[15]: https://texample.net/tikz/
 [16]: https://www.latex-project.org/
 [17]: https://github.com/svg/svgo

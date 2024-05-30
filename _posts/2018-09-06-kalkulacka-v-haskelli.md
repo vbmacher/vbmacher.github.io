@@ -526,13 +526,13 @@ rozhodol, že si to ešte skúsim sám. Vyšlo to, čo ma veľmi teší.
 [11]: https://en.wikipedia.org/wiki/Comparison_of_parser_generators
 [12]: https://wiki.haskell.org/Combinator_pattern
 [13]: https://en.wikipedia.org/wiki/Parser_combinator
-[14]: http://www.cs.nott.ac.uk/~pszgmh/monparsing.pdf
+[14]: https://www.cs.nott.ac.uk/~pszgmh/monparsing.pdf
 [15]: https://en.wikipedia.org/wiki/Recursive_descent_parser
 [16]: https://github.com/vbmacher/learning-kit/tree/master/toy-projects/calculators/c
-[18]: http://richard.myweb.cs.uwindsor.ca/PUBLICATIONS/AI_03.pdf
+[18]: https://richard.myweb.cs.uwindsor.ca/PUBLICATIONS/AI_03.pdf
 [19]: https://en.wikipedia.org/wiki/Backtracking
 [20]: https://en.wikipedia.org/wiki/Memoization
-[21]: http://richard.myweb.cs.uwindsor.ca/PUBLICATIONS/PREPRINT_PADL_NOV_07.pdf
+[21]: https://richard.myweb.cs.uwindsor.ca/PUBLICATIONS/PREPRINT_PADL_NOV_07.pdf
 [22]: http://strictlypositive.org/IdiomLite.pdf
 [23]: https://en.wikipedia.org/wiki/LL_parser
 [24]: https://stackoverflow.com/questions/2649305/why-is-there-data-and-newtype-in-haskell
@@ -540,7 +540,7 @@ rozhodol, že si to ešte skúsim sám. Vyšlo to, čo ma veľmi teší.
 [26]: http://dev.stephendiehl.com/fun/002_parsers.html
 [27]: http://learnyouahaskell.com/making-our-own-types-and-typeclasses#the-functor-typeclass
 [28]: https://medium.com/lazy-eval/applicative-functors-in-haskell-f509e1c764d3
-[29]: http://learnyouahaskell.com/functors-applicative-functors-and-monoids#applicative-functors
+[29]: https://learnyouahaskell.com/functors-applicative-functors-and-monoids#applicative-functors
 [30]: https://stackoverflow.com/questions/6570779/why-should-i-use-applicative-functors-in-functional-programming
 [31]: https://en.wikipedia.org/wiki/Applicative_functor
 [32]: https://github.com/vbmacher/learning-kit/blob/master/toy-projects/calculators/haskell/applicative/calc.hs

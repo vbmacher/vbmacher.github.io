@@ -326,10 +326,10 @@ z možností, ako si dáta "oťukať". Dúfam, že sa vám článok páčil :)
 [1]: https://sk.wikipedia.org/wiki/Claude_Elwood_Shannon
 [2]: https://planetcalc.com/2476/
 [3]: https://jaceklaskowski.gitbooks.io/mastering-spark-sql/spark-sql-udfs.html
-[4]: http://www.tucekweb.info/Teo_inf/Teo_inf.html
+[4]: https://www.tucekweb.info/Teo_inf/Teo_inf.html
 [5]: https://towardsdatascience.com/entropy-how-decision-trees-make-decisions-2946b9c18c8
 [6]: https://en.wikipedia.org/wiki/Entropy_(statistical_thermodynamics)
-[7]: http://millionsongdataset.com/lastfm/
+[7]: https://www.kaggle.com/datasets/harshal19t/lastfm-dataset
 [8]: https://spark.apache.org/docs/latest/sql-programming-guide.html
 [9]: https://en.wikipedia.org/wiki/Huffman_coding
 [10]: https://en.wikipedia.org/wiki/Huffman_coding#Example

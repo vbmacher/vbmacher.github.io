@@ -8,7 +8,7 @@ description: Riešenie konfliktov vo VCS Darcs, ktorý na rozdiel od git-u nepou
 ---
 
 
-O systéme na správu verzií [darcs](http://darcs.net) bolo na internete popísané mnoho. Podľa môjho názoru ide o jeden z najkrajších a najjednoduchších systémov na správu verzií.
+O systéme na správu verzií [darcs](https://darcs.net/) bolo na internete popísané mnoho. Podľa môjho názoru ide o jeden z najkrajších a najjednoduchších systémov na správu verzií.
 Je napísaný v Haskelli (funkcnionálny jazyk). Jeho fungovanie je založené na veľkej [matematickej teórii patchov](https://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory).
 Tento článok sa zaoberá problematikou konfliktov v darcse.
 

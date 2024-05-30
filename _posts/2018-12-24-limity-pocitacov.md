@@ -9,8 +9,7 @@ author: peterj
 description: Súvis matematiky a reality, alebo systematickým skúmaním všetkých možností aj tak nedôjdeme do všetkých kútov.
 ---
 
-<script src="/assets/lib/d3/d3.v7.min.js"></script>
-
+<script src="{{ site.baseurl }}/assets/lib/d3/d3.v7.min.js"></script>
 
 Počítač je mechanický stroj, podobne ako auto či lietadlo, avšak jeho funkcia nie je tak jednoznačne daná. Oproti iným
 strojom sa počítače líšia tým, že sa dajú programovať a ich funkcia sa mení podľa toho, aký program počítač

@@ -529,10 +529,10 @@ riešením.
 [20]: http://www.cs.uoi.gr/~pvassil/downloads/GraphDistance/LauraZager.pdf
 [21]: https://en.wikipedia.org/wiki/Parse_tree
 [22]: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.453.3730&rep=rep1&type=pdf
-[23]: http://ieeexplore.ieee.org/document/682179/
+[23]: https://ieeexplore.ieee.org/document/682179
 [24]: https://www.sciencedirect.com/science/article/pii/S0167865501000228
 [25]: https://dl.acm.org/citation.cfm?id=376815&picked=prox
-[26]: http://barabasi.com/f/103.pdf
+[26]: https://barabasi.com/f/103.pdf
 [27]: https://www.cs.cornell.edu/home/kleinber/auth.pdf
 [28]: https://pdfs.semanticscholar.org/ee0b/cca471ecb22cc032695cfdc9668fd8931852.pdf
 [29]: https://en.wikipedia.org/wiki/Whitespace_(programming_language)

@@ -8,11 +8,11 @@ description: Krátky zoznam užitočných príkazov git-u pre tých, ktorí už 
 ---
 
 Tento článok som napísal pre používateľov, ktorí sa chcú naučiť používať **git** - systém na správu
-verzií zdrojových kódov, ktorý vytvoril [Linus Torvalds](http://en.wikipedia.org/wiki/Linus_Torvalds).
+verzií zdrojových kódov, ktorý vytvoril [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds).
 
 Článok je napísaný vo forme otázka: odpoveď a je teda akýmsi prehľadom základných potrieb používateľa
 pri každodennom používaní git-u. Nezahŕňa väčšinu príkazov a pokrýva iba najnutnejšiu oblasť,
-ktorú každý nutne potrebuje. Množstvo vecí bolo prebratých z git [tutoriálu](http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html).
+ktorú každý nutne potrebuje. Množstvo vecí bolo prebratých z git [tutoriálu](https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gittutorial.html).
 Tak, pusťme sa do toho.
 
 1. *Pridal som nové súbory/adresáre, ktoré chcem dať do repozitára*
