@@ -262,7 +262,7 @@ var data = {
       ]
     }
   ]
-}
+};
 document.getElementById('crisis').appendChild(chart(data, [
   "David Hilbert", "Gottlob Frege", "Kurt Gödel", "Bertrand Russel"
 ]));
