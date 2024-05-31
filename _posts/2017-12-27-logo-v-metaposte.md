@@ -8,8 +8,7 @@ description: Krátky príbeh o tom, ako vzniklo logo pre emuStudio.
 ---
 
 Môj prvý blogpost sa bude týkať tvorbe loga, ktoré programátor chce použiť či už pre svoju webovú stránku alebo program.
-Cieľom bude vytvoriť logo pre môj dlhodobý projekt [emuStudio](https://vbmacher.github.io/emuStudio/) (emulačná platforma a
-framework).
+Cieľom bude vytvoriť logo pre môj dlhodobý projekt [emuStudio][19] (emulačná platforma a framework).
 
 Kde si dnes človek môže nakresliť relatívne rýchlo logo, aké chce? Áno, predstavte si, že nápad už máte. V mojom prípade nápad
 na logo by sa mal týkať počítača, už len preto, čo znamená pojem emulátor. Ide o program, ktorý napodobňuje prácu nejakého
@@ -81,8 +80,7 @@ počítač nakreslený. Potom vezmem tento počítač, nakreslím ho znova ale z
 
 Jazyk MetaPost-u som sa nijak zvlášť nepotreboval učiť - na moje požiadavky, až na pár základných vecí. Jazyk je podľa mňa
 dosť divný. Myslím si, že väčšina populárnych programovacích jazykov vychádza zo syntaxe C, ale jazyk MetaPost-u sa tomu veľmi
-nedá prirovnať. Vychádzal som hlavne z [manuálu](https://www.tug.org/docs/metapost/mpman.pdf) a z nejakých
-[príkladov](http://tex.loria.fr/prod-graph/zoonekynd/metapost/metapost.html). 
+nedá prirovnať. Vychádzal som hlavne z [manuálu][5] a z nejakých [príkladov][18] a [ďalších príkladov][20]. 
 
 Kód loga umiestnime do súboru s príponou `.mp`, teda napr. `logo.mp`. Základná štruktúra programu je nasledovná:
 
@@ -177,3 +175,6 @@ jazyk MetaPost-u, ale často už aj algebraické vyjadrenie grafiky.
 [15]: https://texample.net/tikz/
 [16]: https://www.latex-project.org/
 [17]: https://github.com/svg/svgo
+[18]: https://github.com/thruston/metapost-examples
+[19]: https://vbmacher.github.io/emuStudio/
+[20]: https://staff.fnwi.uva.nl/a.j.p.heck/Courses/mptut.pdf

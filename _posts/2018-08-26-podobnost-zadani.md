@@ -508,11 +508,9 @@ riešením.
 
 
 [1]: https://www.scss.tcd.ie/Khurshid.Ahmad/Research/Sentiments/K_Teams_Buchraest/a7-abbasi.pdf
-[2]: http://www.socsci.ru.nl/idak/teaching/batheses/MarciaFissette_scriptie.pdf
 [3]: https://github.com/nachocano/stylometry
 [4]: https://www.cs.drexel.edu/~ac993/papers/caliskan_deanonymizing.pdf
 [5]: https://link.springer.com/chapter/10.1007/978-3-319-23036-8_10
-[6]: http://www.aicbt.com/authorship-attribution/online-software/
 [7]: https://github.com/evllabs/JGAAP
 [8]: https://events.ccc.de/congress/2015/Fahrplan/system/event_attachments/attachments/000/002/845/original/Aylin_32C3.pdf
 [9]: https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
