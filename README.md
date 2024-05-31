@@ -15,7 +15,7 @@ Dĺžka textu súvisí so zložitosťou. Čím zložitejší text, tým je väč
 |------------------|------------|-----------------|-----------------|
 | **krátke**       | X          | X               |                 |
 | **stredne dlhé** |            | X               | X               |
-| **dlhé**         |            |                 |                 |
+| **dlhé**         |            |                 | X               |
 
 
 # Chirpy
