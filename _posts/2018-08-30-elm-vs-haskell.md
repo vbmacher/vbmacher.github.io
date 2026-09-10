@@ -52,6 +52,7 @@ V Haskell-i sa double linked-list dá vytvoriť napr. takto:
   makelist [] _ = Nil
   makelist (x:xs) prev = let
       cur = Cons x prev (makelist xs cur)
+    in cur
 ```
 
 Premenná `cur` je rekurzívna premenná, ktorá je výsledkom funkcie `makelist`. Jej hodnotou je zoznam, ktorý je tvorený prvým prvkom vstupného zoznamu,
@@ -74,8 +75,9 @@ Narazil som na to, keď som rozmýšľal o reprezentácii herného plánu. Keď 
            , e=Nil, se=Nil, s=Nil, sw=Nil }
 
   makeWest board =
-    let new = newBoard { e = board }
-    in board { w = new }
+    let new = newBoard { e = updated }
+        updated = board { w = new }
+    in updated
 
   ...
 ```
@@ -89,14 +91,14 @@ Ja viem, že ide o nový jazyk, ale niektoré operátory, ktoré existujú v Has
 Haskell:
 
 ```haskell
-  prepend :: Char -> String
+  prepend :: Char -> String -> String
   prepend x xs = x:xs
 ```
 
 Elm:
 
 ```haskell
-  prepend : Char -> String
+  prepend : Char -> List Char -> List Char
   prepend x xs = x::xs
 ```
 
@@ -108,7 +110,7 @@ V Haskell-i som často zvyknutý vytvárať dátové typy a ich podporu typovým
 Napríklad:
 
 ```haskell
-  data Day = Mon | Tue | Wed | Thu | Fri | Sat | Sun deriving (Ord)
+  data Day = Mon | Tue | Wed | Thu | Fri | Sat | Sun deriving (Eq, Ord)
 ```
 
 hodnoty typu `Day` dokážeme porovnávať, pretože je automaticky odvodený od typovej triedy `Ord`. V tomto prípade platí
@@ -132,7 +134,7 @@ Typ `f` má kind `* -> *`, teda napr. v Scale je to generický typ `T[_]`.
 Mnohí list comprehension zrejme poznajú z Pythonu, no funguje aj v Haskell-i (trochu krajšie):
 
 ```haskell
-[ (x,y) | x <- 0..10, y <- 0..10 ]
+[ (x,y) | x <- [0..10], y <- [0..10] ]
 ```
 
 Ide o peknú syntax, ktorú rád využívam, a sklamalo ma, keď som zistil, že [Elm ju nepodporuje](https://github.com/elm/compiler/issues/147).
@@ -162,7 +164,7 @@ Elm na to syntax nemá, a tak sme nútení použiť funkciu:
 ktorá nemá variant pre krok, takže zoznam párnych čísel sme nútení napísať takto škaredo:
 
 ```haskell
-  List.range 1 10 |> filter (\n -> n % 2 == 0)
+  List.range 1 10 |> List.filter (\n -> n % 2 == 0)
 ```
 
 # Nekonečné polia
@@ -200,12 +202,18 @@ je funkcia, ktorá vytvorí zoznam zoznamov rovnakých položiek. Napríklad pre
 Ale k veci - Elm [nemá kľúčové slovo where](https://github.com/elm-lang/elm-compiler/issues/621) :( Elm obsahuje jedine syntax `let`, takže funkcia `pack` v Elm-e musí vyzerať takto (a musíme použiť [extra balíček](https://package.elm-lang.org/packages/circuithub/elm-list-extra/3.10.0/List-Extra), pretože `span` nie je štandardná funkcia):
 
 ```haskell
-  import List exposing (head)
   import List.Extra exposing (span)
 
-  pack xs = let
-     (ys, zs) = span (== head xs) xs
-    in ys::(pack zs)
+  pack xs =
+    case xs of
+      [] ->
+        []
+
+      x :: _ ->
+        let
+          (ys, zs) = span ((==) x) xs
+        in
+          ys :: pack zs
 ```
 
 ktorú však nemôžeme použiť na `String`, pretože, ako som už povedal, v Elm-e `String` nie je pole `Char`-ov:
@@ -216,19 +224,17 @@ ktorú však nemôžeme použiť na `String`, pretože, ako som už povedal, v E
                   ==  [['a','a','a'], ['b','b']]
 ```
 
-Dôsledkom je napríklad, že v Elm-e nemôžeme napísať niečo ako
+Aj keď `String` nie je zoznam znakov, v Elm-e môžeme reťazce spájať operátorom `++`:
 
 ```haskell
   "ahoj " ++ "svet"
 ```
 
-ale len
+alebo funkciou
 
 ```haskell
   String.append "ahoj " "svet" 
 ```
-
-Škoda.
 
 # Viacnásobné definície
 

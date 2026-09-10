@@ -39,7 +39,7 @@ pekný a hlavne free clipart, ktorý sa mi zapáčil ako základ pre moje nové 
 # Kde si dnes človek môže nakresliť logo?
 
 Bohužiaľ nie som ani grafik, ani umelec, ani frontend developer, takže s grafikou mám pramálo skúseností. Napriek tomu, ak by som
-mal niečo reálne nakresliť, ako prvé mi napadlo použiť program na vektorovú grafiku. Napríklad open-source program [Inkscape][4] alebo [GIMP][3].
+mal niečo reálne nakresliť, ako prvé mi napadlo použiť grafický editor. Napríklad open-source program [Inkscape][4] na vektorovú grafiku alebo [GIMP][3] na rastrovú grafiku.
 
 Po prezretí si niekoľkých "grafických" projektov na GitHub-e (väčšinou ikony alebo logá - [numix-icon-theme][8],
 [logos][9], [gnome-icon-theme][10], [paper-icon-theme][11], [oranchelo-icon-theme][12]) som zistil, že vo všetkých
@@ -91,7 +91,7 @@ outputtemplate:="%j-%c.svg";
 outputformat:="svg";
 
 beginfig(1);
-  // ...
+  % ...
 endfig;
 
 end.

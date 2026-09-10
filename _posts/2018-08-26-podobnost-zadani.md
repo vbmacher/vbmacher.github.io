@@ -122,18 +122,21 @@ ak je prázdny iba jeden text, podobnosť je 0. Samotnú funkciu v Scale vieme n
 val x = "ahoj"
 val y = "hoj"
 
-def levenshtein(i:Int, j: Int) = {
-  if (i == 0 || i == 0) return math.max(i,j)
+def levenshtein(i:Int, j: Int): Int = {
+  if (i == 0 || j == 0) return math.max(i,j)
   math.min(
-    1 + levenshtein(i - 1, j),  // Posun prvého slova doprava
-    1 + levenshtein(i, j - 1),  // Posun druhého slova doprava
+    math.min(
+      1 + levenshtein(i - 1, j),  // Posun prvého slova doprava
+      1 + levenshtein(i, j - 1)   // Posun druhého slova doprava
+    ),
 
-    if (x(i) != y(j)) 1 + levenshtein(i - 1, j - 1) // Posun oboch slov doprava, úprava znaku
+    if (x(i - 1) != y(j - 1)) 1 + levenshtein(i - 1, j - 1) // Posun oboch slov doprava, úprava znaku
     else levenshtein(i - 1, j - 1) // Posun oboch slov doprava bez úpravy znaku
   )
 }
 ```
 
+Volanie `levenshtein(x.length, y.length)` vráti vzdialenosť celých textov; parametre sú dĺžky ich prefixov.
 Tento algoritmus vlastne prejde celý hore-spomínaný "strom" a vyberie tú najkratšiu cestu k zhode. Čo si však môžeme
 všimnúť, je, že určité časti stromu sa opakujú. To je väčšinou príznakom, že môžeme využiť techniku dynamického programovania
 a znížiť tak asymptotickú zložitosť algoritmu.
@@ -143,21 +146,22 @@ do situácie, ktorú sme už predtým počítali. Varianta pomocou dynamického 
 
 
 ```scala
-  def levenhstein(x: String, y: String): Double = {
+  def levenshtein(x: String, y: String): Double = {
     def min(args: Int*) = args.min
 
     val (lenX, lenY) = (x.length, y.length)
     val maxLen = math.max(lenX, lenY)
 
-    if (min(lenX, lenY) == 0) return 0 // Normalizovaná 0
+    if (maxLen == 0) return 1 // Dva prázdne texty sú zhodné
+    if (min(lenX, lenY) == 0) return 0 // Prázdny je iba jeden text
 
-    val edits = Array.fill(lenX, lenY)(0)
+    val edits = Array.fill(lenX + 1, lenY + 1)(0)
 
-    for (i <- 1 until lenX) edits(i)(0) = i
-    for (j <- 1 until lenY) edits(0)(j) = j
+    for (i <- 1 to lenX) edits(i)(0) = i
+    for (j <- 1 to lenY) edits(0)(j) = j
 
-    for (i <- 1 until lenX; j <- 1 until lenY) {
-      val cost = if (x(i) == y(j)) 0 else 1
+    for (i <- 1 to lenX; j <- 1 to lenY) {
+      val cost = if (x(i - 1) == y(j - 1)) 0 else 1
 
       edits(i)(j) = min(
         edits(i - 1)(j) + 1,
@@ -167,7 +171,7 @@ do situácie, ktorú sme už predtým počítali. Varianta pomocou dynamického 
     }
 
     // normalization
-    1 - edits(lenX - 1)(lenY - 1).toDouble / maxLen.toDouble
+    1 - edits(lenX)(lenY).toDouble / maxLen.toDouble
   }
 ```
 
@@ -299,7 +303,9 @@ V Scale by sme tento prevod mohli dosiahnuť veľmi jednoducho:
 
 ```scala
 def vectorize(text: String) = {
-  text.split("\\s").groupBy(key => key).mapValues(group => group.length)
+  text.split("\\s+").filter(_.nonEmpty).groupBy(key => key).map {
+    case (word, occurrences) => word -> occurrences.length
+  }
 }
 ```
 
@@ -323,7 +329,7 @@ sú v rovnakých dimenziách. Do reči ľudí - vynásobíme medzi sebou počet 
 
 ```scala
 def dotProduct(vectorA: Map[String, Int], vectorB: Map[String, Int]) = vectorA.map {
-    case (word, count) => vectorB.getOrElse(word, 0) * count
+    case (word, count) => vectorB.getOrElse(word, 0).toDouble * count
   }.sum
 ```
 
@@ -339,7 +345,7 @@ dokopy:
 
 ```scala
   def magnitude(vector: Map[String, Int]): Double = {
-    math.sqrt(vector.values.map(count => count * count).sum)
+    math.sqrt(vector.values.map(count => count.toDouble * count).sum)
   }
 
   def cosine(textA: String, textB: String):Double = {
@@ -347,11 +353,13 @@ dokopy:
     val vectorB = vectorize(textB)
   
     val rawMagnitude = magnitude(vectorA) * magnitude(vectorB)
-    val magnitude = if (rawMagnitude == 0) 1 else rawMagnitude
+    val denominator = if (rawMagnitude == 0) 1 else rawMagnitude
 
-    dotProduct(vectorA, vectorB) / magnitude
+    dotProduct(vectorA, vectorB) / denominator
   }
 ```
+
+Pre text bez slov táto implementácia vracia 0 ako zvolenú konvenciu; kosínus nulového vektora nie je definovaný.
 
 A pre naše vektory $$\vec{a}$$ a $$\vec{b}$$, teda pre vety:
 
@@ -414,10 +422,10 @@ int min (int[] list) {
 }
 ```
 
-Pri zachovaní zobrazeného formátovania a delení textu pomocou `split("\\s")` vychádza kosínusová podobnosť približne $$99.6\%$$
+Pri zachovaní zobrazeného formátovania a uvedenej vektorizácii vychádza kosínusová podobnosť približne $$96.5\%$$
 a Levenshteinova podobnosť približne $$98.1\%$$. Sémantika je evidentne opačná, avšak syntakticky sú si programy veľmi podobné.
-Názvy funkcií aj operátory vstupujú do oboch výpočtov. Delenie na jednotlivých bielych znakoch navyše vytvára prázdne tokeny z odsadenia,
-ktoré zvyšujú kosínusovú podobnosť; pri vynechaní prázdnych tokenov by bola približne $$96.5\%$$.
+Názvy funkcií aj operátory vstupujú do oboch výpočtov. Samotné delenie pomocou `split("\\s")` by vytváralo aj prázdne tokeny z odsadenia,
+ktoré by zvýšili kosínusovú podobnosť približne na $$99.6\%$$; uvedená vektorizácia ich vynecháva.
 
 Sémantické rozdiely, ktoré sú definované jedným rozdielnym "znamienkom" (v našom prípade `<` vs. `>`), nie je možné brať do úvahy bez toho, aby
 sme program simulovali. Podobnosť zdrojových kódov je a bude navždy obmedzená len na syntax, prípadne môže byť teoreticky rozšírená o rozpoznávanie

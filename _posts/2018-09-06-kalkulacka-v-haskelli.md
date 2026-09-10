@@ -157,8 +157,8 @@ Takže - ako by sme intuitívne popísali parser z pohľadu funkcionálneho prog
 newtype Parser a = Parser { parse :: String -> [(a, String)]  }
 ```
 
-`Parser` budeme reprezentovať ako nový typ s jedným typovým parametrom. Ide o niečo ako alias pre parsovaciu funkciu. V Haskell-i by sa dal
-použiť aj konštrukt `data` miesto `newtype`, avšak [rozdiel je v tom][24], že `newtype` nevyhodnocuje svoj typový parameter lenivo, ale striktne a tiež umožňuje použiť len jeden typový konštruktor. Toto obmedzenie nám nevadí a naviac Haskell pracuje efektívnejšie s `newtype` než s `data`.
+`Parser` budeme reprezentovať ako nový typ s jedným typovým parametrom. Ide o niečo ako alias pre parsovaciu funkciu, ale vzniká tým samostatný typ. V Haskell-i by sa dal
+použiť aj konštrukt `data` miesto `newtype`, avšak [rozdiel je v tom][24], že `newtype` zachováva reprezentáciu obaľovanej hodnoty bez dodatočného dátového obalu a tiež umožňuje použiť len jeden dátový konštruktor s jedným poľom. Samotné použitie `newtype` pritom nevynucuje striktné vyhodnotenie tejto hodnoty. Toto obmedzenie nám nevadí a naviac Haskell pracuje efektívnejšie s `newtype` než s `data`.
 
 Parsing budeme môcť volať napr. nasledujúcim spôsobom (trochu predbieham):
 
@@ -350,7 +350,7 @@ tmul = tsym '*' TMul
 tdiv = tsym '/' TDiv
 tlpar = tsym '(' TLPar
 trpar = tsym ')' TRPar
-tnumber = TDig <$> number
+tnumber = many ignore *> (TDig <$> number) <* many ignore
 ```
 
 Kombinátor `tsym` je parser, ktorý zľava aj sprava odignoruje medzery a vo zvyšku očakáva nejaký symbol, ktorý prevedie na daný `Token`.

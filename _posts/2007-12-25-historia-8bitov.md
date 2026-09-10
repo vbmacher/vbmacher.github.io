@@ -49,8 +49,8 @@ nižšiu cenu systému, čo bol rozhodujúci faktor pri výbere procesora pre po
 Táto výhoda spolu s jeho kompatibilitou s _8080_, plus použitie _CP/M_, prvého štandardného operačného
 systému pre mikropočítače, ho spravili prvou voľbou pre mnoho systémov.
 
-Len krátko po uvedení procesora _Intel 8080_, v roku 1975, firma Motorola predstavila svoj
-procesor _6800_. Niekoľko návrhárov z tejto firmy odišlo, aby vytvorili spoločnosť MOS Technologies.
+Len krátko po uvedení procesora _Intel 8080_, v roku 1974, firma Motorola predstavila svoj
+procesor _6800_. Niekoľko návrhárov z tejto firmy odišlo do už existujúcej spoločnosti MOS Technology.
 Táto spoločnosť predstavila sériu procesorov s označením _650x_, ktorá zahŕňala procesor _6501_
 (pinovo kompatibilný s _6800_, stiahnutý z trhu skoro okamžite po jeho uvedení kvôli právnym nezhodám)
 a _6502_. Podobne ako pri sérii _6800_ boli vytvorené varianty, ktoré pridávali do procesorov nové vlastnosti,

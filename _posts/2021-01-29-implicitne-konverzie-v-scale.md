@@ -61,7 +61,10 @@ val b: B = a  // substitúcia
 Keď si ešte spomínate na príklad implicitnej konverzie `doubleToInt` vyššie, dá sa implementovať aj pomocou subtypingu: 
 
 ```scala
-case class SInt(int: Int)
+class SInt(val int: Int)
+object SInt {
+  def apply(int: Int): SInt = new SInt(int)
+}
 case class SDouble(dbl: Double) extends SInt(dbl.toInt)
 
 def sumUp(values: SInt*): Int = values.map(_.int).sum
@@ -299,8 +302,15 @@ case class Person(name: String, age: Int)
 
 object instances {
   object json {
+    private def escapeJson(text: String): String = text.flatMap {
+      case '"' => "\\\""
+      case '\\' => "\\\\"
+      case c if c < ' ' => "\\u" + f"${c.toInt}%04x"
+      case c => c.toString
+    }
+
     implicit val personJsonPrintable = new JsonPrintable[Person] {
-      def toJson(value: Person): String = s"""{"name":"${value.name}","age":${value.age}}"""
+      def toJson(value: Person): String = s"""{"name":"${escapeJson(value.name)}","age":${value.age}}"""
     }
   }
 }

@@ -245,20 +245,30 @@ Predstavme si nasledujúci algoritmus:
 
 ```scala
 def goldbachConjecture(): Boolean = {
-  
-  def percolate(n: Int) = {
-      for (p <- (2 until n) if isPrime(p))
-        for (q <- (p + 1 until n) if isPrime(q))
-          if (p + q == n) return true
+  def isPrime(n: BigInt): Boolean = {
+      if (n < 2) return false
+      var divisor = BigInt(2)
+      while (divisor * divisor <= n) {
+          if (n % divisor == 0) return false
+          divisor += 1
+      }
+      true
+  }
 
+  def percolate(n: BigInt): Boolean = {
+      var p = BigInt(2)
+      while (p <= n / 2) {
+          if (isPrime(p) && isPrime(n - p)) return true
+          p += 1
+      }
       false
   }
 
-  var n = 4
-  while (true) {
-      if (!percolate(n)) return false
+  var n = BigInt(4)
+  while (percolate(n)) {
       n = n + 2
   }
+  false
 }
 ```
 
