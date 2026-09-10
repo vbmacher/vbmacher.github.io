@@ -20,28 +20,55 @@
 
 <script>
   {%- comment -%} Note: dependent library will be loaded in `js-selector.html` {%- endcomment -%}
-  SimpleJekyllSearch({
-    searchInput: document.getElementById('search-input'),
-    resultsContainer: document.getElementById('search-results'),
-    json: '{{ '/assets/js/data/search.json' | relative_url }}',
-    searchResultTemplate: '{{ result_elem | strip_newlines }}',
-    noResultsText: '{{ not_found }}',
-    templateMiddleware: function(prop, value, template) {
-      if (prop === 'categories') {
-        if (value === '') {
-          return `${value}`;
-        } else {
-          return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
-        }
-      }
+  (() => {
+    const input = document.getElementById('search-input');
+    let loading = false;
+    let initialized = false;
 
-      if (prop === 'tags') {
-        if (value === '') {
-          return `${value}`;
-        } else {
-          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
-        }
+    async function loadSearch() {
+      if (loading || initialized) return;
+      loading = true;
+
+      try {
+        const response = await fetch('{{ '/assets/js/data/search.json' | relative_url }}');
+        if (!response.ok) throw new Error(`Search index: ${response.status}`);
+        const data = await response.json();
+        const search = SimpleJekyllSearch({
+          searchInput: input,
+          resultsContainer: document.getElementById('search-results'),
+          json: data,
+          searchResultTemplate: '{{ result_elem | strip_newlines }}',
+          noResultsText: '{{ not_found }}',
+          templateMiddleware: function(prop, value, template) {
+            if (prop === 'categories') {
+              if (value === '') {
+                return `${value}`;
+              } else {
+                return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+              }
+            }
+
+            if (prop === 'tags') {
+              if (value === '') {
+                return `${value}`;
+              } else {
+                return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+              }
+            }
+          }
+        });
+        initialized = true;
+        /* Include anything typed while the index was downloading. */
+        search.search(input.value);
+      } catch (error) {
+        console.warn('Search could not be loaded; retry on the next interaction.', error);
+      } finally {
+        loading = false;
       }
     }
-  });
+
+    input.addEventListener('focus', loadSearch);
+    input.addEventListener('input', loadSearch);
+    if (document.activeElement === input || input.value) loadSearch();
+  })();
 </script>

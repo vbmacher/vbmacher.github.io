@@ -54,11 +54,11 @@ k zapísaniu ďalšieho medzivýsledku alebo výsledku do zošita. Podľa medziv
 Turing pritom dobre chápal, že stačí existencia konečného počtu symbolov s priradeným významom (zvlášť pre každý algoritmus), a pre jednoduchosť
 predpokladal, že matematik používa štvorčekovaný zošit, pričom do jedného štvorčeka zapíše vždy maximálne jeden symbol:
 
-![Matika](/assets/img/limity-pocitacov/math-squared.jpg)
+![Matika](/assets/img/limity-pocitacov/math-squared-1600.webp){: width="4032" height="1960" srcset="{{ '/assets/img/limity-pocitacov/math-squared-800.webp' | relative_url }} 800w, {{ '/assets/img/limity-pocitacov/math-squared-1600.webp' | relative_url }} 1600w" sizes="(min-width: 1200px) 800px, 100vw" data-full-src="{{ '/assets/img/limity-pocitacov/math-squared.jpg' | relative_url }}" }
 
 Tento proces počítania sa mu podarilo formalizovať do abstraktného počítacieho "stroja", dnes známeho pod názvom [Turingov stroj][58] (T.S.):
 
-![Turingov stroj](/assets/img/limity-pocitacov/turing-machine.png)
+![Turingov stroj](/assets/img/limity-pocitacov/turing-machine.png){: width="1396" height="588" }
 
 T.S. používa nekonečnú "pásku" ako náhradu štvorčekovaného zošita. Samotný T.S. je reprezentovaný tzv. čítaco-zapisovacou "hlavou", ktorá predstavuje
 samotné premýšľanie ako *black-box*. Definované je len to, že táto "hlava" dokáže v jednom čase:

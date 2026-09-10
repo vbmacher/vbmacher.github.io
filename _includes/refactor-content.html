@@ -65,6 +65,7 @@
     {% assign _attrs = _left | split: '" ' %}
 
     {% assign _src = null %}
+    {% assign _full_src = null %}
     {% assign _lqip = null %}
     {% assign _class = null %}
 
@@ -80,6 +81,8 @@
       {% case _key %}
         {% when 'src' %}
           {% assign _src = _value %}
+        {% when 'data-full-src' %}
+          {% assign _full_src = _value %}
         {% when 'lqip' %}
           {% assign _lqip = _value %}
         {% when 'class' %}
@@ -150,7 +153,8 @@
 
       {% else %}
         <!-- create the image wrapper -->
-        {% assign _wrapper_start = _final_src
+        {% assign _wrapper_start = _full_src
+          | default: _final_src
           | default: _src
           | prepend: '<a href="'
           | append: '" class="popup img-link '

@@ -7,6 +7,13 @@ permalink: '/:path/swconf.js'
 const swconf = {
   {% if site.pwa.cache.enabled %}
     cacheName: 'chirpy-{{ "now" | date: "%s" }}',
+    maxEntries: 128,
+    allowedOrigins: [
+      'https://cdn.jsdelivr.net',
+      'https://cdnjs.cloudflare.com',
+      'https://fonts.googleapis.com',
+      'https://fonts.gstatic.com'
+    ],
 
     {%- comment -%} Resources added to the cache during PWA installation. {%- endcomment -%}
     resources: [
