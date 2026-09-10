@@ -98,9 +98,9 @@ nekonečný počet číslic 0. V oboch prípadoch sa význam nezmení.
 T.S., ktoré zodpovedajú vypočítateľným číslam, Turing označil ako *circle-free* ("bezcyklové"). To môže byť trochu mätúce, pretože "circle-free" stroje sú
 chápané ako také, ktoré nikdy neprestanú vypisovať symboly výsledku na pásku. Nemajú teda "premýšľacie zacyklenie". Turing chcel týmto vyjadriť, že *circle-free* stroje sa vždy "posúvajú vpred", že "počítajú".
 
-Aj keď vypočítateľné čísla tvoria nekonečnú množinu, Turing tvrdí, že existujú aj čísla, ktoré vieme iba "definovať" (teda zapísať algoritmus), ale nevieme
-ich vyčísliť, teda vypočítať (algoritmus v tomto prípade nikdy neskončí). T.S., ktoré odpovedajú takýmto číslam, Turing nazval *circular* ("zacyklené").
-Opäť vysvetlenie - "circular" v zmysle "premýšľacieho zacyklenia", teda že stroj prestane vypisovať výsledok na pásku (prestane sa "posúvať vpred", "počítať").
+Aj keď vypočítateľné čísla tvoria nekonečnú množinu, Turing tvrdí, že existujú aj čísla, ktoré vieme matematicky definovať, ale neexistuje algoritmus
+na vypisovanie ich číslic. Pojmom *circular* ("zacyklené") označuje stroje, ktoré vypíšu iba konečný počet číslic výsledku.
+Potom buď zastavia, alebo pokračujú bez vypisovania ďalších číslic.
 
 # Spočítateľnosť T.S.
 
@@ -109,15 +109,14 @@ je priamočiary - symboly sa nahradia číslicami, ako aj oddeľovač riadkov ta
 T.S. Toto číslo Turing označil ako D.N. (Description Number). Každá vypočítateľná sekvencia alebo vypočítateľné číslo (pomocou *circle-free* T.S.)
 má minimálne jednu reprezentáciu D.N.
 
-"Spočítateľnosť" a "vypočítateľnosť" vyjadrujú v podstate tú istú vlastnosť, len sú tieto pojmy používané v iných kontextoch. Tou spoločnou
-vlastnosťou je *možnosť určiť nasledovníka*. Spočítateľnosť sa používa v kontexte množín a vypočítateľnosť v kontexte čísel, funkcií, atď.
-Napríklad - množina prirodzených čísel je spočítateľná, pretože vieme vždy určiť nasledujúce číslo. Ale množina reálnych čísel nie je spočítateľná,
-pretože nevieme určiť priameho nasledovníka žiadneho reálneho čísla. 
+"Spočítateľnosť" a "vypočítateľnosť" spolu súvisia, ale vyjadrujú odlišné vlastnosti. Spočítateľnosť sa používa v kontexte množín a znamená,
+že ich prvkom možno priradiť navzájom rôzne prirodzené čísla. Vypočítateľnosť sa týka existencie algoritmu pre daný výpočet.
+Prirodzené aj racionálne čísla tvoria spočítateľné množiny, reálne čísla nie. Rozhodujúca však nie je existencia priameho nasledovníka podľa veľkosti.
 
 Množina všetkých D.N. je spočítateľná ([enumerable][36]), pretože vieme vždy určiť nasledujúce D.N. (lebo je to prirodzené číslo a syntax vieme overiť
 vždy v konečnom počte krokov). Keďže každé D.N. reprezentuje jeden T.S., tak aj množina všetkých T.S. musí byť spočítateľná. To znamená, že musíme vedieť systematickým spôsobom vypísať všetky T.S., ktoré sa vôbec dajú vytvoriť.
 
-Číslo, ktoré sa dá vypočítať pomocou *circle-free* D.N., označil ako "uspokojujúce" ("satisfactory"). A Turing dopredu prezrádza, že nie je možné
+D.N., ktoré opisuje *circle-free* T.S., označil ako "uspokojujúce" ("satisfactory"). A Turing dopredu prezrádza, že nie je možné
 nájsť všeobecný algoritmus, ktorý by zistil, či dané číslo je alebo nie je "uspokojujúce".
 
 # Univerzálny T.S.
@@ -130,10 +129,9 @@ Ako príklad uvádzam [Game of Life][59] verziu univerzálneho T.S.:
 
 {% include embed/youtube.html id='My8AsV7bA94' %}
 
-# Spočítateľnosť vypočítateľných čísel
+# Efektívne vypisovanie vypočítateľných čísel
 
-Nasledujúcim krokom bolo zistenie, či *circle-free* D.N. tvoria spočítateľnú množinu. Teda či vieme systematickým spôsobom vypísať všetky
-vypočítateľné čísla.
+Vypočítateľné čísla tvoria spočítateľnú množinu. Otázkou však je, či ich vieme všetky systematicky vypisovať pomocou jedného algoritmu.
 
 Systém vypisovania "nasledovníkov" bol už raz použitý, keď Georg Cantor v roku 1891 dokazoval existenciu nespočítateľných
 nekonečných množín (množiny reálnych čísel). Použil ho tiež Gödel pri dokazovaní svojho teorému nekompletnosti a bol použitý aj v [Principii Mathematice][11]
@@ -155,14 +153,11 @@ Keďže podľa Turinga problém vyčíslenia vypočítateľných sekvencií je e
 že máme taký stroj. Teda predpokladajme, že vieme vytvoriť T.S., ktorý dostane na vstupe nejaký ľubovoľný T.S. a výstupom bude odpoveď, či je stroj
 *circle-free*.
 
-Jediný spôsob, akým má tento stroj dovolené overovať iné T.S., je simulácia, pretože má ísť o mechanický proces s aplikovaním len pravidiel samotného T.S.
-Začne teda simulovať postupne jeden stroj za druhým a na výstupe sa začnú objavovať prvé výsledky. Až kým nenarazí na samého seba.
-Simulácia samého seba spôsobí, že sa stroj - teraz pod simulátorom - spustí odznova. A tento simulovaný stroj znova narazí na samého seba, čím sa proces znova
-zopakuje, až donekonečna.
+Predpokladaný rozhodovací stroj skombinujeme s univerzálnym T.S. do stroja, ktorý počíta sekvenciu $$\beta'$$.
+Podľa predpokladu musí byť tento nový stroj *circle-free*. Keď však pri vypisovaní narazí na vlastné D.N., výpočet príslušnej diagonálnej číslice
+bude čakať na tú istú číslicu svojho vlastného výstupu. Tú teda nikdy nevypíše. Dostávame spor, a preto predpokladaný rozhodovací stroj nemôže existovať.
 
-Týmto myšlienkovým experimentom Turing dokázal, že stroj, ktorý počíta sekvenciu $$\beta$$, je *circular*, teda sekvencia je nevypočítateľná a teda
-diagonálny argument je správny. Ak by sa Turingovi podarilo dokázať spočítateľnosť *circle-free* D.N., prišiel by tak trochu do sporu s Gödelovým
-teorémom nekompletnosti - pretože by to znamenalo, že by sme v podstate vedeli dokázať všetky pravdivé výroky len v rámci formálneho systému.
+Turing tým dokázal, že všeobecný algoritmus na rozpoznávanie *circle-free* T.S. neexistuje.
 
 # Limity T.S.
 
@@ -203,19 +198,18 @@ Entscheidungsproblem - problém rozhodnutia - požadoval algoritmus, ktorý by v
 logiky (s rozšírením o axiómy aritmetiky prirodzených čísel) je vo všeobecnosti platný alebo nie. Turing teda potreboval nájsť [kódovanie][60] takýchto
 výrokov tak, aby mohli byť vstupom do T.S., ktorý overuje ich platnosť.
 
-Postup bol - ako inak - nájsť taký *pravdivý* výrok, ktorý nepôjde dokázať žiadnym "mechanickým procesom". V tejto chvíli bol T.S. už dostatočne
-silne obhájený ako zástupca všetkých "mechanických procesov" - všetko, čo je vypočítateľné, je vypočítateľné na T.S. Takže Turingovi
-stačilo nájsť výrok, ktorý by reprezentoval nevypočítateľný T.S.:
+Postup bol previesť otázku, či ľubovoľný T.S. niekedy vypíše $$0$$, na otázku dokázateľnosti príslušného výroku. V tejto chvíli bol T.S. už dostatočne
+silne obhájený ako zástupca všetkých "mechanických procesov" - všetko, čo je vypočítateľné, je vypočítateľné na T.S.
 
-1. Zostrojme pravdivý výrok $$\mathbin{Un}(M)$$, ktorý reprezentuje nejaký T.S. $$M$$. Napríklad výrok "$$M$$ nikdy nevypíše $$0$$".
+1. Pre ľubovoľný T.S. $$M$$ zostrojme výrok $$\mathbin{Un}(M)$$, ktorý pri zamýšľanej interpretácii vyjadruje "$$M$$ niekedy vypíše $$0$$".
 2. Ak Entscheidungsproblem je riešiteľný, potom existuje mechanický proces na zistenie, či $$\mathbin{Un}(M)$$ je dokázateľný.
 3. Podľa predch. výsledkov je $$\mathbin{Un}(M)$$ dokázateľný vtedy a len vtedy, ak $$M$$ niekedy vypíše $$0$$
 4. Ak vieme zistiť, či $$M$$ vypíše $$0$$, potom vieme zistiť, či ľubovoľný T.S. niekedy vypíše $$0$$
 5. Podľa predch. výsledkov takýto stroj sa zostrojiť nedá
-6. Teda $$\mathbin{Un}(M)$$ nie je dokázateľný výrok (aj keď pravdivý), čo znamená, že Entscheidungsproblem je neriešiteľný.
+6. Teda predpokladaný všeobecný rozhodovací algoritmus neexistuje, čo znamená, že Entscheidungsproblem je neriešiteľný.
 
 Sám Gödel veľmi uznával prácu Alana Turinga. Osobne sa nikdy nestretli,
-aj keď obidvaja istú dobu pôsobili na IAS-e. Turing tam bol na stáži u Alonza Churcha, ktorý nezávisle od Turinga (a efektívne skôr)
+aj keď obidvaja istú dobu pôsobili v Princetone. Turing tam v rokoch 1936–1938 študoval na Princetonskej univerzite u Alonza Churcha, ktorý nezávisle od Turinga (a efektívne skôr)
 zistil, že Entscheidungsproblem nemá riešenie.
 
 Čo je zaujímavé, je, že výsledky všetkých troch velikánov - Gödela, Turinga aj Churcha - sa zhodujú a ich formálne systémy (teória rekurzie, T.S. a

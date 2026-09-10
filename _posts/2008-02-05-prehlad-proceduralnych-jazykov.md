@@ -166,7 +166,7 @@ vlastné zložitejšie dátové štruktúry. Rovnako tak uľahčil tvorbu dynami
 Jazyk obsahuje dátové štruktúry ako napr. záznamy (`record`), výčtové typy (`type`), množiny (`set`),
 dynamicky alokované premenné so smerníkmi, polia s rôzne definovaným rozmedzím.
 
-Jazyk má prísnu typovú kontrolu, implicitná konverzia nie je vôbec možná.
+Jazyk má prísnu typovú kontrolu, implicitná konverzia je však v niektorých prípadoch možná, napríklad z `integer` na `real`.
 
 Umožňuje (na rozdiel od rodiny C jazykov) vnorené definície procedúr do ľubovoľnej hĺbky a tiež takmer
 ľubovoľné definície a deklarácie vo vnútri tela procedúr.

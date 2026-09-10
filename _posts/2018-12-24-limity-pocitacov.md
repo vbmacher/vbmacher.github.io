@@ -62,13 +62,13 @@ Formálny systém definuje "svet", v ktorom môžeme tvoriť výroky a odvodzova
 Axiómy tvoria základné pravdy, ktoré už nie je možné rozložiť na ešte "základnejšie" pravdy. Je to "základ sveta", jeho "definícia".
 Tým, že sa jednotlivé formálne systémy líšia - majú rôzne axiómy, symboly a pravidlá odvodzovania, tak každý systém svojím spôsobom definuje svoju relatívnu sémantickú pravdu.
 
-Sémantickú pravdu vo formálnom systéme vieme mechanicky odvodiť - teda dokázať, či daný výrok je pravdivý alebo nepravdivý. Majme teda výrok X, ktorý je v danom formálnom systéme syntakticky validný. Jeho pravdivosť vieme dokázať tak, že sa pokúsime "znovuobjaviť" tento výrok:
+Dokázateľné výroky vo formálnom systéme vieme systematicky hľadať mechanickým odvodzovaním. Majme teda syntakticky validný výrok X. Jeho dôkaz môžeme hľadať tak, že sa pokúsime "znovuobjaviť" tento výrok:
 
 1. aplikáciou povolených pravidiel odvodenia na axiómy, čím vzniknú prvé zložené výroky
 2. Porovnáme nový výrok s výrokom X. Ak sú výroky zhodné, prehlásime X za pravdivý.
 3. Pokračujeme aplikáciou pravidiel odvodenia na zložené výroky, čím vytvárame ďalšie výroky
-4. Opakujeme body 2 až 3 dovtedy, kým sme neodvodili všetky možné výroky alebo nenašli zhodu s výrokom X.
-   Ak sme po vygenerovaní všetkých výrokov stále nedospeli k výroku X, tak je výrok X nepravdivý.
+4. Opakujeme body 2 až 3, kým nenájdeme zhodu s výrokom X. Ak X nie je odvoditeľný, tento postup môže pokračovať donekonečna.
+   Samotné nenájdenie dôkazu ešte neznamená, že je X nepravdivý.
 
 Pri troche šťastia sa nám podarí odvodiť výrok, ktorého pravdivosť chceme zistiť. Ak sa to podarí, tak výrok môžeme prehlásiť
 za "sémanticky pravdivý" v danom formálnom systéme. Samozrejme, je dôležité odvodzovať výroky systematicky, aby v tom nebol
@@ -123,7 +123,7 @@ Tomuto prístupu sa postavil na odpor (vo svojej dobe asi najslávnejší) nemec
 Kríza spočívala hlavne v tom, že samotné základy vtedajšej matematiky - naivná teória množín - umožňovali tvorbu paradoxov - teda výrokov, ktoré platia a neplatia zároveň. Nebezpečie spočíva v tom, že ak tvrdenie `P` platí aj neplatí, pravidlo [modus ponens][41] (z `P` vyplýva `Q`) nám umožní odvodiť prakticky čokoľvek, aj nepravdivé výroky a celá matematika sa tak zrúti ako domček z karát.
 
 Táto kríza doviedla Hilberta ku spísaniu 23 dovtedy známych [matematických problémov][21], ktoré odprezentoval na Parížskom kongrese
-v roku 1900. Tam vyzval matematikov, ako svoju armádu, k ich riešeniu. V roku 1932, keď odchádzal do dôchodku, zhrnul svoju záverečnú reč aj [v rádiu][33], kde okrem iného povedal:
+v roku 1900. Tam vyzval matematikov, ako svoju armádu, k ich riešeniu. V roku 1930, keď odchádzal do dôchodku, zhrnul svoju záverečnú reč aj [v rádiu][33], kde okrem iného povedal:
 
 > Nesmieme veriť tým, ktorí dnes s oporou filozofie a nadradeným tónom predpovedajú úpadok kultúry a akceptujú Ignorabimus.
 > Pre nás nie je žiadny Ignorabimus, a podľa mňa ani v žiadnej prírodnej vede. Namiesto hlúpeho Ignorabima nech náš slogan znie:

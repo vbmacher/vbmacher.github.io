@@ -31,8 +31,8 @@ priestoru.
 Procesor _8080_ bol použitý napr. v počítači _Altair 8800_, v prvom široko známom osobnom počítači
 (skôr domácom počítači, keďže definícia "prvého PC" je nie celkom jasná).
 
-Zlepšený návrh firmy Intel vyústil do procesora s označením _8085_ (rok 1976), ktorý podporoval ďalšie
-dve inštrukcie na povolenie/zakázanie troch pridaných pinov prerušení a takisto sériových I/O pinov.
+Zlepšený návrh firmy Intel vyústil do procesora s označením _8085_ (rok 1976), ktorý podporoval ďalšie dve inštrukcie:
+`SIM` na nastavenie masiek troch pridaných maskovateľných prerušení a sériového výstupu a `RIM` na čítanie stavu prerušení a sériového vstupu.
 Hardvér je zjednodušený tak, aby mu stačilo napätie +5V. Do čipu je pridaný hodinový generátor a
 obvody radiča zbernice.
 

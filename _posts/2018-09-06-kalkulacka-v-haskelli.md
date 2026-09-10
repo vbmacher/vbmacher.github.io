@@ -260,7 +260,7 @@ Výstupom je nový parser - ktorý definujeme ako funkciu, ktorej vstup sa odovz
 `Applicative` je tiež funktor (abstrakcia nad kontextom, štruktúra, kontajner). Avšak má navyše tieto dve funkcie:
 
 - `<*>` je obdobou `fmap`, ktorá však funkciu má uloženú vo vnútri štruktúry. Jej typ je: `(<*>) :: Parser (a->b) -> Parser a -> Parser b`
-- `pure`, ktorá vytvorí z obyčajnej funkcie `Parser (a -> b)`. Ide o podpornú funkciu, aby sme mohli "simulovať" fmap ako: `fmap f x = pure f <*> x`
+- `pure`, ktorá vytvorí z obyčajnej hodnoty typu `a` hodnotu `Parser a`. Ide o podpornú funkciu, aby sme mohli "simulovať" fmap ako: `fmap f x = pure f <*> x`
 
 
 ```haskell
@@ -270,7 +270,7 @@ instance Applicative Parser where
   (<*>) p q = Parser $ \s -> [(f x, xs) | (f, ys) <- parse p s, (x, xs) <- parse q ys]
 ```
 
-Implementácia funkcie `pure` je viac-menej triviálna - vytvoríme nový "parser", ktorý nič neparsuje, len vráti funkciu aj so vstupom. Operácia
+Implementácia funkcie `pure` je viac-menej triviálna - vytvoríme nový "parser", ktorý nič neparsuje, len vráti hodnotu aj so vstupom. Operácia
 sekvencovania robí "sekvencovanie" dvoch parserov:
 
 - Sparsujeme vstup prvým parserom, z ktorého dostaneme mapovaciu funkciu `a -> b` a zvyšok vstupu
@@ -364,11 +364,11 @@ nám poslúžia ako určitá forma DSL jazyka. Keď si na to človek zvykne, pí
 Ich stručné pripomenutie: 
 
 - `<$` - skratka pre `pure (...) <* (...)`. Ako výsledok sa použije ľavá strana. Pravá strana sa síce aplikuje, ale výsledok zahodí.
-- `$>` - skratka pre `pure (...) *> (...)`. Ako výsledok sa použije pravá strana a výsledok z ľavej strany sa zahodí.
-- `<$>` - skratka pre `pure (...) <*> (...)`. Na výsledok z ľavej strany sa aplikuje pravá strana a tento výsledok sa vráti.
+- `$>` - skratka pre `(...) *> pure (...)`. Výsledok parsera naľavo sa nahradí hodnotou napravo.
+- `<$>` - skratka pre `pure (...) <*> (...)`. Funkcia naľavo sa aplikuje na výsledok parsera napravo.
 - `<*` - sekvencia, podobne ako `<*>` s tým, že sa výsledok z pravej strany zahodí. 
 - `*>` - sekvencia, podobne ako `<*>` s tým, že sa výsledok z ľavej strany zahodí.
-- `<*>` - sekvencia. Na výsledok ľavej strany sa aplikuje pravá strana a tento výsledok sa vráti.
+- `<*>` - sekvencia. Funkcia získaná z ľavého parsera sa aplikuje na výsledok pravého parsera.
 - `many` - opakovanie 0 a viackrát. Jej typ: `many :: Alternative f => f a -> f [a]`.
 - `some` - opakovanie 1 a viackrát. Jej typ: `some :: Alternative f => f a -> f [a]`.
 - `<|>` - alternatíva, jej typ: `(<|>) :: Alternative f => f a -> f a -> f a`. Najprv sa aplikuje prvý parser a keď je neúspešný,

@@ -185,7 +185,7 @@ V našom prípade budeme testovať kvalitu datasetu zo servera [Last.fm][7], ted
 > Thierry Bertin-Mahieux and Daniel P.W. Ellis and Brian Whitman and Paul Lamere: The Million Song Dataset
 > uverejnené v Proceedings of the 12th International Conference on Music Information Retrieval (ISMIR 2011), 2011.
 
-Dataset obsahuje skladby ("tracks") a k nim priradzuje umelca a podobných umelcov. Našou úlohou bude zistiť entropiu umelcov a skladieb. Predpokladáme, že umelci by mali byť unikátni, avšak skladby nemusia byť unikátne.
+Dataset obsahuje skladby ("tracks") a k nim priradzuje umelca a podobné skladby. Našou úlohou bude zistiť entropiu umelcov a skladieb. Predpokladáme, že umelci by mali byť unikátni, avšak skladby nemusia byť unikátne.
 
 Na prácu použijeme framework Apache Spark vo verzii 2.4.3 a jazyk Scala vo verzii 2.12.
 

@@ -268,7 +268,7 @@ Aj keď Elm nemá v štandardnej knižnici často používanú funkciu `mod` (zv
 # Prevádzanie dát do Stringu
 
 Haskell má typovú triedu `Show`, ktorá umožňuje pre ľubovoľný typ definovať funkciu `show`, zodpovednú za prevod hodnoty tohto typu na `String`.
-Funkcia `show` je podľa mňa notoricky známa a veľmi používaná funkcia. Avšak v Elm-e neexistuje. Miesto toho existuje mega-všeobecná implementácia `toString` v balíčku `Core.Basics`, implementovaná v [natívnom Javascripte](https://github.com/elm-lang/core/blob/5.0.0/src/Native/Utils.js) (nájdite si ju pomocou CTRL+F, pod názvom `function toString()`). Dôvodom je, že Elm nepodporuje higher-kinded typy.
+Funkcia `show` je podľa mňa notoricky známa a veľmi používaná funkcia. Avšak v Elm-e neexistuje. Miesto toho existuje mega-všeobecná implementácia `toString` v balíčku `Core.Basics`, implementovaná v [natívnom Javascripte](https://github.com/elm-lang/core/blob/5.0.0/src/Native/Utils.js) (nájdite si ju pomocou CTRL+F, pod názvom `function toString()`). Elm totiž nepodporuje používateľsky definované typové triedy, akou je v Haskell-i `Show`.
 
 # Funkcie zip, map
 
@@ -284,7 +284,7 @@ pričom `map2` je funkcia:
   map2 : (a->b->c) -> List a -> List b -> List c
 ```
 
-Okrem nej existujú funkcie `map3`, `map4`, ... až do `map8`. Tieto typy funkcií (vrátane napr. `fold`-ov) existujú aj pre iné dátové štruktúry,
+Okrem nej existujú funkcie `map3`, `map4` a `map5`. Tieto typy funkcií (vrátane napr. `fold`-ov) existujú aj pre iné dátové štruktúry,
 napríklad pre asociatívne pole (mapu) `Dict`.
 
 # Záver

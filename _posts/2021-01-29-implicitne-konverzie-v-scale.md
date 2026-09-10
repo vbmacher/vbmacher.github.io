@@ -77,7 +77,7 @@ sumUp(SInt(1), SInt(2), SInt(3))
 
 Teraz sme už pripravení zamyslieť sa nad tým, čo znamená "dobrá" konverzia.  
 
-Tak ako je to v prípade `Double` a `Int`? Je skutočne `Double` podtypom `Int`? Nie, je to skôr naopak. Každý `Int` môže byť aj `Double` (pretože `Double` má väčší rozsah a naviac vie poňať aj desatinné čísla), môžeme bezpečne predpokladať vzťah `Int <: Double`. Liskovej substitučný princíp však nevyžaduje skutočný technický subtyping, princíp hovorí len o *vlastnostiach* - teda platí vtedy, ak vlastnosti typu `Double` má aj typ `Int`.
+Tak ako je to v prípade `Double` a `Int`? Každý `Int` možno bez straty presnosti previesť na `Double`. Z toho však ešte nevyplýva vzťah `Int <: Double`, pretože sa môže líšiť správanie operácií - napríklad celočíselného a desatinného delenia. Liskovej substitučný princíp však nevyžaduje skutočný technický subtyping, princíp hovorí len o *vlastnostiach* - teda platí vtedy, ak vlastnosti typu `Double` má aj typ `Int`.
 
 Z tohto príkladu intuitívne vieme vycítiť, aká je to "dobrá" - bezpečná - implicitná konverzia:
 
@@ -257,7 +257,7 @@ Rozdielom oproti implicitnej konverzii je okrem explicitného volania `.toURL` f
 
 - výnimku môžeme jasne očakávať, pretože robíme explicitné volanie
 - môžeme vytvoriť niekoľko variantov konverzie, z ktorých si pri použití vyberieme.
-- konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
+- viditeľnosť vieme obmedziť importom; to isté však môžeme urobiť aj pri obyčajnej implicitnej konverzii
 - porušenie Liskovej princípu nevadí
 
 ### Riešenie 2: Typová trieda (type class)
@@ -322,7 +322,7 @@ sendJson(Person("Peter", 36))
 Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič neskrýva:
 
 - Problém v konverzii objektu na JSON môžeme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson` (vo funkcii `sendJson` a nie pri každom jej volaní, a to je o dosť lepšie než v prípade extension metódy).
-- konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
+- viditeľnosť vieme obmedziť importom; to isté však môžeme urobiť aj pri obyčajnej implicitnej konverzii
 - pri pridávaní typov, ktoré môžu byť použité pre funkciu `sendJson`, nám stačí len pridať ďalší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
 
 Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebujeme skutočný typ `B`, nie len operácie nad `B`.
