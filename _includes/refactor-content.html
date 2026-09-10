@@ -61,7 +61,13 @@
       {% continue %}
     {% endunless %}
 
-    {% assign _left = _left | remove: ' /' | replace: ' w=', ' width=' | replace: ' h=', ' height=' %}
+    {% assign _left = _left | rstrip %}
+    {% assign _last_char = _left | slice: -1 %}
+    {% if _last_char == '/' %}
+      {% assign _left_size = _left.size | minus: 1 %}
+      {% assign _left = _left | slice: 0, _left_size %}
+    {% endif %}
+    {% assign _left = _left | replace: ' w=', ' width=' | replace: ' h=', ' height=' %}
     {% assign _attrs = _left | split: '" ' %}
 
     {% assign _src = null %}
