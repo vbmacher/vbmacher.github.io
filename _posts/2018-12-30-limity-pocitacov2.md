@@ -12,25 +12,25 @@ description: Problém zastavenia, limity počítačov a Church-Turingova ekvival
 
 Kladné riešenie problému rozhodnutia, Entscheidungsproblem, ostávalo už ako posledná nádej Hilbertovho programu na formalizáciu
 matematiky. Po Gödelovom teoréme nekompletnosti bolo jasné, že nie všetky pravdivé výroky sa dajú dokázať. Teraz bolo potrebné nájsť
-odpoveď na otázku, či sa dá nájsť všeobecný postup, algoritmus, ktorý pre ľubovoľný výrok ho buď dokáže,
+odpoveď na otázku, či sa dá nájsť všeobecný postup, algoritmus, ktorý ľubovoľný výrok buď dokáže,
 alebo vyvráti či odpovie negatívne v prípade jeho nedokázateľnosti.
 
 # Mechanický proces
 
-[Entscheidungsproblem][3] vyzýva ku nájdeniu "algoritmu", teda mechanického procesu, ktorý by systematickým spôsobom vedel prehľadávať
+[Entscheidungsproblem][3] vyzýva k nájdeniu "algoritmu", teda mechanického procesu, ktorý by systematickým spôsobom vedel prehľadávať
 celý "priestor" formálneho systému, až by našiel hľadaný výrok. Keby v priebehu cesty tento výrok našiel, prehlásil by "Áno" (výrok je
 všeobecne pravdivý), inak by prehlásil "Nie" (výrok nie je všeobecne pravdivý), aj keby to znamenalo, že je nedokázateľný.
 
-"Mechanický proces", alebo "algoritmus" je zoznam krokov, ktoré reprezentujú *všetko potrebné rozhodovanie*, ktorého slepým nasledovaním
+"Mechanický proces" alebo "algoritmus" je zoznam krokov, ktoré reprezentujú *všetko potrebné rozhodovanie*, ktorého slepým nasledovaním
 dosiahneme požadovaný cieľ. Nepotrebujeme teda ďalej rozmýšľať nad jednotlivými krokmi, každý krok je jasný a presný. Algoritmus nemá
 nejednoznačnosti.
 
-Slovo "algoritmus" má dávny pôvod. Pochádza z 9. storočia (odvodené z mena perzského matematika [al-Khwarizmi][18]), a používalo
+Slovo "algoritmus" má dávny pôvod. Pochádza z 9. storočia (odvodené z mena perzského matematika [al-Khwarizmi][18]) a používalo
 sa na označenie postupov operácií s arabskými číslicami. Od 18. storočia sa už intuitívne chápe ako určitý
 mechanický postup na riešenie nejakého problému či úlohy. 
 
-Problému rozhodnutia sa venovali hlavne tri postavy, ktorí nezávisle na sebe a veľmi originálnym spôsobom nielenže podali riešenie
-daného problému, ale prispeli ku vzniku teoretických a praktických základov samotných počítačov a programovacích jazykov:
+Problému rozhodnutia sa venovali hlavne tri postavy, ktoré nezávisle od seba a veľmi originálnym spôsobom nielenže podali riešenie
+daného problému, ale prispeli k vzniku teoretických a praktických základov samotných počítačov a programovacích jazykov:
 
 - [Alan Turing][7] - jemu sa budem venovať prednostne v ďalších častiach blogpostu,
 - [Alonzo Church][8] - okrem riešenia Entscheidungsproblemu (s ktorým prišiel ako prvý) vymyslel aj tzv. [Lambda kalkul][55], ktorý tvorí základ všetkých
@@ -39,7 +39,7 @@ daného problému, ale prispeli ku vzniku teoretických a praktických základov
 
 # Turingove stroje
 
-[Alan Turing][7] pracoval na Entscheidungsprobleme v 30-tych rokoch minulého storočia. Výsledky jeho práce publikoval v jeho slávnom článku
+[Alan Turing][7] pracoval na Entscheidungsprobleme v 30. rokoch minulého storočia. Výsledky svojej práce publikoval vo svojom slávnom článku
 ["On computable numbers with application to Entscheidungsproblem"][52] z roku 1937.
 
 Na to, aby mohol dokázať/vyvrátiť existenciu všeobecného algoritmu - mechanického procesu - na problém rozhodnutia, potreboval vytvoriť formálny
@@ -48,7 +48,7 @@ samotného algoritmu.
 
 Pri snahe sformalizovať "mechanický proces" hľadal inšpiráciu v človeku samotnom. Človek si popri premýšľaní zapisuje
 medzivýsledky a konečný výsledok. Premýšľanie si Turing predstavoval ako diskrétnu zmenu "stavu mysle", ktorá viedla
-k zapísaniu ďalšieho medzivýsledku, alebo výsledku do zošita. Podľa medzivýsledku v zošite a aktuálneho "stavu mysle" človek
+k zapísaniu ďalšieho medzivýsledku alebo výsledku do zošita. Podľa medzivýsledku v zošite a aktuálneho "stavu mysle" človek
 "premýšľaním" dôjde do ďalšieho "stavu mysle", ktorý vedie k zapísaniu ďalšieho medzivýsledku, atď. až kým nie je vypočítaný celý príklad.
 
 Turing pritom dobre chápal, že stačí existencia konečného počtu symbolov s priradeným významom (zvlášť pre každý algoritmus), a pre jednoduchosť
@@ -60,14 +60,14 @@ Tento proces počítania sa mu podarilo formalizovať do abstraktného počítac
 
 ![Turingov stroj](/assets/img/limity-pocitacov/turing-machine.png)
 
-T.S. používa nekonečnú "pásku", ako náhradu štvorčekovaného zošita. Samotný T.S. je reprezentovaný tzv. čítaco-zapisovacou "hlavou", ktorá predstavuje
+T.S. používa nekonečnú "pásku" ako náhradu štvorčekovaného zošita. Samotný T.S. je reprezentovaný tzv. čítaco-zapisovacou "hlavou", ktorá predstavuje
 samotné premýšľanie ako *black-box*. Definované je len to, že táto "hlava" dokáže v jednom čase:
 
 - zapísať/vymazať jeden symbol na/z pásky, 
 - posunúť "hlavu" na nasledujúci/predchádzajúci symbol pásky
 - na základe aktuálneho stavu a symbolu na páske (na ktorý hlava ukazuje) zmeniť stav
 
-Takto zadefinovaný abstraktný stroj, ako Turing ukázal v jeho článku, umožňoval zapísať každý algoritmus. Napríklad, výstup nekonečnej
+Takto zadefinovaný abstraktný stroj, ako Turing ukázal vo svojom článku, umožňoval zapísať každý algoritmus. Napríklad výstup nekonečnej
 sekvencie `0 1 0 1 0 1 ...` sa dá zapísať do tabuľky:
 
 | Aktuálny Stav | Aktuálny symbol |  | Zápis symbolu | Posun hlavy | Nový stav |
@@ -93,9 +93,9 @@ reagovať na rôzne "sekvencie" symbolov na páske, ktoré videl. Ak sa chce T.S
 Turing v článku definuje vypočítateľné čísla ako také, ktoré sú vyčísliteľné. Teda také, ktorých číslice vieme zapísať bez akéhokoľvek "záseku" až donekonečna,
 a to pomocou stroja (či algoritmu). Ako príklad vypočítateľných čísel uvádza čísla ako $$\pi$$, $$e$$, reálne korene algebraických rovníc, atď.
 Aj prirodzené číslo sa dá zapisovať "donekonečna" - buď pred ním budeme donekonečna vypisovať číslicu 0, alebo za ním môžeme zapísať desatinnú čiarku a za ňou
-nekonečný počet číslic 0. V oboch z prípadov sa význam nezmení.
+nekonečný počet číslic 0. V oboch prípadoch sa význam nezmení.
 
-T.S., ktoré zodpovedajú vypočítateľným číslam Turing označil ako *circle-free* ("bezcyklové"). To môže byť trochu mätúce, pretože "circle-free" stroje sú
+T.S., ktoré zodpovedajú vypočítateľným číslam, Turing označil ako *circle-free* ("bezcyklové"). To môže byť trochu mätúce, pretože "circle-free" stroje sú
 chápané ako také, ktoré nikdy neprestanú vypisovať symboly výsledku na pásku. Nemajú teda "premýšľacie zacyklenie". Turing chcel týmto vyjadriť, že *circle-free* stroje sa vždy "posúvajú vpred", že "počítajú".
 
 Aj keď vypočítateľné čísla tvoria nekonečnú množinu, Turing tvrdí, že existujú aj čísla, ktoré vieme iba "definovať" (teda zapísať algoritmus), ale nevieme
@@ -106,24 +106,24 @@ Opäť vysvetlenie - "circular" v zmysle "premýšľacieho zacyklenia", teda že
 
 Turing v ďalšom kroku ukázal postup toho, ako celú tabuľku, ktorá T.S. definuje, je možné previesť do jediného prirodzeného čísla. Postup prevodu
 je priamočiary - symboly sa nahradia číslicami, ako aj oddeľovač riadkov tabuľky sa tiež nahradí číslicou. Vznikne tak jediné číslo, ktoré "enkóduje"
-T.S. Toto číslo Turing označil ako D.N. (Description Number). Každá vypočítateľná sekvencia, alebo vypočítateľné číslo (pomocou *circle-free* T.S.)
+T.S. Toto číslo Turing označil ako D.N. (Description Number). Každá vypočítateľná sekvencia alebo vypočítateľné číslo (pomocou *circle-free* T.S.)
 má minimálne jednu reprezentáciu D.N.
 
 "Spočítateľnosť" a "vypočítateľnosť" vyjadrujú v podstate tú istú vlastnosť, len sú tieto pojmy používané v iných kontextoch. Tou spoločnou
-vlastnosťou je *možnosť určiť nasledovníka*. Spočitateľnosť sa používa v kontexte množín, a vypočítateľnosť v kontexte čísel, funkcií, atď.
+vlastnosťou je *možnosť určiť nasledovníka*. Spočítateľnosť sa používa v kontexte množín a vypočítateľnosť v kontexte čísel, funkcií, atď.
 Napríklad - množina prirodzených čísel je spočítateľná, pretože vieme vždy určiť nasledujúce číslo. Ale množina reálnych čísel nie je spočítateľná,
 pretože nevieme určiť priameho nasledovníka žiadneho reálneho čísla. 
 
 Množina všetkých D.N. je spočítateľná ([enumerable][36]), pretože vieme vždy určiť nasledujúce D.N. (lebo je to prirodzené číslo a syntax vieme overiť
-vždy v konečnom počte krokov). Keďže každé D.N. reprezentuje jeden T.S., tak aj množina všetkých T.S. musí byť spočítateľná. To znamená, že musíme vedieť systematickým spôsobom vypísať všetky T.S. ktoré sa vôbec dajú vytvoriť.
+vždy v konečnom počte krokov). Keďže každé D.N. reprezentuje jeden T.S., tak aj množina všetkých T.S. musí byť spočítateľná. To znamená, že musíme vedieť systematickým spôsobom vypísať všetky T.S., ktoré sa vôbec dajú vytvoriť.
 
-Číslo, ktoré sa dá vypočítať pomocou *circle-free* D.N. označil ako "uspokojujúce" ("satisfactory"). A Turing dopredu prezrádza, že nie je možné
+Číslo, ktoré sa dá vypočítať pomocou *circle-free* D.N., označil ako "uspokojujúce" ("satisfactory"). A Turing dopredu prezrádza, že nie je možné
 nájsť všeobecný algoritmus, ktorý by zistil, či dané číslo je alebo nie je "uspokojujúce".
 
 # Univerzálny T.S.
 
-V ďalšom Turing definoval stroj, ktorý je schopný vypočítať ľubovoľné "vypočítateľné číslo". Na vstup dostane D.N. daného výpočtu, a výsledkom
-bude to isté, čo by vypočítal T.S. reprezentovaný vstupným D.N. Princíp tohto stroja je založený na vytvorení ďalších symbolov a spôsobom enkódovania
+V ďalšom Turing definoval stroj, ktorý je schopný vypočítať ľubovoľné "vypočítateľné číslo". Na vstup dostane D.N. daného výpočtu a výsledkom
+bude to isté, čo by vypočítal T.S. reprezentovaný vstupným D.N. Princíp tohto stroja je založený na vytvorení ďalších symbolov a spôsobe enkódovania
 vstupného T.S. Univerzálny T.S. je teda akýmsi "simulátorom" T.S.
 
 Ako príklad uvádzam [Game of Life][59] verziu univerzálneho T.S.:
@@ -132,11 +132,11 @@ Ako príklad uvádzam [Game of Life][59] verziu univerzálneho T.S.:
 
 # Spočítateľnosť vypočítateľných čísel
 
-Nasledujúci krok bolo zistenie, či *circle-free* D.N. tvoria spočítateľnú množinu. Teda či vieme systematickým spôsobom vypísať všetky
+Nasledujúcim krokom bolo zistenie, či *circle-free* D.N. tvoria spočítateľnú množinu. Teda či vieme systematickým spôsobom vypísať všetky
 vypočítateľné čísla.
 
 Systém vypisovania "nasledovníkov" bol už raz použitý, keď Georg Cantor v roku 1891 dokazoval existenciu nespočítateľných
-nekonečných množín (množiny reálnych čísel). Použil ho tiež Gödel pri dokazovaní svojho teorému nekompletnosti, a bol použitý aj v [Principii Mathematice][11]
+nekonečných množín (množiny reálnych čísel). Použil ho tiež Gödel pri dokazovaní svojho teorému nekompletnosti a bol použitý aj v [Principii Mathematice][11]
 v popise [Richardovho paradoxu][61]. Tento systém je známy pod názvom "diagonálny proces" alebo ["diagonálny argument"][54]:
 
 > Ak sú vypočítateľné sekvencie spočítateľné, nech $$\alpha_n$$ je $$n$$-tá vypočítateľná sekvencia a nech $\phi_n(m)$ je $$m$$-tá číslica
@@ -146,15 +146,15 @@ v popise [Richardovho paradoxu][61]. Tento systém je známy pod názvom "diagon
 
 "Háčik" spočíva v predpoklade, že $$\beta$$ je vypočítateľná sekvencia. Ak by bola, v konečnom počte krokov by sme ju vedeli
 vyčísliť. Avšak problém vyčíslenia vypočítateľných sekvencií je ekvivalentný problému zistenia, či nejaké číslo reprezentuje D.N. *circle-free* T.S.
-A takýto proces nemáme - s konečným počtom krokov. Dôkaz tohto tvrdenia bude skúsiť zostrojiť stroj, ktorý počíta sekvenciu $$\beta' = 1 - \beta = \phi_n(n)$$. 
+A takýto proces nemáme - s konečným počtom krokov. Dôkaz tohto tvrdenia bude spočívať v pokuse zostrojiť stroj, ktorý počíta sekvenciu $$\beta' = 1 - \beta = \phi_n(n)$$.
 
 Nikde nie je povedané presne, čo tento stroj - počítajúci sekvenciu $$\alpha_n$$ - má robiť. Vieme len, že sekvencia $$\alpha_n$$ má byť vypočítateľná.
 Keďže podľa Turinga problém vyčíslenia vypočítateľných sekvencií je ekvivalentný problému zistenia, či nejaký stroj je *circle-free*, predpokladajme,
 že máme taký stroj. Teda predpokladajme, že vieme vytvoriť T.S., ktorý dostane na vstupe nejaký ľubovoľný T.S. a výstupom bude odpoveď, či je stroj
 *circle-free*.
 
-Jediný spôsob, akým má tento stroj dovolené overovať iné T.S. je simulácia, pretože má ísť o mechanický proces, aplikovaním len pravidiel samotného T.S.
-Začne teda simulovať postupne jeden stroj za druhým, a na výstupe sa začnú objavovať prvé výsledky. Až kým narazí na samého seba.
+Jediný spôsob, akým má tento stroj dovolené overovať iné T.S., je simulácia, pretože má ísť o mechanický proces s aplikovaním len pravidiel samotného T.S.
+Začne teda simulovať postupne jeden stroj za druhým a na výstupe sa začnú objavovať prvé výsledky. Až kým nenarazí na samého seba.
 Simulácia samého seba spôsobí, že sa stroj - teraz pod simulátorom - spustí odznova. A tento simulovaný stroj znova narazí na samého seba, čím sa proces znova
 zopakuje, až donekonečna.
 
@@ -164,11 +164,11 @@ teorémom nekompletnosti - pretože by to znamenalo, že by sme v podstate vedel
 
 # Limity T.S.
 
-Ako ďalší príklad nevypočítateľnej sekvencie vytvoril T.S. (napr. $$E$$), ktorý zisťuje, či nejaký T.S. (napr. $$M$$), vypíše aspoň raz nejaký
+Ako ďalší príklad nevypočítateľnej sekvencie vytvoril T.S. (napr. $$E$$), ktorý zisťuje, či nejaký T.S. (napr. $$M$$) vypíše aspoň raz nejaký
 symbol (napríklad $$0$$). Turing tvrdil, že ak sa taký stroj nájde, bude dokonca možné zistiť, či tento T.S. bude symbol vypisovať donekonečna. Ako?
 Na to vytvoril ďalší myšlienkový experiment:
 
-Najprv dokážeme, že ak existuje T.S. $$E$$, potom existuje všeobecný postup na to, či T.S. $$M$$ bude vypisovať $$0$$ donekonečna.
+Najprv dokážeme, že ak existuje T.S. $$E$$, potom existuje všeobecný postup na zistenie toho, či T.S. $$M$$ bude vypisovať $$0$$ donekonečna.
 Majme T.S. $$M_1$$, ktorý bude vypisovať tú istú sekvenciu ako $$M$$, ale s tým rozdielom, že miesto prvého symbolu $$0$$ vypíše $$\overline{0}$$.
 Ďalej majme T.S. $$M_2$$, ktorý nahradí prvé dva symboly $$0$$ (nie nevyhnutne za sebou) symbolom $$\overline{0}$$, atď. Teda, ak $$M$$ vypíše:
 
@@ -183,26 +183,26 @@ a $$M_2$$ vypíše:
 > $$A\;B\;A\;\overline{0}\;1\;A\;A\;B\;\overline{0}\;0\;1\;0\;A\;B\;...$$
 
 atď. Teraz majme T.S. $$F$$, ktorý bude postupne vypisovať $$M$$, potom $$M_1$$, $$M_2$$ atď. Skombinujeme $$F$$ s $$E$$ a dostaneme T.S. $$G$$.
-Práca $$G$$ bude vyzerať tak, že sa najprv použije $$F$$ na vypísanie $$M$$, a následne ho $$E$$ otestuje:
+Práca $$G$$ bude vyzerať tak, že sa najprv použije $$F$$ na vypísanie $$M$$ a následne ho $$E$$ otestuje:
 
 - Ak $$M$$ *nikdy nevypíše* $$0$$, tak $$E$$ vypíše $$\mathbin{:}0\mathbin{:}$$
-- Potom $$F$$ vypíše $$M_1$$, a $$E$$ ho otestuje. Ak $$M_1$$ nikdy nevypíše $$0$$, tak $$E$$ vypíše $$\mathbin{:}0\mathbin{:}$$
+- Potom $$F$$ vypíše $$M_1$$ a $$E$$ ho otestuje. Ak $$M_1$$ nikdy nevypíše $$0$$, tak $$E$$ vypíše $$\mathbin{:}0\mathbin{:}$$
 - a tak ďalej.
 
 Teraz otestujme samotný stroj $$G$$ pomocou $$E$$. Ak sa zistí, že $$G$$ nikdy nevypíše $$0$$, to znamená, že $$M$$ vypisuje $$0$$ donekonečna.
 Ak T.S. $$G$$ niekedy $$0$$ vypíše, potom $$M$$ donekonečna $$0$$ nevypisuje.
 
-Takže vo všeobecnosti - schopnosťou zistiť, či daný stroj vypisuje nejaký symbol donekonečna sme práve našli spôsob, ako zistiť, či vstupný T.S. je
+Takže vo všeobecnosti - schopnosťou zistiť, či daný stroj vypisuje nejaký symbol donekonečna, sme práve našli spôsob, ako zistiť, či vstupný T.S. je
 *circle-free*. A to je podľa predchádzajúcich výsledkov nemožné. Takže stroj $$E$$ nemôže byť vypočítateľný.
 
 # Entscheidungsproblem
 
 Entscheidungsproblem - problém rozhodnutia - požadoval algoritmus, ktorý by vedel odpovedať na otázku, či ľubovoľný matematický výrok predikátovej
-logiky (s rozšírením o axiómy aritmetiky prirodzených čísel) je vo všeobecnosti platný, alebo nie. Turing teda potreboval nájsť [kódovanie][60] takýchto
+logiky (s rozšírením o axiómy aritmetiky prirodzených čísel) je vo všeobecnosti platný alebo nie. Turing teda potreboval nájsť [kódovanie][60] takýchto
 výrokov tak, aby mohli byť vstupom do T.S., ktorý overuje ich platnosť.
 
 Postup bol - ako inak - nájsť taký *pravdivý* výrok, ktorý nepôjde dokázať žiadnym "mechanickým procesom". V tejto chvíli bol T.S. už dostatočne
-silne obhájený ako zástupca všetkých "mechanických procesov" - všetko čo je vypočítateľné, je vypočítateľné na T.S. Takže Turingovi
+silne obhájený ako zástupca všetkých "mechanických procesov" - všetko, čo je vypočítateľné, je vypočítateľné na T.S. Takže Turingovi
 stačilo nájsť výrok, ktorý by reprezentoval nevypočítateľný T.S.:
 
 1. Zostrojme pravdivý výrok $$\mathbin{Un}(M)$$, ktorý reprezentuje nejaký T.S. $$M$$. Napríklad výrok "$$M$$ nikdy nevypíše $$0$$".
@@ -213,27 +213,27 @@ stačilo nájsť výrok, ktorý by reprezentoval nevypočítateľný T.S.:
 6. Teda $$\mathbin{Un}(M)$$ nie je dokázateľný výrok (aj keď pravdivý), čo znamená, že Entscheidungsproblem je neriešiteľný.
 
 Sám Gödel veľmi uznával prácu Alana Turinga. Osobne sa nikdy nestretli,
-aj keď obidvaja istú dobu pôsobili na IAS-e. Turing tam bol na stáži u Alonza Churcha, ktorý nezávisle na Turingovi (a efektívne skôr)
+aj keď obidvaja istú dobu pôsobili na IAS-e. Turing tam bol na stáži u Alonza Churcha, ktorý nezávisle od Turinga (a efektívne skôr)
 zistil, že Entscheidungsproblem nemá riešenie.
 
-Čo je zaujímavé je, že výsledky všetkých troch velikánov - Gödela, Turinga aj Churcha - sa zhodujú, a ich formálne systémy (teória rekurzie, T.S. a
-lambda kalkul) sú ekvivalentné. To znamená, že schopnosti a sila každého z týchto formalizmov sú rovnaké. Napr. to, čo je vypočítateľné na T.S. je efektívne
+Čo je zaujímavé, je, že výsledky všetkých troch velikánov - Gödela, Turinga aj Churcha - sa zhodujú a ich formálne systémy (teória rekurzie, T.S. a
+lambda kalkul) sú ekvivalentné. To znamená, že schopnosti a sila každého z týchto formalizmov sú rovnaké. Napr. to, čo je vypočítateľné na T.S., je efektívne
 vypočítateľné lambda kalkulom, a naopak.
 
 # Limity ľudskej mysle
 
-Turingove stroje sú veľmi dôležité z niekoľko hľadísk:
+Turingove stroje sú veľmi dôležité z niekoľkých hľadísk:
 
-- Zahŕňajú základné myšlienky ako by mohol fungovať počítač a jeho "programovanie" - dobre definujú algoritmus
+- Zahŕňajú základné myšlienky, ako by mohol fungovať počítač a jeho "programovanie" - dobre definujú algoritmus
 - Umožňujú teoreticky skúmať algoritmy (nielen "vypočítateľnosť", ale aj zložitosť a ďalšie veci)
 - Prispievajú určitým spôsobom k [agnosticizmu][82]
 
 Teorém nekompletnosti, ako aj nemožnosť riešiť Entscheidungsproblem, prezrádzajú niečo viac aj o povahe nášho sveta,
-nielen o povahe matematického sveta. Podľa [Church-Turingovej tézy][64] je to, čo človek je vôbec schopný vypočítať iba to, čo vypočíta
+nielen o povahe matematického sveta. Podľa [Church-Turingovej tézy][64] je to, čo človek je vôbec schopný vypočítať, iba to, čo vypočíta
 Turingov stroj. Táto téza teda obmedzuje samotného človeka - tvrdí, že človek má úplne rovnaké limity ako Turingov stroj. Keďže hovoríme o práci
 a myslení človeka, nehovoríme o formálnom systéme. Z tohto dôvodu tézu nie je možné dokázať formálne, avšak intuitívne je úplne akceptovaná.
 
-Predstavme si, že problém rozhodnutia, alebo jemu ekvivalentný - [problém zastavenia (Halting problem)][66] ("dá sa zostrojiť T.S. ktorý zistí, či
+Predstavme si, že problém rozhodnutia alebo jemu ekvivalentný - [problém zastavenia (Halting problem)][66] ("dá sa zostrojiť T.S., ktorý zistí, či
 nejaký T.S. zastaví?") - je riešiteľný. Teda predstavme si, že existuje algoritmus (T.S.), ktorý dokáže riešiť Halting problem. Ak by sme mali takýto
 algoritmus, mohli by sme napríklad vymyslieť kompilátory, ktoré by automaticky vedeli detekovať, že naše programy sa rútia do nekonečných cyklov,
 prípadne iné užitočné veci. Tiež by sme mohli vyriešiť ťažké matematické problémy, ako napríklad [silnú Goldbachovu domnienku][65] (toto mám z
@@ -272,7 +272,7 @@ ale napríklad ani [Hilbertov desiaty problém][68] ho nemá).
 
 Postupne sa v priebehu ďalšieho rozvoja "teórie vypočítateľnosti" definovali triedy vypočítateľnosti - ako miera "vyjadrovacej sily", ktorou systém (napríklad programovací jazyk alebo iný abstraktný stroj či formalizmus) disponuje (viď napr. [Turing completeness][67]).
 
-[Noam Chomsky][71] definoval [hierarchiu formálnych jazykov][78] podľa vyjadrovacej sily, ktorú majú a korešpondoval ich s abstraktnými strojmi a
+[Noam Chomsky][71] definoval [hierarchiu formálnych jazykov][78] podľa vyjadrovacej sily, ktorú majú, a dal ich do súvislosti s abstraktnými strojmi a
 ich vyjadrovacou silou. 
 
 Tak vzniklo mnoho ďalších abstraktných strojov a automatov, ktoré ešte lepšie približujú reálne počítače a tým umožňujú ich pohodlnejšie teoreticky skúmať, napr. s vyjadrovacou
@@ -291,22 +291,22 @@ Alebo s menšou vyjadrovacou silou:
 
 Skúmanie zložitosti samotných algoritmov vyústilo do definície [tried zložitosti][79] (P, NP, NP-complete, ...).
 
-Tiež sa našla súvislosť medzi dokazovaním matematických viet a počítačovými programami ([Curry-Howardov izomorfizmus][69]), ktorý hovorí že matematický
+Tiež sa našla súvislosť medzi dokazovaním matematických viet a počítačovými programami ([Curry-Howardov izomorfizmus][69]), ktorý hovorí, že matematický
 dôkaz a program na počítači sú si ekvivalentné (je možné previesť jeden do druhého).
 
 # Záver
 
 Teória vypočítateľnosti je stále aktívny vedný odbor, ale podľa toho, čo som počul, je len málo ľudí na svete, ktorí sa mu dnes venujú.
-Ja sám nie som matematik, ani logik. Téma ma zaujala od prvej chvíle - prišla mi veľmi dôležitá, ale nešiel som cestou za príspevkami do tohto
+Ja sám nie som matematik ani logik. Téma ma zaujala od prvej chvíle - prišla mi veľmi dôležitá, ale nešiel som cestou za príspevkami do tohto
 vedného odboru. Po rokoch som sa k téme vrátil, pretože som zistil, že nakoniec ide o filozofický problém, ktorý sa dá dobre pochopiť aj bez
 zamerania na matematiku.
 
-Téma je zároveň veľmi dôležitá - celé je to o tom pochopiť, kde je hranica medzi "objavom" a "výtvorom". Aj keď je vedľajším produktom hnacích síl
-"objavu" a "výtvoru" akési obmedzenie, stále je to obmedzenie abstraktné, a dáva pocit akejsi neuchopiteľnosti - a nakoniec - život ide aj tak ďalej.
+Téma je zároveň veľmi dôležitá - celé je to o pochopení toho, kde je hranica medzi "objavom" a "výtvorom". Aj keď je vedľajším produktom hnacích síl
+"objavu" a "výtvoru" akési obmedzenie, stále je to obmedzenie abstraktné a dáva pocit akejsi neuchopiteľnosti - a nakoniec - život ide aj tak ďalej.
 
-Popri snahe pochopiť tieto obmedzenia vznikli neuveriteľné veci, ktoré boli smerodatné pre súčasný vývoj počítačov, algoritmov, a programovacích jazykov.
-Našťastie existuje obrovská množina problémov, ktoré počítače riešiť dokážu, aj keď sami majú len nepatrný "výkon" v porovnaní s Turingovými strojmi.
-Nekonečná páska T.S. a jeho neobmedzená teoretická rýchlosť samotného vykonávania ho robí tým najvýkonnejším strojom na svete, s absolútnou platnosťou.
+Popri snahe pochopiť tieto obmedzenia vznikli neuveriteľné veci, ktoré boli smerodatné pre súčasný vývoj počítačov, algoritmov a programovacích jazykov.
+Našťastie existuje obrovská množina problémov, ktoré počítače riešiť dokážu, aj keď samy majú len nepatrný "výkon" v porovnaní s Turingovými strojmi.
+Nekonečná páska T.S. a jeho neobmedzená teoretická rýchlosť samotného vykonávania ho robia tým najvýkonnejším strojom na svete, s absolútnou platnosťou.
 Napriek tomu ostávajú počítače tie najsofistikovanejšie stroje, aké kedy človek doteraz vyrobil.
 
 

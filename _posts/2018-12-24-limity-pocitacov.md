@@ -15,7 +15,7 @@ Počítač je mechanický stroj, podobne ako auto či lietadlo, avšak jeho funk
 strojom sa počítače líšia tým, že sa dajú programovať a ich funkcia sa mení podľa toho, aký program počítač
 "vykonáva". Z tohto pohľadu tak vznikajú zaujímavé otázky, napríklad - "čo sa nikdy nebude dať naprogramovať?"
 
-Naprogramovať nejaký algoritmus na počítači znamená prepísať riešenie, ktoré máme v hlave vymyslené do formálneho
+Naprogramovať nejaký algoritmus na počítači znamená prepísať riešenie, ktoré máme v hlave vymyslené, do formálneho
 zápisu daného programovacieho jazyka. Inak povedané, programovací jazyk reprezentuje formálny systém, ktorý
 má definované "symboly" (kľúčové slová, literály, riadiace prvky, atď.) a syntaktické pravidlá, ktoré definujú,
 v akom poradí alebo v akých miestach je dovolené použiť aké-ktoré symboly.
@@ -25,9 +25,9 @@ formálneho - syntakticky obmedzeného - zápisu.
 
 Keď sa nad tým zamyslíme, počítač intuitívne nechápe sémantiku (význam) toho,
 čo robí. Každý program je pomocou kompilátora preložený do elementárnych krokov, ktoré počítač dokáže vykonať.
-Tieto kroky sa nazývajú inštrukcie, a sú veľmi univerzálne. Sami o sebe teda ani neumožňujú pochopiť sémantiku celého
+Tieto kroky sa nazývajú inštrukcie a sú veľmi univerzálne. Samy o sebe teda ani neumožňujú pochopiť sémantiku celého
 algoritmu, iba ak sa pozrieme na inštrukcie ako celok "zvonku". To však počítač nedokáže - pri vykonávaní programu počítač
-vidí (zjednodušene) len jednu inštrukciu v čase. Postupne prechádza od prvej až k poslednej, a každú z nich *mechanicky*
+vidí (zjednodušene) len jednu inštrukciu v čase. Postupne prechádza od prvej až k poslednej a každú z nich *mechanicky*
 (bez ďalšieho "rozmyslu") vykonáva.
 
 Počítač je teda systém, ktorý je "uzavretý" - nevie mať "nadhľad". Nerozhoduje sa podľa metafyzického významu, intuitívneho chápania,
@@ -35,23 +35,23 @@ ktoré by prichádzalo [apriórne][59]. Je obmedzený len na to, čo je definova
 
 # Syntax a sémantika
 
-Vo všeobecnosti vo svete existujú dve druhy právd - syntaktická a sémantická pravda. Syntax jazyka obmedzuje
+Vo všeobecnosti vo svete existujú dva druhy právd - syntaktická a sémantická pravda. Syntax jazyka obmedzuje
 možnosti toho, čo v jazyku vieme vôbec vyjadriť. Podľa toho, ako "voľná" je syntax, tak "zložité" výroky vieme
 povedať v tomto jazyku. Ak porušíme syntaktické pravidlá, výroky prestávajú dávať zmysel. *Syntaktická pravda*
 je teda vyjadrenie, či výrok dáva alebo nedáva zmysel. Napríklad výrok "bude" sám o sebe zmysel nedáva, pretože syntakticky
 chýbajú podmet a prísudok. 
 
-*Sémantická pravda* hodnotí pravdivosť výroku už využitím jeho významu. Avšak na to, aby sa dal pochopiť význam výroku, musí byť tento výrok už syntakticky validný (syntakticky pravdivý). Napríklad, výrok "dnes je pekne" už umožňuje zamýšľať sa o
-jeho pravdivosti, pretože syntakticky dáva zmysel. Teda každý sémanticky pravdivý výrok musí byť pravdivý aj syntakticky, ale naopak
+*Sémantická pravda* hodnotí pravdivosť výroku už využitím jeho významu. Avšak na to, aby sa dal pochopiť význam výroku, musí byť tento výrok už syntakticky validný (syntakticky pravdivý). Napríklad výrok "dnes je pekne" už umožňuje zamýšľať sa nad
+jeho pravdivosťou, pretože syntakticky dáva zmysel. Teda každý sémanticky pravdivý výrok musí byť pravdivý aj syntakticky, ale naopak
 to platiť nemusí.
 
-Ak by sme chceli napísať všetko sémanticky pravdivé, čo vo svete platí, môžeme sa o to pokúsiť systematickým spôsobom. Ako by však mal vyzerať takýto systematický spôsob? Na to, aby sme nejaký našli, alebo prehlásili, že to nejde, sa potrebujeme zamyslieť nad sémantickou "pravdou" samotnou - čo to je "pravda"?
+Ak by sme chceli napísať všetko sémanticky pravdivé, čo vo svete platí, môžeme sa o to pokúsiť systematickým spôsobom. Ako by však mal vyzerať takýto systematický spôsob? Na to, aby sme nejaký našli alebo prehlásili, že to nejde, sa potrebujeme zamyslieť nad sémantickou "pravdou" samotnou - čo to je "pravda"?
 
-Intuitívne chápeme pravdu ako výrok, ktorý "platí". Ale výrok môže platiť len **relatívne** - tj. len vo svete, ktorý poznáme. Existujú ale výroky, ktoré platia aj **absolútne** (objektívne)? Na túto otázku existujú rôzne odpovede a názory, ktoré vyústili do filozofických smerov, ako napríklad pozitivizmus, formalizmus a realizmus.
+Intuitívne chápeme pravdu ako výrok, ktorý "platí". Ale výrok môže platiť len **relatívne** - t. j. len vo svete, ktorý poznáme. Existujú ale výroky, ktoré platia aj **absolútne** (objektívne)? Na túto otázku existujú rôzne odpovede a názory, ktoré vyústili do filozofických smerov, ako napríklad pozitivizmus, formalizmus a realizmus.
 
 # Naša realita - formálny systém
 
-Keď sme rozoberali možnosť existencie relatívnej pravdy, logicky by mohli existovať niekoľko rôznych "svetov", a v každom z nich budeme vedieť odvodiť jemu vlastné výroky a zamýšľať sa nad ich pravdivosťou v danom svete. Takýto "svet" sa medzi formalistami začal nazývať [formálny systém][38].
+Keď sme rozoberali možnosť existencie relatívnej pravdy, logicky by mohlo existovať niekoľko rôznych "svetov" a v každom z nich budeme vedieť odvodiť jemu vlastné výroky a zamýšľať sa nad ich pravdivosťou v danom svete. Takýto "svet" sa medzi formalistami začal nazývať [formálny systém][38].
 
 Formálny systém definuje "svet", v ktorom môžeme tvoriť výroky a odvodzovať jednoduchšie výroky do zložitejších. Na tvorbu a odvodzovanie výrokov systém definuje presné pravidlá. Vo všeobecnosti má definované:
 
@@ -62,13 +62,13 @@ Formálny systém definuje "svet", v ktorom môžeme tvoriť výroky a odvodzova
 Axiómy tvoria základné pravdy, ktoré už nie je možné rozložiť na ešte "základnejšie" pravdy. Je to "základ sveta", jeho "definícia".
 Tým, že sa jednotlivé formálne systémy líšia - majú rôzne axiómy, symboly a pravidlá odvodzovania, tak každý systém svojím spôsobom definuje svoju relatívnu sémantickú pravdu.
 
-Sémantickú pravdu vo formálnom systéme vieme mechanicky odvodiť - teda dokázať, či daný výrok je pravdivý, alebo nepravdivý. Majme teda výrok X, ktorý je v danom formálnom systéme syntakticky validný. Jeho pravdivosť vieme dokázať tak, že sa pokúsime "znovuobjaviť" tento výrok:
+Sémantickú pravdu vo formálnom systéme vieme mechanicky odvodiť - teda dokázať, či daný výrok je pravdivý alebo nepravdivý. Majme teda výrok X, ktorý je v danom formálnom systéme syntakticky validný. Jeho pravdivosť vieme dokázať tak, že sa pokúsime "znovuobjaviť" tento výrok:
 
 1. aplikáciou povolených pravidiel odvodenia na axiómy, čím vzniknú prvé zložené výroky
 2. Porovnáme nový výrok s výrokom X. Ak sú výroky zhodné, prehlásime X za pravdivý.
 3. Pokračujeme aplikáciou pravidiel odvodenia na zložené výroky, čím vytvárame ďalšie výroky
-4. Opakujeme body 2 až 3 dovtedy, kým sme neodvodili všetky možné výroky, alebo nenašli zhodu s výrokom X.
-   Ak po vygenerovaní všetkých výrokov sme stále nedospeli k výroku X, tak je výrok X nepravdivý.
+4. Opakujeme body 2 až 3 dovtedy, kým sme neodvodili všetky možné výroky alebo nenašli zhodu s výrokom X.
+   Ak sme po vygenerovaní všetkých výrokov stále nedospeli k výroku X, tak je výrok X nepravdivý.
 
 Pri troche šťastia sa nám podarí odvodiť výrok, ktorého pravdivosť chceme zistiť. Ak sa to podarí, tak výrok môžeme prehlásiť
 za "sémanticky pravdivý" v danom formálnom systéme. Samozrejme, je dôležité odvodzovať výroky systematicky, aby v tom nebol
@@ -89,8 +89,8 @@ Ak zhrniem najdôležitejšie doterajšie poznatky:
 Intuitívne - počítačom budeme vedieť naprogramovať len problémy, ktoré nebudú vyžadovať intuitívne chápanie. Teda všetko
 to, čo sa dá vypočítať "mechanicky", len slepým nasledovaním pravidiel "formálneho systému".
 
-Toto tvrdenie je dôležité preto, lebo sa ukazuje, že to, čoho je sémantika schopná pochopiť intuitívne, tvorí "väčšiu množinu"
-než to, čoho je možné dosiahnuť mechanickým odvodzovaním (vykonávaním). Inými slovami, vieme vytvoriť výroky, ktoré sa mechanickým
+Toto tvrdenie je dôležité preto, lebo sa ukazuje, že to, čo je sémantika schopná pochopiť intuitívne, tvorí "väčšiu množinu"
+než to, čo je možné dosiahnuť mechanickým odvodzovaním (vykonávaním). Inými slovami, vieme vytvoriť výroky, ktoré sa mechanickým
 odvodzovaním nedajú odvodiť, ale predsa sú syntakticky validné a sémanticky pravdivé.
 
 Jednými z prvých prelomových aktérov v dokazovaní týchto tvrdení boli [Kurt Gödel][6] a [Alan Turing][7]:
@@ -118,9 +118,9 @@ Na konci každej "otázkovej" kapitoly oznámkoval kurzívou napísané latinsk�
 
 > Nevieme a nebudeme vedieť.
 
-Tomuto prístupu sa postavil na odpor (svojej doby asi najslávnejší) nemecký matematik [David Hilbert][20], ktorý bol zhodou okolností jedným z prvých propagátorov používania formálnych systémov. Hilbert bol veľmi citlivý na tento *Ignorabimus* aj preto, lebo matematika začiatkom 20. storočia prežívala vážnu [krízu][37], z ktorej bol Hilbert frustrovaný. Hilbert však veril, že je možné nájsť riešenie a preto nechcel slepo prijať ignoranciu.
+Tomuto prístupu sa postavil na odpor (vo svojej dobe asi najslávnejší) nemecký matematik [David Hilbert][20], ktorý bol zhodou okolností jedným z prvých propagátorov používania formálnych systémov. Hilbert bol veľmi citlivý na tento *Ignorabimus* aj preto, lebo matematika začiatkom 20. storočia prežívala vážnu [krízu][37], z ktorej bol Hilbert frustrovaný. Hilbert však veril, že je možné nájsť riešenie, a preto nechcel slepo prijať ignoranciu.
 
-Kríza spočívala hlavne v tom, že samotné základy vtedajšej matematiky - naivná teória množín, umožňovala tvorbu paradoxov - teda výrokov, ktoré platia a neplatia zároveň. Nebezpečie spočíva v tom, že ak tvrdenie `P` platí aj neplatí, pravidlo [modus ponens][41] (z `P` vyplýva `Q`) nám umožní odvodiť prakticky čokoľvek, aj nepravdivé výroky a celá matematika sa tak zrúti ako domček z karát.
+Kríza spočívala hlavne v tom, že samotné základy vtedajšej matematiky - naivná teória množín - umožňovali tvorbu paradoxov - teda výrokov, ktoré platia a neplatia zároveň. Nebezpečie spočíva v tom, že ak tvrdenie `P` platí aj neplatí, pravidlo [modus ponens][41] (z `P` vyplýva `Q`) nám umožní odvodiť prakticky čokoľvek, aj nepravdivé výroky a celá matematika sa tak zrúti ako domček z karát.
 
 Táto kríza doviedla Hilberta ku spísaniu 23 dovtedy známych [matematických problémov][21], ktoré odprezentoval na Parížskom kongrese
 v roku 1900. Tam vyzval matematikov, ako svoju armádu, k ich riešeniu. V roku 1932, keď odchádzal do dôchodku, zhrnul svoju záverečnú reč aj [v rádiu][33], kde okrem iného povedal:
@@ -141,28 +141,28 @@ Niektoré príklady [Hilbertovho programu][61]:
 
 # "De-paradoxizácia"
 
-Už [Aristoteles][51] (4. stor. pred n.l.) si všimol, že vo vetách sú dôležité len určité slová, a zvyšok nemá vplyv na
+Už [Aristoteles][51] (4. stor. pred n. l.) si všimol, že vo vetách sú dôležité len určité slová a zvyšok nemá vplyv na
 "logickosť" výroku, ktorý sa tak dá nahradiť premennými. Avšak prvé pravidlá odvodzovania výrokovej logiky, o ktorej v podstate hovoríme,
-objavili nezávisle na sebe v úplne rôznych historických obdobiach [Chrisippus][50] (3. storočie pred n.l.), Peter Abelard (12. storočie),
+objavili nezávisle od seba v úplne rôznych historických obdobiach [Chrisippus][50] (3. storočie pred n. l.), Peter Abelard (12. storočie),
 Gottfried Leibniz (17-18. storočie), s ďalšími rozšíreniami od Georgea Boola a Augusta De Morgana.
 
-Až [Gottlob Frege][22] prišiel s jeho [logikou prvého rádu][9] (predikátovou logikou), ktorú definoval pomocou [naivnej teórie množín][23]
-([Cantor][24]). Predikátová logika pridáva možnosť použitia všeobecných kvantifikátorov a ukázal, že pomocou nej je možné formálnym spôsobom
+Až [Gottlob Frege][22] prišiel so svojou [logikou prvého rádu][9] (predikátovou logikou), ktorú definoval pomocou [naivnej teórie množín][23]
+([Cantor][24]). Predikátová logika pridáva možnosť použitia všeobecných kvantifikátorov a Frege ukázal, že pomocou nej je možné formálnym spôsobom
 zapísať axiómy aritmetiky, čo bol veľký krok k ďalšej formalizácii.
 
 Frege očakával [tri predpoklady dobrej matematickej teórie][40]:
 
 1. je konzistentná: nemožnosť dokázať protichodné tvrdenia
-2. je úplná: každý výrok je buď dokázateľný alebo zamietnuteľný (tj. jeho negácia je dokázateľná)
+2. je úplná: každý výrok je buď dokázateľný, alebo zamietnuteľný (t. j. jeho negácia je dokázateľná)
 3. je rozhodnuteľná (existuje "rozhodovacia procedúra", ktorá dokáže overiť pravdivosť každého výroku)
 
 Avšak Fregeho logika s rozšírením o pravidlá aritmetiky bola nekonzistentná. Prišiel na to aj [Bertrand Russell][12], ktorý
 vytvoril "paradoxnú" množinu, známu aj pod názvom [Russellov paradox][2]:
 
-> Zostrojme množinu, ktorá obsahuje všetky množiny neobsahujúce samých seba.
+> Zostrojme množinu, ktorá obsahuje všetky množiny neobsahujúce samy seba.
 
 Patrí práve definovaná množina do samej seba? Ak nie, tak by tam patriť mala - podľa definície. Ak ju tam však pridáme,
-tak by obsahovala samu seba a teda - podľa definície - by sme ju mali odobrať. Takáto množina sa nedá zostrojiť,
+tak by obsahovala samu seba, a teda - podľa definície - by sme ju mali odobrať. Takáto množina sa nedá zostrojiť,
 ide o logický paradox.
 
 A práve kvôli paradoxom sa veľa diskutovalo o vzťahu matematiky a reálneho sveta:
@@ -269,14 +269,14 @@ document.getElementById('crisis').appendChild(chart(data, [
 </script>
 
 K vyššie uvedenému "stromu" treba povedať, že sa niektorí matematici ťažko radia do jedného vyhradeného smeru, pretože
-svojou prácou prispeli k viacerým smerom. Taktiež, matematický realizmus ako taký nevznikol ako priama odpoveď na
+svojou prácou prispeli k viacerým smerom. Taktiež matematický realizmus ako taký nevznikol ako priama odpoveď na
 otázku krízy, existoval už dávno predtým ako presvedčenie, že matematika sa nedá oddeliť od intuitívneho (reálneho) sveta.
 
 # Principia Mathematica
 
 Jedným z cieľov formalistov, hlavne Hilberta, bolo "sformalizovať" celú dovtedy známu matematiku, pretože formalisti zastávali názor,
 že dôvod možnosti vzniku paradoxov je dovolenie definovania axiómov intuitívne. Formalisti verili, že pravdy v matematike sú
-konzistentné a úplné, ak ich vieme odvodiť len z formálneho systému, ktorý obsahuje, ako som už uviedol - premenné, axiómy (zapísané v jazyku
+konzistentné a úplné, ak ich vieme odvodiť len z formálneho systému, ktorý obsahuje, ako som už uviedol, premenné, axiómy (zapísané v jazyku
 tohto systému a nie intuitívne) a pravidlá na manipuláciu s axiómami.
 
 Tento cieľ vyžadoval vytvorenie jednotného formálneho jazyka ([notácie][27] a [deduktívneho systému][26]), v ktorom by bolo
@@ -292,12 +292,12 @@ Russell s Whiteheadom si mysleli, že majú všetko potrebné už pripravené, s
 
 Začali písať trojzväzkovú knihu s názvom [Principia Mathematica][11] (roky 1910, 1912, 1913). Napísať prvý zväzok trvalo
 však [príliš dlho][14], Russellovi sa stále nedarilo odvodiť všetky dôkazy len z týchto axiómov a logickej dedukcie. Nakoniec ho
-Whitehead prinútil knihu vydať tak ako je. Zaujímavosťou tejto knihy je napríklad dôkaz (so všetkým potrebným na zhruba 300
+Whitehead prinútil knihu vydať tak, ako je. Zaujímavosťou tejto knihy je napríklad dôkaz (so všetkým potrebným na zhruba 300
 strán), že $$1 + 1 = 2$$:
 
 ![Proof](/assets/img/limity-pocitacov/proof.png){: w="550" }
 
-O chýbajúcom dôkaze konzistencie axiómov aritmetiky sa už vedelo, dôkaz požaduje Hilbert v jeho [druhom probléme][35], ale
+O chýbajúcom dôkaze konzistencie axiómov aritmetiky sa už vedelo, dôkaz požaduje Hilbert vo svojom [druhom probléme][35], ale
 každý to považoval len za "formalitu", ktorú treba spraviť. 
 
 # Teorém nekompletnosti
@@ -306,7 +306,7 @@ každý to považoval len za "formalitu", ktorú treba spraviť.
 logika (bez rozšírenia o aritmetiku) je úplná. To znamená, že mechanickou procedúrou (algoritmom) vieme odvodiť všetky pravdivé výroky
 tejto logiky.
 
-A tak Gödel pokračoval v práci na druhom Hilbertovom probléme - konzistencii aritmetiky. Počas tejto práce objavil jeho najslávnejší
+A tak Gödel pokračoval v práci na druhom Hilbertovom probléme - konzistencii aritmetiky. Počas tejto práce objavil svoj najslávnejší
 teorém: [teorém nekompletnosti][39] (publikoval ho roku 1931). Boli to v podstate dva teorémy, no z prvého vyplýva druhý:
 
 > Žiadny konzistentný systém axiómov, dostatočne silný na odvodenie aritmetiky a ktorého výroky vieme systematicky odvodiť, nie je
@@ -316,7 +316,7 @@ A druhý teorém:
 
 > Takýto systém nemôže dokázať vlastnú konzistenciu. 
 
-Gödel odvodil tento teorém zo snahy formálne zapísať variantu [paradoxu klamára][44] (jeden z najstarších paradoxov vôbec):
+Gödel odvodil tento teorém zo snahy formálne zapísať variant [paradoxu klamára][44] (jeden z najstarších paradoxov vôbec):
 
 - *Jeden Kréťan povedal, že všetci Kréťania sú klamári.*  ... Klame či neklame tento Kréťan?
 - Iný variant: *Holič holí len mužov, ktorí neholia samých seba.*    ... Má sa teda holič sám oholiť, či nie?
@@ -327,7 +327,7 @@ V druhom kroku dokázal, že systematickým spôsobom nie je možné odvodiť z 
 Z toho vyplýva, že ide o pravdivý výrok - ale vieme to len podľa našej intuície, pretože hovorí pravdu - nedokázali sme odvodiť ani výrok,
 ani jeho negáciu, teda *nie je ho možné dokázať v rámci tohto formálneho systému*.
 
-Konzistenciu formálneho systému, ktorý má silu na odvodenie aritmetiky sa nakoniec podarilo dokázať, ale pomocou iného formálneho systému.
+Konzistenciu formálneho systému, ktorý má silu na odvodenie aritmetiky, sa nakoniec podarilo dokázať, ale pomocou iného formálneho systému.
 Dokázal ju [Gentzen][63] v roku 1936. 
 
 Dôsledky tohto teorému sú veľmi závažné, pretože z neho vyplýva, že v čisto formálnej matematike môžu existovať výroky, ktoré budú pravdivé,
@@ -368,11 +368,11 @@ na začiatku 20. storočia, ktoré viedlo k veľkému matematicko-filozofickému
 dáva do súvislosti dedukciu, logiku a filozofiu. Popiera matematický relativizmus, prúd, ktorý je aj dnes ešte dosť
 populárny pod pojmom - "všetko je relatívne".
 
-Matematici 20. storočia ako napr. Hilbert a potom hlavne pozitivisti, verili v myšlienku "relativizmu" - matematika je
-len dielom, výtvorom, človeka, a ako myšlienkový nástroj má málo spoločné s reálnym svetom. Gödel naopak veril, že
+Matematici 20. storočia, ako napr. Hilbert a potom hlavne pozitivisti, verili v myšlienku "relativizmu" - matematika je
+len dielom, výtvorom človeka a ako myšlienkový nástroj má málo spoločného s reálnym svetom. Gödel naopak veril, že
 matematika s reálnym svetom súvisí a nie je ju možné od neho oddeliť. Práve teorém nekompletnosti vyjadruje tento vzťah.
-Existencia diskrétnych a počitateľných objektov v tomto svete, ak existujú izolovane len v tomto svete, sú podľa Gödela
-paralelou ku axiomatickému systému aritmetiky. Tým pádom, nadnesene povedané, je možné, že reálny svet skrýva pravdy,
+Existencia diskrétnych a počitateľných objektov v tomto svete, ak existujú izolovane len v tomto svete, je podľa Gödela
+paralelou k axiomatickému systému aritmetiky. Tým pádom, nadnesene povedané, je možné, že reálny svet skrýva pravdy,
 ktoré nikdy nebudeme vedieť pochopiť.
 
 V druhej časti článku sa budem zaoberať problémom rozhodnutia, známym pod názvom Entscheidungsproblem. Popíšem hlavne

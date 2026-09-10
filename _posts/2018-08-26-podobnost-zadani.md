@@ -15,7 +15,7 @@ sa z niektorých zadaní dalo vyznať len po preštudovaní iného hotového rie
 
 # Úvodné slová
 
-Plagiát v istom slova zmysle "nadobudne život" vtedy, keď človek kópiu, ktorú vytvoril, začne vydávať za originál. V tom je
+Plagiát v istom zmysle slova "nadobudne život" vtedy, keď človek kópiu, ktorú vytvoril, začne vydávať za originál. V tom je
 podľa mňa podstata tej "zlej tváre" plagiátorstva. Pretože ide o určitú formu klamstva, nepoctivosti a snahy o získanie niečoho
 nezaslúžene.
 
@@ -25,12 +25,12 @@ najefektívnejších foriem učenia sa. Keď som začínal s programovaním, naj
 ktorým som nerozumel alebo ktoré boli príliš previazané a veľké. Alebo som z cudzích kódov "vykrádal" použiteľné užitočné funkcie
 do mojich vlastných programov určených na úplne iný účel.
 
-To mi umožnilo sústrediť sa na to, čo som práve chcel naprogramovať a ignorovať to, čo v danej chvíli nebolo pre mňa dôležité,
-ale trebalo to v programe mať. Myslím si, že práve tento prístup mi veľmi pomohol udržať si motiváciu a chuť ostať pri programovaní.
-Niektorých mojich známych totiž odradilo to, že sa na niečom zasekli. Na začiatku je podľa mňa správne snažiť "skosiť"
+To mi umožnilo sústrediť sa na to, čo som práve chcel naprogramovať, a ignorovať to, čo v danej chvíli nebolo pre mňa dôležité,
+ale bolo to treba v programe mať. Myslím si, že práve tento prístup mi veľmi pomohol udržať si motiváciu a chuť ostať pri programovaní.
+Niektorých mojich známych totiž odradilo to, že sa na niečom zasekli. Na začiatku je podľa mňa správne snažiť sa "skosiť"
 učiacu krivku čo najviac, aj umelým spôsobom, aby boli veci prístupnejšie.
 
-Dokonca aj dnes kopírujeme - či už kód alebo myšlienky - hlavne zo [Stack Overflow][34], ktoré však, [zdá sa, oficiálne nikoho netrápi](https://meta.stackexchange.com/questions/270014/is-copy-pasting-code-from-stack-overflow-an-infringement-to-cc-by-sa-3-0-or-is-i).
+Dokonca aj dnes kopírujeme - či už kód alebo myšlienky - hlavne zo [Stack Overflow][34], čo však, [zdá sa, oficiálne nikoho netrápi](https://meta.stackexchange.com/questions/270014/is-copy-pasting-code-from-stack-overflow-an-infringement-to-cc-by-sa-3-0-or-is-i).
 
 ## O čom bude blogpost
 
@@ -41,14 +41,14 @@ desatinné číslo od $$0$$ (sú rozdielne) do $$1$$ (sú totožné).
 ## Vplyv na výsledok
 
 Som presvedčený o existencii predpokladov, ktoré musia platiť, aby porovnávanie dvoch riešení malo vôbec zmysel. Inými slovami,
-aby pri použití optimálnej metódy boli všetky výsledky rovnako pravdepodobné. Teda aby sme nevedeli určiť výsledok ešte predtým ako
+aby pri použití optimálnej metódy boli všetky výsledky rovnako pravdepodobné. Teda aby sme nevedeli určiť výsledok ešte predtým, ako
 použijeme danú porovnávaciu metódu.
 
 Výsledok by sme vedeli určiť napríklad v prípade, ak by sme mali dve ortogonálne (nesúvisiace) zadania. Riešenia by v
 takom prípade boli už z podstaty rozdielne. Rovnako rozdielne riešenia (aspoň syntakticky) by sme dostali, keby boli použité
 rozdielne programovacie jazyky. Zadanie teda musí byť jedno, a povolený jeden spoločný programovací jazyk.
 
-Na druhej strane, spoľahlivé výsledky - za predpokladu použitia optimálneho algoritmu - môžeme dostať len ak samotné
+Na druhej strane, spoľahlivé výsledky - za predpokladu použitia optimálneho algoritmu - môžeme dostať len vtedy, ak samotné
 zadanie *umožní* vytvárať rôznorodé riešenia. Problém v tomto prípade spôsobuje tzv. boiler-plate kód, ktorému sa nemusí
 vždy dať vyhnúť už z podstaty a preto ho môžeme čakať v každom riešení. S problémom sa dá vysporiadať tak, že budeme očakávať
 istú mieru podobnosti, ktorú nebudeme považovať za plagiátorstvo.
@@ -69,7 +69,7 @@ a h o j
 </pre>
 
 Z tohto príkladu hneď vidíme, že by stačilo pridať písmeno "a" na začiatok druhého slova, alebo ho odobrať zo začiatku prvého
-slova aby bola dosiahnutá zhoda. Algoritmus preto nerozlišuje, ktorú operáciu vykonáme, efekt je rovnaký - potrebujeme práve
+slova, aby bola dosiahnutá zhoda. Algoritmus preto nerozlišuje, ktorú operáciu vykonáme, efekt je rovnaký - potrebujeme práve
 *jednu* zmenu znaku.
 
 Menej viditeľný minimálny počet potrebných zmien sa musí robiť viac systematicky. V tom prípade nám počiatočná pozícia dvoch textov
@@ -95,17 +95,17 @@ Tento strom vizualizuje tri operácie:
 2. Posun druhého slova doprava
 3. Posun obidvoch slov doprava
 
-Každá cesta, tvorená unikátnym "zostupom" z koreňa stromu až do listu prechádza určitým počtom vrcholov a hrán. Každej hrane
+Každá cesta, tvorená unikátnym "zostupom" z koreňa stromu až do listu, prechádza určitým počtom vrcholov a hrán. Každej hrane
 priradíme číslo buď 0 alebo 1 takto:
 
 1. Ak hrana prechádza do situácie, v ktorej sa mení pozícia jedného zo slov, priradíme jej číslo 1
-2. Ak hrana prechádza do situácie, v ktorej sa mení pozícia oboch slov tak číslo priradíme takto:
+2. Ak hrana prechádza do situácie, v ktorej sa mení pozícia oboch slov, tak číslo priradíme takto:
     1. Ak sa písmená na poslednej pozícii rovnajú, tak 0
     2. Ak sa písmená na poslednej pozícii nerovnajú, tak 1
 
 Každú cestu teda ohodnotíme týmito "bodmi", ktoré spočítame. Následne vyberieme tú cestu, ktorá má minimálny počet bodov. 
 
-V našom prípade však nepotrebujeme vedieť presný postup ako docielime zhodu, postačí nám vedieť len hodnotu tej najkratšej cesty.
+V našom prípade však nepotrebujeme vedieť presný postup, ako docielime zhodu, postačí nám vedieť len hodnotu tej najkratšej cesty.
 Túto hodnotu potom normalizujeme na rozsah od $$0$$ do $$1$$ takto:
 
 $$norm = levenshtein(text_1, text_2)/max(|text_1|, |text_2|)$$
@@ -129,7 +129,7 @@ def levenshtein(i:Int, j: Int) = {
 ```
 
 Tento algoritmus vlastne prejde celý hore-spomínaný "strom" a vyberie tú najkratšiu cestu k zhode. Čo si však môžeme
-všimnúť je, že určité časti stromu sa opakujú. To je väčšinou príznakom, že môžeme využiť techniku dynamického programovania
+všimnúť, je, že určité časti stromu sa opakujú. To je väčšinou príznakom, že môžeme využiť techniku dynamického programovania
 a znížiť tak asymptotickú zložitosť algoritmu.
 
 Dynamické programovanie znamená väčšinou ukladanie si medzivýsledkov výpočtu a ich následné využitie, ak sa dostaneme
@@ -165,7 +165,7 @@ do situácie, ktorú sme už predtým počítali. Varianta pomocou dynamického 
   }
 ```
 
-V poslednom riadku sa deje normalizácia, ktorú potrebujeme ak chceme výsledok v rozsahu 0 - 1, podľa pôvodnej
+V poslednom riadku sa deje normalizácia, ktorú potrebujeme, ak chceme výsledok v rozsahu 0 - 1, podľa pôvodnej
 definície. 
 
 ## Problémy distance algoritmov
@@ -181,13 +181,13 @@ Z toho vyplýva, že použitie edit distance algoritmov samo o sebe nie je vhodn
 vieme zlepšiť, keď z programov najprv vyhodíme nadbytočné medzery a komentáre (program "normalizujeme") a až potom aplikujeme
 algoritmus.
 
-Pri normalizácii si však musíme dať pozor na to, aby sme zas neodstraňovali literály, a štýl pisateľa (napr. zbytočné bloky,
+Pri normalizácii si však musíme dať pozor na to, aby sme zas neodstraňovali literály a štýl pisateľa (napr. zbytočné bloky,
 alternatívne zápisy ako napr. if-then vs. terciálny operátor, atď.). Štýl je totiž jedna z charakteristík, ktorá je vlastná
 konkrétnemu autorovi.
 
 # Kosínusová podobnosť
 
-Jedným zo spôsobov, ako sa vyrovnať s rôznou váhou jednotlivých tokenov pri porovnávaní je - ako som spomenul - odstrániť
+Jedným zo spôsobov, ako sa vyrovnať s rôznou váhou jednotlivých tokenov pri porovnávaní, je - ako som spomenul - odstrániť
 nepodstatné tokeny. Avšak nie vždy musia mať tokeny binárnu dôležitosť; niekedy chceme dať tokenom skutočnú váhu. Umožní
 nám to napríklad metóda, ktorá sa používa hlavne pri spracovávaní prirodzeného textu. Tento algoritmus berie do úvahy
 váhu slov, pričom váha slova je definovaná ako jeho početnosť v texte.
@@ -197,7 +197,7 @@ Pozrime sa na obrázok z [Wikipédie][30]:
 ![TwoVectors](/assets/img/podobnost-zadani/Dot_Product.svg)
 
 Vidíme na ňom dva vektory, $$\vec{a}$$ a $$\vec{b}$$, ktoré sú umiestnené tak, aby mali rovnaký začiatok. Z matematiky
-vieme, že vektor je definovaný len svojou veľkosťou a smerom, preto si vektory môžeme umiestniť ako chceme, keď zachováme
+vieme, že vektor je definovaný len svojou veľkosťou a smerom, preto si vektory môžeme umiestniť, ako chceme, keď zachováme
 tieto dve veci.
 
 Ako by sa dali takéto dva vektory porovnať? Jednoduchšie sa porovnávajú dĺžky: majme teda dĺžky $$m$$ a $$n$$,
@@ -227,8 +227,8 @@ Je to jedno číslo, ktoré má známe vlastnosti, napríklad:
 - ak majú vektory rovnaký smer aj veľkosť (sú zhodné), platí:
   $$a \cdot b = a \cdot a = \|\vec{a}\| \|\vec{a}\| = \|\vec{a}\|^2$$
 
-Sú to tri zaujímavé situácie - prvá a posledná nie náhodou pripomína dva extrémy podobnosti, ako sme si ich definovali
-na začiatku (0 pre žiadnu podobnosť a 1 pre zhodu). Ale len pripomína - skalárny súčin síce je "reprezentatívnym" číslom
+Sú to tri zaujímavé situácie - prvá a posledná nie náhodou pripomínajú dva extrémy podobnosti, ako sme si ich definovali
+na začiatku (0 pre žiadnu podobnosť a 1 pre zhodu). Ale len pripomínajú - skalárny súčin síce je "reprezentatívnym" číslom
 vzájomnej polohy a veľkosti dvoch vektorov (hlavnou myšlienkou merania ich "podobnosti"), ale ešte nie sme hotoví, pretože
 číslo potrebujeme normalizovať.
 
@@ -237,7 +237,7 @@ nám tým vznikne "pomer" dvoch vektorov:
 
 $$cos(\theta) = \frac{a \cdot b}{\|\vec{a}\| \|\vec{b}\|}$$
 
-Tu sa teoreticky môžeme zaseknúť, pretože vidíme, že na to aby sme mohli vypočítať $$cos(\theta)$$, potrebujeme vedieť skalárny
+Tu sa teoreticky môžeme zaseknúť, pretože vidíme, že na to, aby sme mohli vypočítať $$cos(\theta)$$, potrebujeme vedieť skalárny
 súčin dvoch vektorov, na ktorý potrebujeme práve $$cos(\theta)$$. Dostali sme sa do nekonečnej rekurzie :)
 
 ## Skalárny súčin algebraicky
@@ -271,7 +271,7 @@ pre kosínusovú podobnosť:
 
 $$cos(\theta) = \frac{\sum_i{a_i b_i}}{\|\vec{a}\| \|\vec{b}\|}$$
 
-Je myslím veľmi zaujímavé, že takto definovaná kosínusová podobnosť kombinuje obe definície skalárneho súčinu - geometrického
+Je, myslím, veľmi zaujímavé, že takto definovaná kosínusová podobnosť kombinuje obe definície skalárneho súčinu - geometrického
 aj algebraického.
 
 
@@ -350,13 +350,13 @@ A pre naše vektory $$\vec{a}$$ a $$\vec{b}$$, teda pre vety:
 2. "daruj mi kvet, daruj mi aj vázu"
 
 dostávame kosínusovú podobnosť $$81\%$$. Pre porovnanie, naša Levenshteinova podobnosť dáva hodnotu $$62\%$$.
-Zo siedmich slov sú päť rovnakých, teda $$\frac{5}{7} = 0.71 \equiv 71\%$$ (pri rovnakej váhe slov). Kosínusová vzdialenosť
+Zo siedmich slov je päť rovnakých, teda $$\frac{5}{7} = 0.71 \equiv 71\%$$ (pri rovnakej váhe slov). Kosínusová vzdialenosť
 vzala do úvahy aj opakujúce sa slová v rámci jedného textu ("daruj" a "mi"), takže pre ňu texty vyzerali skôr ako:
 
 1. `[("daruj",2), ("mi",2), ("ružu,",1), ("aj",1), ("leukoplast",1)]`
 2. `[("daruj",2), ("mi",2), ("kvet,",1), ("aj",1), ("vázu",1)]`
 
-Početnosť slov je "váhou" slova, a v tomto prípade máme zhodu v tých najviac vážených slovách ("daruj" a "mi"), čo
+Početnosť slov je "váhou" slova a v tomto prípade máme zhodu v tých najviac vážených slovách ("daruj" a "mi"), čo
 viac prispieva k celkovej zhode textov, a preto je hodnota vyššia ($$81\%$$).
 
 Ak by vety mali tvar:
@@ -376,7 +376,7 @@ Hlavným problémom algoritmov typu "vector similarity" je váha slova definovan
   napriek tomu, že budú rozdielne
 - sémantické rozdiely syntakticky priveľmi podobných programov sa do úvahy neberú. To však platí pre všetky metódy.
 
-Príklad posledného bodu sú funkcie `max` a `min`:
+Príkladom posledného bodu sú funkcie `max` a `min`:
 
 ```java
 int max (int[] list) {
@@ -408,7 +408,7 @@ Kosínusová podobnosť dáva v tomto prípade $$99.7\%$$ a levenshtein $$97.5\%
 programy skutočne veľmi podobné. Levenshtein tu dal trochu lepší výsledok, lebo zavážili rozdielne znaky, zatiaľ čo v prípade kosínusovej podobnosti
 boli názvy funkcií ignorované, rovnako tak aj názvy premenných.
 
-Sémantické rozdiely, ktoré sú definované jedným rozdielnym "znamienkom" (v našom prípade `<` vs. `>`) nie je možné brať do úvahy bez toho, aby
+Sémantické rozdiely, ktoré sú definované jedným rozdielnym "znamienkom" (v našom prípade `<` vs. `>`), nie je možné brať do úvahy bez toho, aby
 sme program simulovali. Podobnosť zdrojových kódov je a bude navždy obmedzená len na syntax, prípadne môže byť teoreticky rozšírená o rozpoznávanie
 nejakých známych "patternov" s preddefinovanou váhou. Takéto patterny sa však dajú definovať a hľadať už len s pomocou
 [derivačného stromu][21] (stromová štruktúra sparsovaného textu) za spolupráce parsera. Metódy ako Levenshtein alebo Kosínusová vzdialenosť sú implementovateľné ľahko, postačí jednoduchý lexikálny analyzátor (na ktorý často stačí regulárna gramatika).
@@ -427,17 +427,17 @@ Bude nás teda zaujímať tzv. "vzdialenosť medzi úpravami" - anglicky to znie
 patria aj niektoré algoritmy na porovnávanie grafov/stromov, ktoré naznačím nižšie - kde hovoríme o tzv.
 "[graph edit distance][11]", resp. "[tree edit distance][19]".
 
-Pre jednoduchosť zatiaľ vypusťme znalosť gramatiky, a skúsme nájsť algoritmy, ktoré pracujú len s čistým textom.
+Pre jednoduchosť zatiaľ vypusťme znalosť gramatiky a skúsme nájsť algoritmy, ktoré pracujú len s čistým textom.
 Máme hneď niekoľko možností:
 
 - [Levenshteinova vzdialenosť][14], ktorá podporuje operácie: vkladanie (insert), zmazanie (delete) a
   substitúciu (substitution) s rovnakou váhou
 - [Damerau–Levenshteinova][12] vzdialenosť, ktorá naviac podporuje transpozíciu písmen
 - [Hammingova vzdialenosť][15], ktorá podporuje len substitúciu a dá sa preto použiť len pre rovnako dlhé texty
-- [Jaro-Winklerova][13] vzdialenosť, ktorá podporuje len transpozíciu písmen, a zvyšuje podobnosť textov ktoré sú zhodné
+- [Jaro-Winklerova][13] vzdialenosť, ktorá podporuje len transpozíciu písmen, a zvyšuje podobnosť textov, ktoré sú zhodné
   na dlhšom prefixe
 
-Vlastnosťou edit-distance algoritmov, ako už bolo spomenuté je, že sú citlivé na presnosť a poradie znakov.
+Vlastnosťou edit-distance algoritmov, ako už bolo spomenuté, je, že sú citlivé na presnosť a poradie znakov.
 
 ## Izomorfizmus derivačných stromov
 
@@ -453,14 +453,14 @@ V súčasnosti existuje niekoľko kategórií na porovnávanie [podobnosti grafo
 
 1. odpoveď na otázku ["sú stromy izomorfné?"][22] (typu áno/nie). Ale to nám nedá dostatočne jemnú granularitu.
 2. jemnejšiu granularitu (napr. [tu][23] alebo články [tu][25]) nám dá odpoveď na otázku - aký je minimálny počet grafových úprav
-  na jednom derivačnom strome (je jedno ktorom), aby sme dosiahli izomorfizmus. Je to varianta otázky: *"Do akej miery v strome existujú rovnaké podstromy?"* - alebo ešte inak - *"Do akej miery programy obsahujú rovnaké vzory?"*
+  na jednom derivačnom strome (je jedno, ktorom), aby sme dosiahli izomorfizmus. Je to variant otázky: *"Do akej miery v strome existujú rovnaké podstromy?"* - alebo ešte inak - *"Do akej miery programy obsahujú rovnaké vzory?"*
 3. existujú aj [štatistické metódy][26] porovnania (koľko majú grafy vrcholov, koľko majú hrán, aký stupeň 
   majú vrcholy, atď.) - napr. [tu][27] alebo [tu][28].
 4. metódy na porovnanie nejakých s grafom nesúvisiacich informácií extrahovaných z grafu, v našom prípade z anotovaného
   derivačného stromu (napríklad porovnanie názvov a/alebo počtu premenných, porovnanie konštánt (literálov), atď.).
 
 Niektoré z týchto algoritmov principiálne môžu mať problém s definovaním "jemnozrnnosti" podobnosti dvoch
-zadaní v požadovanom rozsahu od 0 do 1. Najlepšou metódou sa mne osobne javí preto možnosť č.2, avšak celkovo na mňa pôsobí
+zadaní v požadovanom rozsahu od 0 do 1. Najlepšou metódou sa mne osobne javí preto možnosť č. 2, avšak celkovo na mňa pôsobí
 značne zložitým dojmom.
 
 ## Vektorizácia textu
@@ -491,7 +491,7 @@ bude obsahovať extrahované štylometrické informácie, špecifické pre autor
 Keď máme modely, môžeme ich využiť na hľadanie autora nového textu, o ktorom nevieme, ktorému z týchto autorov patrí.
 
 Výhodou tohto prístupu je, že hneď vieme nájsť prípadného autora - samozrejme s určitou pravdepodobnosťou.
-Nevýhodou zas je, že potrebujeme relatívne veľký počet textov o ktorých vieme, že ich napísal autor $$XY$$, na vytvorenie
+Nevýhodou zas je, že potrebujeme relatívne veľký počet textov, o ktorých vieme, že ich napísal autor $$XY$$, na vytvorenie
 modelu. V rámci jedného predmetu v ročníku na škole existuje väčšinou len jedno zadanie, takže nemáme veľmi možnosť vytvoriť
 si model autora.
 
@@ -502,7 +502,7 @@ V rámci toho vznikol malý projektík na GitHube, s názvom [diffcode][32], kto
 by mal hneď fungovať. Implementuje dve do trochu väčšej hĺbky vysvetlené metódy porovnávania textov - levenshteinovu
 vzdialenosť a kosínusovú podobnosť.
 
-Pre praktické účely porovnávania školských zadaní však metodiky nestačia, a bude potrebné sa ešte lepšie zamyslieť nad
+Pre praktické účely porovnávania školských zadaní však metodiky nestačia a bude potrebné sa ešte lepšie zamyslieť nad
 riešením.
 
 

@@ -4,7 +4,7 @@ date: 2008-10-12 15:00:00
 categories: [Utility]
 tags: [git, vcs]
 author: peterj
-description: Krátky zoznam užitočných príkazov git-u pre tých, ktorí už vedia ako git funguje. 
+description: Krátky zoznam užitočných príkazov git-u pre tých, ktorí už vedia, ako git funguje.
 ---
 
 Tento článok som napísal pre používateľov, ktorí sa chcú naučiť používať **git** - systém na správu
@@ -44,5 +44,5 @@ Tak, pusťme sa do toho.
     5. vyznačené konflikty v súboroch treba opraviť ručne.
     6. `git commit -a` -> opravené konflikty commitnem do repa
     7. `git push server` -> a nakoniec pošlem commity na server (moje komity aj s vyriešeným konfliktom)
-8. *Chcem si pozrieť obsah súboru readme.txt, aký bol pred 10-timi commitmi, ktorý sa nachádzal vo vetve “master”*
+8. *Chcem si pozrieť obsah súboru readme.txt, aký bol pred 10 commitmi, ktorý sa nachádzal vo vetve “master”*
     - `git show master~10:readme.txt`

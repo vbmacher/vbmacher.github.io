@@ -14,26 +14,26 @@ týka viac-menej odboru Data Science, tak som sa ako programátor s entropiou st
 
 ## Informácia
 
-Informácia ako taká nie je "fyzická" vec. Dá sa povedať, že informácia znižuje "nevedomosť", "neznalosť",
+Informácia ako taká nie je "fyzická" vec. Dá sa povedať, že informácia znižuje "nevedomosť", "neznalosť"
 či "neurčitosť". Informácie reprezentujeme symbolmi, ktoré sú ako keby práve tým "fyzickým nosičom" informácie.
 
 Avšak - nie je pravda, že každý symbol samostatne nosí odpovedajúce množstvo informácie. Na množstvo informácie
-sa dá nazerať zo _syntaktického_ a _sémantického_ pohľadu. Napríklad, nasledujúce vety:
+sa dá nazerať zo _syntaktického_ a _sémantického_ pohľadu. Napríklad nasledujúce vety:
 
 > Bude pršať. Bude pekne.
 
-prinášajú síce významovo dve informácie (že bude pršať a bude pekne), ale syntakticky obsahuje štyri slová, z toho jedno
-sa opakuje. V telekomunikačných systémoch a teórii informácie sa informácia chápe skôr zo _syntaktického_ hľadiska,
+prinášajú síce významovo dve informácie (že bude pršať a bude pekne), ale syntakticky obsahujú štyri slová, z toho jedno
+sa opakuje. V telekomunikačných systémoch a teórii informácie sa informácia chápe skôr zo _syntaktického_ hľadiska
 a podľa toho vieme merať jej "množstvo".
 
 Ak by sme teda chceli zistiť množstvo informácie v predchádzajúcich vetách, musíme mať kvantitatívnu jednotku informácie,
 ktorá bude tým chýbajúcim fyzickým "mostíkom" medzi abstrakciou a realitou (kvantitou). Mohli by sme si vymyslieť ľubovoľnú
 jednotku, avšak už to za nás urobil [Claude Shannon][1] v roku 1948.
 
-Jednotkou informácie je jeden *bit*, s hodnotou 0 alebo 1. Ak sa budeme pýtať na množstvo, budeme tým myslieť *počet bitov*.
+Jednotkou informácie je jeden *bit* s hodnotou 0 alebo 1. Ak sa budeme pýtať na množstvo, budeme tým myslieť *počet bitov*.
 
 Tu sa však už musíme zamyslieť nad tým, koľkými spôsobmi môžeme danú správu napísať. Ak by sme nemali meniť samotné slová, ale
-len reprezentáciu, aj tak každý symbol môžeme zapísať rôznym spôsobom - tj. môžeme si vymýšľať rôzne abecedy. Jeden symbol v
+len reprezentáciu, aj tak každý symbol môžeme zapísať rôznym spôsobom - t. j. môžeme si vymýšľať rôzne abecedy. Jeden symbol v
 rôznych abecedách tak môže mať rôzny počet bitov. To znamená, že správa zapísaná v dvoch rôznych abecedách môže mať
 rôznu dĺžku. Takže - ktorú abecedu si zvoliť?
 
@@ -46,13 +46,13 @@ je to minimálny priemerný počet bitov, do ktorých vieme celú správu zapís
 Kvantitatívne môžeme začať takto:
 
 1. Pre každý symbol spočítame jeho frekvenciu výskytu: $$f_i = \frac{n_i}{N}$$, kde $$n_i$$ je počet výskytov
-   $$i$$-tého symbolu v dátach, a $$N$$ veľkosť dát v bitoch.
+   $$i$$-tého symbolu v dátach a $$N$$ veľkosť dát v bitoch.
 2. Pre jednotlivé symboly v dátach nájdeme minimálne kódovanie s využitím nájdených frekvencií symbolov, napr.
    [Huffmanovo kódovanie][9]. Každý symbol bude mať optimálny kód veľkosti $c_i$ bitov.
 3. Minimálnu veľkosť správy vypočítame vlastne ako sumu "váh" symbolov, kde váha symbolu je jeho optimálna veľkosť
    krát frekvencia výskytu: $$\sum c_i * f_i$$
 
-Napríklad, majme [100 symbolov][10]:
+Napríklad majme [100 symbolov][10]:
 
 |*Symbol:*                | `a`  | `b`  | `c`  | `d`  | `e`  | Suma    |
 |*Frekvencia ($$f_i$$):*  | 0.10 | 0.15 | 0.30 | 0.16 | 0.29 |	= 1    |
@@ -60,7 +60,7 @@ Napríklad, majme [100 symbolov][10]:
 |*Veľkosť kódu ($$c_i$$):*| 3    | 3    | 2    | 2    | 2    |         |
 |*Váha symbolu $$f_i * c_i$$:*| 0.30 | 0.45 | 0.60 | 0.32 | 0.58 |  = 2.25 |
 
-Minimálna veľkosť správy má už dosť blízko k informačnej "entropii", a počíta sa veľmi podobne:
+Minimálna veľkosť správy má už dosť blízko k informačnej "entropii" a počíta sa veľmi podobne:
 
 $$H_{\text{približne}} = \sum_i^{N} \frac{n_i}{N} * c_i$$
 
@@ -69,20 +69,20 @@ Prečo je len "blízko", si vysvetlíme neskôr. Nateraz - Shannon entropiu defi
 
 ### Matematicky
 
-Entropia je známa z termodynamiky, ako "miera neusporiadanosti" termodynamického systému. Fyzikálne sa entropia meria len svojou
+Entropia je známa z termodynamiky ako "miera neusporiadanosti" termodynamického systému. Fyzikálne sa entropia meria len svojou
 "zmenou" - keď sústave dodáme teplo určitej teploty:
 
 $$\Delta S = \frac{\Delta Q}{T}$$.
 
 Ak má systém viac "podsystémov", tak musíme jednotlivé prírastky entropie počítať zvlášť na každý "podsystém" a potom ich spriemerovať.
-Ak je "podsystémov" (napr. častíc) príliš veľa, nebude to možné realizovať. A tak prišiel [Boltzmann][6] so svojou štatistickou entropiou,
-ktorý systém videl ako ucelenú sústavu mikrostavov, do ktorých sa sústava ako celok vie dostať. My pracujeme len s makroskopickými veličinami
+Ak je "podsystémov" (napr. častíc) príliš veľa, nebude to možné realizovať. A tak prišiel [Boltzmann][6] so svojou štatistickou entropiou.
+Systém videl ako ucelenú sústavu mikrostavov, do ktorých sa sústava ako celok vie dostať. My pracujeme len s makroskopickými veličinami
 (ako napr. tlakom, teplotou, objemom a počtom častíc). Entropia je potom vyjadrená ako množstvo "voľnosti", ktoré systému ostane po zadaní
 týchto makroskopických parametrov. Matematicky ju vyjadril ako:
 
 $$S = k \; ln \; \Omega$$
 
-kde $$k$$ je konštanta, a $$\Omega$$ je počet rôznych stavov, v ktorom systém môže byť. Ak každému stavu priradíme vlastnú pravdepodobnosť
+kde $$k$$ je konštanta a $$\Omega$$ je počet rôznych stavov, v ktorých systém môže byť. Ak každému stavu priradíme vlastnú pravdepodobnosť
 $$p_i$$, dostaneme vzťah:
 
 $$S = -k \sum_i p_i \; ln \, p_i$$
@@ -101,7 +101,7 @@ $$H = \sum_{i=1}^{N} p(x_i) \; log_2 \; \frac{1}{p(x_i)}$$
 
 v ktorom člen $$log_2 \; \frac{1}{p(x_i)}$$ je tým dátovým "prekvapením", alebo _novou informáciou_, ktorú $$i$$-tý symbol prináša.
 Ak by sme to mali v tomto bode prirovnať k minimálnej veľkosti správy, tak tento člen je matematickým vyjadrením optimálneho kódu $$c_i$$.
-Ako to? Ak pravdepodobnosť $$p_i$$ nahradíme za frekvenciu výskytu:
+Ako to? Ak pravdepodobnosť $$p_i$$ nahradíme frekvenciou výskytu:
 
 $$p_i = f_i = \frac{n_i}{N}$$ 
 
@@ -111,7 +111,7 @@ $$H = \sum_{i=1}^{N} \frac{n_i}{N} \; log_2 \; \frac{N}{n_i}$$
 
 a teda $$c_i = log_2 \; \frac{N}{n_i}$$. Keď si uvedomíme fakt, že $$log_2 \; m$$ nám hovorí, koľko bitov potrebujeme na zakódovanie $$m$$
 hodnôt, tak v tomto prípade je optimálnym kódom vlastne počet bitov, ktoré potrebujeme na zakódovanie $$\frac{N}{n_i}$$ hodnôt. Výraz
-$$\frac{N}{n_i}$$ odpovedá - koľko krát sa do správy zmestia všetky výskyty $$i$$-tého symbolu.
+$$\frac{N}{n_i}$$ odpovedá - koľkokrát sa do správy zmestia všetky výskyty $$i$$-tého symbolu.
 
 Hodnotu si môžeme overiť z príkladu v predchádzajúcej časti. Poznáme frekvencie výskytov každého symbolu, takže:
 
@@ -122,7 +122,7 @@ Hodnotu si môžeme overiť z príkladu v predchádzajúcej časti. Poznáme fre
 |*Váha symbolu $$f_i * c_i$$:*                                  | 0.30  | 0.45   | 0.60  | 0.32   | 0.58   |  = 2.25   |
 |*Váha informačného prírastku $$f_i * log_2 \; \frac{N}{n_i}$$:*| 0.332 | 0.4095 | 0.519 | 0.4224 | 0.5162 |  = 2.2    |
 
-Suma posledného riadku je vlastne informačná entropia, a vidíme, že je trochu menšia než minimálna veľkosť správy.
+Suma posledného riadku je vlastne informačná entropia a vidíme, že je trochu menšia než minimálna veľkosť správy.
 
 Ak existuje $$N$$ hodnôt a každá z nich je v korpuse rovnako pravdepodobná, potom $$p_i = \frac{1}{N}$$. Vzorec sa potom dá napísať ako:
 
@@ -133,14 +133,14 @@ $$H = \sum_{i=1}^{N} \frac{1}{N} \; log_2 \; \frac{1}{\frac{1}{N}} = \underbrace
 ### Prečo nie je veľkosť "skomprimovanej" správy entropiou
 
 Vyplýva to zo Shannonovho teorému "zdrojového kódovania", ktorý udáva praktické limity bezstratovej dátovej kompresie. Hovorí, že
-minimálna veľkosť dát nikdy nebude menšia než je entropia, ale je možné dosiahnuť veľkosť ľubovoľne blízku entropii so zanedbateľnou stratou
-informácie - tj. úplne bezstratová minimálna veľkosť správy bude musieť byť trochu väčšia než entropia. Pre viac detailné info
+minimálna veľkosť dát nikdy nebude menšia, než je entropia, ale je možné dosiahnuť veľkosť ľubovoľne blízku entropii so zanedbateľnou stratou
+informácie - t. j. úplne bezstratová minimálna veľkosť správy bude musieť byť trochu väčšia než entropia. Pre detailnejšie info
 [kliknite tu][11].
 
  
 ## Využitie entropie v dátach
 
-Informačná entropia sa v dátach väčšinou používa na akési ohodnotenie "kvality dát", v zmysle merania "rozmanitosti" dát. Veľká entropia hovorí, že dáta sú rozmanité, a malá, že sa hodnoty mnoho krát opakujú. Napríklad, naše dáta nech hovoria o cenách rôznych produktov:
+Informačná entropia sa v dátach väčšinou používa na akési ohodnotenie "kvality dát", v zmysle merania "rozmanitosti" dát. Veľká entropia hovorí, že dáta sú rozmanité, a malá, že sa hodnoty mnohokrát opakujú. Napríklad naše dáta nech hovoria o cenách rôznych produktov:
 
 |Produkt     | Cena  |
 |------------+-------|
@@ -178,9 +178,9 @@ V našom prípade budeme testovať kvalitu datasetu zo servera [Last.fm][7], ted
 > Thierry Bertin-Mahieux and Daniel P.W. Ellis and Brian Whitman and Paul Lamere: The Million Song Dataset
 > uverejnené v Proceedings of the 12th International Conference on Music Information Retrieval (ISMIR 2011), 2011.
 
-Dataset obsahuje skladby ("tracks") a k nim priradzuje umelca, a podobných umelcov. Našou úlohou bude zistiť entropiu umelcov a skladieb. Predpokladáme, že umelci by mali byť unikátni, avšak skladby nemusia byť unikátne. 
+Dataset obsahuje skladby ("tracks") a k nim priradzuje umelca a podobných umelcov. Našou úlohou bude zistiť entropiu umelcov a skladieb. Predpokladáme, že umelci by mali byť unikátni, avšak skladby nemusia byť unikátne.
 
-Na prácu použijeme framework Apache Spark verziu 2.4.3, a jazyk Scala verziu 2.12.
+Na prácu použijeme framework Apache Spark vo verzii 2.4.3 a jazyk Scala vo verzii 2.12.
 
 ## Dotyk dát
 
@@ -244,7 +244,7 @@ Počítame teda len s tými, čo tam sú - inými slovami, všetky hodnoty v tom
 
 ## Celok
 
-Tak a máme už všetko pripravené k tomu, aby sme mohli vypočítať entropiu očakávanú (tj. takú, v ktorej predstierame rovnakú
+Tak a máme už všetko pripravené na to, aby sme mohli vypočítať entropiu očakávanú (t. j. takú, v ktorej predstierame rovnakú
 pravdepodobnosť každej hodnoty), a potom skutočné entropie umelcov a skladieb:
 
 ```scala
@@ -270,7 +270,7 @@ Songs entropy: 9.09405998020258
 # Záver
 
 Čísla, ktoré vidíme, nás možno prekvapia. Umelci vyzerajú byť menej unikátni než skladby, čo mi príde ako divný výsledok. Ale dáva zmysel,
-pretože si je treba uvedomiť, že korpus obsahoval zoznam _skladieb_. Umelci sú len priradení ku skladbe, takže to, že sa budú opakovať, je
+pretože si treba uvedomiť, že korpus obsahoval zoznam _skladieb_. Umelci sú len priradení ku skladbe, takže to, že sa budú opakovať, je
 očakávané. Môžeme si to overiť:
 
 ```scala
@@ -316,7 +316,7 @@ No a čo sa týka samotných piesní, tam tiež očakávame určité množstvo o
 Takže "Intro" je zrejme jeden z najviac používaných názvov. Ale entropia skladieb bola relatívne vysoká (9.09 z 9.14), z čoho
 vyplýva, že korpus asi obsahuje pomerne veľký počet riadkov, takže sa opakovania "stratia". Konkrétne 9330 riadkov.
 
-Tak - teraz som ukázal, ako sa dá entropia "v praxi" využiť. Robí sa to hlavne pri analýze neznámych, nových dát, a toto je jednou
+Tak - teraz som ukázal, ako sa dá entropia "v praxi" využiť. Robí sa to hlavne pri analýze neznámych, nových dát a toto je jednou
 z možností, ako si dáta "oťukať". Dúfam, že sa vám článok páčil :)
 
 **PS:** Celý kód je možné stiahnuť na mojom [GitHub-e](https://github.com/vbmacher/learning-kit/tree/master/toy-projects/spark-entropy)

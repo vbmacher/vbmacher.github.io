@@ -7,23 +7,23 @@ author: peterj
 description: Rekurzívny parser a interpret reťazcového zápisu infixových výrazov v Haskelli.
 ---
 
-Pamätáte sa na svoje prvé programy? Myslím tie úplne, úplne prvé.. Moje prvé kroky na magickej ceste programátora rozhodne sprevádzali textové
-kalkulačky. Mojím cieľom bolo bez použitia neštandardných knižníc v jazyku [QBasic][2] (neskôr Pascal, a potom C - zdrojový kód je [tu][16]) napísať
+Pamätáte sa na svoje prvé programy? Myslím tie úplne, úplne prvé... Moje prvé kroky na magickej ceste programátora rozhodne sprevádzali textové
+kalkulačky. Mojím cieľom bolo bez použitia neštandardných knižníc v jazyku [QBasic][2] (neskôr Pascal a potom C - zdrojový kód je [tu][16]) napísať
 parser a interpret jednoduchých aritmetických výrazov - jednoduchú kalkulačku. 
 
-V tom čase (možno okolo roku 1997-1998) to však bolo nad moje sily. Nevedel som sa spoľahlivo vysporiadať ani s medzerami medzi symbolmi, ani s prioritami operátorov, zátvorkami, reprezentáciou výrazu (dátovou štruktúrou) a potencionálnymi chybami vstupu. Nemal som vtedy k dispozícii internet ani literatúru, a môj "um" ma neobdaril ani nápadom o gramatikách a parseroch; nenapadlo ma ani použiť strom na reprezentáciu výrazu.
+V tom čase (možno okolo roku 1997-1998) to však bolo nad moje sily. Nevedel som sa spoľahlivo vysporiadať ani s medzerami medzi symbolmi, ani s prioritami operátorov, zátvorkami, reprezentáciou výrazu (dátovou štruktúrou) a potencionálnymi chybami vstupu. Nemal som vtedy k dispozícii internet ani literatúru a môj "um" ma neobdaril ani nápadom o gramatikách a parseroch; nenapadlo mi ani použiť strom na reprezentáciu výrazu.
 
 Tak som si musel počkať ďalších X rokov (asi do roku 2006), keď sme na škole preberali [Formálne jazyky a prekladače][3] a zadanie bolo vytvoriť interpret a kompilátor vymysleného jazyka do vymyslenej počítačovej architektúry.
 
-Nie je to však koniec môjho príbehu, totiž - keď som sa začal učiť [Haskell][1], napadlo ma vrátiť sa do vtedajšej doby, a len zo zaujímavosti si skúsiť napísať kalkulačku ["from the first principles"][4] - bez použitia knižníc. Usmial som sa, keď som si uvedomil, že neviem ani začať. Je možné, že to bolo tým samotným funkcionálnym programovaním, a tak sa nostalgia prejavila v celej svojej kráse - mal som pocit, že znovu začínam programovať. Odvtedy som urazil nejakú tú cestu a túto cestu som sa rozhodol zdokumentovať v tomto príspevku.
+Nie je to však koniec môjho príbehu, totiž - keď som sa začal učiť [Haskell][1], napadlo mi vrátiť sa do vtedajšej doby a len zo zaujímavosti si skúsiť napísať kalkulačku ["from the first principles"][4] - bez použitia knižníc. Usmial som sa, keď som si uvedomil, že neviem ani začať. Je možné, že to bolo tým samotným funkcionálnym programovaním, a tak sa nostalgia prejavila v celej svojej kráse - mal som pocit, že znovu začínam programovať. Odvtedy som urazil nejakú tú cestu a túto cestu som sa rozhodol zdokumentovať v tomto príspevku.
 
-Samozrejme nie som prvý kto píše parser/interpret aritmetických výrazov v Haskell-i. Vybral som dva, o ktorých si môžete prečítať
+Samozrejme nie som prvý, kto píše parser/interpret aritmetických výrazov v Haskell-i. Vybral som dva, o ktorých si môžete prečítať
 [tu][26] alebo [tu][25].
 
 # Náš cieľ
 
 Interpret výrazov [reverznej poľskej notácie (RPN)][5] by bol trochu podvod, pretože by sme sa vyhli zátvorkám a prioritám operátorov.
-Treba trocha "prikúriť", ale samozrejme s určitou dávkou pokory. Budem dúfať, že sa mi podarí hneď interpret aritmetických výrazov v bežnej
+Treba trocha "prikúriť", ale samozrejme s určitou dávkou pokory. Budem dúfať, že sa mi podarí hneď napísať interpret aritmetických výrazov v bežnej
 [infixnej forme][6]. Stručne povedané, budem chcieť, aby kalkulačka vedela sparsovať a interpretovať textový zápis aritmetických výrazov, kde:
 
 1. Rozpoznávať sa budú len štyri binárne operácie: násobenie (`*`), delenie (`/`), sčítanie (`+`) a odčítanie (`-`)
@@ -33,11 +33,11 @@ Treba trocha "prikúriť", ale samozrejme s určitou dávkou pokory. Budem dúfa
 
 Platné znaky budú:
 
-- číslice od `0`-`9`,
+- číslice od `0` do `9`,
 - operátory `+`, `-`, `/`, `*`
 - zátvorky (`(` a `)`).
 
-Medzery sa budú ignorovať, a ostatné znaky by mali byť vyhodnotené ako chyba vstupu.
+Medzery sa budú ignorovať a ostatné znaky by mali byť vyhodnotené ako chyba vstupu.
 
 ## Gramatika
 
@@ -55,12 +55,12 @@ Gramatika obsahuje:
 
 - Terminálne symboly (v úvodzovkách). Ide o časti doslovného textu, ktorý na vstupe v danej chvíli očakávame
 - Neterminálne symboly. V našom prípade sú označené malými písmenami ako `expr`, `factor`, atď.
-- Pravidlá, v tvare `neterminál -> substitúcia`
+- Pravidlá v tvare `neterminál -> substitúcia`
 - Štartovací neterminál. V našom prípade je to `expr`
 
-Gramatika môže byť použitá buď na generovanie alebo rozpoznávanie slov jazyka. Každé nové generovanie aritmetického výrazu začína štartovacím
+Gramatika môže byť použitá buď na generovanie, alebo rozpoznávanie slov jazyka. Každé nové generovanie aritmetického výrazu začína štartovacím
 neterminálom, ktorý nahradíme jeho pravou stranou. Pokračujeme ďalším odvodzovaním zľava doprava. Ak narazíme na symbol `|` v gramatike,
-máme možnosť voľby. Ak narazíme na ohraničenie `{ }`, znamená to, že obsah v týchto zátvorkách môžeme opakovať 0 a viac krát. Bez komentára
+máme možnosť voľby. Ak narazíme na ohraničenie `{ }`, znamená to, že obsah v týchto zátvorkách môžeme opakovať 0 a viackrát. Bez komentára
 preletím odvodenie výrazu `2 * 3`:
 
 ```
@@ -86,9 +86,9 @@ Rozpoznávanie, alebo parsing, je opačný proces, v ktorom sa snažíme systema
 
 # Ako fungujú parsery
 
-Parser je akýsi "rozpoznávač". Jeho úlohou je rozhodnúť, či sa daný výraz (text) dá z gramatiky odvodiť, alebo nie a prípadne poskytnúť aj dané odvodenie. V našom prípade zistí, či výraz patrí alebo nepatrí do jazyka "aritmetických výrazov" a vedľajším produktom vznikne strom odvodenia, ktorý viac menej odpovedá jednotlivým gramatickým pravidlám. Takýto strom sa nazýva [Abstract Syntax Tree (AST)][8].
+Parser je akýsi "rozpoznávač". Jeho úlohou je rozhodnúť, či sa daný výraz (text) dá z gramatiky odvodiť alebo nie, a prípadne poskytnúť aj dané odvodenie. V našom prípade zistí, či výraz patrí alebo nepatrí do jazyka "aritmetických výrazov" a vedľajším produktom vznikne strom odvodenia, ktorý viac-menej odpovedá jednotlivým gramatickým pravidlám. Takýto strom sa nazýva [Abstract Syntax Tree (AST)][8].
 
-Existujú parsery, ktoré pracujú zhora-nadol, alebo zdola-nahor. [Parsery zhora-nadol][9] hľadajú tzv. "najľavejšie" odvodenia - tj. postupne zľava doprava hľadajú k danej časti vstupného textu pravidlo gramatiky, ktoré začína touto časťou textu. Napríklad:
+Existujú parsery, ktoré pracujú zhora-nadol alebo zdola-nahor. [Parsery zhora-nadol][9] hľadajú tzv. "najľavejšie" odvodenia - t. j. postupne zľava doprava hľadajú k danej časti vstupného textu pravidlo gramatiky, ktoré začína touto časťou textu. Napríklad:
 
 ```
 2 * 3
@@ -115,7 +115,7 @@ expr
 
 ## Imperatívne jazyky
 
-V "normálnych" imperatívnych jazykoch ako je napríklad C, Java, atď. je v dnešnej dobe postup celkom priamočiary. Zdrojový kód parsera sa dá vygenerovať pomocou špeciálneho nástroja: [generátora parsera][11]. Výstupom generátora, zdrojový kód parsera, je integrovateľný do vášho projektu, so známym interfejsom. Parser sa tak dá normálne zavolať ako funkcia, ktorého vstupom je väčšinou plain-text, a výstupom [AST][8].
+V "normálnych" imperatívnych jazykoch, ako je napríklad C, Java atď., je v dnešnej dobe postup celkom priamočiary. Zdrojový kód parsera sa dá vygenerovať pomocou špeciálneho nástroja: [generátora parsera][11]. Výstup generátora, zdrojový kód parsera, je integrovateľný do vášho projektu so známym interfejsom. Parser sa tak dá normálne zavolať ako funkcia, ktorej vstupom je väčšinou plain-text a výstupom [AST][8].
 
 ## Funkcionálne jazyky
 
@@ -129,7 +129,7 @@ parserov. Z formálneho hľadiska pracujú parser kombinátory zhora-nadol, v š
 5. Terminál na pravej strane pravidla sa implementuje ako čítanie očakávaného tokenu zo vstupu
 
 Funkcionálne jazyky v naivnom spôsobe využívajú rovnakú myšlienku, avšak sa často využívajú high-order funkcie a funkcionálne abstrakcie, ako
-napríklad [Applicative a Monády][22]. [`Applicative`][25] umožňuje kombinovať parsery "čistým spôsobom" - tj. bez možnosti určovania nasledujúceho kombinátora na základe výstupu predošlého. [Monadické parsery][14] sú silnejšie v tom, že je práve možné meniť kombinátory na základe predošlého výstupu. V komunite sú preto viac preferované `Applicative` parsery.
+napríklad [Applicative a Monády][22]. [`Applicative`][25] umožňuje kombinovať parsery "čistým spôsobom" - t. j. bez možnosti určovania nasledujúceho kombinátora na základe výstupu predošlého. [Monadické parsery][14] sú silnejšie v tom, že je práve možné meniť kombinátory na základe predošlého výstupu. V komunite sú preto viac preferované `Applicative` parsery.
 
 ## Problémy naivných recursive-descent parserov
 
@@ -147,11 +147,11 @@ jednoduchosti napíšeme naivný parser. [Horeuvedená gramatika](#gramatika) ar
 
 Takže - ako by sme intuitívne popísali parser z pohľadu funkcionálneho programovania?
 
-- Vstupom je text, a výstupom AST. Takže parser je vlastne funkcia.
-- V prípade parser kombinátorov, kombinátor nemusí sparsovať celý vstupný text, ale len jeho časť (zľava doprava). Preto samotný AST bude
+- Vstupom je text a výstupom AST. Takže parser je vlastne funkcia.
+- V prípade parser kombinátorov kombinátor nemusí sparsovať celý vstupný text, ale len jeho časť (zľava doprava). Preto samotný AST bude
   doprevádzaný zvyšným ešte nesparsovaným textom.
-- Spracovanie chybného/nesparsovateľného vstupu sa dá riešiť niekoľkými spôsobmi (napr. použitím `Either`, alebo `Maybe`). Keďže pre jednoduchosť
-  nepotrebujeme dobré chybové hlášky, ako trik nám parsovacia funkcia môže vrátiť *zoznam*, o 0 alebo 1 prvkoch:
+- Spracovanie chybného/nesparsovateľného vstupu sa dá riešiť niekoľkými spôsobmi (napr. použitím `Either` alebo `Maybe`). Keďže pre jednoduchosť
+  nepotrebujeme dobré chybové hlášky, ako trik nám parsovacia funkcia môže vrátiť *zoznam* s 0 prvkami alebo s 1 prvkom:
 
 ```haskell
 newtype Parser a = Parser { parse :: String -> [(a, String)]  }
@@ -167,7 +167,7 @@ Parsing budeme môcť volať napr. nasledujúcim spôsobom (trochu predbieham):
 [(Ops (Ops (Num 2) (Add (Num 5))) (Div (Num 4)),"")]
 ```
 
-Budeme chcieť, aby v prípade nesparsovateľného vstupu sa tam parser zastavil:
+Budeme chcieť, aby sa tam v prípade nesparsovateľného vstupu parser zastavil:
 
 ```
 *Main> parse expr "2+uups"
@@ -176,7 +176,7 @@ Budeme chcieť, aby v prípade nesparsovateľného vstupu sa tam parser zastavil
 
 ## Prvé kombinátory
 
-Začneme sa približovať ku lexikálnemu analyzátoru. Prvým kombinátorom lexikálneho analyzátora je čítanie jedného znaku, ktorý spĺňa
+Začneme sa približovať k lexikálnemu analyzátoru. Prvým kombinátorom lexikálneho analyzátora je čítanie jedného znaku, ktorý spĺňa
 nejaké kritérium:
 
 ```haskell
@@ -221,8 +221,8 @@ definovaná. Keby sme si ju definovali trochu konkrétnejšie:
 traverse :: (a -> Maybe b) -> [a] -> Maybe [b]
 ```
 
-Z takejto definície je už lepšie vidieť čo funkcia robí - prejde pole `[a]` a na každý prvok aplikuje funkciu `a -> Maybe b`. Z toho
-vznikne pole `[Maybe b]`, z ktorého sa "vyjme" vnútorný typ `Maybe` aby sme jednotlivé prvky `b` dali k sebe: `Maybe [b]`. Funkcia by
+Z takejto definície je už lepšie vidieť, čo funkcia robí - prejde pole `[a]` a na každý prvok aplikuje funkciu `a -> Maybe b`. Z toho
+vznikne pole `[Maybe b]`, z ktorého sa "vyjme" vnútorný typ `Maybe`, aby sme jednotlivé prvky `b` dali k sebe: `Maybe [b]`. Funkcia by
 mohla byť implementovaná vlastne len pomocou `map` a `fold`.
 
 V našom prípade však miesto `Maybe` máme `Parser`. To znamená, že "naša" `traverse` vyzerá nejak takto:
@@ -232,7 +232,7 @@ traverse :: (Char -> Parser b) -> [Char] -> Parser [b]
 ```
 
 Keď ju aplikujeme na funkciu `sym :: Char -> Parser Char` a vieme, že `String` je vlastne `[Char]`, tak `traverse sym` je typu `String -> Parser String`.
-Na to, aby to takto krásne fungovalo však potrebujeme, aby náš `Parser` implementoval typovú triedu `Applicative`.
+Na to, aby to takto krásne fungovalo, však potrebujeme, aby náš `Parser` implementoval typovú triedu `Applicative`.
 
 Typová trieda `Applicative` je "aplikatívny funktor", takže musíme implementovať aj `Functor`. Funktor je nejaká abstrakcia nad kontextom (štruktúra, 
 "container"), nad ktorou môžeme volať `map` (volá sa `fmap`). Napríklad funktorom je `[]` (zoznam) alebo aj `Maybe`. Veľmi dobrý úvod do funktorov som
@@ -270,19 +270,19 @@ instance Applicative Parser where
   (<*>) p q = Parser $ \s -> [(f x, xs) | (f, ys) <- parse p s, (x, xs) <- parse q ys]
 ```
 
-Implementácia funkcie `pure` je viac-menej triviálna - vytvoríme nový "parser" ktorý nič neparsuje, len vráti funkciu aj so vstupom. Operácia
+Implementácia funkcie `pure` je viac-menej triviálna - vytvoríme nový "parser", ktorý nič neparsuje, len vráti funkciu aj so vstupom. Operácia
 sekvencovania robí "sekvencovanie" dvoch parserov:
 
 - Sparsujeme vstup prvým parserom, z ktorého dostaneme mapovaciu funkciu `a -> b` a zvyšok vstupu
 - Sparsujeme tento zvyšok druhým parserom, z ktorého dostaneme nejaký výsledok typu `a` a druhý zvyšok vstupu
 - Výsledok bude transformovaný mapovacou funkciou (na typ `b`) a vráti sa spolu s druhým zvyškom vstupu
 
-Dobré materiály na Applicative sú napríklad [tu][29], alebo [tu][28]. Aké majú výhody a prečo ich vôbec používať je napísané [tu][30]. V skratke:
+Dobré materiály na Applicative sú napríklad [tu][29] alebo [tu][28]. Aké majú výhody a prečo ich vôbec používať, je napísané [tu][30]. V skratke:
 
 - `Applicative` umožňuje kombinovanie (sekvencovanie) operácií (podobne ako monády, a na rozdiel od obyčajných funktorov)
 - `Applicative` nedokáže meniť "skladbu" už sekvencovaných operácií (kombinátorov) podľa výsledku predošlej operácie (na rozdiel od monády)
 
-Vďaka týmto funkciám sa čiastkové parsery stávajú plnohodnotné "parser combinators", pretože ich je teraz konečne možné kombinovať, napr. takto:
+Vďaka týmto funkciám sa čiastkové parsery stávajú plnohodnotnými "parser combinators", pretože ich je teraz konečne možné kombinovať, napr. takto:
 
 ```
 *Main> parse ((pure (*2)) <*> number) "2"
@@ -353,8 +353,8 @@ trpar = tsym ')' TRPar
 tnumber = TDig <$> number
 ```
 
-Kombinátor `tsym` je parser, ktorý zľava aj sprava odignoruje medzery, a vo zvyšku očakáva nejaký symbol, ktorý prevedie na daný `Token`.
-Využíva už len známe funkcie. Typ `Token` je symbolickou reprezentáciu textu. V podstate to nepotrebujeme, ale v prípade implementácie
+Kombinátor `tsym` je parser, ktorý zľava aj sprava odignoruje medzery a vo zvyšku očakáva nejaký symbol, ktorý prevedie na daný `Token`.
+Využíva už len známe funkcie. Typ `Token` je symbolickou reprezentáciou textu. V podstate to nepotrebujeme, ale v prípade implementácie
 parserov zložitejších jazykov sa hodí.
 
 # Syntaktický analyzátor
@@ -364,13 +364,13 @@ nám poslúžia ako určitá forma DSL jazyka. Keď si na to človek zvykne, pí
 Ich stručné pripomenutie: 
 
 - `<$` - skratka pre `pure (...) <* (...)`. Ako výsledok sa použije ľavá strana. Pravá strana sa síce aplikuje, ale výsledok zahodí.
-- `$>` - skratka pre `pure (...) *> (...)`. Ako výsledok sa použije pravá strana, a výsledok z ľavej strany sa zahodí.
+- `$>` - skratka pre `pure (...) *> (...)`. Ako výsledok sa použije pravá strana a výsledok z ľavej strany sa zahodí.
 - `<$>` - skratka pre `pure (...) <*> (...)`. Na výsledok z ľavej strany sa aplikuje pravá strana a tento výsledok sa vráti.
 - `<*` - sekvencia, podobne ako `<*>` s tým, že sa výsledok z pravej strany zahodí. 
 - `*>` - sekvencia, podobne ako `<*>` s tým, že sa výsledok z ľavej strany zahodí.
 - `<*>` - sekvencia. Na výsledok ľavej strany sa aplikuje pravá strana a tento výsledok sa vráti.
-- `many` - opakovanie 0 a viac krát. Jej typ: `many :: Alternative f => f a -> f [a]`.
-- `some` - opakovanie 1 a viac krát. Jej typ: `some :: Alternative f => f a -> f [a]`.
+- `many` - opakovanie 0 a viackrát. Jej typ: `many :: Alternative f => f a -> f [a]`.
+- `some` - opakovanie 1 a viackrát. Jej typ: `some :: Alternative f => f a -> f [a]`.
 - `<|>` - alternatíva, jej typ: `(<|>) :: Alternative f => f a -> f a -> f a`. Najprv sa aplikuje prvý parser a keď je neúspešný,
           tak sa aplikuje druhý.
 
@@ -406,7 +406,7 @@ term = (tlpar *> expr <* trpar) <|> (numFromDig <$> tnumber)
 numFromDig (TDig n) = Num n
 ```
 
-Čo asi stojí za povšimnutie je operácia `mkOps`. Táto operácia v podstate "naskladá" jednu a viac hodnôt typu Arith do jedného Ops, rekurzívnym
+Čo asi stojí za povšimnutie, je operácia `mkOps`. Táto operácia v podstate "naskladá" jednu a viac hodnôt typu Arith do jedného Ops rekurzívnym
 spôsobom. `Ops` je definovaný ako `Ops Arith Arith`, takže samostatný `Ops` je funkcia typu `Ops :: Arith -> Arith -> Arith`. Ako vyzerá `foldl`
 pre náš prípad?
 
@@ -443,7 +443,7 @@ Príklad:
 [(Ops (Ops (Num 5) (Mul (Num 20))) (Div (Num 10)),"")]
 ```
 
-Týmto sme dokončili samotný parsing aritmetických výrazov. Posledná práca bude ich vyhodnotenie.
+Týmto sme dokončili samotný parsing aritmetických výrazov. Poslednou prácou bude ich vyhodnotenie.
 
 # Interpret AST - Kalkulačka
 
@@ -500,10 +500,10 @@ Monády majú zaujímavú funkciu `fail :: (Monad m) => String -> m a`, ktorá v
 V tomto relatívne dlhom blogposte som napísal interpret jednoduchej kalkulačky vo funkcionálnom jazyku Haskell. Jej celý zdrojový
 kód je možné vidieť [tu][32].
 
-Kým som došiel k tejto poslednej verzii, napísal som si niekoľko rôznych kalkulačiek, a trvalo to naozaj dlho, kým som pochopil
+Kým som došiel k tejto poslednej verzii, napísal som si niekoľko rôznych kalkulačiek a trvalo to naozaj dlho, kým som pochopil,
 ako to celé funguje. Okrem [Haskell-a][35] som vyskúšal jazyk [C][33] a tiež [Scalu][34].
 
-Väčšina Haskell-ovských kalkulačiek boli monadické. Avšak na internete som často narážal na to, že použitie `Applicative` je v prípade
+Väčšina Haskell-ovských kalkulačiek bola monadická. Avšak na internete som často narážal na to, že použitie `Applicative` je v prípade
 parserov naozaj lepšie než použitie monád. Tak som začal skúmať možnosti a nejaké príklady. Našiel som toho veľmi málo, a tak som sa
 rozhodol, že si to ešte skúsim sám. Vyšlo to, čo ma veľmi teší.
 

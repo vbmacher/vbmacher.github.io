@@ -18,11 +18,11 @@ pracuje podľa nejakého algoritmu, postupu). [Turing-Churchova téza][turingchu
 Turingových strojov a Churchovho lambda kalkulu, hlása, že všetko, čo je algoritmicky riešiteľné, je riešiteľné na
 Turingovom stroji. V tomto duchu je Turingov stroj najvýkonnejší počítač na svete.  
 
-Ak vieme napísať program pre Turingov stroj, dá sa naprogramovať aj pre iný, ľubovoľný počítač taký, ktorý je s
+Ak vieme napísať program pre Turingov stroj, dá sa naprogramovať aj pre iný, ľubovoľný počítač, ktorý je s
 Turingovým strojom "kompatibilný". Turingov stroj je však abstraktný a nedá sa prakticky zostrojiť (kvôli nekonečnej páske).
 Hlbší zmysel abstraktných strojov spočíva v ich teoretických vlastnostiach - jednoduchosti a technickej neobmedzenosti.
-Abstraktný stroj má tak blízko k matematike, jedná sa o výpočtový model, ktorý sa dá teoreticky skúmať. Tieto stroje
-sa preto používajú hlavne vo vedeckých kruhoch - jednak pri určovaní teoretickej zložitosti algoritmov, ale aj pri porovnávaní
+Abstraktný stroj má tak blízko k matematike, ide o výpočtový model, ktorý sa dá teoreticky skúmať. Tieto stroje
+sa preto používajú hlavne vo vedeckých kruhoch - jednak pri určovaní teoretickej zložitosti algoritmov, jednak pri porovnávaní
 s inými výpočtovými modelmi. 
 
 ## Výpočtová ekvivalencia abstraktných strojov
@@ -35,12 +35,12 @@ stroj `M'` simulujúci stroj `M`. Ak sa to podarí, stroje sú ekvivalentné.
 Ekvivalencia strojov je myslená v zmysle schopnosti počítať - ak je stroj `M` schopný počítať určitú skupinu vecí,
 a na stroji `M'` ho vieme nasimulovať, potom aj `M'` musí vedieť počítať minimálne tú istú skupinu vecí (ak nie viac).
 Ak však stroj `M'` nasimulujeme na stroji `M`, tak stroj `M` musí vedieť minimálne to isté ako `M'`. Keďže oba stroje
-vedia minimálne to čo ten druhý, to znamená, že žiaden nevie viac ako ten druhý. Vedia teda počítať rovnako, sú si ekvivalentné.
+vedia minimálne to, čo ten druhý, to znamená, že žiaden nevie viac ako ten druhý. Vedia teda počítať rovnako, sú si ekvivalentné.
 
 ## Popis našich strojov
 
 Pre zvýšenie jednoduchosti a efektivity na emuláciu RAM stroja použijem 7-páskový Turingov stroj (ktorý
-je rozšírením klasického 1-páskového a sú [výpočtovo ekvivalentné][turingequiv].
+je rozšírením klasického 1-páskového stroja a je s ním [výpočtovo ekvivalentný][turingequiv]).
 
 Na nasledujúcom obrázku je znázornená schéma k-páskového [Turingovho stroja][tm]:
 
@@ -59,7 +59,7 @@ voliteľnú presnosť, tá musí byť na sto percent.
 ## Architektúra simulátora
 
 Architektúra RAM stroja zahŕňa vstupnú a výstupnú pásku, pamäť programu a pamäť dát (známu ako "registre").
-Napodobniť túto architektúru znamená nájsť vhodnú formu a interpretáciu (kódovanie) komponentov RAM stroja na stroj,
+Napodobniť túto architektúru znamená nájsť vhodnú formu a interpretáciu (kódovanie) komponentov RAM stroja na stroji,
 kde bude simulátor bežať. Komponenty architektúry RAM stroja sú jeho pásky a pamäte. Každú pásku
 RAM stroja, ako aj pamäť programu a dát môžeme na Turingovom stroji reprezentovať samostatnými
 páskami. Zatiaľ teda potrebujeme 4 pásky.
@@ -89,11 +89,11 @@ Nasledujúca tabuľka ukazuje kódovanie inštrukcií. Posledný stĺpec tabuľk
 
 Symboly `i` v možných operandoch reprezentujú celé a kladné číselné konštanty. Tieto číselné konštanty budú na
 páskach reprezentované ako reťazce symbolov `1` pre čísla *väčšie* ako 0 (napr. číslo 3 bude zakódované ako reťazec `111`),
-resp. symbolom `0` ak sa číslo *rovná* 0. Záporné, ani desatinné čísla nebudem pre jednoduchosť uvažovať.
+resp. symbolom `0`, ak sa číslo *rovná* 0. Záporné ani desatinné čísla nebudem pre jednoduchosť uvažovať.
 
 *Pamäť dát* `S`, uložená na ďalšej páske, bude uchovávať aktuálne hodnoty registrov RAM stroja. Má tvar
 `$#a:v#a:v#...B`. Symbol `a` je číselná konštanta označujúca číslo registra (resp. *adresu*) a symbol `v` jeho *hodnotu*.
-Na začiatku je táto páska prázdna, a postupne (počas simulácie) sa bude napĺňať.
+Na začiatku je táto páska prázdna a postupne (počas simulácie) sa bude napĺňať.
  
 Registre, ktoré nebudú na páske uložené, majú implicitnú hodnotu 0. Môže sa stať, že na páske sa objaví niekoľko hodnôt
 pre ten istý register. Potom platí, že platná hodnota daného registra je tá najpravejšia ("posledná"). Na páske sa bude
@@ -108,17 +108,17 @@ páska prázdna.
 
 Simulátor inštrukcií však bude potrebovať ďalšie 3 pomocné pásky, ktoré budú využívané počas simulácie.
 Označím ich ako `A`, `V` a `T`. Pásky `A` (pomocná páska pre ukladanie adries alebo čísel registrov) a `V` (pomocná
-páska pre ukladanie hodnôt registrov, a zároveň pomocná páska pre aritmetické inštrukcie) majú rovnaký tvar:
+páska pre ukladanie hodnôt registrov a zároveň pomocná páska pre aritmetické inštrukcie) majú rovnaký tvar:
 `#i#i#...B`.
 
 Pásku `T` budú používať inštrukcie `MUL` a `DIV` a tiež bude slúžiť na uloženie návratovej adresy z procedúr.
 Jej tvar bude `$i#i...#i#nB`, kde význam symbolov `#`, `$` a `i` je jasný. Zavedením návratovej adresy (symbol `n`)
-budem môcť vytvoriť *procedúry*, tj. súvisiace množiny inštrukcií, ktoré vykonávajú jednu algoritmickú úlohu.
+budem môcť vytvoriť *procedúry*, t. j. súvisiace množiny inštrukcií, ktoré vykonávajú jednu algoritmickú úlohu.
 Podľa hodnoty symbolu `n` budú procedúry na konci vedieť, ktorý stav majú aktivovať ako nasledujúci.
 
 Architektúra simulátora teda predstavuje 7 komponentov, a síce 7 pások Turingovho stroja. Určite však nejde o
-minimalizovanú verziu, ale to nebol účel. Podľa horeuvedených symbolov bude čitateľ schopný poskladať vstupnú
-celú abecedu simulátora.
+minimalizovanú verziu, ale to nebol účel. Podľa horeuvedených symbolov bude čitateľ schopný poskladať celú
+vstupnú abecedu simulátora.
 
 ## Simulátor inštrukcií
 
@@ -146,14 +146,14 @@ uvedené v poslednom stĺpci tabuľky v predchádzajúcej časti.
 
 Ako je možné vidieť z grafu, zo stavu $$q_2$$ sa môžeme dostať do niektorého stavu začínajúceho realizáciu danej
 inštrukcie. Pripomína to vetvenie, ktorého konštrukcia je naozaj *bežná* v klasických programovacích jazykoch, ako
-je napr. jazyk C, či Java (príkaz `switch`). A práve takýmto spôsobom funguje základná technika emulácie, nazvaná
+je napr. jazyk C či Java (príkaz `switch`). A práve takýmto spôsobom funguje základná technika emulácie, nazvaná
 *interpretácia*.
 
 ## Abeceda a jazyk
 
 Pásky Turingovho stroja sa skladajú z nekonečnej postupnosti buniek, zľava ohraničených. Symboly týchto
 pások sú definované nad abecedou pásky $$\Gamma$$. Vstupné symboly (ktoré Turingov stroj chápe ako vstup
-do algoritmu, ktorý implementuje), sú podmnožinou abecedy vstupnej pásky, a označujeme ich gréckym symbolom $$\Sigma$$.
+do algoritmu, ktorý implementuje) sú podmnožinou abecedy vstupnej pásky a označujeme ich gréckym symbolom $$\Sigma$$.
 Množinu všetkých možných (predpísaných) kombinácií týchto symbolov nazývame jazyk stroja. 
 
 Abecedy pások pre náš simulátor sú:
@@ -182,7 +182,7 @@ toto mapovanie je uvedené v tabuľke v predchádzajúcej časti. Ostatné symbo
 ## Stavy stroja
 
 Program Turingovho stroja obsahuje 116 stavov. Počiatočný stav má označenie $$q_0$$. Stavy hlavnej procedúry majú
-označenia $$q_1$$, $$q_2$$. Ďalšie stavy v rovnakom tvare, tj. $$q_i$$, reprezentujú myslené procedúry jednotlivých
+označenia $$q_1$$, $$q_2$$. Ďalšie stavy v rovnakom tvare, t. j. $$q_i$$, reprezentujú myslené procedúry jednotlivých
 inštrukcií, resp. ide o pomocné procedúry. Mapovanie inštrukcií RAM stroja na tieto procedúry
 (teda príslušné stavy programu Turingovho stroja) je uvedené v tabuľke v časti "Architektúra simulátora" (vyššie).
 
@@ -235,7 +235,7 @@ BBBBBBBBBBBBBBBBBBBBBBBBBBBBB
  ... kód z nasledujúcej časti ...
 ```
 
-Páska č.0 (programová) v uvedenej štruktúre obsahuje ako ukážku program, ktorý vydelí číslo 6 číslom 2 a výsledok
+Páska č. 0 (programová) v uvedenej štruktúre obsahuje ako ukážku program, ktorý vydelí číslo 6 číslom 2 a výsledok
 vypíše na výstupnú pásku.
 
 Význam jednotlivých symbolov je v nasledujúcej tabuľke:

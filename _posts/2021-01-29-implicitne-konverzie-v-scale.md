@@ -8,15 +8,15 @@ author: peterj
 description: Od implicitných konverzií k typovým triedam v Scale.
 ---
 
-Scala dokáže určité funkcie zavolať automaticky (implicitne) ako konverzie z typu `A` do `B`. V niektorých prípadoch sa bez implicitnej konverzie ani nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa však implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Implicity sami o sebe sú naopak veľmi užitočné, no treba sa ich naučiť používať dobre. Bohužiaľ, implicitné konverzie už ako anti-pattern padajú vhod odporcom Scaly, ktorí toto "zlo" zovšeobecňujú na implicity globálne a nakoniec aj na Scalu ako takú. Pozrieme sa na to, prečo sa na implicitné konverzie nazerá cez prsty a čo s tým robiť. 
+Scala dokáže určité funkcie zavolať automaticky (implicitne) ako konverzie z typu `A` do `B`. V niektorých prípadoch sa bez implicitnej konverzie ani nedá zaobísť (napríklad pri [Magnet patterne][magnet-pattern]), dnes sa však implicitné konverzie považujú za anti-pattern (rovnako aj Magnet pattern). Implicity samy o sebe sú naopak veľmi užitočné, no treba sa ich naučiť používať dobre. Bohužiaľ, implicitné konverzie už ako anti-pattern padajú vhod odporcom Scaly, ktorí toto "zlo" zovšeobecňujú na implicity globálne a nakoniec aj na Scalu ako takú. Pozrieme sa na to, prečo sa na implicitné konverzie nazerá cez prsty a čo s tým robiť.
 
 ## Čo je to vlastne konverzia
 
-Konverzia je obyčajná funkcia `A => B` s jedným argumentom typu `A`, a vracia výsledok typu `B`. Existujú implicitné a explicitné konverzie. Implicitné robí prekladač automaticky, keď treba a má na to podmienky. Explicitné robí programátor sám.
+Konverzia je obyčajná funkcia `A => B` s jedným argumentom typu `A` a vracia výsledok typu `B`. Existujú implicitné a explicitné konverzie. Implicitné robí prekladač automaticky, keď treba a má na to podmienky. Explicitné robí programátor sám.
 
 Napríklad väčšina populárnych jazykov dokáže implicitne skonvertovať "menšie" numerické typy na "väčšie", napr. `Integer` na `Long`; alebo `Float` na `Double`. Takáto konverzia nikde nie je definovaná, prekladač ju má v sebe väčšinou "zabudovanú". Konverzia sa realizuje často bez informovania programátora, pretože ide o "bezpečnú" operáciu. Totiž - nestráca sa tým žiadna informácia.
 
-Explicitná konverzia sa však väčšinou vyžaduje v opačnom prípade - teda ak nie je "bezpečné" alebo jasné ako typ `A` previesť na typ `B`. Niektoré jazyky majú na to špeciálnu syntax, ako napr. v jazyku C sa explicitná konverzia robí ako `(int)3.14`; v Scale by to bolo `3.14.toInt`. 
+Explicitná konverzia sa však väčšinou vyžaduje v opačnom prípade - teda ak nie je "bezpečné" alebo jasné, ako typ `A` previesť na typ `B`. Niektoré jazyky majú na to špeciálnu syntax, ako napr. v jazyku C sa explicitná konverzia robí ako `(int)3.14`; v Scale by to bolo `3.14.toInt`.
 
 Jazyk Scala, na rozdiel od väčšiny populárnych jazykov, umožňuje programátorovi napísať vlastné implicitné konverzie. Príklad:
 
@@ -40,13 +40,13 @@ V predchádzajúcom príklade sme videli príklad "nebezpečnej" implicitnej kon
 
 Poďme sa pozrieť ďalej, na mechanizmus s názvom **subtyping**. Subtyping totiž - na naše prekvapenie - dosť pripomína implicitné konverzie. 
 
-Napríklad v OOP: dedičnosť umožňuje vytvárať podtypy - teda odvodené typy od svojich rodičov. Podtypy sa však dajú vytvoriť aj inak: implementáciou interface, alebo použitím tzv. [Mixin][mixin]-u, ktorý do triedy "vkladá" funkcionalitu bez dedenia. Subtyping je teda mechanizmom nielen v OOP.
+Napríklad v OOP: dedičnosť umožňuje vytvárať podtypy - teda odvodené typy od svojich rodičov. Podtypy sa však dajú vytvoriť aj inak: implementáciou interface alebo použitím tzv. [Mixin][mixin]-u, ktorý do triedy "vkladá" funkcionalitu bez dedenia. Subtyping je teda mechanizmom nielen v OOP.
 
-Medzi hlavným typom (rodičom) a odvodeným typom (dieťaťom) je akási súvislosť. Túto súvislosť môžeme využiť pri substitúcii jedného za druhého. Dostávame sa tak ku substitučnému princípu, ktorý dobre popísala Barbara Liskov v roku 1994. Jedná sa preto o [Liskovej substitučný princíp][liskov], a má aj svoje významné písmeno **L** aj v akronyme [SOLID][solid] (princípy dobrého designu v OOP). Hovorí:
+Medzi hlavným typom (rodičom) a odvodeným typom (dieťaťom) je akási súvislosť. Túto súvislosť môžeme využiť pri substitúcii jedného za druhého. Dostávame sa tak ku substitučnému princípu, ktorý dobre popísala Barbara Liskov v roku 1994. Ide preto o [Liskovej substitučný princíp][liskov] a má aj svoje významné písmeno **L** aj v akronyme [SOLID][solid] (princípy dobrého designu v OOP). Hovorí:
 
 > Subtype Requirement: Let $\phi(x)$ be a property provable about objects $x$ of type $B$. Then $\phi(y)$ should be true for objects $y$ of type $A$ where $A$ is a subtype of $B$.
 
-Znamená to, že ak `A <: B` (`A` je podtypom `B`), tak od `A` môžeme očakávať *rovnaké vlastnosti* ako má typ `B` (vlastnosti $\phi$). Teda všetko to, čo vie "rodič", by malo vedieť aj "dieťa". A preto v programovacích jazykoch vieme implementovať **substitúciu**, čiže nahradenie `A` za `B`, bez _explicitnej_ drámy. Napríklad:
+Znamená to, že ak `A <: B` (`A` je podtypom `B`), tak od `A` môžeme očakávať *rovnaké vlastnosti*, ako má typ `B` (vlastnosti $\phi$). Teda všetko to, čo vie "rodič", by malo vedieť aj "dieťa". A preto v programovacích jazykoch vieme implementovať **substitúciu**, čiže nahradenie `A` za `B`, bez _explicitnej_ drámy. Napríklad:
 
 ```scala
 class B 
@@ -56,7 +56,7 @@ val a: A = new A()
 val b: B = a  // substitúcia
 ```
 
-Čo nám to pripomína? Implicitnú konverziu! Áno, je to tak - *na "subtyping" dá nazerať aj ako na konverziu*, pretože ak `A <: B`, tak vždy vieme *skonvertovať* `A` na typ `B`.
+Čo nám to pripomína? Implicitnú konverziu! Áno, je to tak - *na "subtyping" sa dá nazerať aj ako na konverziu*, pretože ak `A <: B`, tak vždy vieme *skonvertovať* `A` na typ `B`.
 
 Keď si ešte spomínate na príklad implicitnej konverzie `doubleToInt` vyššie, dá sa implementovať aj pomocou subtypingu: 
 
@@ -82,7 +82,7 @@ Z tohto príkladu intuitívne vieme vycítiť, aká je to "dobrá" - bezpečná 
 - funkcia musí byť úplná (*total*) - pre všetky hodnoty argumentu musí existovať výsledok
 - funkcia by mala byť referenčne transparentná (nemá "side effect")
 
-Ak máme dobrú konverziu, tak jej implicitnosť veci naozaj uľahčuje a nie sťažuje. Avšak, nie je jednoduché toto zabezpečiť v jazyku samotnom. Programátor na to všetko musí myslieť sám. Aj preto jazyková podpora implicitnej konverzie sa zdá byť výsledkom prehnanej optimistickej dôvery v programátora ;)
+Ak máme dobrú konverziu, tak jej implicitnosť veci naozaj uľahčuje a nie sťažuje. Avšak nie je jednoduché toto zabezpečiť v jazyku samotnom. Programátor na to všetko musí myslieť sám. Aj preto jazyková podpora implicitnej konverzie sa zdá byť výsledkom prehnanej optimistickej dôvery v programátora ;)
 
 ## Problémy implicitnej konverzie
 
@@ -91,16 +91,16 @@ upúšťa.
 
 ## Za čo môže programátor 
 
-Programátor môže za to, keď je konverzia "zlá" - teda nesprávne napísaná. Väčšinou sa jedná o "technické" problémy:
+Programátor môže za to, keď je konverzia "zlá" - teda nesprávne napísaná. Väčšinou ide o "technické" problémy:
 
 ### Porušenie Liskovej substitučného princípu
 
-Patrí tu spomínaný príklad konverzie `Double => Int`, alebo `String => Int`, či `String => URL`
-(pretože platí skôr `URL <: String` než naopak) apod.
+Patrí sem spomínaný príklad konverzie `Double => Int` alebo `String => Int` či `String => URL`
+(pretože platí skôr `URL <: String` než naopak) a pod.
 
 ### Neúplná funkcia ("non-total" alebo "partial" function)
 
-Keď nevieme previesť úplne každú hodnotu typu `A` na typ `B`, jedná sa o "partial" (neúplnú) funkciu. Aj keď technicky vieme vždy zabezpečiť, aby sa "neplatné hodnoty" prevádzali na nejakú predvolenú hodnotu, nie je to vždy správne riešenie. A nie vždy sa to aj dá.
+Keď nevieme previesť úplne každú hodnotu typu `A` na typ `B`, ide o "partial" (neúplnú) funkciu. Aj keď technicky vieme vždy zabezpečiť, aby sa "neplatné hodnoty" prevádzali na nejakú predvolenú hodnotu, nie je to vždy správne riešenie. A nie vždy sa to aj dá.
 
 ```scala
 implicit def stringToBoolean(s: String): Boolean = {
@@ -112,7 +112,7 @@ implicit def stringToBoolean(s: String): Boolean = {
 ```
 
 K neúplnosti funkcie prispievajú aj výnimky, ktoré konverzia môže potenciálne vyhodiť (v predchádzajúcom prípade hrozí
-výnimka `scala.MatchError`). Človeka môže napadnúť, že by sa konverzie dali napísať aj tak, aby nevyhadzovali výnimky a návratový typ `B` by obaľovali napr. do `Try`:
+výnimka `scala.MatchError`). Človeku môže napadnúť, že by sa konverzie dali napísať aj tak, aby nevyhadzovali výnimky a návratový typ `B` by obaľovali napr. do `Try`:
 
 ```scala
 import scala.util.Try
@@ -152,7 +152,7 @@ implicit def hostToInetAddress(host: String): InetAddress = {
 
 Okrem týchto relatívne technických problémov existujú ďalšie problémy, za ktoré programátor ani tak nemôže. Sú to problémy spojené so "skrývaním" chovania, ktoré prispievajú k neprehľadnosti či nejasnosti toho, ako sa program naozaj skompiluje. 
 
-Predstavme si napríklad, že v konfigurácii máme uloženú názov a URL nejakej služby:
+Predstavme si napríklad, že v konfigurácii máme uložený názov a URL nejakej služby:
 
 ```scala
 trait Service
@@ -259,9 +259,9 @@ Rozdielom oproti implicitnej konverzii je okrem explicitného volania `.toURL` f
 
 ### Riešenie 2: Typová trieda (type class)
 
-Teraz si ukážeme správne riešenie ak Liskovej substitučný princíp porušovať netreba. Preto sa už nemôžeme držať príkladu s prevodom `String => URL`. Musíme vymyslieť lepší. Napríklad, každý tzv. "[product type][producttype]" vieme previesť na `String` vo formáte [JSON][json]. Samotný prevod však musíme naprogramovať my.
+Teraz si ukážeme správne riešenie, ak Liskovej substitučný princíp porušovať netreba. Preto sa už nemôžeme držať príkladu s prevodom `String => URL`. Musíme vymyslieť lepší. Napríklad každý tzv. "[product type][producttype]" vieme previesť na `String` vo formáte [JSON][json]. Samotný prevod však musíme naprogramovať my.
 
-Operáciu prevodu (vlastne _konverziu_) vieme popísať aj tzv. [typovou triedou][typeclass], pre ľubovoľný typ `A`:
+Operáciu prevodu (vlastne _konverziu_) vieme popísať aj tzv. [typovou triedou][typeclass] pre ľubovoľný typ `A`:
 
 ```scala
 trait JsonPrintable[A] {
@@ -272,7 +272,7 @@ object JsonPrintable {
 }
 ```
 
-Jednou z možností ako napísať metódu, ktorá využíva túto operáciu je nasledovná:
+Jedna z možností, ako napísať metódu, ktorá využíva túto operáciu, je nasledovná:
 
 ```scala
 def sendJson[A: JsonPrintable](value: A): Unit = {
@@ -287,11 +287,11 @@ def sendJson[A: JsonPrintable](value: A): Unit = {
 //}
 ```
 
-Už teraz vidno, že sa jedná o úplne iný prístup ku konverzii. Implementačne sa to podobá na extension metódu,
+Už teraz vidno, že ide o úplne iný prístup ku konverzii. Implementačne sa to podobá na extension metódu,
 avšak tým, že `JsonPrintable` je trait, sa ustanovuje štandardná sada metód, ktoré musí mať každý typ,
 pre ktorý bude existovať `JsonPrintable`. To nám umožní zovšeobecniť metódu `sendJson` na ľubovoľný typ.
 
-Je to ako keby sme povedali: metóda `sendJson` vie poslať hocičo, čo sa dá previesť do JSON-u pomocou `JsonPrintable`. 
+Je to, ako keby sme povedali: metóda `sendJson` vie poslať hocičo, čo sa dá previesť do JSON-u pomocou `JsonPrintable`.
 Pre každý typ zvlášť vytvoríme implicitnú inštanciu typovej triedy a použitie je priam skvostné:
 
 ```scala
@@ -313,7 +313,7 @@ Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič nes
 
 - Problém v konverzii objektu na JSON môžeme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson` (vo funkcii `sendJson` a nie pri každom jej volaní, a to je o dosť lepšie než v prípade extension metódy).
 - konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
-- pri pridávaní typov, ktoré môžu byť použité pre funkciu `sendJson` nám stačí len pridať ďalší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
+- pri pridávaní typov, ktoré môžu byť použité pre funkciu `sendJson`, nám stačí len pridať ďalší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
 
 Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebujeme skutočný typ `B`, nie len operácie nad `B`.
 

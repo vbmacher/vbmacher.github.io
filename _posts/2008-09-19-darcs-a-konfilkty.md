@@ -4,7 +4,7 @@ date: 2008-09-19 18:00:00
 categories: [Utility]
 tags: [darcs, vcs]
 author: peterj
-description: Riešenie konfliktov vo VCS Darcs, ktorý na rozdiel od git-u nepoužíva snapshoty, ale commity (patche) sú tými jedinými objektami v repozitári.
+description: Riešenie konfliktov vo VCS Darcs, ktorý na rozdiel od git-u nepoužíva snapshoty, ale commity (patche) sú tými jedinými objektmi v repozitári.
 ---
 
 
@@ -12,12 +12,12 @@ O systéme na správu verzií [darcs](https://darcs.net/) bolo na internete pop�
 Je napísaný v Haskelli (funkcionálny jazyk). Jeho fungovanie je založené na veľkej [matematickej teórii patchov](https://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory).
 Tento článok sa zaoberá problematikou konfliktov v darcse.
 
-Konflikty zvyčajne vznikajú, keď rovnaký súbor na rovnakom mieste modifikujú súčasne viacero ľudí (v rôznych repozitároch), nezávisle na sebe.
+Konflikty zvyčajne vznikajú, keď rovnaký súbor na rovnakom mieste modifikuje súčasne viacero ľudí (v rôznych repozitároch), nezávisle od seba.
 
 
 ## Príklad
 
-Vytvoríme si centralizovaný systém 3-och repozitárov, pričom jeden bude predstavovať server, na ktorý budú zvyšní 2-ja (akože používatelia) posielať a zisťovať zmeny.
+Vytvoríme si centralizovaný systém troch repozitárov, pričom jeden bude predstavovať server, na ktorý budú zvyšní dvaja (akože používatelia) posielať a zisťovať zmeny.
 Tieto repozitáre budú v skutočnosti iba obyčajné adresáre (kvôli jednoduchosti).
 
 ```bash
@@ -64,7 +64,7 @@ Finished applying...
 Push successful.
 ```
 
-A klient **maeglin** si ho zo serveru stiahne:
+A klient **maeglin** si ho zo servera stiahne:
 
 ```bash
 [repos/maeglin]$ > darcs pull ../server
@@ -77,7 +77,7 @@ _darcs    hello.c
 ```
 
 A je čas na to, aby sme vytvorili konflikt. Predtým však dodám, že konflikt nevznikne, aj keď sa modifikuje ten istý súbor, ale na rôznych miestach
-(napr. jeden používateľ modifikuje riadky 3 až 15, a druhý 27 až 50). Takže aby sa vytvoril konflikt, musíme modifikovať rovnaké riadky v súbore. Poďme na to.
+(napr. jeden používateľ modifikuje riadky 3 až 15 a druhý 27 až 50). Takže, aby sa vytvoril konflikt, musíme modifikovať rovnaké riadky v súbore. Poďme na to.
 
 **vbmacher** zmení súbor:
 
@@ -142,13 +142,13 @@ Z výpisu je zrejmé, že konfliktný patch sa na server nepodarilo poslať. Št
 ale prijímať ich môžete (s tým, že sa konflikt v súbore vyznačí).
 
 V prípade, že chcete umožniť aj posielanie konfliktných patchov, treba v cieľovom repozitári vytvoriť (alebo editovať) súbor `_darcs/prefs/defaults` a pridať do neho riadok
-`apply allow-conflicts` (dovolenie posielania konfliktných patchov), alebo riadok `apply mark-conflicts` (umožní posielať konflikty a vyznačí konflikty v súboroch).
-Odporúčam však nechať veci tak ako sú.
+`apply allow-conflicts` (dovolenie posielania konfliktných patchov) alebo riadok `apply mark-conflicts` (umožní posielať konflikty a vyznačí konflikty v súboroch).
+Odporúčam však nechať veci tak, ako sú.
 
 ## Riešenie konfliktu
 
 Vráťme sa k našim repozitárom. Používateľ **maeglin** vytvoril patch, ktorý je konfliktný. Čo s tým? Riešením je, že používateľ **maeglin** vytvorí ďalší patch, ktorý konflikt
-rieši a následne pošle oba patche na server. Ostatní používatelia teda vôbec nemusia vedieť, že nejaký konflikt nastal.
+rieši, a následne pošle oba patche na server. Ostatní používatelia teda vôbec nemusia vedieť, že nejaký konflikt nastal.
 
 Existuje overený postup, ako by mal používateľ **maeglin** vytvoriť patch, ktorý konflikt rieši. Najprv je nutné poznať, v ktorých miestach by vznikol konflikt (v ktorých
 súboroch a kde presne v nich). To zistíme jednoducho tak, že zo servera si stiahneme všetky patche. To určite v našom lokálnom repozitári spôsobí konflikt, pretože keď sme
@@ -188,7 +188,7 @@ zmenené (teda je ho možné použiť len raz). Konflikt však aj tak nebude vyr
 
 Druhou možnosťou je manuálne riešenie konfliktu - jednoducho konfliktný súbor editovať a vyznačený konflikt vyriešiť ručne, nahrať patch a poslať ho na server.
 
-Takže používateľ **maeglin** sa rozhodol pre kombináciu oboch možností (vždy je stredná cesta?) - najprv vráti repozitár do konzistentného stavu, a potom vyznačí konflikty, ktoré ručne vyrieši.
+Takže používateľ **maeglin** sa rozhodol pre kombináciu oboch možností (vždy je stredná cesta?) - najprv vráti repozitár do konzistentného stavu a potom vyznačí konflikty, ktoré ručne vyrieši.
 
 ```bash
 [repos/maeglin$] darcs revert
@@ -211,7 +211,7 @@ Finished marking conflicts.
 ```
 
 Teraz nasleduje ručné vyriešenie konfliktu. Konflikt je vyznačený veľmi prehľadne, začína reťazcom `vvv...v`, ktorý predstavuje šípky smerom dole, potom na riadkoch reťazce `***...*` sú oddeľovače
-konfliktných častí zdrojového kódu, a nakoniec reťazec `^^^...^` reprezentuje koniec konfliktu (akože šípky hore).
+konfliktných častí zdrojového kódu a nakoniec reťazec `^^^...^` reprezentuje koniec konfliktu (akože šípky hore).
 
 Používateľ **maeglin** konflikt vyriešil takto (ručne):
 
@@ -238,7 +238,7 @@ Tak a konflikt je vyriešený. Článok je síce dlhý, ale samotné riešenie k
 Na záver dobré rady:
 
 - Neskúšajte riešiť konflikty bez **všetkých** patchov, ktoré sa majú nachádzať vo vašom repozitári (teda najprv si všetky patche stiahnite), inak to povedie k "bitke konfliktov" a
-  iných problémov (v darcse verzie 1.x to povedie k povestnému bugu, kde sa darcs v podstate zacyklí)
+  iným problémom (v darcse verzie 1.x to povedie k povestnému bugu, kde sa darcs v podstate zacyklí)
 - Neskúšajte odstrániť niektoré konfliktné zmeny novými lokálnymi patchami predtým, ako si stiahnete konfliktné patche. V darcse 1.x to tiež povedie k bugu.
 - príkaz `darcs rollback` je spôsob na riešenie konfliktov v darcse 1.x. Tento príkaz má však mnoho chýb a jeho používanie je nebezpečné
 

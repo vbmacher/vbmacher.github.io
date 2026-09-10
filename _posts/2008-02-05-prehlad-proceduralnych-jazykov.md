@@ -15,8 +15,8 @@ využívané) programovacie jazyky, ktoré sú predstaviteľmi procedurálnej pa
 ALGOL bol navrhnutý počítačovými vedcami z Európy a Ameriky na zasadnutí v roku 1958 na
 [ETH Zurich](https://ethz.ch/en.html). Tento jazyk používali väčšinou výskumníci a vedci. Jeho obmedzené
 použitie v komerčnej sfére bolo spôsobené absenciou štandardizácie vstupu/výstupu v jeho popise a nie
-prílišný záujem o tento jazyk. Algol 60 sa však stal štandardom pre publikácie o algoritmoch.
-[John Backus](https://en.wikipedia.org/wiki/John_Backus) napísal syntax tohto jazyka v jeho novej
+prílišným záujmom o tento jazyk. Algol 60 sa však stal štandardom pre publikácie o algoritmoch.
+[John Backus](https://en.wikipedia.org/wiki/John_Backus) napísal syntax tohto jazyka vo svojej novej
 notácii, ktorú vymyslel s názvom Backusova normálna forma, ktorú neskôr rozšíril
 [Peter Naur](https://en.wikipedia.org/wiki/Peter_Naur). Táto forma sa začala nazývať
 [Backus-Naurova forma (BNF)](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form) zápisu syntaxe jazyka
@@ -43,8 +43,8 @@ Akronym *BASIC* znamená "Beginner's All-purpose Symbolic Instruction Code" a id
 a [Thomas Eugene Kurtz](https://en.wikipedia.org/wiki/Thomas_E._Kurtz) na
 [Dartmouth College, New Hampshire, USA](https://home.dartmouth.edu/). Tento jazyk vytvorili, aby umožnili
 aj študentom a ne-vedcom bližšie sa zoznámiť s počítačmi a ich možnosťami. Jazyk sa stal veľmi
-populárny a široko používaný na mikropočítačoch v neskorých 1970-tych rokoch
-(napr. [MITS Altair 8800](https://en.wikipedia.org/wiki/Altair_8800)) a v domácich počítačoch v 80-tych
+populárnym a široko používaným na mikropočítačoch koncom 70. rokov
+(napr. [MITS Altair 8800](https://en.wikipedia.org/wiki/Altair_8800)) a v domácich počítačoch v 80.
 rokoch. BASIC ostáva populárny až dodnes a je základom pre značne modifikované dialekty a nové jazyky,
 ako napr. [Microsoft Visual Basic](https://en.wikipedia.org/wiki/Visual_Basic). Existuje asi okolo 250
 rôznych [dialektov BASICU](https://en.wikipedia.org/wiki/List_of_BASIC_dialects).
@@ -58,16 +58,16 @@ Klasický program "Hello, world!" v BASICu vyzerá asi takto:
 ## COBOL
 
 Ide o jeden z najstarších jazykov, ktoré sa dodnes aktívne využívajú. Jazyk vznikol v roku 1959.
-Vytvorila ho skupina "The Short Range Committee", jednou z troch skupín zo zasadnutia v Pentagone 28.
+Vytvorila ho skupina "The Short Range Committee", jedna z troch skupín zo zasadnutia v Pentagone 28.
 a 29. mája 1959, presne rok po Zürich-skom zasadnutí pre ALGOL 58.
 
-COBOL je akronym  "**CO**mmon **B**usiness-**O**riented **L**anguage". Jeho hlavná doména je obchod,
+COBOL je akronym  "**CO**mmon **B**usiness-**O**riented **L**anguage". Jeho hlavnou doménou je obchod,
 finančníctvo a administratívne systémy pre spoločnosti a vládu. Štandard z roku 2002 zahŕňa podporu
-aj pre objektovo-orientované programovanie a iné vylepšenia.
+aj pre objektovo orientované programovanie a iné vylepšenia.
 
 Existovala veľká kritika jeho syntaxe, hlavne že rozsiahla dĺžka príkazov spôsobuje záťaž pre
 rozmýšľanie nad tým, čo má program robiť. [Edsger Dijkstra](https://en.wikipedia.org/wiki/Edsger_W._Dijkstra)
-sa dokonca vyjadril, že: *"Použitie COBOLu otupuje myseľ; jeho výučba by sa mala preto pokladať za
+sa dokonca vyjadril, že *"Použitie COBOLu otupuje myseľ; jeho výučba by sa mala preto pokladať za
 trestný čin"*. Obranou bolo vyjadrenie, že kto kritizuje COBOL, určite v ňom nikdy neprogramoval a
 často si ho chybne vysvetľuje. Jeho špecifikácia bola neskôr aj tak revidovaná.
 
@@ -115,10 +115,10 @@ MAIN.
 
 Tento jazyk je azda najpopulárnejší jazyk vôbec a každý "skutočný" programátor by ho mal podľa
 môjho názoru poznať. História vývoja jazyka C začína v období rokov 1969 až 1973 a súvisí s vývojom
-operačného systému [Unix](https://en.wikipedia.org/wiki/Unix)
+operačného systému [Unix](https://en.wikipedia.org/wiki/Unix).
 
 Pre implementáciu systému chceli použiť jazyk dostatočne efektívny z pohľadu strojového kódu a zároveň
-nezávislý na konkrétnom procesore (čo bolo vtedy dosť protichodné). Ako vylepšenie jazyka
+nezávislý od konkrétneho procesora (čo bolo vtedy dosť protichodné). Ako vylepšenie jazyka
 [BCPL](https://en.wikipedia.org/wiki/BCPL) (o ktorom rozmýšľali, že bude implementačným jazykom Unixu)
 navrhol Ken Thompson jeho variant s názvom [B](https://en.wikipedia.org/wiki/B_%28programming_language%29) (1970).
 Aj keď jazyk mal dobré kompilačné vlastnosti, nebol dostatočne univerzálny. Preto sa nakoniec rozhodol
@@ -126,9 +126,9 @@ Aj keď jazyk mal dobré kompilačné vlastnosti, nebol dostatočne univerzálny
 požiadavky. Vychádzal pritom z Thompsonovho jazyka "B" a podľa oficiálnych zdrojov dostal preto
 pomenovanie "C" ako jeho "nasledovník".
 
-C je jazykom strednej úrovne (teda ani nízkoúrovňový ale ani celkom vysokoúrovňový) a používa sa hlavne
-v oblasti (a dnes čoraz viac len) na systémové programovanie (operačné systémy, ovládače,
-real-time aplikácie, emulátory, ale aj programovacie jazyky, ...)
+C je jazykom strednej úrovne (teda ani nízkoúrovňový, ale ani celkom vysokoúrovňový) a používa sa hlavne
+(a dnes čoraz viac len) na systémové programovanie (operačné systémy, ovládače,
+real-time aplikácie, emulátory, ale aj programovacie jazyky, ...).
 
 V knihe [The C programming language](https://en.wikipedia.org/wiki/The_C_Programming_Language)
 od Briana Kernighana a Dennisa Ritchie-ho (prvý "manuál" k jazyku) bol najzaujímavejší program typu
@@ -151,16 +151,16 @@ Ide o jeden z najznámejších jazykov, ktorý sa hojne vyučuje na školách aj
 čistý Pascal už ani tak nevyužíva, skôr jeho odvodená objektová verzia Delphi.
 
 Jazyk Pascal vytvoril v roku 1970 [N. Wirth](https://en.wikipedia.org/wiki/Niklaus_Wirth) ako malý,
-efektívny jazyk, ktorý by mal "povzbudzovať" programátorov používaniu správnych programovacích praktík,
+efektívny jazyk, ktorý by mal "povzbudzovať" programátorov k používaniu správnych programovacích praktík,
 tzv. štruktúrnemu programovaniu.
 
 Jazyk vychádza z jazyka `Algol 60` a pomenovanie dostal podľa francúzskeho matematika a filozofa
 [B. Pascala](https://en.wikipedia.org/wiki/Blaise_Pascal).
 
 Wirthov cieľ bol vytvoriť efektívny jazyk založený na tzv. štruktúrovanom programovaní. Ako som už
-spomenul, vychádza z jazyka Algol, kde uvádza nové mechanizmy, ako si mohol programátor vytvoriť jeho
+spomenul, vychádza z jazyka Algol, kde uvádza nové mechanizmy, ako si mohol programátor vytvoriť svoje
 vlastné zložitejšie dátové štruktúry. Rovnako tak uľahčil tvorbu dynamických a rekurzívnych dátových
-štruktúr ako napríklad zoznamy, stromy alebo grafy.
+štruktúr, ako napríklad zoznamy, stromy alebo grafy.
 
 Jazyk obsahuje dátové štruktúry ako napr. záznamy (`record`), výčtové typy (`type`), množiny (`set`),
 dynamicky alokované premenné so smerníkmi, polia s rôzne definovaným rozmedzím.
@@ -186,5 +186,5 @@ end.
 # Záver
 
 V tomto článku som spravil prehľad snáď tých úplne najznámejších historických procedurálnych programovacích
-jazykov. Hovorím procedurálnych, pretože historicky sú známe aj objektovo-orientované jazyky (napr. Smalltalk),
+jazykov. Hovorím procedurálnych, pretože historicky sú známe aj objektovo orientované jazyky (napr. Smalltalk)
 alebo viac funkcionálne jazyky (napr. Lisp).
