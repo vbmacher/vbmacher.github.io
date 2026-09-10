@@ -87,7 +87,7 @@ Nasledujúca tabuľka ukazuje kódovanie inštrukcií. Posledný stĺpec tabuľk
 | `JMP`          | `J`                   | `i`             | $$q_{13}$$       |
 
 
-Symboly `i` v možných operandoch reprezentujú celé a kladné číselné konštanty. Tieto číselné konštanty budú na
+Symboly `i` v možných operandoch reprezentujú nezáporné celé číselné konštanty. Tieto číselné konštanty budú na
 páskach reprezentované ako reťazce symbolov `1` pre čísla *väčšie* ako 0 (napr. číslo 3 bude zakódované ako reťazec `111`),
 resp. symbolom `0`, ak sa číslo *rovná* 0. Záporné ani desatinné čísla nebudem pre jednoduchosť uvažovať.
 
@@ -262,7 +262,7 @@ vykoná. Stroj je deterministický.
 Symboly $$P_2, I_2, \ldots, T_2$$ sú symboly, ktoré prepíšu pôvodné symboly na jednotlivých páskach po vykonaní
 danej inštrukcie.
 
-Symboly $$D_P, D_I, \ldots, D_T$$ označujú pohyb hláv na jednotlivých páskach stroja. Každý symbol je množina troch
+Symboly $$D_P, D_I, \ldots, D_T$$ označujú pohyb hláv na jednotlivých páskach stroja. Každý symbol patrí do množiny troch
 prvkov: $$\{r, l, s\}$$, kde $$r$$ znamená pohyb o jeden symbol doprava, $$l$$ o jeden symbol doľava a $$s$$ žiadny pohyb.
 
 Celý kód samotného simulátora si môžete stiahnuť [ako gist][code].

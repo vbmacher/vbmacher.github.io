@@ -137,16 +137,18 @@ vypočítateľné čísla.
 
 Systém vypisovania "nasledovníkov" bol už raz použitý, keď Georg Cantor v roku 1891 dokazoval existenciu nespočítateľných
 nekonečných množín (množiny reálnych čísel). Použil ho tiež Gödel pri dokazovaní svojho teorému nekompletnosti a bol použitý aj v [Principii Mathematice][11]
-v popise [Richardovho paradoxu][61]. Tento systém je známy pod názvom "diagonálny proces" alebo ["diagonálny argument"][54]:
+v popise [Richardovho paradoxu][61]. Tento systém je známy pod názvom "diagonálny proces" alebo ["diagonálny argument"][54].
+Turing najprv uvádza nasledujúci zámerne chybný argument pre binárne sekvencie:
 
-> Ak sú vypočítateľné sekvencie spočítateľné, nech $$\alpha_n$$ je $$n$$-tá vypočítateľná sekvencia a nech $\phi_n(m)$ je $$m$$-tá číslica
+> Ak sú vypočítateľné sekvencie spočítateľné, nech $$\alpha_n$$ je $$n$$-tá vypočítateľná sekvencia a nech $$\phi_n(m)$$ je $$m$$-tá číslica
 > sekvencie $$\alpha_n$$. Nech $$\beta$$ je sekvencia, v ktorej $$n$$-tá číslica je definovaná ako $$1 - \phi_n(n)$$. Keďže sekvencia $$\beta$$
 > je vypočítateľná, existuje číslo $$K$$, že $$1 - \phi_n(n) = \phi_K(n)$$ pre všetky $$n$$. Ak priradíme $$n = K$$, dostávame $$1 = 2\phi_K(K)$$,
 > teda že číslo $$1$$ je párne. To je nemožné. Vypočítateľné sekvencie teda nie sú spočítateľné.
 
 "Háčik" spočíva v predpoklade, že $$\beta$$ je vypočítateľná sekvencia. Ak by bola, v konečnom počte krokov by sme ju vedeli
 vyčísliť. Avšak problém vyčíslenia vypočítateľných sekvencií je ekvivalentný problému zistenia, či nejaké číslo reprezentuje D.N. *circle-free* T.S.
-A takýto proces nemáme - s konečným počtom krokov. Dôkaz tohto tvrdenia bude spočívať v pokuse zostrojiť stroj, ktorý počíta sekvenciu $$\beta' = 1 - \beta = \phi_n(n)$$.
+A takýto proces nemáme - s konečným počtom krokov. Dôkaz tohto tvrdenia bude spočívať v pokuse zostrojiť stroj, ktorý počíta sekvenciu $$\beta'$$.
+Jej $$n$$-tá číslica je $$\beta'_n = 1 - \beta_n = \phi_n(n)$$, kde $$\beta_n$$ označuje $$n$$-tú číslicu sekvencie $$\beta$$.
 
 Nikde nie je povedané presne, čo tento stroj - počítajúci sekvenciu $$\alpha_n$$ - má robiť. Vieme len, že sekvencia $$\alpha_n$$ má byť vypočítateľná.
 Keďže podľa Turinga problém vyčíslenia vypočítateľných sekvencií je ekvivalentný problému zistenia, či nejaký stroj je *circle-free*, predpokladajme,

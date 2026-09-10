@@ -71,8 +71,9 @@ sa dokonca vyjadril, že *"Použitie COBOLu otupuje myseľ; jeho výučba by sa 
 trestný čin"*. Obranou bolo vyjadrenie, že kto kritizuje COBOL, určite v ňom nikdy neprogramoval a
 často si ho chybne vysvetľuje. Jeho špecifikácia bola neskôr aj tak revidovaná.
 
-Napríklad kód v COBOL-e pre výpočet koreňa kvadratickej rovnice `a*x^2 + b*x + c`
-môže vyzerať takto:
+Napríklad kód v COBOL-e pre výpočet koreňa kvadratickej rovnice `a*x^2 + b*x + c = 0`
+môže vyzerať takto. Obe nasledujúce ukážky počítajú koreň so znamienkom `+` pred odmocninou;
+pre reálny výsledok predpokladajú `a != 0` a `b^2 - 4*a*c >= 0`:
 
 ```cobol
 COMPUTE X = (-B + (B ** 2 - (4 * A * C)) ** .5) / (2 * A)

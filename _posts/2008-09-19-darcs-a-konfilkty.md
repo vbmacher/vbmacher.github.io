@@ -67,7 +67,7 @@ Push successful.
 A klient **maeglin** si ho zo servera stiahne:
 
 ```bash
-[repos/maeglin]$ > darcs pull ../server
+[repos/maeglin]$ darcs pull ../server
 Fri Sep 19 09:48:22 CEST 2008  vbmacher
   * Initial
 Shall I pull this patch? (1/1)  [ynWsfvpxdaqjk], or ? for help: y
@@ -152,8 +152,8 @@ rieši, a následne pošle oba patche na server. Ostatní používatelia teda v�
 
 Existuje overený postup, ako by mal používateľ **maeglin** vytvoriť patch, ktorý konflikt rieši. Najprv je nutné poznať, v ktorých miestach by vznikol konflikt (v ktorých
 súboroch a kde presne v nich). To zistíme jednoducho tak, že zo servera si stiahneme všetky patche. To určite v našom lokálnom repozitári spôsobí konflikt, pretože keď sme
-chceli poslať patch z nášho repozitára (používateľ **maeglin**), darcs hroziaci konflikt zahlásil. Toto je jediná možnosť, ako korektne získať informácie o konflikte - pokaziť
-si vlastný repozitár.
+chceli poslať patch z nášho repozitára (používateľ **maeglin**), darcs hroziaci konflikt zahlásil. Prijatím patchov získame podklady na jeho
+vyriešenie a darcs vyznačí konfliktné miesta v pracovných súboroch.
 
 ```bash
 [repos/maeglin$] darcs pull
@@ -181,14 +181,14 @@ hunk ./hello.c 1
 
 Po prijatí všetkých patchov zo servera darcs automaticky vyznačí konflikty v súboroch, ktorých sa to týka. Teraz má používateľ **maeglin** dve možnosti.
 
-Môže si vrátiť lokálny repozitár do konzistentného stavu bez chýb. To sa urobí príkazom `darcs revert`. Tento príkaz sa používa na vrátenie zmien zdrojových kódov,
-ktoré ešte neboli nahrané (s príkazom `darcs record`). Posledný príkaz `darcs revert` sa dá vrátiť späť cez príkaz `darcs unrevert`, ak zdrojové kódy neboli medzitým
-zmenené (teda je ho možné použiť len raz). Konflikt však aj tak nebude vyriešený, len nebude vyznačený. Ak chce používateľ ponechať takúto zmenu, je potrebné ju nahrať
-(cez `darcs record`) a následne poslať na server. Konflikt sa takto vyrieši.
+Môže odstrániť vyznačenie konfliktu príkazom `darcs revert`. Tento príkaz zahodí vybrané nenahrané zmeny pracovných súborov,
+teda zmeny, ktoré ešte neboli uložené cez `darcs record`. Posledný revert možno vrátiť cez `darcs unrevert`; úspech je zaručený,
+ak sa repozitár odvtedy nezmenil. Samotný revert konflikt nevyrieši, len odstráni jeho vyznačenie.
+Na vyriešenie treba vytvoriť patch s výsledným obsahom, ktorý závisí od konfliktných patchov, a poslať ho na server.
 
 Druhou možnosťou je manuálne riešenie konfliktu - jednoducho konfliktný súbor editovať a vyznačený konflikt vyriešiť ručne, nahrať patch a poslať ho na server.
 
-Takže používateľ **maeglin** sa rozhodol pre kombináciu oboch možností (vždy je stredná cesta?) - najprv vráti repozitár do konzistentného stavu a potom vyznačí konflikty, ktoré ručne vyrieši.
+Takže používateľ **maeglin** sa rozhodol najprv odstrániť vyznačenie konfliktov a potom ich znovu vyznačiť a ručne vyriešiť.
 
 ```bash
 [repos/maeglin$] darcs revert

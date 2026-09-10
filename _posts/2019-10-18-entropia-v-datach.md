@@ -39,18 +39,18 @@ rôznu dĺžku. Takže - ktorú abecedu si zvoliť?
 
 ## Entropia
 
-Zrejme najväčší zmysel dáva zvoliť si takú abecedu, ktorá produkuje *minimálny počet bitov*. Entropiou je potom vyjadrenie
-*minimálneho priemerného množstva informácie*, ktoré potrebujeme "vydolovať" z dát, aby sme sa dozvedeli všetko. Inak povedané -
-je to minimálny priemerný počet bitov, do ktorých vieme celú správu zapísať bezstratovo.
+Zrejme najväčší zmysel dáva zvoliť si také kódovanie, ktoré produkuje *minimálny počet bitov*. Entropia vyjadruje
+*priemerné množstvo informácie na symbol*. Pri nezávislých symboloch s rovnakým rozdelením je dolnou hranicou
+priemernej dĺžky bezstratového kódovania v bitoch na symbol; dostatočne dlhým blokovým kódovaním sa k nej vieme priblížiť.
 
 Kvantitatívne môžeme začať takto:
 
 1. Pre každý symbol spočítame jeho frekvenciu výskytu: $$f_i = \frac{n_i}{N}$$, kde $$n_i$$ je počet výskytov
-   $$i$$-tého symbolu v dátach a $$N$$ veľkosť dát v bitoch.
+   $$i$$-tého symbolu v dátach a $$N$$ celkový počet symbolov v dátach.
 2. Pre jednotlivé symboly v dátach nájdeme minimálne kódovanie s využitím nájdených frekvencií symbolov, napr.
    [Huffmanovo kódovanie][9]. Každý symbol bude mať optimálny kód veľkosti $c_i$ bitov.
-3. Minimálnu veľkosť správy vypočítame vlastne ako sumu "váh" symbolov, kde váha symbolu je jeho optimálna veľkosť
-   krát frekvencia výskytu: $$\sum c_i * f_i$$
+3. Priemernú dĺžku kódu na symbol vypočítame vlastne ako sumu "váh" symbolov, kde váha symbolu je jeho optimálna veľkosť
+   krát frekvencia výskytu: $$L = \sum_{i=1}^{K} c_i f_i$$, kde $$K$$ je počet rôznych symbolov v dátach.
 
 Napríklad majme [100 symbolov][10]:
 
@@ -60,82 +60,89 @@ Napríklad majme [100 symbolov][10]:
 |*Veľkosť kódu ($$c_i$$):*| 3    | 3    | 2    | 2    | 2    |         |
 |*Váha symbolu $$f_i * c_i$$:*| 0.30 | 0.45 | 0.60 | 0.32 | 0.58 |  = 2.25 |
 
-Minimálna veľkosť správy má už dosť blízko k informačnej "entropii" a počíta sa veľmi podobne:
+Priemerná dĺžka kódu na symbol $$L$$ má v tomto príklade blízko k informačnej entropii, ale ide o odlišné veličiny:
 
-$$H_{\text{približne}} = \sum_i^{N} \frac{n_i}{N} * c_i$$
+$$L = \sum_{i=1}^{K} \frac{n_i}{N} c_i$$
+
+kde $$K$$ je počet rôznych symbolov v dátach a $$N$$ je celkový počet ich výskytov.
+V príklade je $$L = 2.25$$ bitu na symbol a dĺžka zakódovanej správy je $$N L = 100 \cdot 2.25 = 225$$ bitov.
 
 Prečo je len "blízko", si vysvetlíme neskôr. Nateraz - Shannon entropiu definoval viac matematicky, bez zaťaženia na spôsob
 "enkódovania".
 
 ### Matematicky
 
-Entropia je známa z termodynamiky ako "miera neusporiadanosti" termodynamického systému. Fyzikálne sa entropia meria len svojou
-"zmenou" - keď sústave dodáme teplo určitej teploty:
+Entropia je známa z termodynamiky ako "miera neusporiadanosti" termodynamického systému. Pri vratnom prenose tepla
+pri konštantnej absolútnej teplote $$T$$ je jej zmena:
 
-$$\Delta S = \frac{\Delta Q}{T}$$.
+$$\Delta S = \frac{Q_{\mathrm{rev}}}{T}$$.
 
-Ak má systém viac "podsystémov", tak musíme jednotlivé prírastky entropie počítať zvlášť na každý "podsystém" a potom ich spriemerovať.
+Ak sa teplota mení, použijeme $$\Delta S = \int_{\mathrm{rev}} \frac{\delta Q}{T}$$, kde integrujeme po vratnej ceste medzi danými stavmi ([zdroj][12]).
+Entropie nezávislých podsystémov sa sčítavajú: $$S_{A+B} = S_A + S_B$$ ([zdroj][13]).
 Ak je "podsystémov" (napr. častíc) príliš veľa, nebude to možné realizovať. A tak prišiel [Boltzmann][6] so svojou štatistickou entropiou.
 Systém videl ako ucelenú sústavu mikrostavov, do ktorých sa sústava ako celok vie dostať. My pracujeme len s makroskopickými veličinami
 (ako napr. tlakom, teplotou, objemom a počtom častíc). Entropia je potom vyjadrená ako množstvo "voľnosti", ktoré systému ostane po zadaní
 týchto makroskopických parametrov. Matematicky ju vyjadril ako:
 
-$$S = k \; ln \; \Omega$$
+$$S = k \ln \Omega$$
 
-kde $$k$$ je konštanta a $$\Omega$$ je počet rôznych stavov, v ktorých systém môže byť. Ak každému stavu priradíme vlastnú pravdepodobnosť
+kde $$k$$ je Boltzmannova konštanta a $$\Omega$$ je počet rovnako pravdepodobných mikrostavov. Ak stavy majú rôzne pravdepodobnosti
 $$p_i$$, dostaneme vzťah:
 
-$$S = -k \sum_i p_i \; ln \, p_i$$
+$$S = -k \sum_i p_i \ln p_i$$
 
 Ako to súvisí s informačnou entropiou? *Informačnú entropiu* definoval tiež [Claude Shannon][1]. A tá je veľmi podobná tej od štatistickej
 entropie ([zdroj][4]):
 
-$$H = -\sum_{i=1}^{N} p(x_i) \; ln \; p(x_i)$$
+$$H_{\mathrm{nat}} = -\sum_{i=1}^{K} p(x_i) \ln p(x_i)$$
 
-Kde $$p(x_i)$$ je pravdepodobnosť výskytu hodnoty $$x_i$$ v dátovom korpuse. Na logaritmickom základe nezáleží, zmení sa len rozsah
-možných hodnôt. Ak chceme mať výsledok v počte bitov, je dobré použiť dvojkový logaritmus. Prirodzený logaritmus dáva výsledok v tzv. "nat"-och.
+kde $$p(x_i)$$ je pravdepodobnosť výskytu hodnoty $$x_i$$ v dátovom korpuse. Základ logaritmu určuje jednotku:
+prirodzený logaritmus dáva naty na symbol, dvojkový logaritmus bity na symbol. Nulový člen sa chápe limitne ako $$0 \log 0 = 0$$.
 
-Výraz $$- ln \; a = ln \; \frac{1}{a}$$ a teda vzorec je možné prepísať aj do tvaru:
+Pre $$a > 0$$ platí $$-\ln a = \ln \frac{1}{a}$$. Pri prechode na dvojkový logaritmus vyjadríme entropiu v bitoch na symbol,
+teda $$H = H_{\mathrm{nat}} / \ln 2$$:
 
-$$H = \sum_{i=1}^{N} p(x_i) \; log_2 \; \frac{1}{p(x_i)}$$
+$$H = \sum_{i=1}^{K} p(x_i) \log_2 \frac{1}{p(x_i)}$$
 
-v ktorom člen $$log_2 \; \frac{1}{p(x_i)}$$ je tým dátovým "prekvapením", alebo _novou informáciou_, ktorú $$i$$-tý symbol prináša.
-Ak by sme to mali v tomto bode prirovnať k minimálnej veľkosti správy, tak tento člen je matematickým vyjadrením optimálneho kódu $$c_i$$.
+v ktorom člen $$I_i = \log_2 \frac{1}{p(x_i)}$$ je tým dátovým "prekvapením", alebo _novou informáciou_, ktorú $$i$$-tý symbol prináša.
+$$I_i$$ môže byť neceločíselné; konkrétna dĺžka binárneho kódového slova $$c_i$$ musí byť celé číslo. Vo všeobecnosti sa nerovnajú.
 Ako to? Ak pravdepodobnosť $$p_i$$ nahradíme frekvenciou výskytu:
 
 $$p_i = f_i = \frac{n_i}{N}$$ 
 
 potom dostaneme:
 
-$$H = \sum_{i=1}^{N} \frac{n_i}{N} \; log_2 \; \frac{N}{n_i}$$
+$$H = \sum_{i=1}^{K} \frac{n_i}{N} \log_2 \frac{N}{n_i}$$
 
-a teda $$c_i = log_2 \; \frac{N}{n_i}$$. Keď si uvedomíme fakt, že $$log_2 \; m$$ nám hovorí, koľko bitov potrebujeme na zakódovanie $$m$$
-hodnôt, tak v tomto prípade je optimálnym kódom vlastne počet bitov, ktoré potrebujeme na zakódovanie $$\frac{N}{n_i}$$ hodnôt. Výraz
-$$\frac{N}{n_i}$$ odpovedá - koľkokrát sa do správy zmestia všetky výskyty $$i$$-tého symbolu.
+a teda $$I_i = \log_2 \frac{N}{n_i}$$ pre pozorované symboly, kde $$n_i > 0$$.
+Na zakódovanie $$m \geq 1$$ rôznych hodnôt kódom pevnej dĺžky potrebujeme $$\lceil \log_2 m \rceil$$ bitov na hodnotu.
+Výraz $$N/n_i = 1/p_i$$ je prevrátená pravdepodobnosť symbolu; nemusí byť celým počtom hodnôt.
 
 Hodnotu si môžeme overiť z príkladu v predchádzajúcej časti. Poznáme frekvencie výskytov každého symbolu, takže:
 
 |*Symbol:*                                                      | `a`   | `b`    | `c`   | `d`    | `e`    | Suma      |
 |*Frekvencia ($$f_i$$):*                                        | 0.10  | 0.15   | 0.30  | 0.16   | 0.29   |	= 1      |
 |*Veľkosť optimálneho kódu ($$c_i$$):*                          | 3     | 3      | 2     | 2      | 2      |           |
-|*Informačný prírastok ($$log_2 \; \frac{N}{n_i}$$):*           | 3.32  | 2.73   | 1.73  | 2.64   | 1.78   |           |
+|*Informačný prírastok ($$I_i = \log_2 \frac{N}{n_i}$$):*       | 3.3219 | 2.7370 | 1.7370 | 2.6439 | 1.7859 |           |
 |*Váha symbolu $$f_i * c_i$$:*                                  | 0.30  | 0.45   | 0.60  | 0.32   | 0.58   |  = 2.25   |
-|*Váha informačného prírastku $$f_i * log_2 \; \frac{N}{n_i}$$:*| 0.332 | 0.4095 | 0.519 | 0.4224 | 0.5162 |  = 2.2    |
+|*Váha informačného prírastku $$f_i I_i$$:*                      | 0.3322 | 0.4105 | 0.5211 | 0.4230 | 0.5179 | ≈ 2.2047 |
 
-Suma posledného riadku je vlastne informačná entropia a vidíme, že je trochu menšia než minimálna veľkosť správy.
+Suma posledného riadku je informačná entropia $$H \approx 2.2047$$ bitu na symbol; čísla v tabuľke sú zaokrúhlené až po výpočte.
+Je trochu menšia než priemerná dĺžka kódu na symbol $$L = 2.25$$.
 
-Ak existuje $$N$$ hodnôt a každá z nich je v korpuse rovnako pravdepodobná, potom $$p_i = \frac{1}{N}$$. Vzorec sa potom dá napísať ako:
+Ak existuje $$K$$ rôznych hodnôt a každá z nich je v korpuse rovnako pravdepodobná, potom $$p_i = \frac{1}{K}$$. Vzorec sa potom dá napísať ako:
 
-$$H = \sum_{i=1}^{N} \frac{1}{N} \; log_2 \; \frac{1}{\frac{1}{N}} = \underbrace{\frac{1}{N} \; log_2 \; N + ... + \frac{1}{N} \; log_2 \; N}_\text{N} = log_2 \; N$$
+$$H = \sum_{i=1}^{K} \frac{1}{K} \log_2 K = K \cdot \frac{1}{K} \log_2 K = \log_2 K$$
 
 čo zas pripomína pôvodný Boltzmannov vzorec.
 
-### Prečo nie je veľkosť "skomprimovanej" správy entropiou
+### Ako súvisí dĺžka kódu s entropiou
 
-Vyplýva to zo Shannonovho teorému "zdrojového kódovania", ktorý udáva praktické limity bezstratovej dátovej kompresie. Hovorí, že
-minimálna veľkosť dát nikdy nebude menšia, než je entropia, ale je možné dosiahnuť veľkosť ľubovoľne blízku entropii so zanedbateľnou stratou
-informácie - t. j. úplne bezstratová minimálna veľkosť správy bude musieť byť trochu väčšia než entropia. Pre detailnejšie info
-[kliknite tu][11].
+Pre optimálny binárny prefixový kód nad aspoň dvoma symbolmi platí $$H \leq L < H + 1$$.
+Rovnosť $$L = H$$ je možná, napríklad pri pravdepodobnostiach $$p_i = 2^{-c_i}$$.
+Ak nezávislé symboly s rovnakým rozdelením kódujeme po blokoch dĺžky $$b$$, optimálna priemerná dĺžka kódu bloku $$L_b$$ spĺňa
+$$H \leq L_b/b < H + 1/b$$. Takto sa vieme k entropii priblížiť bez straty informácie.
+Všetky tieto hranice sa týkajú priemeru na symbol. Pre detailnejšie info [kliknite tu][11] alebo pozrite [odvodenie][14].
 
  
 ## Využitie entropie v dátach
@@ -152,7 +159,7 @@ Informačná entropia sa v dátach väčšinou používa na akési ohodnotenie "
 
 V tomto prípade môžeme očakávať, že ceny budú "kvalitné" vtedy, ak budú naozaj rozmanité. Nie je totiž možné, že každý produkt bude mať rovnakú cenu.
 Toto principiálne rozrieši entropia, ktorú môžeme očakávať relatívne vysokú - v ideálnom prípade bude mať každý unikátny produkt jednu unikátnu cenu, teda
-pravdepodobnosť výskytu každej ceny bude rovnaká. A potom budeme vedieť, že dáta sú kvalitné, ak entropia bude nie oveľa menšia než $$log_2 \; N$$, v našom prípade $$H = log_2 5 \simeq 2.32$$.
+pravdepodobnosť výskytu každej ceny bude rovnaká. A potom budeme vedieť, že dáta sú kvalitné, ak entropia bude nie oveľa menšia než $$\log_2 K$$, v našom prípade $$H = \log_2 5 \approx 2.32$$.
 
 Ak dostaneme takéto dáta:
 
@@ -164,7 +171,7 @@ Ak dostaneme takéto dáta:
 | Skriňa     | 1     |
 | Auto       | 1     |
 
-vidíme, že $$p_i = 1$$ a teda entropia je $$H = 5 * (1 * log_2 \; 1) = 0$$
+vidíme, že jediná hodnota ceny má pravdepodobnosť $$p = 1$$, a teda entropia je $$H = -1 \cdot \log_2 1 = 0$$
 
 V tomto prípade nám entropia hovorí, že dáta nie sú kvalitné, pretože ideálne sme očakávali entropiu $$2.32$$.
 
@@ -234,7 +241,7 @@ vieme celý tento algoritmus napísať veľmi jednoducho:
 
 1. Najprv spočítame početnosť jednotlivých hodnôt.
 2. V druhom kroku vypočítame pravdepodobnosť každej hodnoty
-3. Ďalej vypočítame vnútorný člen vzorca entropie, teda $$-p(x_i) \; ln \; p(x_i)$$
+3. Ďalej vypočítame vnútorný člen vzorca entropie, teda $$-p(x_i) \ln p(x_i)$$
 4. Posledným krokom je sčítať všetky tieto členy do jedinej hodnoty - entropie
 
 Pri počítaní kroku 3 tam mám ošetrenie situácie, ak bude pravdepodobnosť nejakej hodnoty nulová. Ak by bola pravdepodobnosť
@@ -259,7 +266,7 @@ pravdepodobnosť každej hodnoty), a potom skutočné entropie umelcov a skladie
   println(s"Songs entropy: $songsEntropy")
 ```
 
-A výsledok po spustení celého programu je takýto:
+A výsledok po spustení celého programu je takýto (hodnoty sú v natoch na symbol, pretože kód používa prirodzený logaritmus):
 
 ```
 Expected entropy: 9.140990293841389
@@ -334,3 +341,6 @@ z možností, ako si dáta "oťukať". Dúfam, že sa vám článok páčil :)
 [9]: https://en.wikipedia.org/wiki/Huffman_coding
 [10]: https://en.wikipedia.org/wiki/Huffman_coding#Example
 [11]: https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem#Proof:_Source_coding_theorem_for_symbol_codes
+[12]: https://web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node41.html
+[13]: https://web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node56.html
+[14]: https://web.stanford.edu/class/ee376a/files/2017-18/lecture_5.pdf

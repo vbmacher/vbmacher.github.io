@@ -98,8 +98,8 @@ end.
 ```
 
 Takže vidíme, že príkazy musia byť zakončené bodkočiarkou. Prvé tri riadky som skopíroval z manuálu. Lepšie vysvetlenie
-premennej `prologues` však nájdeme v [manuáli MetaPost-u][5]. Kladná hodnota okrem iného spôsobí orezanie obrázku
-na minimálny obdĺžnik, ktorý obrázok obkolesuje, čo chceme - žiadne A4 formáty a podobne.
+premennej `prologues` však nájdeme v [manuáli MetaPost-u][5]. Hodnota 3 zabezpečuje správne zahrnutie použitých fontov
+do výstupu; nejde o nastavenie orezania obrázka.
 
 `outputtemplate` definuje šablónu názvu výstupného súboru, pričom `%j` zastupuje tzv. "job name", ktorý odpovedá menu vstupného
 súboru bez prípony (teda v našom prípade `logo`), a `%c` je číslo obrázka. A `outputformat` je snáď jasný. Okrem `svg` môžeme

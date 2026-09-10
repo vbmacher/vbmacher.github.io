@@ -16,33 +16,36 @@ ktorú každý nutne potrebuje. Množstvo vecí bolo prebratých z git [tutoriá
 Tak, pusťme sa do toho.
 
 1. *Pridal som nové súbory/adresáre, ktoré chcem dať do repozitára*
-    - **najpoužívanejšie:** `git add adresar`  -> pridá všetko rekurzívne v adresári *adresar* do gitového indexu, ale necommitne to ešte do samotného repozitára
+    - **najpoužívanejšie:** `git add adresar`  -> pripraví zmeny súborov rekurzívne v adresári *adresar* do gitového indexu; nové ignorované súbory vynechá a commit ešte nevytvorí
     - všeobecne: `git add subor1 subor2 ...` 
-    - `git add .`  -> pridá všetky súbory/adresáre rekurzívne z aktuálneho adresára do indexu (tiež zmeny necommitne)
+    - `git add .`  -> pripraví zmeny súborov rekurzívne z aktuálneho adresára do indexu; nové ignorované súbory vynechá (tiež zmeny necommitne)
 2. *Chcem vytvoriť commit*
-    - **najpoužívanejšie:** `git commit -a` -> commitne všetko, v čom nastane zmena, nové súbory a adresáre do repozitára nepridáva
-    - `git add zmenene_subory ; git commit` -> najprv pridá do indexu súbory, ktoré čakajú na commit (zmenené súbory) a potom to commitne
+    - **najpoužívanejšie:** `git commit -a` -> automaticky pripraví zmeny a odstránenia sledovaných súborov a commitne ich spolu s obsahom indexu; nové nesledované súbory sám nepridá
+    - `git add zmenene_subory ; git commit` -> najprv pripraví zmeny uvedených súborov do indexu a potom commitne celý obsah indexu
 3. *Chcem si pozrieť, aké commity už mám*
     - `git log` -> vypíše zoznam commitov (konkrétne zmeny neuvádza)
-    - `git log --since=”kedy”` -> vypíše zoznam commitov od “kedy” do súčasnosti, kde “kedy” môže byť napr.: “3.11.2006”, “3 minutes ago”, “4 days ago”, ....
+    - `git log --since="kedy"` -> vypíše zoznam commitov od “kedy” do súčasnosti, kde “kedy” môže byť napr.: “3.11.2006”, “3 minutes ago”, “4 days ago”, ....
     - `git log -p` -> vypíše okrem zoznamu commitov **aj konkrétne zmeny**, ktoré boli vykonané (diff-y)
     - `git log --graph` -> vypíše textovo-grafický zoznam commitov (pekné)
 4. *Chcem zistiť, aké zmeny som urobil v repo (ktoré ešte nemám commitované)*
-    - `git diff` -> vypíše diff pre každý zmenený súbor
-    - `git diff --cached` -> to isté, treba ale použiť vtedy, ak predtým bol príkaz `git add` (teda keď sa zmenil index)
-    - **najpoužívanejšie:** `git status` -> zistí stav repozitára a vypíše zoznam súborov, ktoré sa zmenili, a tiež tie, ktoré ešte nikdy neboli pridané do repozitára (untracked files)
+    - `git diff` -> zobrazí zmeny v pracovných súboroch oproti indexu (zmeny ešte nepripravené na commit)
+    - `git diff --cached` -> zobrazí zmeny v indexe oproti poslednému commitu (HEAD), teda zmeny pripravené na commit
+    - **najpoužívanejšie:** `git status` -> vypíše zmeny pripravené aj nepripravené na commit a tiež nesledované súbory (untracked files), ktoré nie sú ignorované
 5. *Chcem poslať zmeny na server*
-    - `git push server master` -> z lokálneho adresára pošle všetky commity na server *server*, do vetvy *master* (druhýkrát sa už názov vetvy nemusí uvádzať). URL servera môže byť typu *ssh*, *http* alebo aj *git* protokol v rôznych tvaroch
+    - `git push server master` -> aktualizuje vetvu *master* na serveri *server* podľa lokálnej vetvy *master* a odošle chýbajúce dáta jej histórie. Vynechanie názvu vetvy závisí od konfigurácie; prvé spustenie si ho automaticky nezapamätá. Adresu servera možno zadať napríklad cez SSH alebo HTTPS; podporované sú aj ďalšie protokoly, ak server umožňuje zápis
 6. *Chcem si stiahnuť zmeny, ktoré urobil niekto iný (zo servera)*
-    - **najpoužívanejšie:** `git pull server master` -> zo servera server stiahne tie commity, ktoré nemám, do môjho lokálneho adresára (z vetvy *master*, ale to sa po prvom raze nemusí uvádzať)
-    - `git fetch server; git merge` -> to isté, len po častiach: najprv stiahne informácie o nových commitoch a potom ich mergne = zlúči s lokálnym repozitárom
-7. *Nechce mi odoslať moje commity na server, lebo by vznikol konflikt (push mi nefunguje)*
-    1. `git fetch server` -> najprv si stiahnem informácie o commitoch zo servera, tak zistím aj informácie o budúcej kolízii
-    2. `git show FETCH_HEAD` -> potom si pozriem, aké nové commity si môžem stiahnuť a tak môžem zistiť, čo bude spôsobovať kolíziu (tento krok je možné vynechať)
-    3. `git pull server` -> ďalej si stiahnem všetky konfliktné commity. GIT sa najprv pokúsi konflikt vyriešiť sám a ak sa mu to nepodarí, automaticky vyznačí miesta v súboroch, v ktorých nastal konflikt
-    4. `git diff` -> zistím, kde sú vyznačené konflikty
-    5. vyznačené konflikty v súboroch treba opraviť ručne.
-    6. `git commit -a` -> opravené konflikty commitnem do repa
-    7. `git push server` -> a nakoniec pošlem commity na server (moje komity aj s vyriešeným konfliktom)
-8. *Chcem si pozrieť obsah súboru readme.txt, aký bol pred 10 commitmi, ktorý sa nachádzal vo vetve “master”*
+    - **najpoužívanejšie:** `git pull server master` -> stiahne vetvu *master* zo servera *server* a začlení ju do aktuálnej lokálnej vetvy podľa zvoleného spôsobu integrácie (fast-forward, merge alebo rebase). Vynechanie názvu vetvy závisí od konfigurácie, nie od predchádzajúceho spustenia
+    - `git fetch server; git merge` -> najprv stiahne dáta zo servera a aktualizuje príslušné vzdialené sledovacie vetvy; potom zlúči nakonfigurovanú upstream vetvu do aktuálnej vetvy. Zodpovedá predchádzajúcemu príkladu len pri správne nastavenej upstream vetve a použití merge
+7. *Push bol odmietnutý, pretože vzdialená vetva obsahuje commity, ktoré moja lokálna vetva nemá (non-fast-forward)*
+
+    To ešte neznamená konflikt v súboroch. Nasledujúci postup predpokladá nastavenú upstream vetvu, správny cieľ pre push a pull nakonfigurovaný na merge.
+
+    1. `git fetch server` -> stiahnem dáta zo servera a aktualizujem vzdialené sledovacie vetvy; pracovné súbory sa tým nezlúčia ani sa ešte nezisťujú konflikty pri zlučovaní
+    2. `git show FETCH_HEAD` -> pozriem si commit označený FETCH_HEAD a jeho zmeny; tento príkaz nevypisuje zoznam všetkých prichádzajúcich commitov (krok je možné vynechať)
+    3. `git pull server` -> stiahnem aktuálne zmeny a zlúčim ich s aktuálnou vetvou. Ak Git nedokáže zmeny zlúčiť automaticky, ohlási konflikty; textové konflikty vyznačí v dotknutých súboroch
+    4. `git diff` -> pri konflikte si pozriem zmeny v dotknutých súboroch
+    5. prípadné konflikty v súboroch vyriešim ručne.
+    6. `git commit -a` -> po vyriešení konfliktov dokončím merge commit; ak zlúčenie prebehlo automaticky, tento krok netreba. Príkaz zahrnie aj ostatné zmeny sledovaných súborov a obsah indexu
+    7. `git push server` -> odošlem výslednú históriu do nakonfigurovanej cieľovej vetvy
+8. *Chcem si pozrieť obsah súboru readme.txt v predkovi vetvy “master”, ku ktorému sa dostanem desiatimi krokmi vždy cez prvého rodiča commitu*
     - `git show master~10:readme.txt`

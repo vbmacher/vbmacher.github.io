@@ -108,9 +108,15 @@ Každú cestu teda ohodnotíme týmito "bodmi", ktoré spočítame. Následne vy
 V našom prípade však nepotrebujeme vedieť presný postup, ako docielime zhodu, postačí nám vedieť len hodnotu tej najkratšej cesty.
 Túto hodnotu potom normalizujeme na rozsah od $$0$$ do $$1$$ takto:
 
-$$norm = levenshtein(text_1, text_2)/max(|text_1|, |text_2|)$$
+$$
+norm = \begin{cases}
+1, & \max(|text_1|, |text_2|) = 0, \\
+1 - \dfrac{\operatorname{levenshtein}(text_1, text_2)}{\max(|text_1|, |text_2|)}, & \text{inak}.
+\end{cases}
+$$
 
-kde $$levenshtein$$ je hodnota levenshteinovej vzdialenosti. Samotnú funkciu v Scale vieme napísať rekurzívne takto:
+kde $$levenshtein$$ je hodnota levenshteinovej vzdialenosti. Dva prázdne texty považujeme za zhodné;
+ak je prázdny iba jeden text, podobnosť je 0. Samotnú funkciu v Scale vieme napísať rekurzívne takto:
 
 ```scala
 val x = "ahoj"
@@ -200,7 +206,7 @@ Vidíme na ňom dva vektory, $$\vec{a}$$ a $$\vec{b}$$, ktoré sú umiestnené t
 vieme, že vektor je definovaný len svojou veľkosťou a smerom, preto si vektory môžeme umiestniť, ako chceme, keď zachováme
 tieto dve veci.
 
-Ako by sa dali takéto dva vektory porovnať? Jednoduchšie sa porovnávajú dĺžky: majme teda dĺžky $$m$$ a $$n$$,
+Ako by sa dali takéto dva vektory porovnať? Jednoduchšie sa porovnávajú dĺžky: majme teda dĺžky $$m \geq 0$$ a $$n > 0$$,
 potom $$m / n$$ udáva ich pomer, podľa ktorého vieme povedať, ktorá z nich je "dlhšia" alebo či sa rovnajú:
 
 - $$m / n = 1$$ &rArr; rovnajú sa
@@ -232,18 +238,21 @@ na začiatku (0 pre žiadnu podobnosť a 1 pre zhodu). Ale len pripomínajú - s
 vzájomnej polohy a veľkosti dvoch vektorov (hlavnou myšlienkou merania ich "podobnosti"), ale ešte nie sme hotoví, pretože
 číslo potrebujeme normalizovať.
 
-Normalizáciu nám dá $$cos(\theta)$$, pretože kosínus má obor hodnôt v rozsahu 0 - 1. Je to vlastne geniálny "trik", pretože
-nám tým vznikne "pomer" dvoch vektorov:
+Normalizáciu nám dá $$\cos(\theta)$$. Pre dva nenulové vektory má kosínusová podobnosť rozsah $$[-1, 1]$$;
+pri nezáporných zložkách, ako sú početnosti slov, je v rozsahu $$[0, 1]$$:
 
-$$cos(\theta) = \frac{a \cdot b}{\|\vec{a}\| \|\vec{b}\|}$$
+$$\cos(\theta) = \frac{a \cdot b}{\|\vec{a}\| \|\vec{b}\|}$$
+
+Pri nulovom vektore tento vzorec nie je definovaný. Hodnota 1 znamená rovnaký smer vektorov;
+vektory môžu mať rôzne dĺžky a texty nemusia byť totožné.
 
 Tu sa teoreticky môžeme zaseknúť, pretože vidíme, že na to, aby sme mohli vypočítať $$cos(\theta)$$, potrebujeme vedieť skalárny
 súčin dvoch vektorov, na ktorý potrebujeme práve $$cos(\theta)$$. Dostali sme sa do nekonečnej rekurzie :)
 
 ## Skalárny súčin algebraicky
 
-Našťastie skalárny súčin sa dá vyjadriť aj inak, ak si vektory definujeme algebraickým spôsobom. Teda ak zložky vektora
-sú diskrétne hodnoty:
+Našťastie skalárny súčin sa dá vyjadriť aj inak, ak si vektory definujeme algebraickým spôsobom. Ich zložky môžu byť
+ľubovoľné reálne čísla:
 
 $$
 \begin{eqnarray}
@@ -269,7 +278,7 @@ $$
 Tento výsledok je veľmi dôležitý, pretože sa konečne vieme pohnúť z "nekonečnej rekurzie" a dosiahnuť použiteľný vzorec
 pre kosínusovú podobnosť:
 
-$$cos(\theta) = \frac{\sum_i{a_i b_i}}{\|\vec{a}\| \|\vec{b}\|}$$
+$$\cos(\theta) = \frac{\sum_i{a_i b_i}}{\|\vec{a}\| \|\vec{b}\|}$$
 
 Je, myslím, veľmi zaujímavé, že takto definovaná kosínusová podobnosť kombinuje obe definície skalárneho súčinu - geometrického
 aj algebraického.
@@ -279,7 +288,7 @@ aj algebraického.
 
 Keďže kosínusová podobnosť pracuje s vektormi, musíme si nejakým spôsobom previesť text (zdrojový kód) na algebraický
 vektor. V súčasnej dobe (napr. v NLP - Natural Language Processing) je veľmi populárna metóda, ktorá definuje zložky
-vektora ako dvojice `(slovo, počet výskytov tohto slova)`. Napríklad text "Daruj mi ružu, daruj mi aj leukoplast" sa
+vektora ako dvojice `(slovo, počet výskytov tohto slova)`. Napríklad text "daruj mi ružu, daruj mi aj leukoplast" sa
 dá previesť do vektora:
 
 $$
@@ -290,7 +299,7 @@ V Scale by sme tento prevod mohli dosiahnuť veľmi jednoducho:
 
 ```scala
 def vectorize(text: String) = {
-  content.split("\\s").groupBy(key => key).mapValues(group => group.length)
+  text.split("\\s").groupBy(key => key).mapValues(group => group.length)
 }
 ```
 
@@ -320,7 +329,7 @@ def dotProduct(vectorA: Map[String, Int], vectorB: Map[String, Int]) = vectorA.m
 
 Ako ste si možno všimli, v prípade, že slovo z vektora $$\vec{a}$$ sa vo vektore $$\vec{b}$$ nenachádza, tak toto
 slovo neberieme do úvahy. Môže sa to zdať ako chyba, ale v skutočnosti ide o správne riešenie, pretože neexistencia
-určitého slova v druhom vektore znižuje zhodu (znižuje hodnotu skalárneho súčinu vektorov, ktorý je v menovateli
+určitého slova v druhom vektore znižuje zhodu (znižuje hodnotu skalárneho súčinu vektorov, ktorý je v čitateli
 kosínusovej podobnosti).
 
 ## Konečne "finálne" riešenie
@@ -349,22 +358,23 @@ A pre naše vektory $$\vec{a}$$ a $$\vec{b}$$, teda pre vety:
 1. "daruj mi ružu, daruj mi aj leukoplast"
 2. "daruj mi kvet, daruj mi aj vázu"
 
-dostávame kosínusovú podobnosť $$81\%$$. Pre porovnanie, naša Levenshteinova podobnosť dáva hodnotu $$62\%$$.
-Zo siedmich slov je päť rovnakých, teda $$\frac{5}{7} = 0.71 \equiv 71\%$$ (pri rovnakej váhe slov). Kosínusová vzdialenosť
+dostávame kosínusovú podobnosť $$9/11 \approx 81.8\%$$. Levenshteinova vzdialenosť je 14 pri dĺžkach 37 a 31 znakov,
+takže podobnosť podľa vzorca je $$1 - 14/37 \approx 62.2\%$$ (vrátane medzier a interpunkcie).
+Zo siedmich slov je päť rovnakých, teda $$\frac{5}{7} \approx 0.7143 = 71.43\%$$ (pri rovnakej váhe slov). Kosínusová podobnosť
 vzala do úvahy aj opakujúce sa slová v rámci jedného textu ("daruj" a "mi"), takže pre ňu texty vyzerali skôr ako:
 
 1. `[("daruj",2), ("mi",2), ("ružu,",1), ("aj",1), ("leukoplast",1)]`
 2. `[("daruj",2), ("mi",2), ("kvet,",1), ("aj",1), ("vázu",1)]`
 
 Početnosť slov je "váhou" slova a v tomto prípade máme zhodu v tých najviac vážených slovách ("daruj" a "mi"), čo
-viac prispieva k celkovej zhode textov, a preto je hodnota vyššia ($$81\%$$).
+viac prispieva k celkovej zhode textov, a preto je hodnota vyššia ($$81.8\%$$).
 
 Ak by vety mali tvar:
 
 1. "daruj mi ružu, aj leukoplast"
 2. "daruj mi kvet, aj vázu"
 
-Tak kosínusová podobnosť dá $$60\%$$ a Levenshtein $$55.2\%$$. Evidentne lepšie je na tom kosínusová podobnosť,
+Tak kosínusová podobnosť dá $$60\%$$ a Levenshteinova podobnosť $$1 - 14/28 = 50\%$$. Evidentne lepšie je na tom kosínusová podobnosť,
 pretože tu váha slov je rovnaká a tri z piatich slov sú zhodné, čo je $$\frac{3}{5} = 0.60 \equiv 60\%$$.
 
 ## Problémy algoritmov vektorizácie textu
@@ -404,14 +414,15 @@ int min (int[] list) {
 }
 ```
 
-Kosínusová podobnosť dáva v tomto prípade $$99.7\%$$ a levenshtein $$97.5\%$$, pričom sémantika je evidentne opačná, avšak syntakticky sú si
-programy skutočne veľmi podobné. Levenshtein tu dal trochu lepší výsledok, lebo zavážili rozdielne znaky, zatiaľ čo v prípade kosínusovej podobnosti
-boli názvy funkcií ignorované, rovnako tak aj názvy premenných.
+Pri zachovaní zobrazeného formátovania a delení textu pomocou `split("\\s")` vychádza kosínusová podobnosť približne $$99.6\%$$
+a Levenshteinova podobnosť približne $$98.1\%$$. Sémantika je evidentne opačná, avšak syntakticky sú si programy veľmi podobné.
+Názvy funkcií aj operátory vstupujú do oboch výpočtov. Delenie na jednotlivých bielych znakoch navyše vytvára prázdne tokeny z odsadenia,
+ktoré zvyšujú kosínusovú podobnosť; pri vynechaní prázdnych tokenov by bola približne $$96.5\%$$.
 
 Sémantické rozdiely, ktoré sú definované jedným rozdielnym "znamienkom" (v našom prípade `<` vs. `>`), nie je možné brať do úvahy bez toho, aby
 sme program simulovali. Podobnosť zdrojových kódov je a bude navždy obmedzená len na syntax, prípadne môže byť teoreticky rozšírená o rozpoznávanie
 nejakých známych "patternov" s preddefinovanou váhou. Takéto patterny sa však dajú definovať a hľadať už len s pomocou
-[derivačného stromu][21] (stromová štruktúra sparsovaného textu) za spolupráce parsera. Metódy ako Levenshtein alebo Kosínusová vzdialenosť sú implementovateľné ľahko, postačí jednoduchý lexikálny analyzátor (na ktorý často stačí regulárna gramatika).
+[derivačného stromu][21] (stromová štruktúra sparsovaného textu) za spolupráce parsera. Metódy ako Levenshtein alebo Kosínusová podobnosť sú implementovateľné ľahko, postačí jednoduchý lexikálny analyzátor (na ktorý často stačí regulárna gramatika).
 
 # Za optimálnou metodikou
 
