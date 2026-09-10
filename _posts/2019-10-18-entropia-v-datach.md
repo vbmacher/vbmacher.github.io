@@ -15,7 +15,7 @@ týka viac-menej odboru Data Science, tak som sa ako programátor s entropiou st
 ## Informácia
 
 Informácia ako taká nie je "fyzická" vec. Dá sa povedať, že informácia znižuje "nevedomosť", "neznalosť",
-či "neurčitosť". Informácie reprezenzujeme symbolmi, ktoré sú v ako keby práve tým "fyzickým nosičom" informácie.
+či "neurčitosť". Informácie reprezentujeme symbolmi, ktoré sú ako keby práve tým "fyzickým nosičom" informácie.
 
 Avšak - nie je pravda, že každý symbol samostatne nosí odpovedajúce množstvo informácie. Na množstvo informácie
 sa dá nazerať zo _syntaktického_ a _sémantického_ pohľadu. Napríklad, nasledujúce vety:
@@ -32,8 +32,8 @@ jednotku, avšak už to za nás urobil [Claude Shannon][1] v roku 1948.
 
 Jednotkou informácie je jeden *bit*, s hodnotou 0 alebo 1. Ak sa budeme pýtať na množstvo, budeme tým myslieť *počet bitov*.
 
-Tu sa však už musíme zamyslieť nad tým, koľkými spôsobmi môžme danú správu napísať. Ak by sme nemali meniť samotné slová, ale
-len reprezentáciu, aj tak každý symbol môžme zapísať rôznym spôsobom - tj. môžme si vymýšľať rôzne abecedy. Jeden symbol v
+Tu sa však už musíme zamyslieť nad tým, koľkými spôsobmi môžeme danú správu napísať. Ak by sme nemali meniť samotné slová, ale
+len reprezentáciu, aj tak každý symbol môžeme zapísať rôznym spôsobom - tj. môžeme si vymýšľať rôzne abecedy. Jeden symbol v
 rôznych abecedách tak môže mať rôzny počet bitov. To znamená, že správa zapísaná v dvoch rôznych abecedách môže mať
 rôznu dĺžku. Takže - ktorú abecedu si zvoliť?
 
@@ -43,7 +43,7 @@ Zrejme najväčší zmysel dáva zvoliť si takú abecedu, ktorá produkuje *min
 *minimálneho priemerného množstva informácie*, ktoré potrebujeme "vydolovať" z dát, aby sme sa dozvedeli všetko. Inak povedané -
 je to minimálny priemerný počet bitov, do ktorých vieme celú správu zapísať bezstratovo.
 
-Kvantitatívne môžme začať takto:
+Kvantitatívne môžeme začať takto:
 
 1. Pre každý symbol spočítame jeho frekvenciu výskytu: $$f_i = \frac{n_i}{N}$$, kde $$n_i$$ je počet výskytov
    $$i$$-tého symbolu v dátach, a $$N$$ veľkosť dát v bitoch.
@@ -60,7 +60,7 @@ Napríklad, majme [100 symbolov][10]:
 |*Veľkosť kódu ($$c_i$$):*| 3    | 3    | 2    | 2    | 2    |         |
 |*Váha symbolu $$f_i * c_i$$:*| 0.30 | 0.45 | 0.60 | 0.32 | 0.58 |  = 2.25 |
 
-Minimálna veľkosť správy má úž dosť blízko k informačnej "entropii", a počíta sa veľmi podobne:
+Minimálna veľkosť správy má už dosť blízko k informačnej "entropii", a počíta sa veľmi podobne:
 
 $$H_{\text{približne}} = \sum_i^{N} \frac{n_i}{N} * c_i$$
 
@@ -75,7 +75,7 @@ Entropia je známa z termodynamiky, ako "miera neusporiadanosti" termodynamické
 $$\Delta S = \frac{\Delta Q}{T}$$.
 
 Ak má systém viac "podsystémov", tak musíme jednotlivé prírastky entropie počítať zvlášť na každý "podsystém" a potom ich spriemerovať.
-Ak je "podsystémov" (napr. častíc) príliš veľa, nebude to možné realizovať. A tak prišiel [Boltzman][6] so svojou štatistickou entropiou,
+Ak je "podsystémov" (napr. častíc) príliš veľa, nebude to možné realizovať. A tak prišiel [Boltzmann][6] so svojou štatistickou entropiou,
 ktorý systém videl ako ucelenú sústavu mikrostavov, do ktorých sa sústava ako celok vie dostať. My pracujeme len s makroskopickými veličinami
 (ako napr. tlakom, teplotou, objemom a počtom častíc). Entropia je potom vyjadrená ako množstvo "voľnosti", ktoré systému ostane po zadaní
 týchto makroskopických parametrov. Matematicky ju vyjadril ako:
@@ -95,7 +95,7 @@ $$H = -\sum_{i=1}^{N} p(x_i) \; ln \; p(x_i)$$
 Kde $$p(x_i)$$ je pravdepodobnosť výskytu hodnoty $$x_i$$ v dátovom korpuse. Na logaritmickom základe nezáleží, zmení sa len rozsah
 možných hodnôt. Ak chceme mať výsledok v počte bitov, je dobré použiť dvojkový logaritmus. Prirodzený logaritmus dáva výsledok v tzv. "nat"-och.
 
-Výraz $$- ln \; a = ln \; \frac{1}{a}$$ a teda vzorec je možné prepísat aj do tvaru:
+Výraz $$- ln \; a = ln \; \frac{1}{a}$$ a teda vzorec je možné prepísať aj do tvaru:
 
 $$H = \sum_{i=1}^{N} p(x_i) \; log_2 \; \frac{1}{p(x_i)}$$
 
@@ -113,7 +113,7 @@ a teda $$c_i = log_2 \; \frac{N}{n_i}$$. Keď si uvedomíme fakt, že $$log_2 \;
 hodnôt, tak v tomto prípade je optimálnym kódom vlastne počet bitov, ktoré potrebujeme na zakódovanie $$\frac{N}{n_i}$$ hodnôt. Výraz
 $$\frac{N}{n_i}$$ odpovedá - koľko krát sa do správy zmestia všetky výskyty $$i$$-tého symbolu.
 
-Hodnotu si môžme overiť z príkladu v predchádzajúcej časti. Poznáme frekvencie výskytov každého symbolu, takže:
+Hodnotu si môžeme overiť z príkladu v predchádzajúcej časti. Poznáme frekvencie výskytov každého symbolu, takže:
 
 |*Symbol:*                                                      | `a`   | `b`    | `c`   | `d`    | `e`    | Suma      |
 |*Frekvencia ($$f_i$$):*                                        | 0.10  | 0.15   | 0.30  | 0.16   | 0.29   |	= 1      |
@@ -130,7 +130,7 @@ $$H = \sum_{i=1}^{N} \frac{1}{N} \; log_2 \; \frac{1}{\frac{1}{N}} = \underbrace
 
 čo zas pripomína pôvodný Boltzmannov vzorec.
 
-### Prečo nie je veľkosť "skoprimovanej" správy entropiou
+### Prečo nie je veľkosť "skomprimovanej" správy entropiou
 
 Vyplýva to zo Shannonovho teorému "zdrojového kódovania", ktorý udáva praktické limity bezstratovej dátovej kompresie. Hovorí, že
 minimálna veľkosť dát nikdy nebude menšia než je entropia, ale je možné dosiahnuť veľkosť ľubovoľne blízku entropii so zanedbateľnou stratou
@@ -150,8 +150,8 @@ Informačná entropia sa v dátach väčšinou používa na akési ohodnotenie "
 | Skriňa     | 6000  |
 | Auto       | 500000|
 
-V tomto prípade môžme očakávať, že ceny budú "kvalitné" vtedy, ak budú naozaj rozmanité. Nie je totiž možné, že každý produkt bude mať rovnakú cenu.
-Toto principiálne rozrieši entropia, ktorú môžme očakávať relatívne vysokú - v ideálnom prípade bude mať každý unikátny produkt jednu unikátnu cenu, teda
+V tomto prípade môžeme očakávať, že ceny budú "kvalitné" vtedy, ak budú naozaj rozmanité. Nie je totiž možné, že každý produkt bude mať rovnakú cenu.
+Toto principiálne rozrieši entropia, ktorú môžeme očakávať relatívne vysokú - v ideálnom prípade bude mať každý unikátny produkt jednu unikátnu cenu, teda
 pravdepodobnosť výskytu každej ceny bude rovnaká. A potom budeme vedieť, že dáta sú kvalitné, ak entropia bude nie oveľa menšia než $$log_2 \; N$$, v našom prípade $$H = log_2 5 \simeq 2.32$$.
 
 Ak dostaneme takéto dáta:
@@ -271,7 +271,7 @@ Songs entropy: 9.09405998020258
 
 Čísla, ktoré vidíme, nás možno prekvapia. Umelci vyzerajú byť menej unikátni než skladby, čo mi príde ako divný výsledok. Ale dáva zmysel,
 pretože si je treba uvedomiť, že korpus obsahoval zoznam _skladieb_. Umelci sú len priradení ku skladbe, takže to, že sa budú opakovať, je
-očakávané. Môžme si to overiť:
+očakávané. Môžeme si to overiť:
 
 ```scala
   data

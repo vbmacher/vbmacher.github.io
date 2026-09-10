@@ -24,12 +24,12 @@ Tak, pusťme sa do toho.
     - `git add zmenene_subory ; git commit` -> najprv pridá do indexu súbory, ktoré čakajú na commit (zmenené súbory) a potom to commitne
 3. *Chcem si pozrieť, aké commity už mám*
     - `git log` -> vypíše zoznam commitov (konkrétne zmeny neuvádza)
-    - `git log --since=”kedy”` -> vypíše zoznam commitov od “kedy” do súčastnosti, kde “kedy” môže byť napr.: “3.11.2006”, “3 minutes ago”, “4 days ago”, ....
+    - `git log --since=”kedy”` -> vypíše zoznam commitov od “kedy” do súčasnosti, kde “kedy” môže byť napr.: “3.11.2006”, “3 minutes ago”, “4 days ago”, ....
     - `git log -p` -> vypíše okrem zoznamu commitov **aj konkrétne zmeny**, ktoré boli vykonané (diff-y)
     - `git log --graph` -> vypíše textovo-grafický zoznam commitov (pekné)
 4. *Chcem zistiť, aké zmeny som urobil v repo (ktoré ešte nemám commitované)*
     - `git diff` -> vypíše diff pre každý zmenený súbor
-    - `git diff --cached` -> to isté, treba ale použiť vtedy, ak pred tým bol príkaz `git add` (teda keď sa zmenil index)
+    - `git diff --cached` -> to isté, treba ale použiť vtedy, ak predtým bol príkaz `git add` (teda keď sa zmenil index)
     - **najpoužívanejšie:** `git status` -> zistí stav repozitára a vypíše zoznam súborov, ktoré sa zmenili, a tiež tie, ktoré ešte nikdy neboli pridané do repozitára (untracked files)
 5. *Chcem poslať zmeny na server*
     - `git push server master` -> z lokálneho adresára pošle všetky commity na server *server*, do vetvy *master* (druhýkrát sa už názov vetvy nemusí uvádzať). URL servera môže byť typu *ssh*, *http* alebo aj *git* protokol v rôznych tvaroch

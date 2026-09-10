@@ -33,7 +33,7 @@ vidí (zjednodušene) len jednu inštrukciu v čase. Postupne prechádza od prve
 Počítač je teda systém, ktorý je "uzavretý" - nevie mať "nadhľad". Nerozhoduje sa podľa metafyzického významu, intuitívneho chápania,
 ktoré by prichádzalo [apriórne][59]. Je obmedzený len na to, čo je definované v počítači samotnom.
 
-# Synax a sémantika
+# Syntax a sémantika
 
 Vo všeobecnosti vo svete existujú dve druhy právd - syntaktická a sémantická pravda. Syntax jazyka obmedzuje
 možnosti toho, čo v jazyku vieme vôbec vyjadriť. Podľa toho, ako "voľná" je syntax, tak "zložité" výroky vieme
@@ -45,7 +45,7 @@ chýbajú podmet a prísudok.
 jeho pravdivosti, pretože syntakticky dáva zmysel. Teda každý sémanticky pravdivý výrok musí byť pravdivý aj syntakticky, ale naopak
 to platiť nemusí.
 
-Ak by sme chceli napísať všetko sémanticky pravdivé, čo vo svete platí, môžme sa o to pokúsiť systematickým spôsobom. Ako by však mal vyzerať takýto systematický spôsob? Na to, aby sme nejaký našli, alebo prehlásili, že to nejde, sa potrebujeme zamyslieť nad sémantickou "pravdou" samotnou - čo to je "pravda"?
+Ak by sme chceli napísať všetko sémanticky pravdivé, čo vo svete platí, môžeme sa o to pokúsiť systematickým spôsobom. Ako by však mal vyzerať takýto systematický spôsob? Na to, aby sme nejaký našli, alebo prehlásili, že to nejde, sa potrebujeme zamyslieť nad sémantickou "pravdou" samotnou - čo to je "pravda"?
 
 Intuitívne chápeme pravdu ako výrok, ktorý "platí". Ale výrok môže platiť len **relatívne** - tj. len vo svete, ktorý poznáme. Existujú ale výroky, ktoré platia aj **absolútne** (objektívne)? Na túto otázku existujú rôzne odpovede a názory, ktoré vyústili do filozofických smerov, ako napríklad pozitivizmus, formalizmus a realizmus.
 
@@ -53,24 +53,24 @@ Intuitívne chápeme pravdu ako výrok, ktorý "platí". Ale výrok môže plati
 
 Keď sme rozoberali možnosť existencie relatívnej pravdy, logicky by mohli existovať niekoľko rôznych "svetov", a v každom z nich budeme vedieť odvodiť jemu vlastné výroky a zamýšľať sa nad ich pravdivosťou v danom svete. Takýto "svet" sa medzi formalistami začal nazývať [formálny systém][38].
 
-Formálny systém definuje "svet", v ktorom môžme tvoriť výroky a odvodzovať jednoduchšie výroky do zložitejších. Na tvorbu a odvodzovanie výrokov systém definuje presné pravidlá. Vo všeobecnosti má definované:
+Formálny systém definuje "svet", v ktorom môžeme tvoriť výroky a odvodzovať jednoduchšie výroky do zložitejších. Na tvorbu a odvodzovanie výrokov systém definuje presné pravidlá. Vo všeobecnosti má definované:
 
 - symboly,
 - povolené spôsoby dedukcie (pravidlá odvodzovania),
 - axiómy (zapísané len pomocou symbolov a pravidiel odvodzovania).
 
 Axiómy tvoria základné pravdy, ktoré už nie je možné rozložiť na ešte "základnejšie" pravdy. Je to "základ sveta", jeho "definícia".
-Tým, že sa jednotlivé formálne systémy líšia - majú rôzne axiómy, symboly a pravidlá odvodzovania, tak každý systém svojim spôsobom definuje svoju relatívnu sémantickú pravdu.
+Tým, že sa jednotlivé formálne systémy líšia - majú rôzne axiómy, symboly a pravidlá odvodzovania, tak každý systém svojím spôsobom definuje svoju relatívnu sémantickú pravdu.
 
 Sémantickú pravdu vo formálnom systéme vieme mechanicky odvodiť - teda dokázať, či daný výrok je pravdivý, alebo nepravdivý. Majme teda výrok X, ktorý je v danom formálnom systéme syntakticky validný. Jeho pravdivosť vieme dokázať tak, že sa pokúsime "znovuobjaviť" tento výrok:
 
-1. aplikáciou povolenéných pravidiel odvodenia na axiómy, čím vzniknú prvé zložené výroky
+1. aplikáciou povolených pravidiel odvodenia na axiómy, čím vzniknú prvé zložené výroky
 2. Porovnáme nový výrok s výrokom X. Ak sú výroky zhodné, prehlásime X za pravdivý.
 3. Pokračujeme aplikáciou pravidiel odvodenia na zložené výroky, čím vytvárame ďalšie výroky
 4. Opakujeme body 2 až 3 dovtedy, kým sme neodvodili všetky možné výroky, alebo nenašli zhodu s výrokom X.
    Ak po vygenerovaní všetkých výrokov sme stále nedospeli k výroku X, tak je výrok X nepravdivý.
 
-Pri troche šťastia sa nám podarí odvodiť výrok, ktorého pravdivosť chceme zistiť. Ak sa to podarí, tak výrok môžme prehlásiť
+Pri troche šťastia sa nám podarí odvodiť výrok, ktorého pravdivosť chceme zistiť. Ak sa to podarí, tak výrok môžeme prehlásiť
 za "sémanticky pravdivý" v danom formálnom systéme. Samozrejme, je dôležité odvodzovať výroky systematicky, aby v tom nebol
 chaos.
 
@@ -93,7 +93,7 @@ Toto tvrdenie je dôležité preto, lebo sa ukazuje, že to, čoho je sémantika
 než to, čoho je možné dosiahnuť mechanickým odvodzovaním (vykonávaním). Inými slovami, vieme vytvoriť výroky, ktoré sa mechanickým
 odvodzovaním nedajú odvodiť, ale predsa sú syntakticky validné a sémanticky pravdivé.
 
-Jednými z prvých prelomovýmých aktérov v dokazovaní týchto tvrdení boli [Kurt Gödel][6] a [Alan Turing][7]:
+Jednými z prvých prelomových aktérov v dokazovaní týchto tvrdení boli [Kurt Gödel][6] a [Alan Turing][7]:
 
 1. Gödel ako logik a [metamatematik][60] ukázal, že v určitých formálnych systémoch existujú výroky, ktoré sú pravdivé, ale nedajú
    sa dokázať (vytvoril taký výrok a poskytol dôkaz jeho "nedokázateľnosti") ([Teorém nekompletnosti][39])
@@ -156,8 +156,8 @@ Frege očakával [tri predpoklady dobrej matematickej teórie][40]:
 2. je úplná: každý výrok je buď dokázateľný alebo zamietnuteľný (tj. jeho negácia je dokázateľná)
 3. je rozhodnuteľná (existuje "rozhodovacia procedúra", ktorá dokáže overiť pravdivosť každého výroku)
 
-Avšak Fregeho logika s rozšírením o pravidlá aritmetiky bola nekonzistentná. Prišiel na to aj [Bertrand Russel][12], ktorý
-vytvoril "paradoxnú" množinu, známu aj pod názvom [Russelov paradox][2]:
+Avšak Fregeho logika s rozšírením o pravidlá aritmetiky bola nekonzistentná. Prišiel na to aj [Bertrand Russell][12], ktorý
+vytvoril "paradoxnú" množinu, známu aj pod názvom [Russellov paradox][2]:
 
 > Zostrojme množinu, ktorá obsahuje všetky množiny neobsahujúce samých seba.
 
@@ -218,11 +218,11 @@ var data = {
           "children": []
         },            
         {
-          "name": "Bertrand Russel",
+          "name": "Bertrand Russell",
           "children": []
         },
         {
-          "name": "Ludwig Wittgestein",
+          "name": "Ludwig Wittgenstein",
           "children": []
         },
         {
@@ -264,7 +264,7 @@ var data = {
   ]
 };
 document.getElementById('crisis').appendChild(chart(data, [
-  "David Hilbert", "Gottlob Frege", "Kurt Gödel", "Bertrand Russel"
+  "David Hilbert", "Gottlob Frege", "Kurt Gödel", "Bertrand Russell"
 ]));
 </script>
 
@@ -283,15 +283,15 @@ Tento cieľ vyžadoval vytvorenie jednotného formálneho jazyka ([notácie][27]
 možné nielen matematiku zapísať, ale aj odvodiť všetky dôkazy tvrdení. Jazyk by mal spĺňať vlastnosti dobrej matematickej
 teórie, ako ich definoval Frege (konzistencia, úplnosť a rozhodnuteľnosť).
 
-Matematici [Betrand Russel][12] a [Alfred Whitehead][13] sa chopili tohto problému, pretože verili, že [Fregeho][22] [logika prvého rádu][9]
+Matematici [Bertrand Russell][12] a [Alfred Whitehead][13] sa chopili tohto problému, pretože verili, že [Fregeho][22] [logika prvého rádu][9]
 by mohla byť použitá ako základ, s "drobnými úpravami". Tieto "drobné úpravy" spočívali v nahradení
-naivnej [Cantorovej][24] [teórie množín][23] z Fregeho logiky niečim iným - dobrým [axiomatickým systémom][25]; ako vhodné sa
+naivnej [Cantorovej][24] [teórie množín][23] z Fregeho logiky niečím iným - dobrým [axiomatickým systémom][25]; ako vhodné sa
 javili [Peanove axiómy][28] aritmetiky.
 
-Russel s Whiteheadom si mysleli, že majú všetko potrebné už pripravené, stačí to len "dať do kopy".
+Russell s Whiteheadom si mysleli, že majú všetko potrebné už pripravené, stačí to len "dať dokopy".
 
 Začali písať trojzväzkovú knihu s názvom [Principia Mathematica][11] (roky 1910, 1912, 1913). Napísať prvý zväzok trvalo
-však [príliš dlho][14], Russelovi sa stále nedarilo odvodiť všetky dôkazy len z týchto axiómov a logickej dedukcie. Nakoniec ho
+však [príliš dlho][14], Russellovi sa stále nedarilo odvodiť všetky dôkazy len z týchto axiómov a logickej dedukcie. Nakoniec ho
 Whitehead prinútil knihu vydať tak ako je. Zaujímavosťou tejto knihy je napríklad dôkaz (so všetkým potrebným na zhruba 300
 strán), že $$1 + 1 = 2$$:
 
@@ -340,7 +340,7 @@ Albert Einstein a iní významní matematici a fyzici.
 
 # Entscheidungsproblem
 
-David Hilbert sa nikdy nevyjadril ku Gödelovemu výsledku. Podľa [niektorých indícií][43] prežíval Hilbert hnev a frustráciu.
+David Hilbert sa nikdy nevyjadril ku Gödelovmu výsledku. Podľa [niektorých indícií][43] prežíval Hilbert hnev a frustráciu.
 Avšak - podľa Fregeho "dobrej matematickej teórie" ešte stále chýbal dôkaz rozhodnuteľnosti, známy pod názvom ["Entscheidungsproblem"][3].
 Tento problém Hilbert formuloval ešte pred objavom teorému nekompletnosti, roku 1928, takto:
 

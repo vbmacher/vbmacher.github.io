@@ -15,7 +15,7 @@ Tento článok sa jemne dotýka histórie 8-bitových mikroprocesorov, ktoré um
 roku 1971. Tento 4-bitový procesor bol vytvorený pre kalkulačky. Aj keď dokáže spracovať dáta vo
 veľkosti 4 bitov, jeho inštrukcie sú 8 bitov dlhé. Program a dáta sú separované.
 
-V roku 1972, firma Texax Instruments trocha predbehla _Intel 4004/4040_ so svojim 4-bitovým _TMS 1000_,
+V roku 1972, firma Texas Instruments trocha predbehla _Intel 4004/4040_ so svojím 4-bitovým _TMS 1000_,
 ktorý ako prvý obsahoval dostatok RAM (Random Access Memory) pamäte, a priestor pre programovú ROM
 (Read Only Memory), a dovoľoval tak prácu bez použitia viacerých externých podporných čipov.
 Takisto podporoval novú vlastnosť -  možnosť pridania vlastných inštrukcií do CPU.
@@ -60,7 +60,7 @@ významný byte je uložený na najnižšej adrese, výhodu to malo takú, že n
 pridaný ku indexovému registru, zatiaľ čo bol vyberaný vyšší byte) a mal úplne odlišnú inštrukčnú sadu
 ako procesor _6800_ s veľkým endiánom (najvýznamnejší byte je uložený na najnižšej adrese).
 
-Návrhár Steve Wozniak z firmy Apple procesory _650x_ popísal ako prvé čipy, ktoré môžte zohnať za menej
+Návrhár Steve Wozniak z firmy Apple procesory _650x_ popísal ako prvé čipy, ktoré môžete zohnať za menej
 ako sto dolárov (čo bolo vtedy asi štvrtina ceny procesora _6800_) - čipy sa stali CPU pre mnohé
 skoršie domáce počítače (8-bitové produkty _Commodore_ a _Atari_).
 

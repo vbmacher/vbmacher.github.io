@@ -48,9 +48,9 @@ Výsledok by sme vedeli určiť napríklad v prípade, ak by sme mali dve ortogo
 takom prípade boli už z podstaty rozdielne. Rovnako rozdielne riešenia (aspoň syntakticky) by sme dostali, keby boli použité
 rozdielne programovacie jazyky. Zadanie teda musí byť jedno, a povolený jeden spoločný programovací jazyk.
 
-Na druhej strane, spoľahlivé výsledky - za predpokladu použitia optimálneho algoritmu - môžme dostať len ak samotné
+Na druhej strane, spoľahlivé výsledky - za predpokladu použitia optimálneho algoritmu - môžeme dostať len ak samotné
 zadanie *umožní* vytvárať rôznorodé riešenia. Problém v tomto prípade spôsobuje tzv. boiler-plate kód, ktorému sa nemusí
-vždy dať vyhnúť už z podstaty a preto ho môžme čakať v každom riešení. S problémom sa dá vysporiadať tak, že budeme očakávať
+vždy dať vyhnúť už z podstaty a preto ho môžeme čakať v každom riešení. S problémom sa dá vysporiadať tak, že budeme očakávať
 istú mieru podobnosti, ktorú nebudeme považovať za plagiátorstvo.
 
 # Levenshteinova vzdialenosť
@@ -128,8 +128,8 @@ def levenshtein(i:Int, j: Int) = {
 }
 ```
 
-Tento algoritmus vlastne prejde celý hore-spomínaný "strom" a vyberie tú najkratšiu cestu k zhode. Čo si však môžme
-všimnúť je, že určité časti stromu sa opakujú. To je väčšinou príznakom, že môžme využiť techniku dynamického programovania
+Tento algoritmus vlastne prejde celý hore-spomínaný "strom" a vyberie tú najkratšiu cestu k zhode. Čo si však môžeme
+všimnúť je, že určité časti stromu sa opakujú. To je väčšinou príznakom, že môžeme využiť techniku dynamického programovania
 a znížiť tak asymptotickú zložitosť algoritmu.
 
 Dynamické programovanie znamená väčšinou ukladanie si medzivýsledkov výpočtu a ich následné využitie, ak sa dostaneme
@@ -187,7 +187,7 @@ konkrétnemu autorovi.
 
 # Kosínusová podobnosť
 
-Jedným zo spôsobov, ako sa vyrovnať s rôznou váhou jednolivých tokenov pri porovnávaní je - ako som spomenul - odstrániť
+Jedným zo spôsobov, ako sa vyrovnať s rôznou váhou jednotlivých tokenov pri porovnávaní je - ako som spomenul - odstrániť
 nepodstatné tokeny. Avšak nie vždy musia mať tokeny binárnu dôležitosť; niekedy chceme dať tokenom skutočnú váhu. Umožní
 nám to napríklad metóda, ktorá sa používa hlavne pri spracovávaní prirodzeného textu. Tento algoritmus berie do úvahy
 váhu slov, pričom váha slova je definovaná ako jeho početnosť v texte.
@@ -197,7 +197,7 @@ Pozrime sa na obrázok z [Wikipédie][30]:
 ![TwoVectors](/assets/img/podobnost-zadani/Dot_Product.svg)
 
 Vidíme na ňom dva vektory, $$\vec{a}$$ a $$\vec{b}$$, ktoré sú umiestnené tak, aby mali rovnaký začiatok. Z matematiky
-vieme, že vektor je definovaný len svojou veľkosťou a smerom, preto si vektory môžme umiestniť ako chceme, keď zachováme
+vieme, že vektor je definovaný len svojou veľkosťou a smerom, preto si vektory môžeme umiestniť ako chceme, keď zachováme
 tieto dve veci.
 
 Ako by sa dali takéto dva vektory porovnať? Jednoduchšie sa porovnávajú dĺžky: majme teda dĺžky $$m$$ a $$n$$,
@@ -237,7 +237,7 @@ nám tým vznikne "pomer" dvoch vektorov:
 
 $$cos(\theta) = \frac{a \cdot b}{\|\vec{a}\| \|\vec{b}\|}$$
 
-Tu sa teoreticky môžme zaseknúť, pretože vidíme, že na to aby sme mohli vypočítať $$cos(\theta)$$, potrebujeme vedieť skalárny
+Tu sa teoreticky môžeme zaseknúť, pretože vidíme, že na to aby sme mohli vypočítať $$cos(\theta)$$, potrebujeme vedieť skalárny
 súčin dvoch vektorov, na ktorý potrebujeme práve $$cos(\theta)$$. Dostali sme sa do nekonečnej rekurzie :)
 
 ## Skalárny súčin algebraicky
@@ -307,9 +307,9 @@ $$
 $$
 
 ich veľkosť je rovnaká, takže jediným problémom ostáva, ako vypočítať $$a_i * b_i$$. Tu sa musíme trochu zastaviť. Čo
-je index $$i$$? Je to index položky v našom vektore? Nie celkom. Jednotlivé slová vo vektore si môžme predstaviť
+je index $$i$$? Je to index položky v našom vektore? Nie celkom. Jednotlivé slová vo vektore si môžeme predstaviť
 ako dimenzie vektora. Ak by sme vektory mali prirovnať ku klasickým euklidovským vektorom, tak jednotlivé slová by
-odpovedali jednotlivým osiam v kartézskej sústave súradníc. Medzi sebou môžme "násobiť" len tie zložky vektora, ktoré
+odpovedali jednotlivým osiam v kartézskej sústave súradníc. Medzi sebou môžeme "násobiť" len tie zložky vektora, ktoré
 sú v rovnakých dimenziách. Do reči ľudí - vynásobíme medzi sebou počet výskytov slova v každom z vektorov:
 
 ```scala
@@ -367,12 +367,12 @@ Ak by vety mali tvar:
 Tak kosínusová podobnosť dá $$60\%$$ a Levenshtein $$55.2\%$$. Evidentne lepšie je na tom kosínusová podobnosť,
 pretože tu váha slov je rovnaká a tri z piatich slov sú zhodné, čo je $$\frac{3}{5} = 0.60 \equiv 60\%$$.
 
-## Problémy algoritmov vektorizácie texu
+## Problémy algoritmov vektorizácie textu
 
 Hlavným problémom algoritmov typu "vector similarity" je váha slova definovaná ako jeho početnosť:
 
 - váhu potrebujeme niekedy umelo upraviť podľa predefinovanej dôležitosti tokenov (napríklad komentáre ju budú mať nulovú)
-- programy s nepormerne väčším počtom výskytov jedného tokenu a menším počtom iných tokenov budú vykazovať veľkú zhodu
+- programy s nepomerne väčším počtom výskytov jedného tokenu a menším počtom iných tokenov budú vykazovať veľkú zhodu
   napriek tomu, že budú rozdielne
 - sémantické rozdiely syntakticky priveľmi podobných programov sa do úvahy neberú. To však platí pre všetky metódy.
 
@@ -423,14 +423,14 @@ dvoch reprezentantov z dvoch takýchto kategórií.
 Ak nám ide o to, do akej miery sú texty skopírované, presnejšie do akej miery je text *poupraveným* tvarom iného textu, má zrejme zmysel
 hľadať minimálny počet úprav, ktoré by viedli od pôvodného textu k novému.
 
-Bude nás teda zaujímať tzv. "vziadelonsť medzi úpravami" - anglicky to znie lepšie ako "[edit distance][10]". Do tejto kategórie
+Bude nás teda zaujímať tzv. "vzdialenosť medzi úpravami" - anglicky to znie lepšie ako "[edit distance][10]". Do tejto kategórie
 patria aj niektoré algoritmy na porovnávanie grafov/stromov, ktoré naznačím nižšie - kde hovoríme o tzv.
 "[graph edit distance][11]", resp. "[tree edit distance][19]".
 
 Pre jednoduchosť zatiaľ vypusťme znalosť gramatiky, a skúsme nájsť algoritmy, ktoré pracujú len s čistým textom.
 Máme hneď niekoľko možností:
 
-- [Levenshteinova vzialenosť][14], ktorá podporuje operácie: vkladanie (insert), zmazanie (delete) a
+- [Levenshteinova vzdialenosť][14], ktorá podporuje operácie: vkladanie (insert), zmazanie (delete) a
   substitúciu (substitution) s rovnakou váhou
 - [Damerau–Levenshteinova][12] vzdialenosť, ktorá naviac podporuje transpozíciu písmen
 - [Hammingova vzdialenosť][15], ktorá podporuje len substitúciu a dá sa preto použiť len pre rovnako dlhé texty
@@ -442,17 +442,17 @@ Vlastnosťou edit-distance algoritmov, ako už bolo spomenuté je, že sú citli
 ## Izomorfizmus derivačných stromov
 
 Z technického hľadiska porovnávame dva texty, ktoré musia vyhovovať formálnej gramatike toho istého programovacieho
-jazyka zadania. Preto pri samotnom porovnávaní informáciu o gramatike môžme využiť:
+jazyka zadania. Preto pri samotnom porovnávaní informáciu o gramatike môžeme využiť:
 
 - Sparsovanie programu umožní jeho kvalitné "normalizovanie". Napríklad - odstránia sa komentáre či nadbytočné medzery.
   Taktiež je možné [derivačný strom][21] (stromová štruktúra sparsovaného textu) pretransformovať a napr.
   znormalizovať názvy premenných.
-- Derivačné stromy môžme medzi sebou rovno porovnať, všeobecne ako "mieru ich izomorfizmu".
+- Derivačné stromy môžeme medzi sebou rovno porovnať, všeobecne ako "mieru ich izomorfizmu".
 
 V súčasnosti existuje niekoľko kategórií na porovnávanie [podobnosti grafov][20] a stromov:
 
 1. odpoveď na otázku ["sú stromy izomorfné?"][22] (typu áno/nie). Ale to nám nedá dostatočne jemnú granularitu.
-2. jemenejšiu granularitu (napr. [tu][23] alebo články [tu][25]) nám dá odpoveď na otázku - aký je minimálny počet grafových úprav
+2. jemnejšiu granularitu (napr. [tu][23] alebo články [tu][25]) nám dá odpoveď na otázku - aký je minimálny počet grafových úprav
   na jednom derivačnom strome (je jedno ktorom), aby sme dosiahli izomorfizmus. Je to varianta otázky: *"Do akej miery v strome existujú rovnaké podstromy?"* - alebo ešte inak - *"Do akej miery programy obsahujú rovnaké vzory?"*
 3. existujú aj [štatistické metódy][26] porovnania (koľko majú grafy vrcholov, koľko majú hrán, aký stupeň 
   majú vrcholy, atď.) - napr. [tu][27] alebo [tu][28].
@@ -473,7 +473,7 @@ vektorov sú:
 - [Jaccardov index][17]
 - [Kosínusová podobnosť][16]
 
-Kvalita porovnávania dvoch zdrojových kódov programov bude závisieť hlavne od dobrej vektorizáce, pričom slová sú
+Kvalita porovnávania dvoch zdrojových kódov programov bude závisieť hlavne od dobrej vektorizácie, pričom slová sú
 v tomto prípade lexikálne symboly (tokeny). Program teda potrebujeme do určitej miery sparsovať, ale bude stačiť len lexikálny
 analyzátor ("lexer" či "tokenizer") daného programovacieho jazyka, ktorý je jednoduchší než celý parser (gramatika lexikálnych
 symbolov je vo veľkej väčšine prípadov regulárna (nepotrebujeme zásobník), oproti syntaktickému analyzátoru, kde je často
@@ -481,14 +481,14 @@ bezkontextová (potrebujeme zásobník)).
 
 ## "Štylometria"
 
-Posledným typom algortimov na hľadanie podobnosti sú tzv. "[štylometrické][4]" algoritmy, ktorých cieľom nie je porovnanie dvoch
+Posledným typom algoritmov na hľadanie podobnosti sú tzv. "[štylometrické][4]" algoritmy, ktorých cieľom nie je porovnanie dvoch
 textov medzi sebou, ale rovno nájdenie autora textu. V tomto prípade sa väčšinou využíva strojové učenie (machine learning).
 
-Princíp je prilbižne takýto: máme k dispozícii texty, pričom vieme, že text $$T_i$$ napísal autor $$A_i$$. Čím viac textov
+Princíp je približne takýto: máme k dispozícii texty, pričom vieme, že text $$T_i$$ napísal autor $$A_i$$. Čím viac textov
 máme, tým lepšie. Pomocou týchto textov vytvoríme pre každého autora "model" (napr. využitím umelej neurónovej siete), ktorý
 bude obsahovať extrahované štylometrické informácie, špecifické pre autora.
 
-Keď máme modely, môžme ich využiť na hľadanie autora nového textu, o ktorom nevieme, ktorému z týchto autorov patrí.
+Keď máme modely, môžeme ich využiť na hľadanie autora nového textu, o ktorom nevieme, ktorému z týchto autorov patrí.
 
 Výhodou tohto prístupu je, že hneď vieme nájsť prípadného autora - samozrejme s určitou pravdepodobnosťou.
 Nevýhodou zas je, že potrebujeme relatívne veľký počet textov o ktorých vieme, že ich napísal autor $$XY$$, na vytvorenie

@@ -29,7 +29,7 @@ Slovo "algoritmus" má dávny pôvod. Pochádza z 9. storočia (odvodené z mena
 sa na označenie postupov operácií s arabskými číslicami. Od 18. storočia sa už intuitívne chápe ako určitý
 mechanický postup na riešenie nejakého problému či úlohy. 
 
-Problému rozhodnutia sa venovali hlavne tri postavy, ktorí nezávisle na sebe a veľmi originálnym spôsobom nielenže podali riešnie
+Problému rozhodnutia sa venovali hlavne tri postavy, ktorí nezávisle na sebe a veľmi originálnym spôsobom nielenže podali riešenie
 daného problému, ale prispeli ku vzniku teoretických a praktických základov samotných počítačov a programovacích jazykov:
 
 - [Alan Turing][7] - jemu sa budem venovať prednostne v ďalších častiach blogpostu,
@@ -92,7 +92,7 @@ reagovať na rôzne "sekvencie" symbolov na páske, ktoré videl. Ak sa chce T.S
 
 Turing v článku definuje vypočítateľné čísla ako také, ktoré sú vyčísliteľné. Teda také, ktorých číslice vieme zapísať bez akéhokoľvek "záseku" až donekonečna,
 a to pomocou stroja (či algoritmu). Ako príklad vypočítateľných čísel uvádza čísla ako $$\pi$$, $$e$$, reálne korene algebraických rovníc, atď.
-Aj prirodzené číslo sa dá zapisovať "donekonečna" - buď pred ním budeme donekonečna vypisovať číslicu 0, alebo za ním môžme zapísať desatinnú čiarku a za ňou
+Aj prirodzené číslo sa dá zapisovať "donekonečna" - buď pred ním budeme donekonečna vypisovať číslicu 0, alebo za ním môžeme zapísať desatinnú čiarku a za ňou
 nekonečný počet číslic 0. V oboch z prípadov sa význam nezmení.
 
 T.S., ktoré zodpovedajú vypočítateľným číslam Turing označil ako *circle-free* ("bezcyklové"). To môže byť trochu mätúce, pretože "circle-free" stroje sú
@@ -114,15 +114,15 @@ vlastnosťou je *možnosť určiť nasledovníka*. Spočitateľnosť sa použív
 Napríklad - množina prirodzených čísel je spočítateľná, pretože vieme vždy určiť nasledujúce číslo. Ale množina reálnych čísel nie je spočítateľná,
 pretože nevieme určiť priameho nasledovníka žiadneho reálneho čísla. 
 
-Množina všetkých D.N. je spočitateľná ([enumerable][36]), pretože vieme vždy určiť nasledujúce D.N. (lebo je to prirodzené číslo a syntax vieme overiť
-vždy v konečnom počte krokov). Keďže každé D.N. reprezentuje jeden T.S., tak aj množina všetkých T.S. musí byť spočitateľná. To znamená, že musíme vedieť systematickým spôsobom vypísať všetky T.S. ktoré sa vôbec dajú vytvoriť.
+Množina všetkých D.N. je spočítateľná ([enumerable][36]), pretože vieme vždy určiť nasledujúce D.N. (lebo je to prirodzené číslo a syntax vieme overiť
+vždy v konečnom počte krokov). Keďže každé D.N. reprezentuje jeden T.S., tak aj množina všetkých T.S. musí byť spočítateľná. To znamená, že musíme vedieť systematickým spôsobom vypísať všetky T.S. ktoré sa vôbec dajú vytvoriť.
 
 Číslo, ktoré sa dá vypočítať pomocou *circle-free* D.N. označil ako "uspokojujúce" ("satisfactory"). A Turing dopredu prezrádza, že nie je možné
 nájsť všeobecný algoritmus, ktorý by zistil, či dané číslo je alebo nie je "uspokojujúce".
 
 # Univerzálny T.S.
 
-V ďalšom Turing definoval stroj, ktorý je schopný vypočítať ľubovoľné "vypočitateľné číslo". Na vstup dostane D.N. daného výpočtu, a výsledkom
+V ďalšom Turing definoval stroj, ktorý je schopný vypočítať ľubovoľné "vypočítateľné číslo". Na vstup dostane D.N. daného výpočtu, a výsledkom
 bude to isté, čo by vypočítal T.S. reprezentovaný vstupným D.N. Princíp tohto stroja je založený na vytvorení ďalších symbolov a spôsobom enkódovania
 vstupného T.S. Univerzálny T.S. je teda akýmsi "simulátorom" T.S.
 
@@ -132,19 +132,19 @@ Ako príklad uvádzam [Game of Life][59] verziu univerzálneho T.S.:
 
 # Spočítateľnosť vypočítateľných čísel
 
-Nasledujúci krok bolo zistenie, či *circle-free* D.N. tvoria spočitateľnú množinu. Teda či vieme systematickým spôsobom vypísať všetky
-vypočitateľné čísla.
+Nasledujúci krok bolo zistenie, či *circle-free* D.N. tvoria spočítateľnú množinu. Teda či vieme systematickým spôsobom vypísať všetky
+vypočítateľné čísla.
 
-Systém vypisovania "nasledovníkov" bol už raz použitý, keď Georg Cantor v roku 1891 dokazoval existenciu nespočitateľných
+Systém vypisovania "nasledovníkov" bol už raz použitý, keď Georg Cantor v roku 1891 dokazoval existenciu nespočítateľných
 nekonečných množín (množiny reálnych čísel). Použil ho tiež Gödel pri dokazovaní svojho teorému nekompletnosti, a bol použitý aj v [Principii Mathematice][11]
 v popise [Richardovho paradoxu][61]. Tento systém je známy pod názvom "diagonálny proces" alebo ["diagonálny argument"][54]:
 
 > Ak sú vypočítateľné sekvencie spočítateľné, nech $$\alpha_n$$ je $$n$$-tá vypočítateľná sekvencia a nech $\phi_n(m)$ je $$m$$-tá číslica
 > sekvencie $$\alpha_n$$. Nech $$\beta$$ je sekvencia, v ktorej $$n$$-tá číslica je definovaná ako $$1 - \phi_n(n)$$. Keďže sekvencia $$\beta$$
 > je vypočítateľná, existuje číslo $$K$$, že $$1 - \phi_n(n) = \phi_K(n)$$ pre všetky $$n$$. Ak priradíme $$n = K$$, dostávame $$1 = 2\phi_K(K)$$,
-> teda že číslo $$1$$ je párne. To je nemožné. Vypočítateľné sekvencie teda nie sú spočitateľné.
+> teda že číslo $$1$$ je párne. To je nemožné. Vypočítateľné sekvencie teda nie sú spočítateľné.
 
-"Háčik" v spočíva v predpoklade, že $$\beta$$ je vypočítateľná sekvencia. Ak by bola, v konečnom počte krokov by sme ju vedeli
+"Háčik" spočíva v predpoklade, že $$\beta$$ je vypočítateľná sekvencia. Ak by bola, v konečnom počte krokov by sme ju vedeli
 vyčísliť. Avšak problém vyčíslenia vypočítateľných sekvencií je ekvivalentný problému zistenia, či nejaké číslo reprezentuje D.N. *circle-free* T.S.
 A takýto proces nemáme - s konečným počtom krokov. Dôkaz tohto tvrdenia bude skúsiť zostrojiť stroj, ktorý počíta sekvenciu $$\beta' = 1 - \beta = \phi_n(n)$$. 
 
@@ -158,13 +158,13 @@ Začne teda simulovať postupne jeden stroj za druhým, a na výstupe sa začnú
 Simulácia samého seba spôsobí, že sa stroj - teraz pod simulátorom - spustí odznova. A tento simulovaný stroj znova narazí na samého seba, čím sa proces znova
 zopakuje, až donekonečna.
 
-Týmto myšlienkovým experimentom Turing dokázal, že stroj, ktorý počíta sekvenciu $$\beta$$, je *circular*, teda sekvencia je nevypočitateľná a teda
-diagonálny argument je správny. Ak by sa Turingovi podarilo dokázať spočitateľnosť *circle-free* D.N., prišiel by tak trochu do sporu s Gödelovym
+Týmto myšlienkovým experimentom Turing dokázal, že stroj, ktorý počíta sekvenciu $$\beta$$, je *circular*, teda sekvencia je nevypočítateľná a teda
+diagonálny argument je správny. Ak by sa Turingovi podarilo dokázať spočítateľnosť *circle-free* D.N., prišiel by tak trochu do sporu s Gödelovým
 teorémom nekompletnosti - pretože by to znamenalo, že by sme v podstate vedeli dokázať všetky pravdivé výroky len v rámci formálneho systému.
 
 # Limity T.S.
 
-Ako ďalší príklad nevypočitateľnej sekvencie vytvoril T.S. (napr. $$E$$), ktorý zisťuje, či nejaký T.S. (napr. $$M$$), vypíše aspoň raz nejaký
+Ako ďalší príklad nevypočítateľnej sekvencie vytvoril T.S. (napr. $$E$$), ktorý zisťuje, či nejaký T.S. (napr. $$M$$), vypíše aspoň raz nejaký
 symbol (napríklad $$0$$). Turing tvrdil, že ak sa taký stroj nájde, bude dokonca možné zistiť, či tento T.S. bude symbol vypisovať donekonečna. Ako?
 Na to vytvoril ďalší myšlienkový experiment:
 
@@ -203,7 +203,7 @@ výrokov tak, aby mohli byť vstupom do T.S., ktorý overuje ich platnosť.
 
 Postup bol - ako inak - nájsť taký *pravdivý* výrok, ktorý nepôjde dokázať žiadnym "mechanickým procesom". V tejto chvíli bol T.S. už dostatočne
 silne obhájený ako zástupca všetkých "mechanických procesov" - všetko čo je vypočítateľné, je vypočítateľné na T.S. Takže Turingovi
-stačilo nájsť výrok, ktorý by reprezentoval nevypočitateľný T.S.:
+stačilo nájsť výrok, ktorý by reprezentoval nevypočítateľný T.S.:
 
 1. Zostrojme pravdivý výrok $$\mathbin{Un}(M)$$, ktorý reprezentuje nejaký T.S. $$M$$. Napríklad výrok "$$M$$ nikdy nevypíše $$0$$".
 2. Ak Entscheidungsproblem je riešiteľný, potom existuje mechanický proces na zistenie, či $$\mathbin{Un}(M)$$ je dokázateľný.
@@ -214,18 +214,18 @@ stačilo nájsť výrok, ktorý by reprezentoval nevypočitateľný T.S.:
 
 Sám Gödel veľmi uznával prácu Alana Turinga. Osobne sa nikdy nestretli,
 aj keď obidvaja istú dobu pôsobili na IAS-e. Turing tam bol na stáži u Alonza Churcha, ktorý nezávisle na Turingovi (a efektívne skôr)
-zistil, že Enscheidungsproblem nemá riešenie.
+zistil, že Entscheidungsproblem nemá riešenie.
 
 Čo je zaujímavé je, že výsledky všetkých troch velikánov - Gödela, Turinga aj Churcha - sa zhodujú, a ich formálne systémy (teória rekurzie, T.S. a
 lambda kalkul) sú ekvivalentné. To znamená, že schopnosti a sila každého z týchto formalizmov sú rovnaké. Napr. to, čo je vypočítateľné na T.S. je efektívne
-vypočitateľné lambda kalkulom, a naopak.
+vypočítateľné lambda kalkulom, a naopak.
 
 # Limity ľudskej mysle
 
 Turingove stroje sú veľmi dôležité z niekoľko hľadísk:
 
 - Zahŕňajú základné myšlienky ako by mohol fungovať počítač a jeho "programovanie" - dobre definujú algoritmus
-- Umožňujú teoreticky skúmať algoritmy (nielen "vypočitateľnosť", ale aj zložitosť a ďalšie veci)
+- Umožňujú teoreticky skúmať algoritmy (nielen "vypočítateľnosť", ale aj zložitosť a ďalšie veci)
 - Prispievajú určitým spôsobom k [agnosticizmu][82]
 
 Teorém nekompletnosti, ako aj nemožnosť riešiť Entscheidungsproblem, prezrádzajú niečo viac aj o povahe nášho sveta,

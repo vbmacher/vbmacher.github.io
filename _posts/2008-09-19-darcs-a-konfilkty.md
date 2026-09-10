@@ -9,7 +9,7 @@ description: Riešenie konfliktov vo VCS Darcs, ktorý na rozdiel od git-u nepou
 
 
 O systéme na správu verzií [darcs](https://darcs.net/) bolo na internete popísané mnoho. Podľa môjho názoru ide o jeden z najkrajších a najjednoduchších systémov na správu verzií.
-Je napísaný v Haskelli (funkcnionálny jazyk). Jeho fungovanie je založené na veľkej [matematickej teórii patchov](https://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory).
+Je napísaný v Haskelli (funkcionálny jazyk). Jeho fungovanie je založené na veľkej [matematickej teórii patchov](https://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory).
 Tento článok sa zaoberá problematikou konfliktov v darcse.
 
 Konflikty zvyčajne vznikajú, keď rovnaký súbor na rovnakom mieste modifikujú súčasne viacero ľudí (v rôznych repozitároch), nezávisle na sebe.
@@ -36,7 +36,7 @@ Teraz používateľ **vbmacher** vytvorí prvý súbor, ktorý vloží do svojho
 
 ```bash
 [repos/vbmacher]$ > hello.c
-    ... pridáme nejaký obsah do súboru hello,c ...
+    ... pridáme nejaký obsah do súboru hello.c ...
 [repos/vbmacher]$ darcs add hello.c
 [repos/vbmacher]$ darcs record -am Initial
    ... darcs sa opýta na email ...
@@ -100,7 +100,7 @@ Finished applying...
 Push successful.
 ```
 
-A tiež **maeglin** zmení súbor bez toho, aby si pred tým stiahol vbmachrov patch zo servera.
+A tiež **maeglin** zmení súbor bez toho, aby si predtým stiahol vbmachrov patch zo servera.
 
 ```bash
 [repos/maeglin]$ vi hello.c
@@ -147,7 +147,7 @@ Odporúčam však nechať veci tak ako sú.
 
 ## Riešenie konfliktu
 
-Vráťme sa k naším repozitárom. Používateľ **maeglin** vytvoril patch, ktorý je konfliktný. Čo s tým? Riešením je, že používateľ **maeglin** vytvorí ďalší patch, ktorý konflikt
+Vráťme sa k našim repozitárom. Používateľ **maeglin** vytvoril patch, ktorý je konfliktný. Čo s tým? Riešením je, že používateľ **maeglin** vytvorí ďalší patch, ktorý konflikt
 rieši a následne pošle oba patche na server. Ostatní používatelia teda vôbec nemusia vedieť, že nejaký konflikt nastal.
 
 Existuje overený postup, ako by mal používateľ **maeglin** vytvoriť patch, ktorý konflikt rieši. Najprv je nutné poznať, v ktorých miestach by vznikol konflikt (v ktorých

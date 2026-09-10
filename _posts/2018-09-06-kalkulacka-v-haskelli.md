@@ -8,7 +8,7 @@ description: Rekurzívny parser a interpret reťazcového zápisu infixových v�
 ---
 
 Pamätáte sa na svoje prvé programy? Myslím tie úplne, úplne prvé.. Moje prvé kroky na magickej ceste programátora rozhodne sprevádzali textové
-kalkulačky. Mojim cieľom bolo bez použitia neštandardných knižníc v jazyku [QBasic][2] (neskôr Pascal, a potom C - zdrojový kód je [tu][16]) napísať 
+kalkulačky. Mojím cieľom bolo bez použitia neštandardných knižníc v jazyku [QBasic][2] (neskôr Pascal, a potom C - zdrojový kód je [tu][16]) napísať
 parser a interpret jednoduchých aritmetických výrazov - jednoduchú kalkulačku. 
 
 V tom čase (možno okolo roku 1997-1998) to však bolo nad moje sily. Nevedel som sa spoľahlivo vysporiadať ani s medzerami medzi symbolmi, ani s prioritami operátorov, zátvorkami, reprezentáciou výrazu (dátovou štruktúrou) a potencionálnymi chybami vstupu. Nemal som vtedy k dispozícii internet ani literatúru, a môj "um" ma neobdaril ani nápadom o gramatikách a parseroch; nenapadlo ma ani použiť strom na reprezentáciu výrazu.
@@ -41,7 +41,7 @@ Medzery sa budú ignorovať, a ostatné znaky by mali byť vyhodnotené ako chyb
 
 ## Gramatika
 
-Prvým krokom je mať gramatiku "jazyka" kalkulačky, ktorú môžme zapísať v tvare [EBNF][7]:
+Prvým krokom je mať gramatiku "jazyka" kalkulačky, ktorú môžeme zapísať v tvare [EBNF][7]:
 
 ```
     expr   -> factor { ("+" | "-") factor }
@@ -60,7 +60,7 @@ Gramatika obsahuje:
 
 Gramatika môže byť použitá buď na generovanie alebo rozpoznávanie slov jazyka. Každé nové generovanie aritmetického výrazu začína štartovacím
 neterminálom, ktorý nahradíme jeho pravou stranou. Pokračujeme ďalším odvodzovaním zľava doprava. Ak narazíme na symbol `|` v gramatike,
-máme možnosť voľby. Ak narazíme na ohraničenie `{ }`, znamená to, že obsah v týchto zátvorkách môžme opakovať 0 a viac krát. Bez komentára
+máme možnosť voľby. Ak narazíme na ohraničenie `{ }`, znamená to, že obsah v týchto zátvorkách môžeme opakovať 0 a viac krát. Bez komentára
 preletím odvodenie výrazu `2 * 3`:
 
 ```
@@ -133,7 +133,7 @@ napríklad [Applicative a Monády][22]. [`Applicative`][25] umožňuje kombinova
 
 ## Problémy naivných recursive-descent parserov
 
-Recursive-descent parsery majú v naivnej forme uvedenej v predošlej podkapitolke exponencionálnu zložitosť, pretože sú implementované klasickým [backtrackingom][19]. Vo funkcionálnych jazykoch je však hlavne pomocou techniky známej ako [memoization][20] možné
+Recursive-descent parsery majú v naivnej forme uvedenej v predošlej podkapitolke exponenciálnu zložitosť, pretože sú implementované klasickým [backtrackingom][19]. Vo funkcionálnych jazykoch je však hlavne pomocou techniky známej ako [memoization][20] možné
 [znížiť zložitosť na polynomiálnu][18].
 
 V týchto naivných implementáciách si musíme dať explicitne pozor na nejednoznačnosti v gramatike. V prípade ľavej rekurzie v gramatike
@@ -235,7 +235,7 @@ Keď ju aplikujeme na funkciu `sym :: Char -> Parser Char` a vieme, že `String`
 Na to, aby to takto krásne fungovalo však potrebujeme, aby náš `Parser` implementoval typovú triedu `Applicative`.
 
 Typová trieda `Applicative` je "aplikatívny funktor", takže musíme implementovať aj `Functor`. Funktor je nejaká abstrakcia nad kontextom (štruktúra, 
-"container"), nad ktorou môžme volať `map` (volá sa `fmap`). Napríklad funktorom je `[]` (zoznam) alebo aj `Maybe`. Veľmi dobrý úvod do funktorov som
+"container"), nad ktorou môžeme volať `map` (volá sa `fmap`). Napríklad funktorom je `[]` (zoznam) alebo aj `Maybe`. Veľmi dobrý úvod do funktorov som
 čítal v [tejto online knihe][27].
 
 ### Funktor
@@ -367,7 +367,7 @@ Ich stručné pripomenutie:
 - `$>` - skratka pre `pure (...) *> (...)`. Ako výsledok sa použije pravá strana, a výsledok z ľavej strany sa zahodí.
 - `<$>` - skratka pre `pure (...) <*> (...)`. Na výsledok z ľavej strany sa aplikuje pravá strana a tento výsledok sa vráti.
 - `<*` - sekvencia, podobne ako `<*>` s tým, že sa výsledok z pravej strany zahodí. 
-- `*>` - sekvencia, podovne ako `<*>` s tým, že sa výsledok z ľavej strany zahodí.
+- `*>` - sekvencia, podobne ako `<*>` s tým, že sa výsledok z ľavej strany zahodí.
 - `<*>` - sekvencia. Na výsledok ľavej strany sa aplikuje pravá strana a tento výsledok sa vráti.
 - `many` - opakovanie 0 a viac krát. Jej typ: `many :: Alternative f => f a -> f [a]`.
 - `some` - opakovanie 1 a viac krát. Jej typ: `some :: Alternative f => f a -> f [a]`.
@@ -388,7 +388,7 @@ data Arith =
 ```
 
 Z tejto štruktúry je zrejmé, že operácie máme len binárne. Samostatne môže vystupovať len číslo.
-Teraz už môžme napísať samostatný parser gramatiky:
+Teraz už môžeme napísať samostatný parser gramatiky:
 
 ```haskell
 mkOps :: Arith -> [Arith] -> Arith
@@ -468,7 +468,7 @@ eval (Ops a (Ops b c)) = ???
 
 Tak čo s tým? No neviem, asi by sme s takou štruktúrou nepochodili.
 
-Zostáva nám už len úplne posledná časť - poskladanie vecí do kopy:
+Zostáva nám už len úplne posledná časť - poskladanie vecí dokopy:
 
 ```haskell
 runParser :: String -> IO Arith

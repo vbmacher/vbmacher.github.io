@@ -49,20 +49,20 @@ generovanie výsledných formátov, alebo rôznych veľkostí obrázkov pre rôz
 Grafici na GitHub teda neukladajú svoj "projekt" grafického programu. Všetky vrstvy, pomocné čiary a podobne ostanú v
 "projekte" grafického programu u nich na počítači, a tento nie je verejný. Zamýšľam sa - prečo? Možno že si autor chce
 ponechať výhradné právo na akékoľvek pomocné prvky, ktorými dospeli k výslednému obrázku? Alebo je to tým, že projektový
-súbor predpisuje použitie grafického programu a sám o sebe licenčne nedovoľuje jeho uvolnenie ako open-source? Neviem.
+súbor predpisuje použitie grafického programu a sám o sebe licenčne nedovoľuje jeho uvoľnenie ako open-source? Neviem.
 
 Keby som si mal nakresliť logo, samozrejme ja projektový súbor mať budem. A zdieľať ho asi tiež môžem, snáď. 
 Avšak, keďže som viac programátor ako grafik, existuje "programátorská" alternatíva?
 
 # Alternatíva
 
-Existuje. Skutočne "naprogramovať" logo môžme napríklad pomocou programov ako je [MetaPost][1], [Dot (GraphViz)][2]
+Existuje. Skutočne "naprogramovať" logo môžeme napríklad pomocou programov ako je [MetaPost][1], [Dot (GraphViz)][2]
 alebo [TikZ][15] pre [LaTeX][16].
 Výhodou tohto prístupu je, že obrázok vo forme zdrojového kódu je ľahko modifikovateľný, hocikto môže pridávať a odoberať prvky
 a nemusí byť žiadny umelec, a nakoniec vieme si ho pekne držať v git-e.
 
 Nevýhodou - snáď - je to, že zložitejšie tvary, krivky alebo objekty s dynamickými efektami kreslíme využitím jednak
-jazyka samotného a pomocou afinných transformácii = matematiky.
+jazyka samotného a pomocou afinných transformácií = matematiky.
 
 Všetko však záleží od požiadaviek a od vlastných schopností. Ja som sa rozhodol pre MetaPost, jednak zrejme preto že
 logo ktoré chcem nakresliť je jednoduché, chcel som si to skúsiť a viac sa spolieham na napísaný text inštrukcií ako
@@ -70,7 +70,7 @@ obrázok nakresliť, než na WYSIWYG ťahaním myši. Rád by som, aby moje logo
 
 # MetaPost
 
-Je to kombinácia programovacieho jazyka a jeho interpretra, ktorý generuje výstup buď do PostScriptu (EPS), ale výstupom môže byť
+Je to kombinácia programovacieho jazyka a jeho interpreta, ktorý generuje výstup buď do PostScriptu (EPS), ale výstupom môže byť
 aj [SVG][6] alebo PNG formát. Vychádza z programu s názvom [Metafont][7] od Donalda Knutha. Metafont však vznikol za účelom vytvárania
 rastrových fontov. Jazyky sú však podobné - pomocou algebraických definícií a zápisov vieme vytvárať a manipulovať s geometrickými
 objektami a aplikovať transformácie.
@@ -102,7 +102,7 @@ premennej `prologues` však nájdeme v [manuáli MetaPost-u][5]. Kladná hodnota
 na minimálny obdĺžnik, ktorý obrázok obkolesuje, čo chceme - žiadne A4 formáty a podobne.
 
 `outputtemplate` definuje šablónu názvu výstupného súboru, pričom `%j` zastupuje tzv. "job name", ktorý odpovedá menu vstupného
-súbora bez prípony (teda v našom prípade `logo`), a `%c` je číslo obrázka. A `outputformat` je snáď jasný. Okrem `svg` môžme
+súbora bez prípony (teda v našom prípade `logo`), a `%c` je číslo obrázka. A `outputformat` je snáď jasný. Okrem `svg` môžeme
 použiť `png` alebo `eps` (na veľkosti písmen záleží).
 
 Ako ste si už iste všimli, súbor môže obsahovať popis aj niekoľkých obrázkov, každý z nich je označený číslom za `beginfig`. Takže
@@ -111,8 +111,8 @@ to `%c` v šablóne `outputtemplate` je toto číslo.
 # Logo v MetaPost-e
 
 Kreslenie v MetaPoste je vlastne zábava. Predstavte si, že logo sa skladá z určitých komponentov, ktoré majú svoje parametre, napr.
-bedňa počítača je obdĺžnik, ktorého parametre sú šírka a výška, prípadne farba. Môžme si vytvoriť makro, ktoré vezme tieto parametre
-a nakreslí bedňu. V makre môžme definovať aj iné komponenty ktoré bedňu prikrášli, ako napríklad nakreslí vodorovnú čiaru, ktorá
+bedňa počítača je obdĺžnik, ktorého parametre sú šírka a výška, prípadne farba. Môžeme si vytvoriť makro, ktoré vezme tieto parametre
+a nakreslí bedňu. V makre môžeme definovať aj iné komponenty ktoré bedňu prikrášli, ako napríklad nakreslí vodorovnú čiaru, ktorá
 bude reprezentovať floppy disk, apod. Makro na nakreslenie bedne môže vyzerať nasledovne:
 
 {% gist a40856f68918986ec30f621928af3274 %}
@@ -123,7 +123,7 @@ A výsledok:
 
 Ako vidno, v kóde sa vieme pekne vyhrať. Nie je to nič zložité, len musíme trochu porozumieť ako to celé funguje. Napríklad,
 do premennej `p` som si uložil cestu (typ `path`), čo je vlastne akoby cesta v grafe, ktorým je fiktívna mriežka dvojrozmerného
-priestoru. S touto cestou si môžme robiť čo chceme - môžme ju vykresliť, alebo vyplniť (ak je uzavretá), atď.
+priestoru. S touto cestou si môžeme robiť čo chceme - môžeme ju vykresliť, alebo vyplniť (ak je uzavretá), atď.
 
 Moju "cestu" - teda hlavný obdĺžnik bedne - som vytvoril pomocou pomocnej konštanty (podľa manuálu) `unitsquare`, ktorý reprezentuje
 cestu `(0,0)--(1,0)--(1,1)--(0,1)--cycle`. Názov "unit square" hovorí, že ide o "jednotkový štvorec". Ak chceme z neho spraviť
@@ -133,7 +133,7 @@ obdĺžnik.
 Túto cestu potom použijeme jednak na vykreslenie obrysu bedne (`draw`), a jednak na podfarbenie bieleho pozadia (`fill`).
 Jednoduché, nie? Ak pozadie nechceme, jednoducho vymažeme príkaz `fill`.
 
-Týmto spôsobom vieme vytvoriť celé logo, môžme sa s tým vyhrať do lubovôle a snažiť sa kód napísať pekne. Kód výsledného
+Týmto spôsobom vieme vytvoriť celé logo, môžeme sa s tým vyhrať do ľubovôle a snažiť sa kód napísať pekne. Kód výsledného
 loga je tu:
 
 {% gist 590232184e295f211597de0feef376db %}
@@ -144,12 +144,12 @@ A vyzerá nasledovne:
 
 # Čo ďalej
 
-No tak zdroj SVG máme - teraz môžme pokračovať tak, ako to robia ostatní. Napríklad, keďže MetaPost umožňuje písanie parametrických
-makier, môžme si vygenerovať rôzne verzie loga pre webovú stránku. Napríklad - hlavné logo pre banner na úvodnej stránke, alebo
+No tak zdroj SVG máme - teraz môžeme pokračovať tak, ako to robia ostatní. Napríklad, keďže MetaPost umožňuje písanie parametrických
+makier, môžeme si vygenerovať rôzne verzie loga pre webovú stránku. Napríklad - hlavné logo pre banner na úvodnej stránke, alebo
 malé logo na hornú lištu, atď. Ak je viac rôznych verzií loga, alebo ak sme vytvorili celú sadu ikon či obrázkov takýmto spôsobom,
-výsledné SVG súbory môžme zabaliť do web-fontu, napríklad pomocou [WebFont Generátora][13].
+výsledné SVG súbory môžeme zabaliť do web-fontu, napríklad pomocou [WebFont Generátora][13].
 
-Taktiež, výsledné SVG treba pred použitím optimalizovať, čím sa redukuje veľkosť súboru. Môžme na to použiť napríklad program
+Taktiež, výsledné SVG treba pred použitím optimalizovať, čím sa redukuje veľkosť súboru. Môžeme na to použiť napríklad program
 [svgo][17].
 
 Na záver - nemyslím si, že MetaPost je tou správnou voľbou pre všetky typy log, alebo ikon. Výhodu, ktorú prináša je

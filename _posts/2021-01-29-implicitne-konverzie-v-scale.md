@@ -42,11 +42,11 @@ Poďme sa pozrieť ďalej, na mechanizmus s názvom **subtyping**. Subtyping tot
 
 Napríklad v OOP: dedičnosť umožňuje vytvárať podtypy - teda odvodené typy od svojich rodičov. Podtypy sa však dajú vytvoriť aj inak: implementáciou interface, alebo použitím tzv. [Mixin][mixin]-u, ktorý do triedy "vkladá" funkcionalitu bez dedenia. Subtyping je teda mechanizmom nielen v OOP.
 
-Medzi hlavným typom (rodičom) a odvodeným typom (dieťaťom) je akási súvislosť. Túto súvislosť môžme využiť pri substitúcii jedného za druhého. Dostávame sa tak ku substitučnému princípu, ktorý dobre popísala Barbara Liskov v roku 1994. Jedná sa preto o [Liskovej substitučný princíp][liskov], a má aj svoje významné písmeno **L** aj v akronyme [SOLID][solid] (princípy dobrého designu v OOP). Hovorí:
+Medzi hlavným typom (rodičom) a odvodeným typom (dieťaťom) je akási súvislosť. Túto súvislosť môžeme využiť pri substitúcii jedného za druhého. Dostávame sa tak ku substitučnému princípu, ktorý dobre popísala Barbara Liskov v roku 1994. Jedná sa preto o [Liskovej substitučný princíp][liskov], a má aj svoje významné písmeno **L** aj v akronyme [SOLID][solid] (princípy dobrého designu v OOP). Hovorí:
 
 > Subtype Requirement: Let $\phi(x)$ be a property provable about objects $x$ of type $B$. Then $\phi(y)$ should be true for objects $y$ of type $A$ where $A$ is a subtype of $B$.
 
-Znamená to, že ak `A <: B` (`A` je podtypom `B`), tak od `A` môžme očakávať *rovnaké vlastnosti* ako má typ `B` (vlastnosti $\phi$). Teda všetko to, čo vie "rodič", by malo vedieť aj "dieťa". A preto v programovacích jazykoch vieme implementovať **substitúciu**, čiže nahradenie `A` za `B`, bez _explicitnej_ drámy. Napríklad:
+Znamená to, že ak `A <: B` (`A` je podtypom `B`), tak od `A` môžeme očakávať *rovnaké vlastnosti* ako má typ `B` (vlastnosti $\phi$). Teda všetko to, čo vie "rodič", by malo vedieť aj "dieťa". A preto v programovacích jazykoch vieme implementovať **substitúciu**, čiže nahradenie `A` za `B`, bez _explicitnej_ drámy. Napríklad:
 
 ```scala
 class B 
@@ -74,7 +74,7 @@ sumUp(SInt(1), SInt(2), SInt(3))
 
 Teraz sme už pripravení zamyslieť sa nad tým, čo znamená "dobrá" konverzia.  
 
-Tak ako je to v prípade `Double` a `Int`? Je skutočne `Double` podtypom `Int`? Nie, je to skôr naopak. Každý `Int` môže byť aj `Double` (pretože `Double` má väčší rozsah a naviac vie poňať aj desatinné čísla), môžme bezpečne predpokladať vzťah `Int <: Double`. Liskovej substitučný princíp však nevyžaduje skutočný technický subtyping, princíp hovorí len o *vlastnostiach* - teda platí vtedy, ak vlastnosti typu `Double` má aj typ `Int`.
+Tak ako je to v prípade `Double` a `Int`? Je skutočne `Double` podtypom `Int`? Nie, je to skôr naopak. Každý `Int` môže byť aj `Double` (pretože `Double` má väčší rozsah a naviac vie poňať aj desatinné čísla), môžeme bezpečne predpokladať vzťah `Int <: Double`. Liskovej substitučný princíp však nevyžaduje skutočný technický subtyping, princíp hovorí len o *vlastnostiach* - teda platí vtedy, ak vlastnosti typu `Double` má aj typ `Int`.
 
 Z tohto príkladu intuitívne vieme vycítiť, aká je to "dobrá" - bezpečná - implicitná konverzia:
 
@@ -172,7 +172,7 @@ val service = findService(config.serviceURL) // ktorá metóda sa zavolá?
 ```
 
 Táto chyba je relatívne dobre viditeľná, ale kompilátor sa sťažovať vôbec nebude. V tomto prípade sa žiadna konverzia
-nekoná, pretože netreba - zavolá sa metóda `findService(serviceName: String)` s chybným argumentom `config.serviceURL`.Keď sme všímaví, všimneme si to. Ak nie, tak sa to dozvieme až v runtime... 
+nekoná, pretože netreba - zavolá sa metóda `findService(serviceName: String)` s chybným argumentom `config.serviceURL`. Keď sme všímaví, všimneme si to. Ak nie, tak sa to dozvieme až v runtime...
 
 Ešte horšie to však dopadne, keď naše metódy skomplikujeme:
 
@@ -208,7 +208,7 @@ object BadApplication {
 }
 ```
 
-Ktorá z dvoch implementácií metódy `find` za zavolá?
+Ktorá z dvoch implementácií metódy `find` sa zavolá?
 
 Ak sú všetky tieto traity ešte aj v iných súboroch a my vidíme len súbor s objektom `BadApplication`, jednoducho to nemôžeme vedieť (bez podpory nášho inteligentného IDE). Nepriamo implicitná konverzia skrýva to, čo by nemalo byť skryté. 
 
@@ -252,8 +252,8 @@ service1.find(config.serviceUrl1.toURL)
 
 Rozdielom oproti implicitnej konverzii je okrem explicitného volania `.toURL` fakt, že:
 
-- výnimku môžme jasne očakávať, pretože robíme explicitné volanie
-- môžme vytvoriť niekoľko variantov konverzie, z ktorých si pri použití vyberieme.
+- výnimku môžeme jasne očakávať, pretože robíme explicitné volanie
+- môžeme vytvoriť niekoľko variantov konverzie, z ktorých si pri použití vyberieme.
 - konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
 - porušenie Liskovej princípu nevadí
 
@@ -311,9 +311,9 @@ sendJson(Person("Peter", 36))
 
 Vidíte tú krásu? Dosiahli sme syntakticky ideálne riešenie, ktoré nič neskrýva:
 
-- Problém v konverzii objektu na JSON môžme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson` (vo funkcii `sendJson` a nie pri každom jej volaní, a to je o dosť lepšie než v prípade extension metódy).
+- Problém v konverzii objektu na JSON môžeme očakávať (rovnako ako pri extension metóde), pretože robíme explicitné volanie `.toJson` (vo funkcii `sendJson` a nie pri každom jej volaní, a to je o dosť lepšie než v prípade extension metódy).
 - konverzia nie je viditeľná v celom scope, ale len tam, kde ju importujeme
-- pri pridávaní typov, ktoré môžu byť použité pre funkciu `sendJson` nám stačí len pridať ďaľší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
+- pri pridávaní typov, ktoré môžu byť použité pre funkciu `sendJson` nám stačí len pridať ďalší `implicit val` a nič iné meniť nemusíme. Toto je krásnym príkladom dodržania [Open-Closed][open-closed] princípu: *"Software entities should be open for extension, but closed for modification"*
 
 Nie vždy sa však dá použiť typová trieda. Problém nastáva, keď potrebujeme skutočný typ `B`, nie len operácie nad `B`.
 

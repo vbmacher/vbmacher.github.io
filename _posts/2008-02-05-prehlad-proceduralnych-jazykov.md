@@ -17,11 +17,11 @@ ALGOL bol navrhnutý počítačovými vedcami z Európy a Ameriky na zasadnutí 
 použitie v komerčnej sfére bolo spôsobené absenciou štandardizácie vstupu/výstupu v jeho popise a nie
 prílišný záujem o tento jazyk. Algol 60 sa však stal štandardom pre publikácie o algoritmoch.
 [John Backus](https://en.wikipedia.org/wiki/John_Backus) napísal syntax tohto jazyka v jeho novej
-notácii, ktorú vymysel s názvom Backusova normálna forma, ktorú neskôr rozšíril
+notácii, ktorú vymyslel s názvom Backusova normálna forma, ktorú neskôr rozšíril
 [Peter Naur](https://en.wikipedia.org/wiki/Peter_Naur). Táto forma sa začala nazývať
 [Backus-Naurova forma (BNF)](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form) zápisu syntaxe jazyka
 (teda pravidiel gramatiky) a v súčasnosti sa veľmi často používa, hlavne jej variant
-EBNF (Extended Bacus-Naur Form).
+EBNF (Extended Backus-Naur Form).
 
 Keďže vstup/výstup ALGOL-u nebol štandardizovaný, neexistuje portabilná verzia klasického programu
 "hello world!". Nasledujúci príklad ukazuje tento program v jazyku ALGOL 60 pre počítač Unisys-A
@@ -120,13 +120,13 @@ operačného systému [Unix](https://en.wikipedia.org/wiki/Unix)
 Pre implementáciu systému chceli použiť jazyk dostatočne efektívny z pohľadu strojového kódu a zároveň
 nezávislý na konkrétnom procesore (čo bolo vtedy dosť protichodné). Ako vylepšenie jazyka
 [BCPL](https://en.wikipedia.org/wiki/BCPL) (o ktorom rozmýšľali, že bude implementačným jazykom Unixu)
-navrhol Ken Thompson jeho vatiant s názvom [B](https://en.wikipedia.org/wiki/B_%28programming_language%29) (1970).
+navrhol Ken Thompson jeho variant s názvom [B](https://en.wikipedia.org/wiki/B_%28programming_language%29) (1970).
 Aj keď jazyk mal dobré kompilačné vlastnosti, nebol dostatočne univerzálny. Preto sa nakoniec rozhodol
 [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie) vytvoriť nový jazyk, ktorý by spĺňal obe
 požiadavky. Vychádzal pritom z Thompsonovho jazyka "B" a podľa oficiálnych zdrojov dostal preto
 pomenovanie "C" ako jeho "nasledovník".
 
-C je jazykom strednej úrovne (teda ani nízkoúrovňový ale ani celkom vysko úrovňový) a používa sa hlavne
+C je jazykom strednej úrovne (teda ani nízkoúrovňový ale ani celkom vysokoúrovňový) a používa sa hlavne
 v oblasti (a dnes čoraz viac len) na systémové programovanie (operačné systémy, ovládače,
 real-time aplikácie, emulátory, ale aj programovacie jazyky, ...)
 
@@ -147,7 +147,7 @@ int main(void)
 
 ## Pascal
 
-Ide o jeden z najznámeších jazykov, ktorý sa hojne vyučuje na školách aj dodnes. V súčasnosti sa
+Ide o jeden z najznámejších jazykov, ktorý sa hojne vyučuje na školách aj dodnes. V súčasnosti sa
 čistý Pascal už ani tak nevyužíva, skôr jeho odvodená objektová verzia Delphi.
 
 Jazyk Pascal vytvoril v roku 1970 [N. Wirth](https://en.wikipedia.org/wiki/Niklaus_Wirth) ako malý,
@@ -167,7 +167,7 @@ dynamicky alokované premenné so smerníkmi, polia s rôzne definovaným rozmed
 
 Jazyk má prísnu typovú kontrolu, implicitná konverzia nie je vôbec možná.
 
-Umožňuje (narozdiel od rodiny C jazykov) vnorené definície procedúr do ľubovoľnej hĺbky a tiež takmer
+Umožňuje (na rozdiel od rodiny C jazykov) vnorené definície procedúr do ľubovoľnej hĺbky a tiež takmer
 ľubovoľné definície a deklarácie vo vnútri tela procedúr.
 
 Tieto aspekty umožnili vytvoriť veľmi jednoduchú a koherentnú syntax, kde kompletný program sa
@@ -185,6 +185,6 @@ end.
 
 # Záver
 
-V tomto článku som spravil prehľad snáď tych úplne najznámejších historických procedurálnych programovacích
+V tomto článku som spravil prehľad snáď tých úplne najznámejších historických procedurálnych programovacích
 jazykov. Hovorím procedurálnych, pretože historicky sú známe aj objektovo-orientované jazyky (napr. Smalltalk),
 alebo viac funkcionálne jazyky (napr. Lisp).

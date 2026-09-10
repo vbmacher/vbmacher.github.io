@@ -61,7 +61,7 @@ voliteľnú presnosť, tá musí byť na sto percent.
 Architektúra RAM stroja zahŕňa vstupnú a výstupnú pásku, pamäť programu a pamäť dát (známu ako "registre").
 Napodobniť túto architektúru znamená nájsť vhodnú formu a interpretáciu (kódovanie) komponentov RAM stroja na stroj,
 kde bude simulátor bežať. Komponenty architektúry RAM stroja sú jeho pásky a pamäte. Každú pásku
-RAM stroja, ako aj pamäť programu a dát môžme na Turingovom stroji reprezentovať samostatnými
+RAM stroja, ako aj pamäť programu a dát môžeme na Turingovom stroji reprezentovať samostatnými
 páskami. Zatiaľ teda potrebujeme 4 pásky.
 
 Páska reprezentujúca *pamäť programu* - `P` - bude mať tvar `$IO#IO#...B`.
@@ -144,7 +144,7 @@ po prechode z jedného do druhého stavu.
 Stavy $$q_3$$ až $$q_{13}$$ predstavujú volania procedúr jednotlivých inštrukcií. Mapovanie stavov na inštrukcie je
 uvedené v poslednom stĺpci tabuľky v predchádzajúcej časti.
 
-Ako je možné vidieť z grafu, zo stavu $$q_2$$ sa môžme dostať do niektorého stavu začínajúceho realizáciu danej
+Ako je možné vidieť z grafu, zo stavu $$q_2$$ sa môžeme dostať do niektorého stavu začínajúceho realizáciu danej
 inštrukcie. Pripomína to vetvenie, ktorého konštrukcia je naozaj *bežná* v klasických programovacích jazykoch, ako
 je napr. jazyk C, či Java (príkaz `switch`). A práve takýmto spôsobom funguje základná technika emulácie, nazvaná
 *interpretácia*.
@@ -265,13 +265,13 @@ danej inštrukcie.
 Symboly $$D_P, D_I, \ldots, D_T$$ označujú pohyb hláv na jednotlivých páskach stroja. Každý symbol je množina troch
 prvkov: $$\{r, l, s\}$$, kde $$r$$ znamená pohyb o jeden symbol doprava, $$l$$ o jeden symbol doľava a $$s$$ žiadny pohyb.
 
-Celý kód samotného simulátora si môžte stiahnuť [ako gist][code].
+Celý kód samotného simulátora si môžete stiahnuť [ako gist][code].
 
 ## Veľký plagát - diagram stavov
 
 Na záver uvádzam kompletný farebný a čiernobiely diagram, na ktorom sa nachádzajú všetky stavy a prechody
 použitého Turingovho stroja. V podstate ide o vizualizáciu kódu nášho simulátora, uvedeného v predchádzajúcej časti.
-Diagram je dosť veľký, môžte si ho vytlačiť a napríklad nalepiť na stenu ako plagát.
+Diagram je dosť veľký, môžete si ho vytlačiť a napríklad nalepiť na stenu ako plagát.
 
 - [Farebný diagram](/assets/img/simulator-ram/RAM_simulator-color.pdf){:target="_blank"}
 - [Čiernobiely diagram](/assets/img/simulator-ram/RAM_simulator.pdf){:target="_blank"}

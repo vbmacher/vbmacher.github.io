@@ -12,15 +12,15 @@ Minulého roku cez Vianoce som sa trochu pohrával s programovacím jazykom Elm.
 
 Napríklad, tu sú dve hry v elm-e: [flatris](https://github.com/w0rm/elm-flatris), alebo [mario](https://github.com/avh4/elm-mario).
 
-Prečo by to človeka malo vôbec zaujímať? Tí, ktorí poznajú funkcionálne programovanie a Haskell, budú určite nadchnutí, a prekvapení. Haskell je totiž statický a silne typový jazyk, ktorého hlavné vlastnosti sú nemodifikovateľnosť dát (immutability), [referenčná transparentnosť](https://en.wikipedia.org/wiki/Referential_transparency), ďalej že funkcie sú sami hodnotami, ktoré si môžme uložiť do premennej, kde je rekurzia veľmi obľúbená technika a že vďaka lenivému vyhodnocovaniu (lazy evaluation) môžme pohodlne pracovať aj s nekonečnými štruktúrami. Väčšinu týchto vlastností má aj Elm, čím sa možno snaží nájsť to ultimátne riešenie na [krízu v Javascripte a jeho problémov](https://www.breck-mckye.com/blog/2014/12/the-state-of-javascript-in-2015/).
+Prečo by to človeka malo vôbec zaujímať? Tí, ktorí poznajú funkcionálne programovanie a Haskell, budú určite nadchnutí, a prekvapení. Haskell je totiž statický a silne typový jazyk, ktorého hlavné vlastnosti sú nemodifikovateľnosť dát (immutability), [referenčná transparentnosť](https://en.wikipedia.org/wiki/Referential_transparency), ďalej že funkcie sú sami hodnotami, ktoré si môžeme uložiť do premennej, kde je rekurzia veľmi obľúbená technika a že vďaka lenivému vyhodnocovaniu (lazy evaluation) môžeme pohodlne pracovať aj s nekonečnými štruktúrami. Väčšinu týchto vlastností má aj Elm, čím sa možno snaží nájsť to ultimátne riešenie na [krízu v Javascripte a jeho problémov](https://www.breck-mckye.com/blog/2014/12/the-state-of-javascript-in-2015/).
 
 Mám dojem, akoby tie zložitejšie veci v Haskelli sa Elm vypúšťa, alebo skôr sa pokúša nájsť iný, jednoduchší spôsob ako ich riešiť. Napríklad nemáme funktory, alebo monády ako explicitné abstrakcie, a ani typové triedy. To na jednej strane vyvoláva pocit sklamania, že Elm nie je až tak ďaleko čo sa týka typových možností aké má Haskell. Na druhej strane, Haskell vie nielen začínajúcim programátorom pekne zamotať hlavu. 
 
 Keďže Elm je určený hlavne na programovanie front-endu, pravdepodobne by mal vedieť osloviť Javascriptárov. A keďže Javascript nie je zložitý jazyk, asi by nemal byť ani Elm. Aj z tohto uhlu pohľadu je zaujímavé sledovať, ktoré rysy jazyka Haskell autori Elm-u považujú za dostatočne jednoduché, prípadne akú inú stratégiu volia, keď sa rozhodujú o preberaných vlastnostiach či rysoch.
 
-Elm si myslím zatiaľ nezaslúži konečný verdikt, pretože jeho čas na produkciu ešte nenastal. V tomto čase je ešte len vo verzii 0.19 a dosť rapídne sa mení. Určite aj to je dôvod, prečo samotný jazyk a jeho hlavná - štandardná knižnica ešte nemá tak veľké portfólio featur. V súčasnosti už existuje množstvo uživateľských komponentov a knižníc, ktoré sa dajú pohodlne nájsť [tu](https://package.elm-lang.org/). Avšak, keďže na medziverzovú kompatibilitu sa zatiaľ nedá spoľahnúť, veľa používateľských balíčkov v najnovšej verzii Elm-u zatiaľ nefunguje. Najpopulárnejšia a najviac fungujúca verzia je v tomto čase 0.16 a postupne sa prechádza na 0.17.
+Elm si myslím zatiaľ nezaslúži konečný verdikt, pretože jeho čas na produkciu ešte nenastal. V tomto čase je ešte len vo verzii 0.19 a dosť rapídne sa mení. Určite aj to je dôvod, prečo samotný jazyk a jeho hlavná - štandardná knižnica ešte nemá tak veľké portfólio featur. V súčasnosti už existuje množstvo užívateľských komponentov a knižníc, ktoré sa dajú pohodlne nájsť [tu](https://package.elm-lang.org/). Avšak, keďže na medziverzovú kompatibilitu sa zatiaľ nedá spoľahnúť, veľa používateľských balíčkov v najnovšej verzii Elm-u zatiaľ nefunguje. Najpopulárnejšia a najviac fungujúca verzia je v tomto čase 0.16 a postupne sa prechádza na 0.17.
 
-Podpora v jednotlivých IDE je ziatiaľ len základná, ale postačuje. Zvýrazňovanie syntaxe je podporované v IntelliJ IDEA, aj v Eclipse. Netbeans zatiaľ Elm nepodporuje. Ja som používal editor Atom, ktorý má zatiaľ snáď najväčšiu podporu pre Elm. Ak by niekto chcel použiť ViM, tiež má možnosť.
+Podpora v jednotlivých IDE je zatiaľ len základná, ale postačuje. Zvýrazňovanie syntaxe je podporované v IntelliJ IDEA, aj v Eclipse. Netbeans zatiaľ Elm nepodporuje. Ja som používal editor Atom, ktorý má zatiaľ snáď najväčšiu podporu pre Elm. Ak by niekto chcel použiť ViM, tiež má možnosť.
 
 O váš projekt sa stará príkaz `elm-package`, cez ktorý si vieme nainštalovať aj odinštalovať ľubovoľný dostupný balíček. Balíčky sa inštalujú do zvláštne pomenovaného podadresára `elm-stuff` a do projektového súboru. Tento má formát JSON, ktorý okrem zoznamu všetkých závislostí a rozsahu povolených verzií, obsahuje metadáta ako názov projektu, verziu, popis, atď.
 
@@ -32,7 +32,7 @@ Samozrejmou súčasťou je Elm kompilátor, ktorý vie vytvoriť či už HTML s�
 
 Nemôžem povedať, že som sa Elm kompletne naučil, ani že viem bez problémov programovať v Haskell-i. S Haskellom mám skúsenosti len v rámci voľného času a to tak zhruba rok. S Elm-om som prišiel do styku len tieto Vianoce. Preto moje prvé dojmy určite nepovažujte za kompletnú sadu rozdielov a podobností, skôr tu chcem vypichnúť veci, na ktoré som narazil.
 
-V Elm-e som robil len jeden maličký projektík, a tým je trochu modifikovaná hra Game of Life. Jej zdrojový kód nájdete [tu](https://github.com/vbmacher/learning-kit/tree/master/toy-projects/game-of-life). Modifikácia spočívala v tom, že mriežku mám hexagonovú, a pravidlá hry sú B2/S3,4,5. To znamená, že bunka sa narodí ak má presne dvoch susedov, a prežije ak má od troch do piatich susedov. V iných prípadoch bunka zomrie, alebo ostane mŕtva. Hru si môžte vyskúšať aj priamo tu:
+V Elm-e som robil len jeden maličký projektík, a tým je trochu modifikovaná hra Game of Life. Jej zdrojový kód nájdete [tu](https://github.com/vbmacher/learning-kit/tree/master/toy-projects/game-of-life). Modifikácia spočívala v tom, že mriežku mám hexagonovú, a pravidlá hry sú B2/S3,4,5. To znamená, že bunka sa narodí ak má presne dvoch susedov, a prežije ak má od troch do piatich susedov. V iných prípadoch bunka zomrie, alebo ostane mŕtva. Hru si môžete vyskúšať aj priamo tu:
 
 
 <iframe src="{{ '/assets/js/elm-vs-haskell/gol.html' | absolute_url }}" width="700" height="450" style="border:none;overflow:hidden;"></iframe>
@@ -58,7 +58,7 @@ Premenná `cur` je rekurzívna premenná, ktorá je výsledkom funkcie `makelist
 predchádzajúcim prvkom a zoznamom vytvoreným rekurzívnym spôsobom zo zvyšku vstupného zoznamu a ďalšieho "prev" prvku, čo je vlastne zoznam, ktorý
 práve teraz tvoríme (`cur`). Toto ide v Haskell-i, bohužiaľ to nejde v Elm-e.
 
-Narazil som na to, keď som rozmýšľal o reprezentácii herného plánu. Keď chceme reprezentovať herný plán vo funkcionálnom jazyku, môžme to urobiť niekoľkými spôsobmi. Jeden z obľúbených spôsobov je aplikovať lenivé vyhodnocovanie (lazy evaluation) aj v samotnej dátovej štruktúre. To znamená, že je možné vytvoriť dátovú štruktúru tak, aby dynamicky zväčšovala svoju kapacitu či "dosah" podľa potreby. Napríklad v prípade hry Game of Life, môžme túto dátovú štruktúru zostaviť ako graf vzájomne susediacich políčok:
+Narazil som na to, keď som rozmýšľal o reprezentácii herného plánu. Keď chceme reprezentovať herný plán vo funkcionálnom jazyku, môžeme to urobiť niekoľkými spôsobmi. Jeden z obľúbených spôsobov je aplikovať lenivé vyhodnocovanie (lazy evaluation) aj v samotnej dátovej štruktúre. To znamená, že je možné vytvoriť dátovú štruktúru tak, aby dynamicky zväčšovala svoju kapacitu či "dosah" podľa potreby. Napríklad v prípade hry Game of Life, môžeme túto dátovú štruktúru zostaviť ako graf vzájomne susediacich políčok:
 
 ```haskell
 
@@ -80,7 +80,7 @@ Narazil som na to, keď som rozmýšľal o reprezentácii herného plánu. Keď 
   ...
 ```
 
-Takto môžme herný plán rozširovať dokedy chceme, a to ľubovoľným smerom. Využitím techniky [zipperov](https://learnyouahaskell.com/zippers) sa vieme po pláne pohybovať efektívne. Ale toto sa dá len v Haskell-i. Bohužiaľ, v Elm-e to zatiaľ nenapíšeme.
+Takto môžeme herný plán rozširovať dokedy chceme, a to ľubovoľným smerom. Využitím techniky [zipperov](https://learnyouahaskell.com/zippers) sa vieme po pláne pohybovať efektívne. Ale toto sa dá len v Haskell-i. Bohužiaľ, v Elm-e to zatiaľ nenapíšeme.
 
 # Škaredé nekonzistencie
 
@@ -112,7 +112,7 @@ Napríklad:
 ```
 
 hodnoty typu `Day` dokážeme porovnávať, pretože je automaticky odvodený od typovej triedy `Ord`. V tomto prípade platí
-`Mon < Tue < Wed < ... < Sun`. Podobne, existujú typové triedy `Show`, `Eq`, `Bounded`, a iné. Avšak z tejto featury sa môžme tešiť zatiaľ
+`Mon < Tue < Wed < ... < Sun`. Podobne, existujú typové triedy `Show`, `Eq`, `Bounded`, a iné. Avšak z tejto featury sa môžeme tešiť zatiaľ
 len v Haskell-i; Elm bohužiaľ [vôbec nemá typové triedy](https://github.com/elm/compiler/issues/1039). Tie sa však dajú simulovať pomocou
 [record syntaxe](https://elm-lang.org/docs/records), ako sa to popisuje napríklad v
 [tomto článku](https://www.haskellforall.com/2012/05/scrap-your-type-classes.html).
@@ -173,7 +173,7 @@ ale je možné to samozrejme doprogramovať ručne.
 
 # Použitie apostrofov v názvoch premenných
 
-Z Haskell-u som zvyknutý používať apostrofy ako ďaľšie "verzie" premenných rovnakého mena, napr.:
+Z Haskell-u som zvyknutý používať apostrofy ako ďalšie "verzie" premenných rovnakého mena, napr.:
 
 ```haskell
   (w , h)  = (1,2)
@@ -208,7 +208,7 @@ Ale k veci - Elm [nemá kľúčové slovo where](https://github.com/elm-lang/elm
     in ys::(pack zs)
 ```
 
-ktorú však nemôžme použiť na `String`, pretože ako som už povedal, v Elm-e `String` nie je pole `Char`-ov:
+ktorú však nemôžeme použiť na `String`, pretože ako som už povedal, v Elm-e `String` nie je pole `Char`-ov:
 
 
 ```haskell
@@ -216,7 +216,7 @@ ktorú však nemôžme použiť na `String`, pretože ako som už povedal, v Elm
                   ==  [['a','a','a'], ['b','b']]
 ```
 
-Dôsledkom je napríklad, že v Elm-e nemôžme napísať niečo ako
+Dôsledkom je napríklad, že v Elm-e nemôžeme napísať niečo ako
 
 ```haskell
   "ahoj " ++ "svet"
@@ -293,7 +293,7 @@ Elm teoreticky môže mať na to (ale asi až za nejaký čas) unifikovať a spo
 
 Počul som niečo aj o TypeScripte, ktorý prináša typy do Javascriptu (okrem iného), a tiež je veľmi populárny. Nikdy som však v TypeScripte nerobil, keďže vlastne ani nie som front-end vývojár, a možno by som takéto články vlastne ani nemal písať. Elm ma zaujal hlavne kvôli jeho spojitosti s Haskellom - "najfunkcionálnejším jazykom na svete" - a zaujímalo ma, ako môže vyzerať taký Haskell na front-ende. A mám z toho veľmi dobrý dojem.
 
-Výhodou je tiež parádna interoperabilita s Javascriptom, ktorý môžme do Elm-u rovno includovať, aj keď vlastne neviem, či sa jedná o hack alebo nie. A možnosť v Elm-e písať komponenty do Reactu, a tiež jeho už existujúce komponenty na animáciu a interakciu, ktoré sú vďaka funkcionálnemu prístupu veľmi jednoducho použiteľné.
+Výhodou je tiež parádna interoperabilita s Javascriptom, ktorý môžeme do Elm-u rovno includovať, aj keď vlastne neviem, či sa jedná o hack alebo nie. A možnosť v Elm-e písať komponenty do Reactu, a tiež jeho už existujúce komponenty na animáciu a interakciu, ktoré sú vďaka funkcionálnemu prístupu veľmi jednoducho použiteľné.
 
 Je otázne, či je vhodný na použitie v produkcii. Je možné nájsť niekoľko projektov, ktoré Elm [v produkcii používajú](https://discourse.elm-lang.org/t/elm-0-19-from-a-production-perspective/815/7). Od poslednej verzie 0.18 k verzii 0.19 ubehlo neuveriteľných 18 mesiacov (rok a pol), čo viedlo k [týmto zmenám](https://github.com/elm/compiler/blob/master/upgrade-docs/0.19.md). Pred časom, zmenou z 0.17 na 0.18 prebehlo obrovské množstvo spätne nekompatibilných zmien. Teraz je ich zdá sa menej, akoby sa autori orientovali už skôr na "vnútro" samotného jazyka - optimalizáciu. Avšak stále sa verzia ani zďaleka nepribližuje 1.0.
 
